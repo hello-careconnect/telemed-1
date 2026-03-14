@@ -1,6 +1,10 @@
 import { useRef, useState } from 'react';
 import { motion, useInView } from 'framer-motion';
 import { Phone, MessageCircle, ChevronLeft, ChevronRight, Star } from 'lucide-react';
+import doctorAisha from '@/assets/doctor-aisha.webp';
+import doctorKarim from '@/assets/doctor-karim.webp';
+import doctorNasreen from '@/assets/doctor-nasreen.webp';
+import doctorRafiq from '@/assets/doctor-rafiq.webp';
 
 const doctors = [
   {
@@ -8,52 +12,28 @@ const doctors = [
     specialty: 'Cardiologist',
     rating: '4.9',
     reviews: 127,
-    initials: 'AR',
-    /*
-      IMAGE NEEDED: "doctor-aisha.webp"
-      Professional headshot of a Bangladeshi female doctor (early 30s), wearing a white 
-      lab coat, hair neatly pulled back, warm smile, stethoscope around neck. Soft, 
-      neutral studio background. Portrait crop from chest up. Approachable, confident expression.
-    */
+    image: doctorAisha,
   },
   {
     name: 'Dr. Karim Hassan',
     specialty: 'Pediatrician',
     rating: '4.8',
     reviews: 94,
-    initials: 'KH',
-    /*
-      IMAGE NEEDED: "doctor-karim.webp"
-      Professional headshot of a Bangladeshi male doctor (mid-30s), wearing a white lab 
-      coat and glasses, friendly smile, clean-shaven. Soft, neutral studio background. 
-      Portrait crop from chest up. Trustworthy, approachable look.
-    */
+    image: doctorKarim,
   },
   {
     name: 'Dr. Nasreen Sultana',
     specialty: 'Gynecologist',
     rating: '4.9',
     reviews: 156,
-    initials: 'NS',
-    /*
-      IMAGE NEEDED: "doctor-nasreen.webp"
-      Professional headshot of a Bangladeshi female doctor (late 30s), wearing a white 
-      lab coat and modest hijab, warm and reassuring expression. Soft, neutral studio 
-      background. Portrait crop from chest up.
-    */
+    image: doctorNasreen,
   },
   {
     name: 'Dr. Rafiq Ahmed',
     specialty: 'Dermatologist',
     rating: '4.7',
     reviews: 82,
-    initials: 'RA',
-    /*
-      IMAGE NEEDED: "doctor-rafiq.webp"  
-      Professional headshot of a Bangladeshi male doctor (early 40s), wearing a white lab 
-      coat, salt-and-pepper hair, gentle smile with slight beard. Soft, neutral studio 
-      background. Portrait crop from chest up. Distinguished, experienced look.
-    */
+    image: doctorRafiq,
   },
 ];
 
@@ -115,11 +95,12 @@ export const DoctorsTeam = () => {
             >
               {/* Photo area */}
               <div className="aspect-[4/5] bg-surface-2 relative overflow-hidden">
-                <div className="w-full h-full bg-gradient-to-b from-primary/5 to-accent/10 flex items-center justify-center">
-                  <div className="w-24 h-24 rounded-full bg-primary/15 flex items-center justify-center">
-                    <span className="font-heading font-bold text-[28px] text-primary">{doc.initials}</span>
-                  </div>
-                </div>
+                <img
+                  src={doc.image}
+                  alt={doc.name}
+                  className="w-full h-full object-cover object-top"
+                  loading="lazy"
+                />
                 {/* Rating badge */}
                 <div className="absolute top-4 left-4 bg-background/90 backdrop-blur-sm rounded-full px-3 py-1 flex items-center gap-1">
                   <Star className="w-3.5 h-3.5 fill-warning text-warning" />
