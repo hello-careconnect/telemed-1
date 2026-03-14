@@ -1,7 +1,6 @@
 import { motion, AnimatePresence } from 'framer-motion';
 import { useEffect, useRef, useState } from 'react';
-import { ArrowRight, Play, ShieldCheck, Lock, Star } from 'lucide-react';
-import { PhoneMockup } from './PhoneMockup';
+import { ArrowRight, Play, ShieldCheck, Lock, Star, CheckCircle } from 'lucide-react';
 
 const rotatingLines = [
   'Book in under 2 minutes.',
@@ -9,8 +8,6 @@ const rotatingLines = [
   'Video consults, 24/7.',
   'No more guessing.',
 ];
-
-const ease = [0.25, 0.46, 0.45, 0.94] as const;
 
 const staggerContainer = {
   hidden: {},
@@ -54,9 +51,9 @@ export const HeroSection = () => {
       }}
     >
       <div className="container max-w-[1440px] mx-auto px-6 flex flex-col lg:flex-row items-center gap-12 lg:gap-0 py-16 lg:py-24">
-        {/* Left 58% */}
+        {/* Left 55% */}
         <motion.div
-          className="lg:w-[58%] w-full"
+          className="lg:w-[55%] w-full"
           variants={staggerContainer}
           initial="hidden"
           animate="show"
@@ -71,10 +68,10 @@ export const HeroSection = () => {
 
           {/* H1 */}
           <motion.h1 variants={fadeUp} className="mt-8">
-            <span className="block font-heading font-bold text-text-primary text-[48px] sm:text-[64px] lg:text-[80px] leading-[1.08]">
+            <span className="block font-heading font-bold text-text-primary text-[42px] sm:text-[56px] lg:text-[72px] leading-[1.08]">
               Find the doctor
             </span>
-            <span className="block font-heading font-bold text-text-primary text-[48px] sm:text-[64px] lg:text-[80px] leading-[1.08]">
+            <span className="block font-heading font-bold text-text-primary text-[42px] sm:text-[56px] lg:text-[72px] leading-[1.08]">
               you can{' '}
               <span className="font-display italic font-extrabold text-primary">trust.</span>
             </span>
@@ -99,7 +96,7 @@ export const HeroSection = () => {
           {/* Sub-headline */}
           <motion.p
             variants={fadeUp}
-            className="mt-6 font-body text-[18px] text-text-body leading-[1.65] max-w-[440px]"
+            className="mt-6 font-body text-[17px] text-text-body leading-[1.65] max-w-[460px]"
           >
             Verified doctors. Transparent reviews. Instant booking.
             <br />
@@ -128,17 +125,17 @@ export const HeroSection = () => {
           <motion.div variants={fadeUp} className="mt-8 flex items-center gap-4 sm:gap-6 flex-wrap text-[13px] font-body font-medium text-text-body">
             <span className="flex items-center gap-1.5">
               <ShieldCheck className="w-5 h-5 text-primary" />
-              BMDC Verified Doctors
+              BMDC Verified
             </span>
             <span className="text-border">|</span>
             <span className="flex items-center gap-1.5">
               <Lock className="w-5 h-5 text-primary" />
-              Your data is private
+              Data Private
             </span>
             <span className="text-border hidden sm:inline">|</span>
             <span className="flex items-center gap-1.5">
               <Star className="w-5 h-5 text-primary" />
-              Free first consultation
+              Free 1st Consult
             </span>
           </motion.div>
 
@@ -161,14 +158,118 @@ export const HeroSection = () => {
           </motion.div>
         </motion.div>
 
-        {/* Right 42% */}
-        <div className="lg:w-[42%] w-full flex justify-center relative hidden lg:flex">
-          <PhoneMockup />
-        </div>
+        {/* Right 45% — Doctor Hero Image */}
+        <motion.div
+          className="lg:w-[45%] w-full relative hidden lg:flex justify-center"
+          initial={{ opacity: 0, x: 40 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.7, delay: 0.3 }}
+        >
+          <div className="relative">
+            {/* Main doctor image placeholder */}
+            <div className="w-[420px] h-[520px] rounded-[32px] overflow-hidden shadow-xl relative bg-surface-2">
+              {/* 
+                IMAGE NEEDED: "hero-doctor.webp"
+                A professional, warm photo of a Bangladeshi male doctor (mid-30s to 40s) 
+                wearing a white lab coat with a stethoscope around his neck. He should be 
+                smiling confidently, facing slightly left. Clean, light background with a 
+                subtle teal/mint gradient. Upper body/portrait crop. High quality, modern 
+                healthcare aesthetic. The image should convey trust, expertise, and warmth.
+              */}
+              <div className="w-full h-full bg-gradient-to-br from-primary/10 via-surface to-accent flex items-center justify-center">
+                <div className="text-center p-8">
+                  <div className="w-32 h-32 rounded-full bg-primary/20 mx-auto mb-4 flex items-center justify-center">
+                    <span className="text-[48px]">👨‍⚕️</span>
+                  </div>
+                  <p className="font-body text-[13px] text-text-muted">hero-doctor.webp</p>
+                  <p className="font-body text-[11px] text-text-muted mt-1 max-w-[200px]">Bangladeshi male doctor, white coat, stethoscope, confident smile, light teal background</p>
+                </div>
+              </div>
+            </div>
+
+            {/* Floating badge — "200+ Best Doctors" */}
+            <motion.div
+              animate={{ y: [0, -8, 0] }}
+              transition={{ duration: 3.5, ease: 'easeInOut', repeat: Infinity }}
+              className="absolute -right-8 top-16 z-20 bg-background rounded-2xl shadow-xl px-5 py-3 border border-border"
+            >
+              <p className="font-heading font-bold text-[24px] text-primary">200+</p>
+              <p className="font-body text-[13px] text-text-muted">Best Doctors</p>
+            </motion.div>
+
+            {/* Floating card — Rating */}
+            <motion.div
+              animate={{ y: [0, -6, 0] }}
+              transition={{ duration: 4, ease: 'easeInOut', repeat: Infinity, delay: 1.2 }}
+              className="absolute -left-12 top-1/3 z-20 bg-background rounded-2xl shadow-xl px-5 py-3 border border-border"
+            >
+              <div className="flex items-center gap-2">
+                <div className="flex gap-0.5">
+                  {[...Array(5)].map((_, i) => (
+                    <Star key={i} className="w-3.5 h-3.5 fill-warning text-warning" />
+                  ))}
+                </div>
+                <span className="font-heading font-bold text-[15px] text-text-primary">4.9</span>
+              </div>
+              <p className="font-body text-[12px] text-text-muted mt-0.5">Average rating</p>
+            </motion.div>
+
+            {/* Floating card — Consultation info */}
+            <motion.div
+              animate={{ y: [0, -10, 0] }}
+              transition={{ duration: 3.8, ease: 'easeInOut', repeat: Infinity, delay: 2 }}
+              className="absolute -right-4 bottom-20 z-20 bg-primary rounded-2xl shadow-xl px-5 py-3"
+            >
+              <div className="flex items-center gap-2">
+                <CheckCircle className="w-4 h-4 text-primary-foreground" />
+                <p className="font-body font-medium text-[14px] text-primary-foreground">Available Now</p>
+              </div>
+              <p className="font-body text-[12px] text-primary-foreground/70 mt-0.5">Book instantly</p>
+            </motion.div>
+
+            {/* Small doctor card bottom-left */}
+            <motion.div
+              animate={{ y: [0, -6, 0] }}
+              transition={{ duration: 4.2, ease: 'easeInOut', repeat: Infinity, delay: 0.8 }}
+              className="absolute -left-6 bottom-8 z-20 bg-background rounded-2xl shadow-xl p-3 border border-border flex items-center gap-3"
+            >
+              {/* Small doctor avatar placeholder */}
+              <div className="w-10 h-10 rounded-full bg-gradient-to-br from-primary to-accent-alt flex items-center justify-center text-primary-foreground font-heading font-bold text-[12px]">
+                AR
+              </div>
+              <div>
+                <p className="font-heading font-semibold text-[13px] text-text-primary">Dr. Aisha R.</p>
+                <p className="font-body text-[11px] text-text-muted">Cardiologist · ⭐ 4.9</p>
+              </div>
+            </motion.div>
+          </div>
+        </motion.div>
 
         {/* Mobile simplified cards */}
-        <div className="lg:hidden w-full mt-8">
+        <div className="lg:hidden w-full mt-4">
           <MobileHeroCards />
+        </div>
+      </div>
+
+      {/* Trust strip below hero */}
+      <div className="border-t border-border bg-surface py-5">
+        <div className="container max-w-[1440px] mx-auto px-6">
+          <div className="flex flex-wrap justify-center gap-6 sm:gap-10">
+            {[
+              { icon: '🏥', label: 'Certified Doctors', desc: 'BMDC verified credentials' },
+              { icon: '🕐', label: '24/7 Availability', desc: 'Video consults anytime' },
+              { icon: '🔒', label: 'Secure & Private', desc: 'Your data, your control' },
+              { icon: '📱', label: 'Easy & Accessible', desc: 'Book in under 2 mins' },
+            ].map((item) => (
+              <div key={item.label} className="flex items-center gap-3 text-center sm:text-left">
+                <span className="text-[24px]">{item.icon}</span>
+                <div>
+                  <p className="font-heading font-semibold text-[14px] text-text-primary">{item.label}</p>
+                  <p className="font-body text-[12px] text-text-muted">{item.desc}</p>
+                </div>
+              </div>
+            ))}
+          </div>
         </div>
       </div>
     </section>
