@@ -120,7 +120,8 @@ export const DoctorsTeam = () => {
                 <img
                   src={doc.image}
                   alt={doc.name}
-                  className="w-full h-full object-cover object-top"
+                  className="w-full h-full object-cover"
+                  style={{ objectPosition: doc.objectPosition || 'center top' }}
                   loading="lazy"
                 />
                 {/* Rating badge */}

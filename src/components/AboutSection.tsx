@@ -84,7 +84,7 @@ export const AboutSection = () => {
 
           <div className="mt-8 flex items-center gap-3">
             <div className="flex -space-x-2">
-              {[doctorAisha, doctorNasreen, doctorAisha].map((img, i) => (
+              {[doctorAisha, doctorYoungGlasses, doctorClipboard].map((img, i) => (
                 <div
                   key={i}
                   className="w-9 h-9 rounded-full border-2 border-background overflow-hidden"

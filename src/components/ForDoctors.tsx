@@ -67,12 +67,10 @@ export const ForDoctors = () => {
         <div className="lg:w-[45%] w-full relative">
           <div className="relative">
             <div className="w-full aspect-[3/4] max-w-[400px] mx-auto rounded-[28px] overflow-hidden relative">
-              {/* Subtle gradient behind the cutout doctor */}
-              <div className="absolute inset-0 bg-gradient-to-b from-accent-alt/20 via-primary/10 to-transparent rounded-[28px]" />
               <img
-                src={doctorForDoctors}
-                alt="Doctor standing confidently with arms crossed"
-                className="w-full h-full object-contain object-bottom relative z-10"
+                src={doctorMature}
+                alt="Experienced doctor standing confidently with arms crossed"
+                className="w-full h-full object-cover object-right relative z-10"
                 loading="lazy"
               />
             </div>
