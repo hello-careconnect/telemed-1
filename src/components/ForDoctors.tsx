@@ -70,7 +70,7 @@ export const ForDoctors = () => {
               <img
                 src={doctorMature}
                 alt="Experienced doctor standing confidently with arms crossed"
-                className="w-full h-full object-cover object-left relative z-10"
+                className="w-full h-full object-cover object-right relative z-10"
                 loading="lazy"
               />
             </div>
