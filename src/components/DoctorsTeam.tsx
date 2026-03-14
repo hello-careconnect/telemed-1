@@ -5,6 +5,8 @@ import doctorAisha from '@/assets/doctor-aisha.webp';
 import doctorKarim from '@/assets/doctor-karim.webp';
 import doctorNasreen from '@/assets/doctor-nasreen.webp';
 import doctorRafiq from '@/assets/doctor-rafiq.webp';
+import doctorClipboard from '@/assets/doctor-clipboard.jpg';
+import doctorYoungGlasses from '@/assets/doctor-young-glasses.jpg';
 
 const doctors = [
   {
@@ -13,13 +15,15 @@ const doctors = [
     rating: '4.9',
     reviews: 127,
     image: doctorAisha,
+    objectPosition: 'center center',
   },
   {
     name: 'Dr. Karim Hassan',
     specialty: 'Pediatrician',
     rating: '4.8',
     reviews: 94,
-    image: doctorKarim,
+    image: doctorClipboard,
+    objectPosition: 'center top',
   },
   {
     name: 'Dr. Nasreen Sultana',
@@ -27,6 +31,7 @@ const doctors = [
     rating: '4.9',
     reviews: 156,
     image: doctorNasreen,
+    objectPosition: 'center top',
   },
   {
     name: 'Dr. Rafiq Ahmed',
@@ -34,6 +39,23 @@ const doctors = [
     rating: '4.7',
     reviews: 82,
     image: doctorRafiq,
+    objectPosition: 'center top',
+  },
+  {
+    name: 'Dr. Imran Chowdhury',
+    specialty: 'Neurologist',
+    rating: '4.8',
+    reviews: 103,
+    image: doctorYoungGlasses,
+    objectPosition: 'center top',
+  },
+  {
+    name: 'Dr. Karim Uddin',
+    specialty: 'Orthopedic Surgeon',
+    rating: '4.7',
+    reviews: 78,
+    image: doctorKarim,
+    objectPosition: 'center top',
   },
 ];
 
