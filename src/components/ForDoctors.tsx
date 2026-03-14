@@ -1,11 +1,12 @@
 import { useRef } from 'react';
 import { motion, useInView } from 'framer-motion';
-import { CheckCircle, ArrowRight, Stethoscope, BarChart2 } from 'lucide-react';
+import { CheckCircle, ArrowRight, Play } from 'lucide-react';
 
 const benefits = [
   { title: 'Free verified listing', desc: 'Manage your schedule and availability' },
   { title: 'Reach verified patients', desc: 'Build your online reputation with real reviews' },
   { title: 'Digital prescriptions', desc: 'Issue prescriptions and manage follow-ups digitally' },
+  { title: 'Your own analytics', desc: 'View patient reach, profile visits, booking rates' },
 ];
 
 export const ForDoctors = () => {
@@ -18,20 +19,21 @@ export const ForDoctors = () => {
 
   return (
     <section id="for-doctors" className="bg-dark-bg py-28">
-      <div className="container max-w-[1440px] mx-auto px-6 flex flex-col lg:flex-row gap-16" ref={ref}>
-        {/* Left */}
+      <div className="container max-w-[1440px] mx-auto px-6 flex flex-col lg:flex-row gap-16 items-center" ref={ref}>
+        {/* Left — Content */}
         <div className="lg:w-[55%]">
           <span className="inline-flex items-center bg-[rgba(255,255,255,0.08)] text-accent-alt rounded-full px-4 py-1.5 text-[13px] font-medium font-body">
             For Healthcare Professionals
           </span>
           <h2 className="mt-6 font-heading font-bold text-[36px] sm:text-[42px] text-dark-text leading-[1.1]">
-            Are you a doctor? List free.
+            Are you a doctor?{' '}
+            <span className="font-display italic text-accent-alt">List free.</span>
           </h2>
           <p className="mt-4 font-body text-[18px] text-[rgba(255,255,255,0.65)] max-w-lg">
-            Be among the first verified doctors on Bangladesh's most trusted health platform.
+            Be among the first verified doctors on Bangladesh's most trusted health platform. Boost your online presence and attract more patients.
           </p>
 
-          <div className="mt-10 space-y-5">
+          <div className="mt-10 space-y-4">
             {benefits.map((b, i) => (
               <motion.div
                 key={b.title}
@@ -49,63 +51,69 @@ export const ForDoctors = () => {
             ))}
           </div>
 
-          <button
-            onClick={scrollToForm}
-            className="group mt-10 bg-[rgba(255,255,255,0.08)] border-[1.5px] border-[rgba(255,255,255,0.25)] text-primary-foreground rounded-full px-8 py-4 text-[16px] font-semibold font-body hover:bg-[rgba(255,255,255,0.15)] transition-all duration-200 flex items-center gap-2"
-          >
-            List My Practice — Join Waitlist
-            <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
-          </button>
+          <div className="mt-10 flex flex-col sm:flex-row gap-3">
+            <button
+              onClick={scrollToForm}
+              className="group bg-accent-alt text-dark-bg rounded-full px-8 py-4 text-[16px] font-semibold font-body hover:opacity-90 transition-all duration-200 flex items-center justify-center gap-2"
+            >
+              List My Practice — Join Waitlist
+              <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
+            </button>
+          </div>
         </div>
 
-        {/* Right — floating cards (desktop only) */}
-        <div className="lg:w-[45%] relative min-h-[400px] hidden lg:block">
-          <motion.div
-            initial={{ opacity: 0, x: 40 }}
-            animate={inView ? { opacity: 1, x: 0 } : {}}
-            transition={{ delay: 0 }}
-            className="absolute top-0 right-8 rotate-[-2deg] bg-background rounded-2xl shadow-xl p-6 w-72"
-          >
-            <div className="bg-accent rounded-2xl w-12 h-12 flex items-center justify-center mb-3">
-              <Stethoscope className="w-6 h-6 text-primary" strokeWidth={1.5} />
+        {/* Right — Doctor image + features */}
+        <div className="lg:w-[45%] w-full relative">
+          <div className="relative">
+            {/* Doctor image placeholder */}
+            <div className="w-full aspect-[3/4] max-w-[400px] mx-auto rounded-[28px] overflow-hidden bg-dark-surface shadow-xl">
+              {/* 
+                IMAGE NEEDED: "doctor-for-doctors.webp"
+                A professional, confident Bangladeshi female doctor (mid-30s) in a white 
+                lab coat with a stethoscope, standing with arms crossed and a warm smile. 
+                She should be in a modern clinic or hospital corridor. Slightly blue-toned 
+                or neutral background. 3/4 body shot. Conveys professionalism, trust, 
+                and authority. High quality portrait.
+              */}
+              <div className="w-full h-full bg-gradient-to-b from-[rgba(255,255,255,0.05)] to-[rgba(255,255,255,0.02)] flex items-center justify-center">
+                <div className="text-center p-8">
+                  <div className="w-24 h-24 rounded-full bg-[rgba(255,255,255,0.08)] mx-auto mb-4 flex items-center justify-center">
+                    <span className="text-[40px]">👩‍⚕️</span>
+                  </div>
+                  <p className="font-body text-[13px] text-[rgba(255,255,255,0.5)]">doctor-for-doctors.webp</p>
+                  <p className="font-body text-[11px] text-[rgba(255,255,255,0.35)] mt-1 max-w-[200px] mx-auto">
+                    Confident female doctor, white coat, arms crossed, modern clinic
+                  </p>
+                </div>
+              </div>
             </div>
-            <p className="font-heading font-semibold text-text-primary">BMDC Verified Badge</p>
-            <p className="font-body text-[14px] text-text-body mt-1">Your qualifications verified. Patients trust you instantly.</p>
-          </motion.div>
 
-          <motion.div
-            initial={{ opacity: 0, x: 40 }}
-            animate={inView ? { opacity: 1, x: 0 } : {}}
-            transition={{ delay: 0.2 }}
-            className="absolute top-36 right-0 rotate-[1deg] bg-background rounded-2xl shadow-xl p-6 w-72"
-          >
-            <div className="bg-accent rounded-2xl w-12 h-12 flex items-center justify-center mb-3">
-              <BarChart2 className="w-6 h-6 text-primary" strokeWidth={1.5} />
-            </div>
-            <p className="font-heading font-semibold text-text-primary">Your own analytics</p>
-            <p className="font-body text-[14px] text-text-body mt-1">View patient reach, profile visits, booking rates.</p>
-          </motion.div>
+            {/* Feature cards overlaying */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={inView ? { opacity: 1, y: 0 } : {}}
+              transition={{ delay: 0.3 }}
+              className="absolute -bottom-4 left-0 right-0 mx-auto max-w-[360px] bg-background rounded-2xl shadow-xl p-4 flex items-center gap-4"
+            >
+              <div className="bg-success/10 rounded-xl w-12 h-12 flex items-center justify-center shrink-0">
+                <span className="text-[20px]">📊</span>
+              </div>
+              <div>
+                <p className="font-heading font-semibold text-[15px] text-text-primary">265K+ Patient Reach</p>
+                <p className="font-body text-[13px] text-text-muted">96% satisfaction rate</p>
+              </div>
+            </motion.div>
+          </div>
 
-          <motion.div
-            initial={{ opacity: 0, x: 40 }}
-            animate={inView ? { opacity: 1, x: 0 } : {}}
-            transition={{ delay: 0.4 }}
-            className="absolute top-72 right-12 rotate-[-1deg] bg-accent rounded-2xl shadow-xl p-6 w-72 border border-primary"
-          >
-            <p className="font-body text-[13px] text-text-body">First verified doctors get</p>
-            <p className="font-heading font-bold text-[28px] text-primary">3 months free</p>
-            <p className="font-body text-[14px] text-text-body">premium listing</p>
-          </motion.div>
-        </div>
-
-        {/* Mobile benefits simplified */}
-        <div className="lg:hidden space-y-3">
-          {['BMDC Verified Badge', 'Your own analytics', '3 months free premium listing'].map((item) => (
-            <div key={item} className="flex items-center gap-3 bg-[rgba(255,255,255,0.05)] rounded-xl p-4">
-              <CheckCircle className="w-5 h-5 text-accent-alt shrink-0" />
-              <p className="font-body text-[15px] text-dark-text">{item}</p>
-            </div>
-          ))}
+          {/* Mobile benefits */}
+          <div className="lg:hidden mt-12 space-y-3">
+            {['BMDC Verified Badge', 'Your own analytics', '3 months free premium listing'].map((item) => (
+              <div key={item} className="flex items-center gap-3 bg-[rgba(255,255,255,0.05)] rounded-xl p-4">
+                <CheckCircle className="w-5 h-5 text-accent-alt shrink-0" />
+                <p className="font-body text-[15px] text-dark-text">{item}</p>
+              </div>
+            ))}
+          </div>
         </div>
       </div>
     </section>

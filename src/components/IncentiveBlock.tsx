@@ -28,56 +28,62 @@ export const IncentiveBlock = () => {
   };
 
   return (
-    <section className="bg-primary py-24 relative overflow-hidden">
-      {/* Decorative circles */}
+    <section className="relative overflow-hidden">
+      {/* Background with gradient */}
+      <div className="absolute inset-0 bg-gradient-to-br from-primary via-primary-dark to-dark-bg" />
+      
+      {/* Decorative elements */}
       <div className="absolute top-[-100px] left-[-100px] w-[400px] h-[400px] rounded-full bg-[rgba(255,255,255,0.05)]" />
-      <div className="absolute bottom-[-150px] right-[-150px] w-[600px] h-[600px] rounded-full bg-[rgba(255,255,255,0.05)]" />
-      <div className="absolute top-[50%] left-[60%] w-[300px] h-[300px] rounded-full bg-[rgba(255,255,255,0.05)]" />
+      <div className="absolute bottom-[-150px] right-[-150px] w-[600px] h-[600px] rounded-full bg-[rgba(255,255,255,0.04)]" />
 
-      <div className="relative z-10 container max-w-2xl mx-auto px-6 text-center">
-        <span className="inline-flex bg-[rgba(255,255,255,0.15)] text-primary-foreground rounded-full px-4 py-1.5 text-[13px] font-medium font-body">
-          Limited Early Access
-        </span>
+      <div className="relative z-10 py-24">
+        <div className="container max-w-3xl mx-auto px-6 text-center">
+          <span className="inline-flex bg-[rgba(255,255,255,0.15)] text-primary-foreground rounded-full px-4 py-1.5 text-[13px] font-medium font-body">
+            Limited Early Access
+          </span>
 
-        <h2 className="mt-6 font-heading font-bold text-[40px] sm:text-[48px] text-primary-foreground leading-[1.1]">
-          First 500 get it free.
-        </h2>
+          <h2 className="mt-6 font-heading font-bold text-[36px] sm:text-[48px] text-primary-foreground leading-[1.1]">
+            Health shouldn't be complicated.
+            <br />
+            <span className="font-display italic">Let CareConnect make it simple.</span>
+          </h2>
 
-        <p className="mt-4 font-body text-[20px] text-[rgba(255,255,255,0.80)]">
-          One free General Physician consultation — BDT 300 value. No card. No catch.
-        </p>
+          <p className="mt-4 font-body text-[18px] text-[rgba(255,255,255,0.80)] max-w-lg mx-auto">
+            One free General Physician consultation — BDT 300 value. No card. No catch. First 500 get it free.
+          </p>
 
-        {/* Countdown */}
-        <div className="mt-10 flex justify-center gap-4">
-          {[
-            { val: time.days, label: 'DAYS' },
-            { val: time.hours, label: 'HRS' },
-            { val: time.mins, label: 'MINS' },
-          ].map((t) => (
-            <div key={t.label} className="bg-[rgba(255,255,255,0.12)] backdrop-blur-sm rounded-2xl px-6 sm:px-8 py-5">
-              <p className="font-heading font-black text-[40px] sm:text-[52px] text-primary-foreground leading-[1]">
-                {String(t.val).padStart(2, '0')}
-              </p>
-              <p className="font-body text-[12px] text-[rgba(255,255,255,0.55)] uppercase tracking-wide mt-1">
-                {t.label}
-              </p>
+          {/* Countdown */}
+          <div className="mt-10 flex justify-center gap-4">
+            {[
+              { val: time.days, label: 'DAYS' },
+              { val: time.hours, label: 'HRS' },
+              { val: time.mins, label: 'MINS' },
+            ].map((t) => (
+              <div key={t.label} className="bg-[rgba(255,255,255,0.10)] backdrop-blur-sm rounded-2xl px-6 sm:px-8 py-5">
+                <p className="font-heading font-black text-[36px] sm:text-[48px] text-primary-foreground leading-[1]">
+                  {String(t.val).padStart(2, '0')}
+                </p>
+                <p className="font-body text-[12px] text-[rgba(255,255,255,0.55)] uppercase tracking-wide mt-1">
+                  {t.label}
+                </p>
+              </div>
+            ))}
+          </div>
+
+          <button
+            onClick={scrollToForm}
+            className="group mt-10 bg-primary-foreground text-primary rounded-full px-10 py-4 text-[17px] font-semibold font-body hover:opacity-90 transition-all duration-200 inline-flex items-center gap-2 shadow-xl"
+          >
+            Start Consultation
+            <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
+          </button>
+
+          {/* Spots bar */}
+          <div className="mt-8 max-w-sm mx-auto">
+            <p className="font-body text-[14px] text-[rgba(255,255,255,0.70)] mb-2">412 of 500 spots remaining</p>
+            <div className="h-1.5 rounded-full bg-[rgba(255,255,255,0.10)] overflow-hidden">
+              <div className="h-full rounded-full bg-primary-foreground" style={{ width: '18%' }} />
             </div>
-          ))}
-        </div>
-
-        <button
-          onClick={scrollToForm}
-          className="group mt-10 bg-[rgba(255,255,255,0.10)] border-[1.5px] border-[rgba(255,255,255,0.40)] text-primary-foreground rounded-full px-10 py-4 text-[17px] font-semibold font-body hover:bg-[rgba(255,255,255,0.20)] transition-all duration-200 inline-flex items-center gap-2"
-        >
-          Claim Your Free Consultation
-          <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
-        </button>
-
-        {/* Spots bar */}
-        <div className="mt-8 max-w-sm mx-auto">
-          <p className="font-body text-[14px] text-[rgba(255,255,255,0.70)] mb-2">412 of 500 spots remaining</p>
-          <div className="h-1.5 rounded-full bg-[rgba(255,255,255,0.10)] overflow-hidden">
-            <div className="h-full rounded-full bg-primary-foreground" style={{ width: '18%' }} />
           </div>
         </div>
       </div>
