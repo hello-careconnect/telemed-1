@@ -3,6 +3,10 @@ import { useEffect, useRef, useState } from 'react';
 import { ArrowRight, Play, ShieldCheck, Lock, Star, CheckCircle } from 'lucide-react';
 import doctorRafiq from '@/assets/doctor-rafiq.webp';
 import doctorAisha from '@/assets/doctor-aisha.webp';
+import doctorNasreen from '@/assets/doctor-nasreen.webp';
+import doctorClipboard from '@/assets/doctor-clipboard.jpg';
+import doctorYoungGlasses from '@/assets/doctor-young-glasses.jpg';
+import doctorMature from '@/assets/doctor-mature.jpg';
 
 const rotatingLines = [
   'Book in under 2 minutes.',
@@ -137,7 +141,7 @@ export const HeroSection = () => {
 
           <motion.div variants={fadeUp} className="mt-8 flex items-center gap-3">
             <div className="flex -space-x-3">
-              {[doctorAisha, doctorRafiq, doctorAisha, doctorRafiq].map((img, i) => (
+              {[doctorAisha, doctorRafiq, doctorNasreen, doctorClipboard].map((img, i) => (
                 <div
                   key={i}
                   className="w-10 h-10 rounded-full border-2 border-background overflow-hidden"
