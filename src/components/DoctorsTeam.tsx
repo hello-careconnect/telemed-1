@@ -116,12 +116,11 @@ export const DoctorsTeam = () => {
               className="group bg-surface rounded-[24px] overflow-hidden border border-border hover:border-primary hover:shadow-lg transition-all duration-250"
             >
               {/* Photo area */}
-              <div className="aspect-[4/5] bg-surface-2 relative overflow-hidden">
+              <div className="aspect-[4/5] bg-surface-2 relative overflow-hidden flex items-center justify-center">
                 <img
                   src={doc.image}
                   alt={doc.name}
-                  className="w-full h-full object-cover"
-                  style={{ objectPosition: doc.objectPosition || 'center top' }}
+                  className="w-full h-full object-cover object-center"
                   loading="lazy"
                 />
                 {/* Rating badge */}
