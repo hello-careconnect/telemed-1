@@ -13,19 +13,19 @@ const services = [
     icon: Heart,
     title: "Women's Health & Wellness",
     desc: 'Confidential consultations for reproductive health, pregnancy care, and more.',
-    color: 'bg-error/10 text-error',
+    color: 'bg-primary/10 text-primary',
   },
   {
     icon: Baby,
     title: 'Pediatric & Child Care',
     desc: "Expert advice for your child's health from trusted pediatricians across Bangladesh.",
-    color: 'bg-warning/10 text-warning',
+    color: 'bg-primary/10 text-primary',
   },
   {
     icon: Sparkles,
     title: 'Skin & Dermatology Care',
     desc: 'Get expert dermatology care for skin conditions, acne, allergies, and cosmetic concerns.',
-    color: 'bg-accent-foreground/10 text-accent-foreground',
+    color: 'bg-primary/10 text-primary',
   },
   {
     icon: Brain,
@@ -37,7 +37,7 @@ const services = [
     icon: Leaf,
     title: 'Nutrition & Lifestyle Coaching',
     desc: 'Personalized dietary plans and lifestyle guidance from certified nutritionists.',
-    color: 'bg-success/10 text-success',
+    color: 'bg-primary/10 text-primary',
   },
 ];
 
