@@ -1,7 +1,7 @@
 import { useRef } from 'react';
 import { motion, useInView } from 'framer-motion';
 import { CheckCircle, ArrowRight } from 'lucide-react';
-import doctorForDoctors from '@/assets/doctor-for-doctors-nobg.png';
+import doctorMature from '@/assets/doctor-mature.jpg';
 
 const benefits = [
   { title: 'Free verified listing', desc: 'Manage your schedule and availability' },
