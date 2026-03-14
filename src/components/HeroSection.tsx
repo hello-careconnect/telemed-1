@@ -273,5 +273,3 @@ const MobileHeroCards = () => (
   </div>
 );
 
-import doctorAishaImg from '@/assets/doctor-aisha.webp';
-import doctorRafiqImg from '@/assets/doctor-rafiq.webp';
