@@ -1,5 +1,7 @@
 import { useRef } from 'react';
 import { motion, useInView } from 'framer-motion';
+import doctorNasreen from '@/assets/doctor-nasreen.webp';
+import doctorAisha from '@/assets/doctor-aisha.webp';
 
 export const AboutSection = () => {
   const ref = useRef<HTMLDivElement>(null);
@@ -17,25 +19,12 @@ export const AboutSection = () => {
         >
           <div className="relative">
             <div className="w-full aspect-[4/3] rounded-[28px] overflow-hidden bg-surface-2 shadow-lg">
-              {/* 
-                IMAGE NEEDED: "about-team.webp"
-                A warm, candid photo of a small group of Bangladeshi healthcare professionals 
-                (2-3 doctors, mix of male and female) in a modern clinic setting. They should 
-                be engaged in discussion, possibly looking at a tablet or chart. White coats, 
-                stethoscopes visible. Clean, well-lit environment with modern medical equipment 
-                subtly in the background. The mood should convey collaboration, care, and modernity.
-              */}
-              <div className="w-full h-full bg-gradient-to-br from-primary/8 via-surface to-accent/10 flex items-center justify-center">
-                <div className="text-center p-8">
-                  <div className="w-24 h-24 rounded-full bg-primary/15 mx-auto mb-4 flex items-center justify-center">
-                    <span className="text-[40px]">👩‍⚕️👨‍⚕️</span>
-                  </div>
-                  <p className="font-body text-[13px] text-text-muted">about-team.webp</p>
-                  <p className="font-body text-[11px] text-text-muted mt-1 max-w-[240px] mx-auto">
-                    Group of Bangladeshi doctors in modern clinic, collaborative, warm lighting
-                  </p>
-                </div>
-              </div>
+              <img
+                src={doctorNasreen}
+                alt="Doctor at her desk writing notes with stethoscope, representing healthcare professionals on CareConnect"
+                className="w-full h-full object-cover"
+                loading="lazy"
+              />
             </div>
 
             {/* Stats overlay cards */}
@@ -93,14 +82,13 @@ export const AboutSection = () => {
 
           <div className="mt-8 flex items-center gap-3">
             <div className="flex -space-x-2">
-              {[0, 1, 2].map((i) => (
+              {[doctorAisha, doctorNasreen, doctorAisha].map((img, i) => (
                 <div
                   key={i}
-                  className="w-9 h-9 rounded-full border-2 border-background"
-                  style={{
-                    background: `linear-gradient(135deg, hsl(168, 60%, ${65 + i * 8}%), hsl(168, 85%, ${35 + i * 8}%))`,
-                  }}
-                />
+                  className="w-9 h-9 rounded-full border-2 border-background overflow-hidden"
+                >
+                  <img src={img} alt="" className="w-full h-full object-cover" loading="lazy" />
+                </div>
               ))}
               <div className="w-9 h-9 rounded-full border-2 border-background bg-primary flex items-center justify-center">
                 <span className="text-primary-foreground text-[12px] font-bold">+</span>

@@ -1,6 +1,7 @@
 import { useRef } from 'react';
 import { motion, useInView } from 'framer-motion';
-import { CheckCircle, ArrowRight, Play } from 'lucide-react';
+import { CheckCircle, ArrowRight } from 'lucide-react';
+import doctorForDoctors from '@/assets/doctor-for-doctors-nobg.png';
 
 const benefits = [
   { title: 'Free verified listing', desc: 'Manage your schedule and availability' },
@@ -62,38 +63,26 @@ export const ForDoctors = () => {
           </div>
         </div>
 
-        {/* Right — Doctor image + features */}
+        {/* Right — Doctor image (background removed) */}
         <div className="lg:w-[45%] w-full relative">
           <div className="relative">
-            {/* Doctor image placeholder */}
-            <div className="w-full aspect-[3/4] max-w-[400px] mx-auto rounded-[28px] overflow-hidden bg-dark-surface shadow-xl">
-              {/* 
-                IMAGE NEEDED: "doctor-for-doctors.webp"
-                A professional, confident Bangladeshi female doctor (mid-30s) in a white 
-                lab coat with a stethoscope, standing with arms crossed and a warm smile. 
-                She should be in a modern clinic or hospital corridor. Slightly blue-toned 
-                or neutral background. 3/4 body shot. Conveys professionalism, trust, 
-                and authority. High quality portrait.
-              */}
-              <div className="w-full h-full bg-gradient-to-b from-[rgba(255,255,255,0.05)] to-[rgba(255,255,255,0.02)] flex items-center justify-center">
-                <div className="text-center p-8">
-                  <div className="w-24 h-24 rounded-full bg-[rgba(255,255,255,0.08)] mx-auto mb-4 flex items-center justify-center">
-                    <span className="text-[40px]">👩‍⚕️</span>
-                  </div>
-                  <p className="font-body text-[13px] text-[rgba(255,255,255,0.5)]">doctor-for-doctors.webp</p>
-                  <p className="font-body text-[11px] text-[rgba(255,255,255,0.35)] mt-1 max-w-[200px] mx-auto">
-                    Confident female doctor, white coat, arms crossed, modern clinic
-                  </p>
-                </div>
-              </div>
+            <div className="w-full aspect-[3/4] max-w-[400px] mx-auto rounded-[28px] overflow-hidden relative">
+              {/* Subtle gradient behind the cutout doctor */}
+              <div className="absolute inset-0 bg-gradient-to-b from-accent-alt/20 via-primary/10 to-transparent rounded-[28px]" />
+              <img
+                src={doctorForDoctors}
+                alt="Doctor standing confidently with arms crossed"
+                className="w-full h-full object-contain object-bottom relative z-10"
+                loading="lazy"
+              />
             </div>
 
-            {/* Feature cards overlaying */}
+            {/* Feature card overlay */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={inView ? { opacity: 1, y: 0 } : {}}
               transition={{ delay: 0.3 }}
-              className="absolute -bottom-4 left-0 right-0 mx-auto max-w-[360px] bg-background rounded-2xl shadow-xl p-4 flex items-center gap-4"
+              className="absolute -bottom-4 left-0 right-0 mx-auto max-w-[360px] bg-background rounded-2xl shadow-xl p-4 flex items-center gap-4 z-20"
             >
               <div className="bg-success/10 rounded-xl w-12 h-12 flex items-center justify-center shrink-0">
                 <span className="text-[20px]">📊</span>
