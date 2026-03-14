@@ -9,10 +9,15 @@ export default {
       center: true,
       padding: "2rem",
       screens: {
-        "2xl": "1400px",
+        "2xl": "1440px",
       },
     },
     extend: {
+      fontFamily: {
+        display: ["Fraunces", "serif"],
+        heading: ["Sora", "sans-serif"],
+        body: ["DM Sans", "sans-serif"],
+      },
       colors: {
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
@@ -22,6 +27,8 @@ export default {
         primary: {
           DEFAULT: "hsl(var(--primary))",
           foreground: "hsl(var(--primary-foreground))",
+          light: "hsl(var(--color-primary-light))",
+          dark: "hsl(var(--color-primary-dark))",
         },
         secondary: {
           DEFAULT: "hsl(var(--secondary))",
@@ -38,6 +45,7 @@ export default {
         accent: {
           DEFAULT: "hsl(var(--accent))",
           foreground: "hsl(var(--accent-foreground))",
+          alt: "hsl(var(--color-accent-alt))",
         },
         popover: {
           DEFAULT: "hsl(var(--popover))",
@@ -47,6 +55,19 @@ export default {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
         },
+        surface: {
+          DEFAULT: "hsl(var(--color-surface))",
+          2: "hsl(var(--color-surface-2))",
+        },
+        "text-primary": "hsl(var(--color-text-primary))",
+        "text-body": "hsl(var(--color-text-body))",
+        "text-muted": "hsl(var(--color-text-muted))",
+        "dark-bg": "hsl(var(--color-dark-bg))",
+        "dark-surface": "hsl(var(--color-dark-surface))",
+        "dark-text": "hsl(var(--color-dark-text))",
+        success: "hsl(var(--color-success))",
+        warning: "hsl(var(--color-warning))",
+        error: "hsl(var(--color-error))",
         sidebar: {
           DEFAULT: "hsl(var(--sidebar-background))",
           foreground: "hsl(var(--sidebar-foreground))",
@@ -63,22 +84,22 @@ export default {
         md: "calc(var(--radius) - 2px)",
         sm: "calc(var(--radius) - 4px)",
       },
+      boxShadow: {
+        sm: "var(--shadow-sm)",
+        md: "var(--shadow-md)",
+        lg: "var(--shadow-lg)",
+        xl: "var(--shadow-xl)",
+        "teal-glow": "0 4px 16px rgba(10,158,138,0.30)",
+        "teal-glow-lg": "0 8px 24px rgba(10,158,138,0.45)",
+      },
       keyframes: {
         "accordion-down": {
-          from: {
-            height: "0",
-          },
-          to: {
-            height: "var(--radix-accordion-content-height)",
-          },
+          from: { height: "0" },
+          to: { height: "var(--radix-accordion-content-height)" },
         },
         "accordion-up": {
-          from: {
-            height: "var(--radix-accordion-content-height)",
-          },
-          to: {
-            height: "0",
-          },
+          from: { height: "var(--radix-accordion-content-height)" },
+          to: { height: "0" },
         },
       },
       animation: {
