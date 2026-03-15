@@ -11,18 +11,17 @@ const testimonials = [
     name: 'Farida H.',
     meta: 'Verified Interview · Dhaka',
     initials: 'FH',
+    image: testimonialFarida,
+    imagePosition: 'center 15%',
     title: 'Nori Trust Saved My Mother\'s Life',
-    /*
-      IMAGE NEEDED: "patient-farida.webp" (optional, can stay as initials)
-      Candid photo of a Bangladeshi woman (late 20s), casual attire, warm smile. 
-      Taken in a natural setting. Soft lighting. Should look like a real person, not a model.
-    */
   },
   {
     quote: 'I trust a doctor more when I can read what other patients actually said. Not just a star number, the full review. This platform finally does that.',
     name: 'Tanvir R.',
     meta: 'Verified Interview · Gulshan',
     initials: 'TR',
+    image: testimonialTanvir,
+    imagePosition: 'center 20%',
     title: 'They Found What 6 Doctors Missed',
   },
   {
@@ -30,6 +29,8 @@ const testimonials = [
     name: 'Nasreen K.',
     meta: 'Verified Interview · Chattogram',
     initials: 'NK',
+    image: testimonialNasreen,
+    imagePosition: 'center 20%',
     title: 'My A1C Dropped 3 Points in 90 Days',
   },
 ];
