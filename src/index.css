@@ -127,3 +127,33 @@
     transition-duration: 0s !important;
   }
 }
+
+/* Phone mockup responsive scaling */
+.phone-scale-wrapper {
+  --phone-transform: scale(0.55);
+  --phone-height: calc(880px * 0.55);
+}
+@media (min-width: 640px) {
+  .phone-scale-wrapper {
+    --phone-transform: scale(0.6);
+    --phone-height: calc(880px * 0.6);
+  }
+}
+@media (min-width: 768px) {
+  .phone-scale-wrapper {
+    --phone-transform: scale(0.65);
+    --phone-height: calc(880px * 0.65);
+  }
+}
+@media (min-width: 1024px) {
+  .phone-scale-wrapper {
+    --phone-transform: scale(0.68);
+    --phone-height: calc(880px * 0.68);
+  }
+}
+@media (min-width: 1280px) {
+  .phone-scale-wrapper {
+    --phone-transform: scale(0.72);
+    --phone-height: calc(880px * 0.72);
+  }
+}
