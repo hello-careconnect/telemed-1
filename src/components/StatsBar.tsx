@@ -15,7 +15,7 @@ export const StatsBar = () => {
   return (
     <section className="bg-dark-bg py-10 sm:py-12 lg:py-16" ref={ref}>
       <div className="container max-w-[1440px] mx-auto px-6">
-        <div className="grid w-full grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 divide-y sm:divide-y-0 sm:divide-x divide-[rgba(255,255,255,0.10)]">
+        <div className="grid w-full grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-5 lg:divide-x lg:gap-0 divide-[rgba(255,255,255,0.10)]">
           {stats.map((stat, i) => (
             <motion.div
               key={stat.label}
