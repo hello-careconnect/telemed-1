@@ -1,10 +1,17 @@
+import { Facebook, Instagram, Linkedin, Mail } from 'lucide-react';
 import { Logo } from './Logo';
 import paymentMethods from '@/assets/payment-methods.png';
 
 const forPatients = ['Find a Doctor', 'Video Consultation', 'Book Lab Test', 'Emergency', 'Read Reviews'];
 const forDoctors = ['List Your Practice', 'Manage Schedule', 'Patient Reviews', 'BMDC Verification', 'Doctor Support'];
 const company = ['About Us', 'How It Works', 'Careers', 'Privacy Policy', 'Terms of Service', 'Contact'];
-const socials = ['Facebook', 'Instagram', 'LinkedIn', 'WhatsApp'];
+
+const socials = [
+  { name: 'Facebook', icon: Facebook },
+  { name: 'Instagram', icon: Instagram },
+  { name: 'LinkedIn', icon: Linkedin },
+  { name: 'Email', icon: Mail },
+];
 
 export const Footer = () => (
   <footer className="bg-dark-bg pt-20 pb-10">
