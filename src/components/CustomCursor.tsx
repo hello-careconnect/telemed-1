@@ -4,7 +4,6 @@ export const CustomCursor = () => {
   const dotRef = useRef<HTMLDivElement>(null);
   const ringRef = useRef<HTMLDivElement>(null);
   const [isHovering, setIsHovering] = useState(false);
-  const [isText, setIsText] = useState(false);
   const [visible, setVisible] = useState(false);
 
   useEffect(() => {
@@ -37,9 +36,7 @@ export const CustomCursor = () => {
       const target = e.target as HTMLElement;
       const tag = target.tagName.toLowerCase();
       const isInteractive = tag === 'a' || tag === 'button' || target.closest('a, button, [role="button"], input, select, textarea, label');
-      const isTextEl = tag === 'p' || tag === 'span' || tag === 'h1' || tag === 'h2' || tag === 'h3' || tag === 'h4' || tag === 'li';
       setIsHovering(!!isInteractive);
-      setIsText(!!isTextEl && !isInteractive);
     };
 
     document.addEventListener('mousemove', onMove);
@@ -61,9 +58,9 @@ export const CustomCursor = () => {
         ref={dotRef}
         className="fixed top-0 left-0 pointer-events-none z-[9999]"
         style={{
-          width: isText ? 2 : 10,
-          height: isText ? 18 : 10,
-          borderRadius: isText ? 1 : '50%',
+          width: 10,
+          height: 10,
+          borderRadius: '50%',
           backgroundColor: '#0A9E8A',
           transition: 'width 0.15s, height 0.15s, border-radius 0.15s',
           transform: `scale(${isHovering ? 1.4 : 1})`,
@@ -78,7 +75,7 @@ export const CustomCursor = () => {
           height: isHovering ? 48 : 36,
           borderRadius: '50%',
           border: '1.5px solid #0A9E8A',
-          opacity: visible ? (isText ? 0 : 0.5) : 0,
+          opacity: visible ? 0.5 : 0,
           backgroundColor: isHovering ? 'rgba(10,158,138,0.08)' : 'transparent',
           transition: 'width 0.2s, height 0.2s, opacity 0.2s, background-color 0.2s',
           marginLeft: isHovering ? -6 : 0,
