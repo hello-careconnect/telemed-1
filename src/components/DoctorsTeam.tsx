@@ -54,7 +54,7 @@ const doctors = [
     specialty: 'Orthopedic Surgeon',
     rating: '4.7',
     reviews: 78,
-    image: doctorKarim,
+    image: doctorKarimUddin,
     objectPosition: 'center top',
   },
 ];
