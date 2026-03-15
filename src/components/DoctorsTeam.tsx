@@ -1,5 +1,5 @@
-import { useRef, useState } from 'react';
-import { motion, useInView } from 'framer-motion';
+import { useRef, useState, useEffect } from 'react';
+import { motion, useInView, AnimatePresence } from 'framer-motion';
 import { Phone, MessageCircle, ChevronLeft, ChevronRight, Star } from 'lucide-react';
 import doctorAisha from '@/assets/doctor-aisha-new.jpg';
 import doctorKarimUddin from '@/assets/doctor-karim-uddin.jpg';
@@ -59,11 +59,26 @@ const doctors = [
   },
 ];
 
+const useVisibleCount = () => {
+  const [count, setCount] = useState(1);
+  useEffect(() => {
+    const update = () => {
+      if (window.innerWidth >= 1024) setCount(3);
+      else if (window.innerWidth >= 640) setCount(2);
+      else setCount(1);
+    };
+    update();
+    window.addEventListener('resize', update);
+    return () => window.removeEventListener('resize', update);
+  }, []);
+  return count;
+};
+
 export const DoctorsTeam = () => {
   const ref = useRef<HTMLDivElement>(null);
   const inView = useInView(ref, { once: true, margin: '-100px' });
   const [startIdx, setStartIdx] = useState(0);
-  const visibleCount = 3;
+  const visibleCount = useVisibleCount();
 
   const next = () => setStartIdx((prev) => (prev + 1) % doctors.length);
   const prev = () => setStartIdx((prev) => (prev - 1 + doctors.length) % doctors.length);
@@ -73,20 +88,22 @@ export const DoctorsTeam = () => {
     visibleDoctors.push(doctors[(startIdx + i) % doctors.length]);
   }
 
+  const gridCols = visibleCount === 1 ? 'grid-cols-1' : visibleCount === 2 ? 'grid-cols-2' : 'grid-cols-3';
+
   return (
-    <section className="py-28 bg-background">
+    <section className="py-16 sm:py-28 bg-background">
       <div className="container max-w-[1440px] mx-auto px-6">
-        <div className="flex flex-col sm:flex-row justify-between items-start sm:items-end mb-16 gap-4">
+        <div className="flex flex-col sm:flex-row justify-between items-start sm:items-end mb-10 sm:mb-16 gap-4">
           <div>
             <span className="inline-flex items-center bg-accent text-primary rounded-full px-4 py-1.5 text-[13px] font-medium font-body">
               Our Specialists
             </span>
-            <h2 className="mt-6 font-heading font-bold text-[32px] sm:text-[40px] text-text-primary leading-[1.12]">
+            <h2 className="mt-6 font-heading font-bold text-[28px] sm:text-[40px] text-text-primary leading-[1.12]">
               Meet our{' '}
               <span className="font-display italic text-primary">expert</span>{' '}
               doctors
             </h2>
-            <p className="mt-3 font-body text-[17px] text-text-body max-w-lg">
+            <p className="mt-3 font-body text-[15px] sm:text-[17px] text-text-body max-w-lg">
               Highly experienced doctors and specialists committed to your unique health journey.
             </p>
           </div>
@@ -106,50 +123,53 @@ export const DoctorsTeam = () => {
           </div>
         </div>
 
-        <div ref={ref} className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          {visibleDoctors.map((doc, i) => (
-            <motion.div
-              key={doc.name + startIdx}
-              initial={{ opacity: 0, y: 24 }}
-              animate={inView ? { opacity: 1, y: 0 } : {}}
-              transition={{ delay: i * 0.1, duration: 0.4 }}
-              className="group bg-surface rounded-[24px] overflow-hidden border border-border hover:border-primary hover:shadow-lg transition-all duration-250"
-            >
-              {/* Photo area */}
-              <div className="aspect-[4/5] bg-surface-2 relative overflow-hidden flex items-center justify-center">
-                <img
-                  src={doc.image}
-                  alt={doc.name}
-                  className="w-full h-full object-cover object-center"
-                  loading="lazy"
-                />
-                {/* Rating badge */}
-                <div className="absolute top-4 left-4 bg-background/90 backdrop-blur-sm rounded-full px-3 py-1 flex items-center gap-1">
-                  <Star className="w-3.5 h-3.5 fill-warning text-warning" />
-                  <span className="font-body font-semibold text-[13px] text-text-primary">{doc.rating}</span>
+        <div ref={ref} className={`grid ${gridCols} gap-6`}>
+          <AnimatePresence mode="wait">
+            {visibleDoctors.map((doc, i) => (
+              <motion.div
+                key={doc.name + startIdx}
+                initial={{ opacity: 0, x: 40 }}
+                animate={inView ? { opacity: 1, x: 0 } : {}}
+                exit={{ opacity: 0, x: -40 }}
+                transition={{ delay: i * 0.08, duration: 0.3 }}
+                className="group bg-surface rounded-[24px] overflow-hidden border border-border hover:border-primary hover:shadow-lg transition-all duration-250"
+              >
+                {/* Photo area */}
+                <div className="aspect-[4/5] bg-surface-2 relative overflow-hidden flex items-center justify-center">
+                  <img
+                    src={doc.image}
+                    alt={doc.name}
+                    className="w-full h-full object-cover object-center"
+                    loading="lazy"
+                  />
+                  {/* Rating badge */}
+                  <div className="absolute top-4 left-4 bg-background/90 backdrop-blur-sm rounded-full px-3 py-1 flex items-center gap-1">
+                    <Star className="w-3.5 h-3.5 fill-warning text-warning" />
+                    <span className="font-body font-semibold text-[13px] text-text-primary">{doc.rating}</span>
+                  </div>
                 </div>
-              </div>
 
-              {/* Info */}
-              <div className="p-5">
-                <div className="flex items-center justify-between">
-                  <div>
-                    <p className="font-heading font-semibold text-[17px] text-text-primary">{doc.name}</p>
-                    <p className="font-body text-[14px] text-primary">{doc.specialty}</p>
+                {/* Info */}
+                <div className="p-5">
+                  <div className="flex items-center justify-between">
+                    <div>
+                      <p className="font-heading font-semibold text-[17px] text-text-primary">{doc.name}</p>
+                      <p className="font-body text-[14px] text-primary">{doc.specialty}</p>
+                    </div>
+                    <div className="flex gap-2">
+                      <button className="w-9 h-9 rounded-full border border-border hover:border-primary hover:bg-accent flex items-center justify-center transition-all">
+                        <Phone className="w-4 h-4 text-text-muted" />
+                      </button>
+                      <button className="w-9 h-9 rounded-full border border-border hover:border-primary hover:bg-accent flex items-center justify-center transition-all">
+                        <MessageCircle className="w-4 h-4 text-text-muted" />
+                      </button>
+                    </div>
                   </div>
-                  <div className="flex gap-2">
-                    <button className="w-9 h-9 rounded-full border border-border hover:border-primary hover:bg-accent flex items-center justify-center transition-all">
-                      <Phone className="w-4 h-4 text-text-muted" />
-                    </button>
-                    <button className="w-9 h-9 rounded-full border border-border hover:border-primary hover:bg-accent flex items-center justify-center transition-all">
-                      <MessageCircle className="w-4 h-4 text-text-muted" />
-                    </button>
-                  </div>
+                  <p className="font-body text-[13px] text-text-muted mt-2">{doc.reviews} verified reviews</p>
                 </div>
-                <p className="font-body text-[13px] text-text-muted mt-2">{doc.reviews} verified reviews</p>
-              </div>
-            </motion.div>
-          ))}
+              </motion.div>
+            ))}
+          </AnimatePresence>
         </div>
       </div>
     </section>
