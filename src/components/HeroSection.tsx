@@ -6,7 +6,7 @@ import doctorAisha from '@/assets/doctor-aisha.webp';
 import doctorNasreen from '@/assets/doctor-nasreen.webp';
 import doctorClipboard from '@/assets/doctor-clipboard.jpg';
 import doctorYoungGlasses from '@/assets/doctor-young-glasses.jpg';
-import doctorHospital from '@/assets/doctor-hospital.jpg';
+import doctorMature from '@/assets/doctor-mature.jpg';
 
 const rotatingLines = [
   'Book in under 2 minutes.',
@@ -149,8 +149,8 @@ export const HeroSection = () => {
                   <img src={img} alt="" className="w-full h-full object-cover" loading="lazy" />
                 </div>
               ))}
-              <div className="w-10 h-10 rounded-full border-2 border-background bg-primary flex items-center justify-center overflow-hidden">
-                <img src={doctorHospital} alt="Hospital" className="w-full h-full object-cover" />
+              <div className="w-10 h-10 rounded-full border-2 border-background bg-primary flex items-center justify-center">
+                <span className="text-primary-foreground text-[14px] font-bold">+</span>
               </div>
             </div>
             <p className="font-body text-[14px] text-text-body">
