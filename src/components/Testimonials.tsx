@@ -5,7 +5,7 @@ import doctorHospital from '@/assets/doctor-hospital.jpg';
 
 const testimonials = [
   {
-    quote: "I've wasted so many afternoons calling clinics to check if a doctor is even available. The idea of just opening an app and seeing real slots — that changes everything.",
+    quote: "I've wasted so many afternoons calling clinics to check if a doctor is even available. The idea of just opening an app and seeing real slots, that changes everything.",
     name: 'Farida H.',
     meta: 'Verified Interview · Dhaka',
     initials: 'FH',
