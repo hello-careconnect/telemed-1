@@ -383,7 +383,7 @@ export const AppShowcase = () => {
         padding: '40px 0',
       }}
     >
-      <div className="container max-w-[1440px] mx-auto px-6 flex flex-col lg:flex-row items-center gap-16" ref={ref}>
+      <div className="container max-w-[1440px] mx-auto px-6 flex flex-col lg:flex-row items-end gap-16" ref={ref}>
         {/* Left — Phone mockup */}
         <motion.div
           className="lg:w-1/2 w-full flex justify-center"
