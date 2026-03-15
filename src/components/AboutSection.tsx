@@ -1,7 +1,7 @@
 import { useRef } from 'react';
 import { motion, useInView } from 'framer-motion';
 import doctorNasreen from '@/assets/doctor-nasreen.webp';
-import doctorKarim from '@/assets/doctor-karim.webp';
+import doctorAvatar1 from '@/assets/doctor-avatar-1.jpg';
 import doctorMature from '@/assets/doctor-mature.jpg';
 import doctorRafiq from '@/assets/doctor-rafiq.webp';
 
@@ -84,7 +84,7 @@ export const AboutSection = () => {
 
           <div className="mt-8 flex items-center gap-3">
             <div className="flex -space-x-2">
-              {[doctorKarim, doctorMature, doctorRafiq, doctorNasreen].map((img, i) => (
+              {[doctorAvatar1, doctorMature, doctorRafiq, doctorNasreen].map((img, i) => (
                 <div
                   key={i}
                   className="w-9 h-9 rounded-full border-2 border-background overflow-hidden"
