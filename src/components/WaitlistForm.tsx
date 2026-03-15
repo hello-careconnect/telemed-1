@@ -187,7 +187,7 @@ export const WaitlistForm = () => {
 
           {/* Below button */}
           <p className="text-center font-body text-[13px] text-text-muted mt-4">
-            🔒 No spam. Unsubscribe anytime. First 500 get BDT 300 free consultation.
+            <Lock className="inline w-4 h-4 text-primary -mt-0.5" strokeWidth={1.5} /> No spam. Unsubscribe anytime. First 500 get BDT 300 free consultation.
           </p>
 
           {/* Spots bar */}
