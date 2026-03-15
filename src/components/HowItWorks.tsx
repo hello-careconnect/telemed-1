@@ -21,14 +21,14 @@ const steps = [
     icon: Video,
     step: 'STEP 03',
     title: 'Talk Face-to-Face',
-    body: 'Meet your doctor via secure HD video call or visit in-person. Get the care you need, when you need it — 24/7.',
+    body: 'Meet your doctor via secure HD video call or visit in-person. Get the care you need, when you need it, 24/7.',
     num: '03',
   },
   {
     icon: ClipboardList,
     step: 'STEP 04',
     title: 'Get Your Personalized Care Plan',
-    body: 'Receive a digital prescription, order medicines, and get follow-up reminders — all from one platform.',
+    body: 'Receive a digital prescription, order medicines, and get follow-up reminders, all from one platform.',
     num: '04',
   },
 ];
@@ -49,7 +49,7 @@ export const HowItWorks = () => {
             <span className="font-display italic text-primary">works</span>
           </h2>
           <p className="mt-4 font-body text-[18px] text-text-body max-w-md mx-auto">
-            From your first message to your care plan — it only takes 4 simple steps.
+            From your first message to your care plan, it only takes 4 simple steps.
           </p>
         </div>
 

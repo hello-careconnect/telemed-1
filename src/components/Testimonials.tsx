@@ -5,7 +5,7 @@ import doctorHospital from '@/assets/doctor-hospital.jpg';
 
 const testimonials = [
   {
-    quote: "I've wasted so many afternoons calling clinics to check if a doctor is even available. The idea of just opening an app and seeing real slots — that changes everything.",
+    quote: "I've wasted so many afternoons calling clinics to check if a doctor is even available. The idea of just opening an app and seeing real slots, that changes everything.",
     name: 'Farida H.',
     meta: 'Verified Interview · Dhaka',
     initials: 'FH',
@@ -17,14 +17,14 @@ const testimonials = [
     */
   },
   {
-    quote: 'I trust a doctor more when I can read what other patients actually said. Not just a star number — the full review. This platform finally does that.',
+    quote: 'I trust a doctor more when I can read what other patients actually said. Not just a star number, the full review. This platform finally does that.',
     name: 'Tanvir R.',
     meta: 'Verified Interview · Gulshan',
     initials: 'TR',
     title: 'They Found What 6 Doctors Missed',
   },
   {
-    quote: "My mother is in Mirpur. I'm in Chattogram. A platform where she can video-consult a specialist — that's not a luxury, it's urgent.",
+    quote: "My mother is in Mirpur. I'm in Chattogram. A platform where she can video-consult a specialist, that's not a luxury, it's urgent.",
     name: 'Nasreen K.',
     meta: 'Verified Interview · Chattogram',
     initials: 'NK',

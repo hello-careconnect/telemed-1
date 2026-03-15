@@ -49,7 +49,7 @@ export const IncentiveBlock = () => {
           </h2>
 
           <p className="mt-4 font-body text-[18px] text-[rgba(255,255,255,0.80)] max-w-lg mx-auto">
-            One free General Physician consultation — BDT 300 value. No card. No catch. First 500 get it free.
+            One free General Physician consultation, BDT 300 value. No card. No catch. First 500 get it free.
           </p>
 
           {/* Countdown */}

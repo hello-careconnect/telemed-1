@@ -36,7 +36,7 @@ export const WaitlistForm = () => {
             Be first. Be cared for.
           </p>
           <p className="mt-4 font-body text-[18px] text-text-body max-w-lg mx-auto">
-            First 500 signups receive a free General Physician consultation — worth BDT 300.
+            First 500 signups receive a free General Physician consultation, worth BDT 300.
           </p>
         </div>
 
@@ -152,7 +152,7 @@ export const WaitlistForm = () => {
               >
                 {status === 'idle' && (
                   <>
-                    Claim My Spot — Free Consultation
+                    Claim My Spot, Free Consultation
                     <ArrowRight className="w-4 h-4" />
                   </>
                 )}
