@@ -75,7 +75,7 @@ export const CustomCursor = () => {
           height: isHovering ? 48 : 36,
           borderRadius: '50%',
           border: '1.5px solid #0A9E8A',
-          opacity: visible ? (isText ? 0 : 0.5) : 0,
+          opacity: visible ? 0.5 : 0,
           backgroundColor: isHovering ? 'rgba(10,158,138,0.08)' : 'transparent',
           transition: 'width 0.2s, height 0.2s, opacity 0.2s, background-color 0.2s',
           marginLeft: isHovering ? -6 : 0,
