@@ -1,6 +1,6 @@
 import { motion, AnimatePresence } from 'framer-motion';
 import { useEffect, useRef, useState } from 'react';
-import { ArrowRight, Play, ShieldCheck, Lock, Star, CheckCircle } from 'lucide-react';
+import { ArrowRight, Play, ShieldCheck, Lock, Star, CheckCircle, Building2, Clock, Smartphone } from 'lucide-react';
 import doctorRafiq from '@/assets/doctor-rafiq.webp';
 import doctorAisha from '@/assets/doctor-aisha.webp';
 import doctorNasreen from '@/assets/doctor-nasreen.webp';
@@ -237,13 +237,13 @@ export const HeroSection = () => {
         <div className="container max-w-[1440px] mx-auto px-6">
           <div className="flex flex-wrap justify-center gap-6 sm:gap-10">
             {[
-              { icon: '🏥', label: 'Certified Doctors', desc: 'BMDC verified credentials' },
-              { icon: '🕐', label: '24/7 Availability', desc: 'Video consults anytime' },
-              { icon: '🔒', label: 'Secure & Private', desc: 'Your data, your control' },
-              { icon: '📱', label: 'Easy & Accessible', desc: 'Book in under 2 mins' },
+              { icon: Building2, label: 'Certified Doctors', desc: 'BMDC verified credentials' },
+              { icon: Clock, label: '24/7 Availability', desc: 'Video consults anytime' },
+              { icon: Lock, label: 'Secure & Private', desc: 'Your data, your control' },
+              { icon: Smartphone, label: 'Easy & Accessible', desc: 'Book in under 2 mins' },
             ].map((item) => (
               <div key={item.label} className="flex items-center gap-3 text-center sm:text-left">
-                <span className="text-[24px]">{item.icon}</span>
+                <item.icon className="w-6 h-6 text-primary" strokeWidth={1.5} />
                 <div>
                   <p className="font-heading font-semibold text-[14px] text-text-primary">{item.label}</p>
                   <p className="font-body text-[12px] text-text-muted">{item.desc}</p>
