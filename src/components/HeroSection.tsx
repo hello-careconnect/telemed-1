@@ -6,7 +6,7 @@ import doctorAisha from '@/assets/doctor-aisha.webp';
 import doctorNasreen from '@/assets/doctor-nasreen.webp';
 import doctorClipboard from '@/assets/doctor-clipboard.jpg';
 import doctorYoungGlasses from '@/assets/doctor-young-glasses.jpg';
-import doctorHospital from '@/assets/doctor-hospital.jpg';
+import doctorMature from '@/assets/doctor-mature.jpg';
 
 const rotatingLines = [
   'Book in under 2 minutes.',
