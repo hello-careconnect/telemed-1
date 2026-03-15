@@ -26,12 +26,12 @@ export const Footer = () => (
           <div className="mt-6 flex gap-3">
             {socials.map((s) => (
               <a
-                key={s}
+                key={s.name}
                 href="#"
-                aria-label={s}
-                className="w-9 h-9 rounded-full bg-[rgba(255,255,255,0.08)] hover:bg-primary flex items-center justify-center transition-colors duration-200"
+                aria-label={s.name}
+                className="w-9 h-9 rounded-full bg-[rgba(255,255,255,0.08)] hover:bg-primary flex items-center justify-center transition-colors duration-200 group"
               >
-                <span className="text-primary-foreground text-[12px] font-bold">{s[0]}</span>
+                <s.icon className="w-4 h-4 text-primary group-hover:text-primary-foreground transition-colors" strokeWidth={1.5} />
               </a>
             ))}
           </div>
