@@ -28,7 +28,7 @@ const steps = [
     icon: ClipboardList,
     step: 'STEP 04',
     title: 'Get Your Personalized Care Plan',
-    body: 'Receive a digital prescription, order medicines, and get follow-up reminders — all from one platform.',
+    body: 'Receive a digital prescription, order medicines, and get follow-up reminders, all from one platform.',
     num: '04',
   },
 ];
