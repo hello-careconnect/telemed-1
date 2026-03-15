@@ -17,7 +17,7 @@ const faqs = [
   },
   {
     q: 'How does your AI monitoring work?',
-    a: 'Our diagnostic systems learn from 300k+ health data points to surface insights most doctors might miss — always under physician supervision.',
+    a: 'Our diagnostic systems learn from 300k+ health data points to surface insights most doctors might miss, always under physician supervision.',
   },
   {
     q: 'Will I know costs before treatment?',
