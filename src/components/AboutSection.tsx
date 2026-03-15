@@ -1,7 +1,7 @@
 import { useRef } from 'react';
 import { motion, useInView } from 'framer-motion';
 import doctorNasreen from '@/assets/doctor-nasreen.webp';
-import doctorKarim from '@/assets/doctor-karim.webp';
+import doctorAvatar1 from '@/assets/doctor-avatar-1.jpg';
 import doctorMature from '@/assets/doctor-mature.jpg';
 import doctorRafiq from '@/assets/doctor-rafiq.webp';
 
