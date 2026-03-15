@@ -15,9 +15,9 @@ const socials = [
 ];
 
 export const Footer = () => (
-  <footer className="bg-dark-bg pt-20 pb-10">
+  <footer className="bg-dark-bg pt-12 sm:pt-16 lg:pt-20 pb-8 sm:pb-10">
     <div className="container max-w-[1440px] mx-auto px-6">
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-12">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 sm:gap-12">
         {/* Brand */}
         <div>
           <Logo dark size={32} />
