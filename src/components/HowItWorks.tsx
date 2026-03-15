@@ -21,7 +21,7 @@ const steps = [
     icon: Video,
     step: 'STEP 03',
     title: 'Talk Face-to-Face',
-    body: 'Meet your doctor via secure HD video call or visit in-person. Get the care you need, when you need it — 24/7.',
+    body: 'Meet your doctor via secure HD video call or visit in-person. Get the care you need, when you need it, 24/7.',
     num: '03',
   },
   {
