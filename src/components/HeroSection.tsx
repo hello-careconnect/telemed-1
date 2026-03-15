@@ -56,7 +56,7 @@ export const HeroSection = () => {
         `,
       }}
     >
-      <div className="container max-w-[1440px] mx-auto px-6 flex flex-col lg:flex-row items-center gap-12 lg:gap-0 py-16 lg:py-24">
+      <div className="container max-w-[1440px] mx-auto px-6 flex flex-col lg:flex-row items-center gap-8 lg:gap-0 py-10 sm:py-16 lg:py-24">
         {/* Left 55% */}
         <motion.div
           className="lg:w-[55%] w-full"

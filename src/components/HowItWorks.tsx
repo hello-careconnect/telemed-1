@@ -38,9 +38,9 @@ export const HowItWorks = () => {
   const inView = useInView(ref, { once: true, margin: '-100px' });
 
   return (
-    <section id="how-it-works" className="py-28 bg-background">
+    <section id="how-it-works" className="py-12 sm:py-16 lg:py-28 bg-background">
       <div className="container max-w-[1440px] mx-auto px-6">
-        <div className="text-center max-w-2xl mx-auto mb-16">
+        <div className="text-center max-w-2xl mx-auto mb-10 sm:mb-16">
           <span className="inline-flex items-center bg-accent text-primary rounded-full px-4 py-1.5 text-[13px] font-medium font-body">
             Simple by design
           </span>

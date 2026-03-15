@@ -41,9 +41,9 @@ export const Testimonials = () => {
   const [activeIdx, setActiveIdx] = useState(0);
 
   return (
-    <section className="bg-surface py-28">
+    <section className="bg-surface py-12 sm:py-16 lg:py-28">
       <div className="container max-w-[1440px] mx-auto px-6">
-        <div className="text-center mb-16">
+        <div className="text-center mb-10 sm:mb-16">
           <span className="inline-flex items-center bg-accent text-primary rounded-full px-4 py-1.5 text-[13px] font-medium font-body">
             Testimonials
           </span>

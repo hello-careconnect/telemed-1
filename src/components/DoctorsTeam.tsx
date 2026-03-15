@@ -91,7 +91,7 @@ export const DoctorsTeam = () => {
   const gridCols = visibleCount === 1 ? 'grid-cols-1' : visibleCount === 2 ? 'grid-cols-2' : 'grid-cols-3';
 
   return (
-    <section className="py-16 sm:py-28 bg-background">
+    <section className="py-12 sm:py-16 lg:py-28 bg-background">
       <div className="container max-w-[1440px] mx-auto px-6">
         <div className="flex flex-col sm:flex-row justify-between items-start sm:items-end mb-10 sm:mb-16 gap-4">
           <div>

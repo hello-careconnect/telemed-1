@@ -15,9 +15,9 @@ const socials = [
 ];
 
 export const Footer = () => (
-  <footer className="bg-dark-bg pt-20 pb-10">
+  <footer className="bg-dark-bg pt-12 sm:pt-16 lg:pt-20 pb-8 sm:pb-10">
     <div className="container max-w-[1440px] mx-auto px-6">
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-12">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 sm:gap-12">
         {/* Brand */}
         <div>
           <Logo dark size={32} />
@@ -91,7 +91,7 @@ export const Footer = () => (
       </div>
 
       {/* Divider */}
-      <div className="border-t border-[rgba(255,255,255,0.08)] mt-16 pt-8 flex flex-col sm:flex-row justify-between items-center gap-4">
+      <div className="border-t border-[rgba(255,255,255,0.08)] mt-10 sm:mt-16 pt-6 sm:pt-8 flex flex-col sm:flex-row justify-between items-center gap-4">
         <p className="font-body text-[13px] text-[rgba(255,255,255,0.40)]">
           © {new Date().getFullYear()} CareConnect. All rights reserved. Built for Bangladesh.
         </p>

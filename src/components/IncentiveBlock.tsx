@@ -36,7 +36,7 @@ export const IncentiveBlock = () => {
       <div className="absolute top-[-100px] left-[-100px] w-[400px] h-[400px] rounded-full bg-[rgba(255,255,255,0.05)]" />
       <div className="absolute bottom-[-150px] right-[-150px] w-[600px] h-[600px] rounded-full bg-[rgba(255,255,255,0.04)]" />
 
-      <div className="relative z-10 py-24">
+      <div className="relative z-10 py-12 sm:py-16 lg:py-24">
         <div className="container max-w-3xl mx-auto px-6 text-center">
           <span className="inline-flex bg-[rgba(255,255,255,0.15)] text-primary-foreground rounded-full px-4 py-1.5 text-[13px] font-medium font-body">
             Limited Early Access
