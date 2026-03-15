@@ -1,10 +1,10 @@
 import { Logo } from './Logo';
+import paymentMethods from '@/assets/payment-methods.png';
 
 const forPatients = ['Find a Doctor', 'Video Consultation', 'Book Lab Test', 'Emergency', 'Read Reviews'];
 const forDoctors = ['List Your Practice', 'Manage Schedule', 'Patient Reviews', 'BMDC Verification', 'Doctor Support'];
 const company = ['About Us', 'How It Works', 'Careers', 'Privacy Policy', 'Terms of Service', 'Contact'];
 const socials = ['Facebook', 'Instagram', 'LinkedIn', 'WhatsApp'];
-const payments = ['bKash', 'Nagad', 'Rocket', 'Visa', 'Mastercard'];
 
 export const Footer = () => (
   <footer className="bg-dark-bg pt-20 pb-10">
@@ -28,12 +28,8 @@ export const Footer = () => (
               </a>
             ))}
           </div>
-          <div className="mt-6 flex gap-2 flex-wrap">
-            {payments.map((p) => (
-              <span key={p} className="bg-[rgba(255,255,255,0.06)] rounded-lg px-3 py-1.5 text-[12px] font-medium text-[rgba(255,255,255,0.50)] hover:text-[rgba(255,255,255,0.80)] transition-colors font-body">
-                {p}
-              </span>
-            ))}
+          <div className="mt-6">
+            <img src={paymentMethods} alt="Accepted payment methods" className="max-w-full h-auto opacity-80" loading="lazy" />
           </div>
         </div>
 
