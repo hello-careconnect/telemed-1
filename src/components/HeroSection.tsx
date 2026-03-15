@@ -149,8 +149,8 @@ export const HeroSection = () => {
                   <img src={img} alt="" className="w-full h-full object-cover" loading="lazy" />
                 </div>
               ))}
-              <div className="w-10 h-10 rounded-full border-2 border-background bg-primary flex items-center justify-center">
-                <span className="text-primary-foreground text-[12px] font-bold">+</span>
+              <div className="w-10 h-10 rounded-full border-2 border-background bg-primary flex items-center justify-center overflow-hidden">
+                <img src={doctorHospital} alt="Hospital" className="w-full h-full object-cover" />
               </div>
             </div>
             <p className="font-body text-[14px] text-text-body">
