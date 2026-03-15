@@ -225,7 +225,7 @@ export const HeroSection = () => {
           </div>
         </motion.div>
 
-        <div className="lg:hidden w-full mt-4">
+        <div className="md:hidden w-full mt-4">
           <MobileHeroCards />
         </div>
       </div>
