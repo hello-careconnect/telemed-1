@@ -1,6 +1,6 @@
 import { useRef } from 'react'; // force rebuild
 import { motion, useInView } from 'framer-motion';
-import { CheckCircle, ArrowRight } from 'lucide-react';
+import { CheckCircle, ArrowRight, BarChart3 } from 'lucide-react';
 import doctorMature from '@/assets/doctor-mature.jpg';
 
 const benefits = [
@@ -82,8 +82,8 @@ export const ForDoctors = () => {
               transition={{ delay: 0.3 }}
               className="absolute -bottom-4 left-0 right-0 mx-auto max-w-[360px] bg-background rounded-2xl shadow-xl p-4 flex items-center gap-4 z-20"
             >
-              <div className="bg-success/10 rounded-xl w-12 h-12 flex items-center justify-center shrink-0">
-                <span className="text-[20px]">📊</span>
+              <div className="bg-accent rounded-xl w-12 h-12 flex items-center justify-center shrink-0">
+                <BarChart3 className="w-6 h-6 text-primary" strokeWidth={1.5} />
               </div>
               <div>
                 <p className="font-heading font-semibold text-[15px] text-text-primary">265K+ Patient Reach</p>
