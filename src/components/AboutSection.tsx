@@ -67,7 +67,7 @@ export const AboutSection = () => {
             <span className="font-display italic text-primary">simple</span>, accessible, and personal.
           </h2>
           <p className="mt-6 font-body text-[17px] text-text-body leading-[1.7] max-w-lg">
-            Our mission is to connect you with trusted doctors anytime, anywhere, ensuring you get the care you need without the wait. We treat you like family — providing compassionate and comprehensive healthcare tailored to your individual needs.
+            Our mission is to connect you with trusted doctors anytime, anywhere, ensuring you get the care you need without the wait. We treat you like family, providing compassionate and comprehensive healthcare tailored to your individual needs.
           </p>
 
           <div className="mt-8 grid grid-cols-2 gap-4">

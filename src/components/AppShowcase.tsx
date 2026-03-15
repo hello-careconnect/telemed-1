@@ -105,7 +105,7 @@ export const AppShowcase = () => {
           <div className="mt-8 space-y-4">
             {[
               { title: 'Modern Instruments', desc: 'Cutting-edge diagnostic tools available to every clinician.' },
-              { title: 'Easy Billing System', desc: 'Pay via bKash, Nagad, or card — no hassle, no hidden fees.' },
+              { title: 'Easy Billing System', desc: 'Pay via bKash, Nagad, or card, no hassle, no hidden fees.' },
               { title: 'Qualified Doctors & Staff', desc: 'Every doctor is BMDC-verified with real patient reviews.' },
             ].map((item) => (
               <div key={item.title} className="flex items-start gap-3">

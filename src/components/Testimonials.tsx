@@ -24,7 +24,7 @@ const testimonials = [
     title: 'They Found What 6 Doctors Missed',
   },
   {
-    quote: "My mother is in Mirpur. I'm in Chattogram. A platform where she can video-consult a specialist — that's not a luxury, it's urgent.",
+    quote: "My mother is in Mirpur. I'm in Chattogram. A platform where she can video-consult a specialist, that's not a luxury, it's urgent.",
     name: 'Nasreen K.',
     meta: 'Verified Interview · Chattogram',
     initials: 'NK',

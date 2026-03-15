@@ -6,7 +6,7 @@ const services = [
   {
     icon: Stethoscope,
     title: 'General Health Consultations',
-    desc: 'Talk to certified GPs, get prescriptions, and manage your health — all from home.',
+    desc: 'Talk to certified GPs, get prescriptions, and manage your health, all from home.',
     color: 'bg-primary/10 text-primary',
   },
   {

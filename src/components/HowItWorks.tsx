@@ -49,7 +49,7 @@ export const HowItWorks = () => {
             <span className="font-display italic text-primary">works</span>
           </h2>
           <p className="mt-4 font-body text-[18px] text-text-body max-w-md mx-auto">
-            From your first message to your care plan — it only takes 4 simple steps.
+            From your first message to your care plan, it only takes 4 simple steps.
           </p>
         </div>
 

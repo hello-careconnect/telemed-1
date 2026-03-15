@@ -59,7 +59,7 @@ export const ExitIntent = () => {
             </h3>
 
             <p className="mt-3 font-body text-[15px] text-text-body">
-              Your free consultation is waiting — but only for the first 500.
+              Your free consultation is waiting, but only for the first 500.
             </p>
 
             <input
