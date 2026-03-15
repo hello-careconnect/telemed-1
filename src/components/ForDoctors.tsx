@@ -100,38 +100,30 @@ export const ForDoctors = () => {
               loading="lazy"
             />
 
-            {/* Layer 3 — floating stat card */}
+            {/* Layer 3 — floating stat card (glassmorphism) */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={inView ? { opacity: 1, y: 0 } : {}}
               transition={{ delay: 0.3 }}
+              className="rounded-2xl p-4 flex items-center gap-3"
               style={{
                 position: 'absolute',
                 bottom: '20px',
                 left: '20px',
                 zIndex: 4,
+                background: 'rgba(255,255,255,0.12)',
+                backdropFilter: 'blur(16px)',
+                WebkitBackdropFilter: 'blur(16px)',
+                border: '1px solid rgba(255,255,255,0.18)',
+                boxShadow: '0 8px 32px rgba(0,0,0,0.25)',
               }}
-              className="rounded-2xl p-4 flex items-center gap-3"
-              css-backdropfilter="blur(12px)"
-              // glassmorphism via inline style
             >
-              <div
-                className="rounded-2xl p-4 flex items-center gap-3"
-                style={{
-                  background: 'rgba(255,255,255,0.12)',
-                  backdropFilter: 'blur(16px)',
-                  WebkitBackdropFilter: 'blur(16px)',
-                  border: '1px solid rgba(255,255,255,0.18)',
-                  boxShadow: '0 8px 32px rgba(0,0,0,0.25)',
-                }}
-              >
-                <div className="bg-accent rounded-xl w-10 h-10 flex items-center justify-center shrink-0">
-                  <BarChart3 className="w-5 h-5 text-primary" strokeWidth={1.5} />
-                </div>
-                <div>
-                  <p className="font-heading font-semibold text-[15px] text-dark-text">265K+ Patient Reach</p>
-                  <p className="font-body text-[13px] text-[rgba(255,255,255,0.6)]">96% satisfaction rate</p>
-                </div>
+              <div className="bg-accent rounded-xl w-10 h-10 flex items-center justify-center shrink-0">
+                <BarChart3 className="w-5 h-5 text-primary" strokeWidth={1.5} />
+              </div>
+              <div>
+                <p className="font-heading font-semibold text-[15px] text-dark-text">265K+ Patient Reach</p>
+                <p className="font-body text-[13px] text-[rgba(255,255,255,0.6)]">96% satisfaction rate</p>
               </div>
             </motion.div>
 
