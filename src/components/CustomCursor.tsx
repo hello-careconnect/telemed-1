@@ -4,7 +4,6 @@ export const CustomCursor = () => {
   const dotRef = useRef<HTMLDivElement>(null);
   const ringRef = useRef<HTMLDivElement>(null);
   const [isHovering, setIsHovering] = useState(false);
-  const [isText, setIsText] = useState(false);
   const [visible, setVisible] = useState(false);
 
   useEffect(() => {
