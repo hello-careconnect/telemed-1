@@ -2,7 +2,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { useEffect, useRef, useState } from 'react';
 import { ArrowRight, Play, ShieldCheck, Lock, Star, CheckCircle, Building2, Clock, Smartphone } from 'lucide-react';
 import doctorRafiq from '@/assets/doctor-rafiq.webp';
-import doctorAisha from '@/assets/doctor-aisha.webp';
+import doctorAvatar1 from '@/assets/doctor-avatar-1.jpg';
 import doctorNasreen from '@/assets/doctor-nasreen.webp';
 import doctorClipboard from '@/assets/doctor-clipboard.jpg';
 import doctorYoungGlasses from '@/assets/doctor-young-glasses.jpg';
@@ -141,7 +141,7 @@ export const HeroSection = () => {
 
           <motion.div variants={fadeUp} className="mt-8 flex items-center gap-3">
             <div className="flex -space-x-3">
-              {[doctorAisha, doctorRafiq, doctorNasreen, doctorClipboard, doctorYoungGlasses].map((img, i) => (
+              {[doctorAvatar1, doctorRafiq, doctorNasreen, doctorClipboard, doctorYoungGlasses].map((img, i) => (
                 <div
                   key={i}
                   className="w-10 h-10 rounded-full border-2 border-background overflow-hidden"
@@ -215,7 +215,7 @@ export const HeroSection = () => {
               className="absolute -left-6 bottom-8 z-20 bg-background rounded-2xl shadow-xl p-3 border border-border flex items-center gap-3"
             >
               <div className="w-10 h-10 rounded-full overflow-hidden">
-                <img src={doctorAisha} alt="Dr. Aisha" className="w-full h-full object-cover" />
+                <img src={doctorAvatar1} alt="Dr. Aisha" className="w-full h-full object-cover" />
               </div>
               <div>
                 <p className="font-heading font-semibold text-[13px] text-text-primary">Dr. Aisha R.</p>
@@ -257,7 +257,7 @@ export const HeroSection = () => {
 const MobileHeroCards = () => (
   <div className="space-y-3">
     {[
-      { name: 'Dr. Aisha Rahman', spec: 'Cardiologist', rating: '4.9', badge: 'Available Now', badgeColor: 'bg-success/10 text-success', image: doctorAisha },
+      { name: 'Dr. Aisha Rahman', spec: 'Cardiologist', rating: '4.9', badge: 'Available Now', badgeColor: 'bg-success/10 text-success', image: doctorAvatar1 },
       { name: 'Dr. Rafiq Ahmed', spec: 'Dermatologist', rating: '4.7', badge: 'Today 3 PM', badgeColor: 'bg-warning/10 text-warning', image: doctorRafiq },
     ].map((doc) => (
       <div key={doc.name} className="bg-surface rounded-2xl p-4 border border-border flex items-center gap-3">
