@@ -4,7 +4,7 @@ import { ArrowRight, Home, Search, Calendar, User, Stethoscope, Pill, ClipboardL
 
 const IPhoneFrame = () => {
   return (
-    <div className="relative" style={{ width: 420, height: 880 }}>
+    <div className="relative" style={{ width: 420, height: 820 }}>
       {/* Phone shell */}
       <div
         className="relative"
