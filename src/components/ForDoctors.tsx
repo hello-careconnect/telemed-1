@@ -64,43 +64,80 @@ export const ForDoctors = () => {
           </div>
         </div>
 
-        {/* Right — Doctor image (background removed) */}
-        <div className="lg:w-[45%] w-full relative">
-          <div className="relative">
-            <div className="w-full aspect-[3/4] max-w-[400px] mx-auto rounded-[28px] overflow-hidden relative">
+        {/* Right — Doctor card with overflow cutout effect */}
+        <div className="lg:w-[45%] w-full flex justify-center lg:justify-end">
+          {/* Outer wrapper: overflow visible so cutout bleeds above/below */}
+          <div className="relative" style={{ height: '480px', width: '100%', maxWidth: '400px', overflow: 'visible' }}>
+
+            {/* Layer 1 — dark background photo, clipped to card */}
+            <div
+              className="absolute inset-0"
+              style={{ borderRadius: '24px', overflow: 'hidden', zIndex: 1 }}
+            >
               <img
                 src={doctorMature}
-                alt="Experienced doctor standing confidently with arms crossed"
-                className="w-full h-full object-cover object-[82%_center] relative z-10"
-                loading="lazy"
+                alt=""
+                className="w-full h-full object-cover object-[82%_center]"
               />
+              {/* Dark overlay for depth */}
+              <div className="absolute inset-0 bg-[rgba(5,30,28,0.45)]" />
             </div>
 
-            {/* Feature card overlay */}
+            {/* Layer 2 — removed-bg cutout, bleeds above card top */}
+            <img
+              src={doctorCutout}
+              alt="Experienced doctor standing confidently with arms crossed"
+              style={{
+                position: 'absolute',
+                bottom: 0,
+                left: '50%',
+                transform: 'translateX(-50%)',
+                width: '120%',
+                zIndex: 3,
+                overflow: 'visible',
+                pointerEvents: 'none',
+              }}
+              loading="lazy"
+            />
+
+            {/* Layer 3 — floating stat card */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={inView ? { opacity: 1, y: 0 } : {}}
               transition={{ delay: 0.3 }}
-              className="absolute -bottom-4 left-0 right-0 mx-auto max-w-[360px] bg-background rounded-2xl shadow-xl p-4 flex items-center gap-4 z-20"
+              style={{
+                position: 'absolute',
+                bottom: '20px',
+                left: '20px',
+                zIndex: 4,
+              }}
+              className="rounded-2xl p-4 flex items-center gap-3"
+              css-backdropfilter="blur(12px)"
+              // glassmorphism via inline style
             >
-              <div className="bg-accent rounded-xl w-12 h-12 flex items-center justify-center shrink-0">
-                <BarChart3 className="w-6 h-6 text-primary" strokeWidth={1.5} />
-              </div>
-              <div>
-                <p className="font-heading font-semibold text-[15px] text-text-primary">265K+ Patient Reach</p>
-                <p className="font-body text-[13px] text-text-muted">96% satisfaction rate</p>
+              <div
+                className="rounded-2xl p-4 flex items-center gap-3"
+                style={{
+                  background: 'rgba(255,255,255,0.12)',
+                  backdropFilter: 'blur(16px)',
+                  WebkitBackdropFilter: 'blur(16px)',
+                  border: '1px solid rgba(255,255,255,0.18)',
+                  boxShadow: '0 8px 32px rgba(0,0,0,0.25)',
+                }}
+              >
+                <div className="bg-accent rounded-xl w-10 h-10 flex items-center justify-center shrink-0">
+                  <BarChart3 className="w-5 h-5 text-primary" strokeWidth={1.5} />
+                </div>
+                <div>
+                  <p className="font-heading font-semibold text-[15px] text-dark-text">265K+ Patient Reach</p>
+                  <p className="font-body text-[13px] text-[rgba(255,255,255,0.6)]">96% satisfaction rate</p>
+                </div>
               </div>
             </motion.div>
-          </div>
 
-          {/* Mobile benefits */}
-          <div className="lg:hidden mt-12 space-y-3">
-            {['BMDC Verified Badge', 'Your own analytics', '3 months free premium listing'].map((item) => (
-              <div key={item} className="flex items-center gap-3 bg-[rgba(255,255,255,0.05)] rounded-xl p-4">
-                <CheckCircle className="w-5 h-5 text-accent-alt shrink-0" />
-                <p className="font-body text-[15px] text-dark-text">{item}</p>
-              </div>
-            ))}
+            {/* Decorative dots */}
+            <div className="absolute top-6 left-6 w-3 h-3 rounded-full bg-accent-alt opacity-80" style={{ zIndex: 2 }} />
+            <div className="absolute top-10 left-5 w-6 h-6 rounded-full border border-accent-alt opacity-40" style={{ zIndex: 2 }} />
           </div>
         </div>
       </div>
