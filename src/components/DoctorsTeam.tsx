@@ -1,7 +1,7 @@
 import { useRef, useState } from 'react';
 import { motion, useInView } from 'framer-motion';
 import { Phone, MessageCircle, ChevronLeft, ChevronRight, Star } from 'lucide-react';
-import doctorAisha from '@/assets/doctor-aisha.webp';
+import doctorAisha from '@/assets/doctor-aisha-new.jpg';
 import doctorKarim from '@/assets/doctor-karim.webp';
 import doctorNasreen from '@/assets/doctor-nasreen.webp';
 import doctorRafiq from '@/assets/doctor-rafiq.webp';
