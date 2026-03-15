@@ -17,7 +17,7 @@ const testimonials = [
     */
   },
   {
-    quote: 'I trust a doctor more when I can read what other patients actually said. Not just a star number — the full review. This platform finally does that.',
+    quote: 'I trust a doctor more when I can read what other patients actually said. Not just a star number, the full review. This platform finally does that.',
     name: 'Tanvir R.',
     meta: 'Verified Interview · Gulshan',
     initials: 'TR',
