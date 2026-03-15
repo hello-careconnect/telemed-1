@@ -376,9 +376,11 @@ export const AppShowcase = () => {
 
   return (
     <section
-      className="py-28 overflow-hidden"
+      className="overflow-hidden"
       style={{
         background: 'radial-gradient(ellipse at 40% 60%, #d4ede9 0%, #e8f5f2 40%, #f0f4f3 100%)',
+        maxHeight: '100vh',
+        padding: '40px 0',
       }}
     >
       <div className="container max-w-[1440px] mx-auto px-6 flex flex-col lg:flex-row items-center gap-16" ref={ref}>
@@ -389,7 +391,7 @@ export const AppShowcase = () => {
           animate={inView ? { opacity: 1, x: 0 } : {}}
           transition={{ duration: 0.6 }}
         >
-          <div className="scale-[0.85] sm:scale-90 lg:scale-100 origin-center">
+          <div style={{ transform: 'scale(0.72)', transformOrigin: 'top center' }}>
             <IPhoneFrame />
           </div>
         </motion.div>
