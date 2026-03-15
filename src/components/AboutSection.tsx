@@ -1,9 +1,9 @@
 import { useRef } from 'react';
 import { motion, useInView } from 'framer-motion';
 import doctorNasreen from '@/assets/doctor-nasreen.webp';
-import doctorAisha from '@/assets/doctor-aisha.webp';
-import doctorYoungGlasses from '@/assets/doctor-young-glasses.jpg';
-import doctorClipboard from '@/assets/doctor-clipboard.jpg';
+import doctorKarim from '@/assets/doctor-karim.webp';
+import doctorMature from '@/assets/doctor-mature.jpg';
+import doctorRafiq from '@/assets/doctor-rafiq.webp';
 
 export const AboutSection = () => {
   const ref = useRef<HTMLDivElement>(null);
@@ -84,7 +84,7 @@ export const AboutSection = () => {
 
           <div className="mt-8 flex items-center gap-3">
             <div className="flex -space-x-2">
-              {[doctorAisha, doctorYoungGlasses, doctorClipboard].map((img, i) => (
+              {[doctorKarim, doctorMature, doctorRafiq, doctorNasreen].map((img, i) => (
                 <div
                   key={i}
                   className="w-9 h-9 rounded-full border-2 border-background overflow-hidden"
@@ -92,9 +92,6 @@ export const AboutSection = () => {
                   <img src={img} alt="" className="w-full h-full object-cover" loading="lazy" />
                 </div>
               ))}
-              <div className="w-9 h-9 rounded-full border-2 border-background bg-primary flex items-center justify-center">
-                <span className="text-primary-foreground text-[12px] font-bold">+</span>
-              </div>
             </div>
             <p className="font-body text-[14px] text-text-body">
               Join the CareConnect Community
