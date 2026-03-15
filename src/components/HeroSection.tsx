@@ -257,7 +257,7 @@ export const HeroSection = () => {
 const MobileHeroCards = () => (
   <div className="space-y-3">
     {[
-      { name: 'Dr. Aisha Rahman', spec: 'Cardiologist', rating: '4.9', badge: 'Available Now', badgeColor: 'bg-success/10 text-success', image: doctorAisha },
+      { name: 'Dr. Aisha Rahman', spec: 'Cardiologist', rating: '4.9', badge: 'Available Now', badgeColor: 'bg-success/10 text-success', image: doctorAvatar1 },
       { name: 'Dr. Rafiq Ahmed', spec: 'Dermatologist', rating: '4.7', badge: 'Today 3 PM', badgeColor: 'bg-warning/10 text-warning', image: doctorRafiq },
     ].map((doc) => (
       <div key={doc.name} className="bg-surface rounded-2xl p-4 border border-border flex items-center gap-3">
