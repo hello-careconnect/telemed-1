@@ -141,7 +141,7 @@ export const HeroSection = () => {
 
           <motion.div variants={fadeUp} className="mt-8 flex items-center gap-3">
             <div className="flex -space-x-3">
-              {[doctorAisha, doctorRafiq, doctorNasreen, doctorClipboard, doctorYoungGlasses].map((img, i) => (
+              {[doctorAvatar1, doctorRafiq, doctorNasreen, doctorClipboard, doctorYoungGlasses].map((img, i) => (
                 <div
                   key={i}
                   className="w-10 h-10 rounded-full border-2 border-background overflow-hidden"
