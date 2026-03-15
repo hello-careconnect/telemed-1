@@ -389,7 +389,13 @@ export const AppShowcase = () => {
           animate={inView ? { opacity: 1, x: 0 } : {}}
           transition={{ duration: 0.6 }}
         >
-          <div className="scale-[0.55] sm:scale-[0.6] md:scale-[0.65] lg:scale-[0.68] xl:scale-[0.72] origin-top">
+          <div
+            className="origin-top phone-scale-wrapper"
+            style={{
+              transform: 'var(--phone-transform)',
+              height: 'var(--phone-height)',
+            } as React.CSSProperties}
+          >
             <IPhoneFrame />
           </div>
         </motion.div>
