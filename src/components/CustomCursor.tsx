@@ -36,9 +36,7 @@ export const CustomCursor = () => {
       const target = e.target as HTMLElement;
       const tag = target.tagName.toLowerCase();
       const isInteractive = tag === 'a' || tag === 'button' || target.closest('a, button, [role="button"], input, select, textarea, label');
-      const isTextEl = tag === 'p' || tag === 'span' || tag === 'h1' || tag === 'h2' || tag === 'h3' || tag === 'h4' || tag === 'li';
       setIsHovering(!!isInteractive);
-      setIsText(!!isTextEl && !isInteractive);
     };
 
     document.addEventListener('mousemove', onMove);
