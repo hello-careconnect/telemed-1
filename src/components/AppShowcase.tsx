@@ -4,7 +4,7 @@ import { ArrowRight, Home, Search, Calendar, User, Stethoscope, Pill, ClipboardL
 
 const IPhoneFrame = () => {
   return (
-    <div className="relative" style={{ width: 420, height: 880 }}>
+    <div className="relative" style={{ width: 420, height: 820 }}>
       {/* Phone shell */}
       <div
         className="relative"
@@ -137,7 +137,7 @@ const IPhoneFrame = () => {
             </div>
 
             {/* White content area with curved top */}
-            <div style={{ background: '#fff', borderRadius: '28px 28px 0 0', marginTop: -14, position: 'relative', zIndex: 5, paddingBottom: 100 }}>
+            <div style={{ background: '#fff', borderRadius: '28px 28px 0 0', marginTop: -14, position: 'relative', zIndex: 5, paddingBottom: 90 }}>
               {/* Today label */}
               <p style={{ fontSize: 20, fontWeight: 700, color: '#0D1B1E', margin: '20px 20px 14px 20px' }}>Today</p>
 
