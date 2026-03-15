@@ -215,7 +215,7 @@ export const HeroSection = () => {
               className="absolute -left-6 bottom-8 z-20 bg-background rounded-2xl shadow-xl p-3 border border-border flex items-center gap-3"
             >
               <div className="w-10 h-10 rounded-full overflow-hidden">
-                <img src={doctorAisha} alt="Dr. Aisha" className="w-full h-full object-cover" />
+                <img src={doctorAvatar1} alt="Dr. Aisha" className="w-full h-full object-cover" />
               </div>
               <div>
                 <p className="font-heading font-semibold text-[13px] text-text-primary">Dr. Aisha R.</p>
