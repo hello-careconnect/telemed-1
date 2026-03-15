@@ -1,9 +1,9 @@
 import { useRef } from 'react';
 import { motion, useInView } from 'framer-motion';
 import doctorNasreen from '@/assets/doctor-nasreen.webp';
-import doctorAisha from '@/assets/doctor-aisha.webp';
-import doctorYoungGlasses from '@/assets/doctor-young-glasses.jpg';
-import doctorClipboard from '@/assets/doctor-clipboard.jpg';
+import doctorKarim from '@/assets/doctor-karim.webp';
+import doctorMature from '@/assets/doctor-mature.jpg';
+import doctorRafiq from '@/assets/doctor-rafiq.webp';
 
 export const AboutSection = () => {
   const ref = useRef<HTMLDivElement>(null);
