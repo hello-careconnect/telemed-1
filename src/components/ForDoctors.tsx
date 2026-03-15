@@ -1,8 +1,7 @@
-import { useRef } from 'react';
+import { useRef } from 'react'; // force rebuild
 import { motion, useInView } from 'framer-motion';
 import { CheckCircle, ArrowRight, BarChart3 } from 'lucide-react';
 import doctorMature from '@/assets/doctor-mature.jpg';
-import doctorMatureNobg from '@/assets/doctor-mature-nobg.png';
 
 const benefits = [
   { title: 'Free verified listing', desc: 'Manage your schedule and availability' },
@@ -64,76 +63,37 @@ export const ForDoctors = () => {
           </div>
         </div>
 
-        {/* Right — Doctor image with pop-out depth effect */}
-        <motion.div
-          className="lg:w-[45%] w-full flex justify-center"
-          initial={{ opacity: 0, x: 30 }}
-          animate={inView ? { opacity: 1, x: 0 } : {}}
-          transition={{ duration: 0.6, delay: 0.2 }}
-        >
-          {/* Outer wrapper — overflow:visible so head bleeds above */}
-          <div className="relative" style={{ width: '100%', maxWidth: '400px', height: '480px', overflow: 'visible' }}>
-
-            {/* Layer 1 — Background photo clipped inside card */}
-            <div className="absolute inset-0 rounded-[24px] overflow-hidden" style={{ zIndex: 1 }}>
+        {/* Right — Doctor image (background removed) */}
+        <div className="lg:w-[45%] w-full relative">
+          <div className="relative">
+            <div className="w-full aspect-[3/4] max-w-[400px] mx-auto rounded-[28px] overflow-hidden relative">
               <img
                 src={doctorMature}
-                alt=""
-                className="w-full h-full object-cover"
+                alt="Experienced doctor standing confidently with arms crossed"
+                className="w-full h-full object-cover object-[82%_center] relative z-10"
                 loading="lazy"
               />
             </div>
 
-            {/* Layer 2 — Removed-BG cutout, head pops above card */}
-            <img
-              src={doctorMatureNobg}
-              alt="Experienced doctor with arms crossed"
-              style={{
-                position: 'absolute',
-                bottom: 0,
-                left: '50%',
-                transform: 'translateX(-50%)',
-                width: '115%',
-                height: 'auto',
-                objectFit: 'contain',
-                objectPosition: 'bottom center',
-                zIndex: 3,
-                pointerEvents: 'none',
-                overflow: 'visible',
-              }}
-            />
-
-            {/* Layer 3 — Glassmorphism stat card */}
+            {/* Feature card overlay */}
             <motion.div
-              initial={{ opacity: 0, y: 16 }}
+              initial={{ opacity: 0, y: 20 }}
               animate={inView ? { opacity: 1, y: 0 } : {}}
-              transition={{ delay: 0.5 }}
-              style={{
-                position: 'absolute',
-                bottom: '20px',
-                left: '20px',
-                zIndex: 4,
-                background: 'rgba(255,255,255,0.12)',
-                backdropFilter: 'blur(12px)',
-                WebkitBackdropFilter: 'blur(12px)',
-                border: '1px solid rgba(255,255,255,0.20)',
-                borderRadius: '16px',
-                padding: '12px 16px',
-              }}
-              className="flex items-center gap-3"
+              transition={{ delay: 0.3 }}
+              className="absolute -bottom-4 left-0 right-0 mx-auto max-w-[360px] bg-background rounded-2xl shadow-xl p-4 flex items-center gap-4 z-20"
             >
-              <div className="bg-[rgba(255,255,255,0.15)] rounded-xl w-10 h-10 flex items-center justify-center shrink-0">
-                <BarChart3 className="w-5 h-5 text-white" strokeWidth={1.5} />
+              <div className="bg-accent rounded-xl w-12 h-12 flex items-center justify-center shrink-0">
+                <BarChart3 className="w-6 h-6 text-primary" strokeWidth={1.5} />
               </div>
               <div>
-                <p className="font-heading font-semibold text-[15px] text-white">265K+ Patient Reach</p>
-                <p className="font-body text-[13px] text-white/60">96% satisfaction rate</p>
+                <p className="font-heading font-semibold text-[15px] text-text-primary">265K+ Patient Reach</p>
+                <p className="font-body text-[13px] text-text-muted">96% satisfaction rate</p>
               </div>
             </motion.div>
           </div>
 
           {/* Mobile benefits */}
-          <div className="lg:hidden mt-12 space-y-3 hidden">
+          <div className="lg:hidden mt-12 space-y-3">
             {['BMDC Verified Badge', 'Your own analytics', '3 months free premium listing'].map((item) => (
               <div key={item} className="flex items-center gap-3 bg-[rgba(255,255,255,0.05)] rounded-xl p-4">
                 <CheckCircle className="w-5 h-5 text-accent-alt shrink-0" />
@@ -141,7 +101,7 @@ export const ForDoctors = () => {
               </div>
             ))}
           </div>
-        </motion.div>
+        </div>
       </div>
     </section>
   );
