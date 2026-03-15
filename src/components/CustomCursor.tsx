@@ -58,9 +58,9 @@ export const CustomCursor = () => {
         ref={dotRef}
         className="fixed top-0 left-0 pointer-events-none z-[9999]"
         style={{
-          width: isText ? 2 : 10,
-          height: isText ? 18 : 10,
-          borderRadius: isText ? 1 : '50%',
+          width: 10,
+          height: 10,
+          borderRadius: '50%',
           backgroundColor: '#0A9E8A',
           transition: 'width 0.15s, height 0.15s, border-radius 0.15s',
           transform: `scale(${isHovering ? 1.4 : 1})`,
