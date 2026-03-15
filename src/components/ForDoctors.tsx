@@ -57,7 +57,7 @@ export const ForDoctors = () => {
               onClick={scrollToForm}
               className="group bg-accent-alt text-dark-bg rounded-full px-8 py-4 text-[16px] font-semibold font-body hover:opacity-90 transition-all duration-200 flex items-center justify-center gap-2"
             >
-              List My Practice — Join Waitlist
+              List My Practice
               <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
             </button>
           </div>
