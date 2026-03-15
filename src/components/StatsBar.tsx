@@ -13,7 +13,7 @@ export const StatsBar = () => {
   const inView = useInView(ref, { once: true });
 
   return (
-    <section className="bg-dark-bg py-16" ref={ref}>
+    <section className="bg-dark-bg py-10 sm:py-12 lg:py-16" ref={ref}>
       <div className="container max-w-[1440px] mx-auto px-6">
         <div className="grid w-full grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 divide-y sm:divide-y-0 sm:divide-x divide-[rgba(255,255,255,0.10)]">
           {stats.map((stat, i) => (

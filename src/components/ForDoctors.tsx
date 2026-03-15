@@ -19,8 +19,8 @@ export const ForDoctors = () => {
   };
 
   return (
-    <section id="for-doctors" className="bg-dark-bg py-28">
-      <div className="container max-w-[1440px] mx-auto px-6 flex flex-col lg:flex-row gap-16 items-center" ref={ref}>
+    <section id="for-doctors" className="bg-dark-bg py-12 sm:py-16 lg:py-28">
+      <div className="container max-w-[1440px] mx-auto px-6 flex flex-col lg:flex-row gap-8 lg:gap-16 items-center" ref={ref}>
         {/* Left — Content */}
         <div className="lg:w-[55%]">
           <span className="inline-flex items-center bg-[rgba(255,255,255,0.08)] text-accent-alt rounded-full px-4 py-1.5 text-[13px] font-medium font-body">

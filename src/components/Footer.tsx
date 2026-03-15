@@ -91,7 +91,7 @@ export const Footer = () => (
       </div>
 
       {/* Divider */}
-      <div className="border-t border-[rgba(255,255,255,0.08)] mt-16 pt-8 flex flex-col sm:flex-row justify-between items-center gap-4">
+      <div className="border-t border-[rgba(255,255,255,0.08)] mt-10 sm:mt-16 pt-6 sm:pt-8 flex flex-col sm:flex-row justify-between items-center gap-4">
         <p className="font-body text-[13px] text-[rgba(255,255,255,0.40)]">
           © {new Date().getFullYear()} CareConnect. All rights reserved. Built for Bangladesh.
         </p>

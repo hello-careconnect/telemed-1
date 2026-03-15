@@ -10,8 +10,8 @@ export const AboutSection = () => {
   const inView = useInView(ref, { once: true, margin: '-100px' });
 
   return (
-    <section className="py-28 bg-background">
-      <div className="container max-w-[1440px] mx-auto px-6 flex flex-col lg:flex-row items-center gap-16" ref={ref}>
+    <section className="py-12 sm:py-16 lg:py-28 bg-background">
+      <div className="container max-w-[1440px] mx-auto px-6 flex flex-col lg:flex-row items-center gap-8 lg:gap-16" ref={ref}>
         {/* Left — Image */}
         <motion.div
           className="lg:w-1/2 w-full"
