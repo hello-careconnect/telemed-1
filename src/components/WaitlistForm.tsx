@@ -152,7 +152,7 @@ export const WaitlistForm = () => {
               >
                 {status === 'idle' && (
                   <>
-                    Claim My Spot — Free Consultation
+                    Claim My Spot, Free Consultation
                     <ArrowRight className="w-4 h-4" />
                   </>
                 )}

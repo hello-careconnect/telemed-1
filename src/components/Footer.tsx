@@ -22,7 +22,7 @@ export const Footer = () => (
         <div>
           <Logo dark size={32} />
           <p className="mt-4 font-body font-light text-[15px] text-[rgba(255,255,255,0.60)] leading-[1.7]">
-            Bangladesh's first platform connecting patients with verified doctors — built for real people, in real cities.
+            Bangladesh's first platform connecting patients with verified doctors, built for real people, in real cities.
           </p>
           <div className="mt-6 flex gap-3">
             {socials.map((s) => (

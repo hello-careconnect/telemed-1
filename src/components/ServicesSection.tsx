@@ -57,7 +57,7 @@ export const ServicesSection = () => {
             <span className="font-display italic text-primary">services</span>
           </h2>
           <p className="mt-4 font-body text-[17px] text-text-body max-w-lg mx-auto">
-            Comprehensive healthcare at your fingertips — from general checkups to specialized treatments.
+            Comprehensive healthcare at your fingertips, from general checkups to specialized treatments.
           </p>
         </div>
 
