@@ -1,7 +1,9 @@
 import { useRef, useState } from 'react';
 import { motion, useInView } from 'framer-motion';
 import { Star, ChevronLeft, ChevronRight } from 'lucide-react';
-import doctorHospital from '@/assets/doctor-hospital.jpg';
+import testimonialFarida from '@/assets/testimonial-farida.jpg';
+import testimonialTanvir from '@/assets/testimonial-tanvir.jpg';
+import testimonialNasreen from '@/assets/testimonial-nasreen.jpg';
 
 const testimonials = [
   {
