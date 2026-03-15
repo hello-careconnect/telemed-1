@@ -376,14 +376,12 @@ export const AppShowcase = () => {
 
   return (
     <section
-      className="overflow-hidden"
+      className="overflow-hidden py-12 lg:py-16"
       style={{
         background: 'radial-gradient(ellipse at 40% 60%, #d4ede9 0%, #e8f5f2 40%, #f0f4f3 100%)',
-        maxHeight: '100vh',
-        padding: '40px 0',
       }}
     >
-      <div className="container max-w-[1440px] mx-auto px-6 flex flex-col lg:flex-row items-end gap-16" ref={ref}>
+      <div className="container max-w-[1440px] mx-auto px-6 flex flex-col lg:flex-row items-center gap-10 lg:gap-16" ref={ref}>
         {/* Left — Phone mockup */}
         <motion.div
           className="lg:w-1/2 w-full flex justify-center"
@@ -391,27 +389,27 @@ export const AppShowcase = () => {
           animate={inView ? { opacity: 1, x: 0 } : {}}
           transition={{ duration: 0.6 }}
         >
-          <div style={{ transform: 'scale(0.72)', transformOrigin: 'top center' }}>
+          <div className="scale-[0.55] sm:scale-[0.6] md:scale-[0.65] lg:scale-[0.68] xl:scale-[0.72] origin-top">
             <IPhoneFrame />
           </div>
         </motion.div>
 
         {/* Right — Text */}
         <motion.div
-          className="lg:w-1/2 w-full"
+          className="lg:w-1/2 w-full text-center lg:text-left"
           initial={{ opacity: 0, x: 40 }}
           animate={inView ? { opacity: 1, x: 0 } : {}}
           transition={{ duration: 0.6, delay: 0.15 }}
         >
-          <h2 className="font-heading font-bold text-[32px] sm:text-[42px] text-text-primary leading-[1.12]">
+          <h2 className="font-heading font-bold text-[28px] sm:text-[32px] lg:text-[42px] text-text-primary leading-[1.12]">
             Treatment is easy with{' '}
             <span className="font-display italic text-primary">CareConnect</span>
           </h2>
-          <p className="mt-6 font-body text-[17px] text-text-body leading-[1.7] max-w-lg">
+          <p className="mt-4 lg:mt-6 font-body text-[15px] lg:text-[17px] text-text-body leading-[1.7] max-w-lg mx-auto lg:mx-0">
             Our intuitive app brings healthcare to your fingertips. Schedule appointments, video-consult with doctors, receive digital prescriptions, and manage your entire health journey, all in one place.
           </p>
 
-          <div className="mt-8 space-y-4">
+          <div className="mt-6 lg:mt-8 space-y-3 lg:space-y-4 text-left max-w-lg mx-auto lg:mx-0">
             {[
               { title: 'Modern Instruments', desc: 'Cutting-edge diagnostic tools available to every clinician.' },
               { title: 'Easy Billing System', desc: 'Pay via bKash, Nagad, or card, no hassle, no hidden fees.' },
@@ -420,20 +418,22 @@ export const AppShowcase = () => {
               <div key={item.title} className="flex items-start gap-3">
                 <div className="w-2 h-2 rounded-full bg-primary mt-2 shrink-0" />
                 <div>
-                  <p className="font-heading font-semibold text-[16px] text-text-primary">{item.title}</p>
-                  <p className="font-body text-[15px] text-text-body leading-[1.6]">{item.desc}</p>
+                  <p className="font-heading font-semibold text-[15px] lg:text-[16px] text-text-primary">{item.title}</p>
+                  <p className="font-body text-[14px] lg:text-[15px] text-text-body leading-[1.6]">{item.desc}</p>
                 </div>
               </div>
             ))}
           </div>
 
-          <button
-            onClick={scrollToForm}
-            className="group mt-10 bg-primary text-primary-foreground rounded-full px-8 py-4 text-[16px] font-semibold font-body shadow-teal-glow hover:bg-primary-dark hover:-translate-y-0.5 hover:shadow-teal-glow-lg transition-all duration-200 flex items-center gap-2"
-          >
-            Get Early Access
-            <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
-          </button>
+          <div className="flex justify-center lg:justify-start">
+            <button
+              onClick={scrollToForm}
+              className="group mt-8 lg:mt-10 bg-primary text-primary-foreground rounded-full px-8 py-4 text-[16px] font-semibold font-body shadow-teal-glow hover:bg-primary-dark hover:-translate-y-0.5 hover:shadow-teal-glow-lg transition-all duration-200 flex items-center gap-2"
+            >
+              Get Early Access
+              <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
+            </button>
+          </div>
         </motion.div>
       </div>
     </section>
