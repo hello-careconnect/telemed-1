@@ -1,10 +1,10 @@
 import { Logo } from './Logo';
+import paymentMethods from '@/assets/payment-methods.png';
 
 const forPatients = ['Find a Doctor', 'Video Consultation', 'Book Lab Test', 'Emergency', 'Read Reviews'];
 const forDoctors = ['List Your Practice', 'Manage Schedule', 'Patient Reviews', 'BMDC Verification', 'Doctor Support'];
 const company = ['About Us', 'How It Works', 'Careers', 'Privacy Policy', 'Terms of Service', 'Contact'];
 const socials = ['Facebook', 'Instagram', 'LinkedIn', 'WhatsApp'];
-const payments = ['bKash', 'Nagad', 'Rocket', 'Visa', 'Mastercard'];
 
 export const Footer = () => (
   <footer className="bg-dark-bg pt-20 pb-10">
