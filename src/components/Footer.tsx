@@ -1,4 +1,4 @@
-import { Facebook, Instagram, Linkedin, Mail } from 'lucide-react';
+import { Facebook, Instagram, Linkedin, Mail, MessageCircle } from 'lucide-react';
 import { Logo } from './Logo';
 import paymentMethods from '@/assets/payment-methods.png';
 
@@ -10,6 +10,7 @@ const socials = [
   { name: 'Facebook', icon: Facebook },
   { name: 'Instagram', icon: Instagram },
   { name: 'LinkedIn', icon: Linkedin },
+  { name: 'WhatsApp', icon: MessageCircle },
   { name: 'Email', icon: Mail },
 ];
 
