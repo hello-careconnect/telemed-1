@@ -99,7 +99,7 @@ export const AppShowcase = () => {
             <span className="font-display italic text-primary">CareConnect</span>
           </h2>
           <p className="mt-6 font-body text-[17px] text-text-body leading-[1.7] max-w-lg">
-            Our intuitive app brings healthcare to your fingertips. Schedule appointments, video-consult with doctors, receive digital prescriptions, and manage your entire health journey — all in one place.
+            Our intuitive app brings healthcare to your fingertips. Schedule appointments, video-consult with doctors, receive digital prescriptions, and manage your entire health journey, all in one place.
           </p>
 
           <div className="mt-8 space-y-4">
