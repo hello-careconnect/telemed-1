@@ -158,13 +158,13 @@ export const HeroSection = () => {
 
         {/* Right 45% — Doctor Hero Image */}
         <motion.div
-          className="lg:w-[45%] w-full relative hidden lg:flex justify-center"
+          className="lg:w-[45%] w-full relative hidden md:flex justify-center"
           initial={{ opacity: 0, x: 40 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.7, delay: 0.3 }}
         >
           <div className="relative">
-            <div className="w-[420px] h-[520px] rounded-[32px] overflow-hidden shadow-xl relative">
+            <div className="w-[280px] h-[360px] md:w-[340px] md:h-[430px] lg:w-[420px] lg:h-[520px] rounded-[32px] overflow-hidden shadow-xl relative">
               <img
                 src={doctorRafiq}
                 alt="Experienced doctor with stethoscope"
@@ -175,51 +175,51 @@ export const HeroSection = () => {
             <motion.div
               animate={{ y: [0, -8, 0] }}
               transition={{ duration: 3.5, ease: 'easeInOut', repeat: Infinity }}
-              className="absolute -right-8 top-16 z-20 bg-background rounded-2xl shadow-xl px-5 py-3 border border-border"
+              className="absolute -right-4 lg:-right-8 top-8 lg:top-16 z-20 bg-background rounded-2xl shadow-xl px-4 lg:px-5 py-2 lg:py-3 border border-border"
             >
-              <p className="font-heading font-bold text-[24px] text-primary">200+</p>
-              <p className="font-body text-[13px] text-text-muted">Best Doctors</p>
+              <p className="font-heading font-bold text-[20px] lg:text-[24px] text-primary">200+</p>
+              <p className="font-body text-[11px] lg:text-[13px] text-text-muted">Best Doctors</p>
             </motion.div>
 
             <motion.div
               animate={{ y: [0, -6, 0] }}
               transition={{ duration: 4, ease: 'easeInOut', repeat: Infinity, delay: 1.2 }}
-              className="absolute -left-12 top-1/3 z-20 bg-background rounded-2xl shadow-xl px-5 py-3 border border-border"
+              className="absolute -left-6 lg:-left-12 top-1/3 z-20 bg-background rounded-2xl shadow-xl px-4 lg:px-5 py-2 lg:py-3 border border-border"
             >
               <div className="flex items-center gap-2">
                 <div className="flex gap-0.5">
                   {[...Array(5)].map((_, i) => (
-                    <Star key={i} className="w-3.5 h-3.5 fill-warning text-warning" />
+                    <Star key={i} className="w-3 h-3 lg:w-3.5 lg:h-3.5 fill-warning text-warning" />
                   ))}
                 </div>
-                <span className="font-heading font-bold text-[15px] text-text-primary">4.9</span>
+                <span className="font-heading font-bold text-[13px] lg:text-[15px] text-text-primary">4.9</span>
               </div>
-              <p className="font-body text-[12px] text-text-muted mt-0.5">Average rating</p>
+              <p className="font-body text-[11px] lg:text-[12px] text-text-muted mt-0.5">Average rating</p>
             </motion.div>
 
             <motion.div
               animate={{ y: [0, -10, 0] }}
               transition={{ duration: 3.8, ease: 'easeInOut', repeat: Infinity, delay: 2 }}
-              className="absolute -right-4 bottom-20 z-20 bg-primary rounded-2xl shadow-xl px-5 py-3"
+              className="absolute -right-2 lg:-right-4 bottom-16 lg:bottom-20 z-20 bg-primary rounded-2xl shadow-xl px-4 lg:px-5 py-2 lg:py-3"
             >
               <div className="flex items-center gap-2">
                 <CheckCircle className="w-4 h-4 text-primary-foreground" />
-                <p className="font-body font-medium text-[14px] text-primary-foreground">Available Now</p>
+                <p className="font-body font-medium text-[12px] lg:text-[14px] text-primary-foreground">Available Now</p>
               </div>
-              <p className="font-body text-[12px] text-primary-foreground/70 mt-0.5">Book instantly</p>
+              <p className="font-body text-[11px] lg:text-[12px] text-primary-foreground/70 mt-0.5">Book instantly</p>
             </motion.div>
 
             <motion.div
               animate={{ y: [0, -6, 0] }}
               transition={{ duration: 4.2, ease: 'easeInOut', repeat: Infinity, delay: 0.8 }}
-              className="absolute -left-6 bottom-8 z-20 bg-background rounded-2xl shadow-xl p-3 border border-border flex items-center gap-3"
+              className="absolute -left-4 lg:-left-6 bottom-4 lg:bottom-8 z-20 bg-background rounded-2xl shadow-xl p-2 lg:p-3 border border-border flex items-center gap-2 lg:gap-3"
             >
-              <div className="w-10 h-10 rounded-full overflow-hidden">
+              <div className="w-8 h-8 lg:w-10 lg:h-10 rounded-full overflow-hidden">
                 <img src={doctorAvatar1} alt="Dr. Aisha" className="w-full h-full object-cover" />
               </div>
               <div>
-                <p className="font-heading font-semibold text-[13px] text-text-primary">Dr. Aisha R.</p>
-                <p className="font-body text-[11px] text-text-muted">Cardiologist · ⭐ 4.9</p>
+                <p className="font-heading font-semibold text-[12px] lg:text-[13px] text-text-primary">Dr. Aisha R.</p>
+                <p className="font-body text-[10px] lg:text-[11px] text-text-muted">Cardiologist · ⭐ 4.9</p>
               </div>
             </motion.div>
           </div>
