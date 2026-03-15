@@ -1,6 +1,6 @@
 import { useState, useRef } from 'react';
 import { motion, useInView, AnimatePresence } from 'framer-motion';
-import { User, Mail, ArrowRight, Loader2, CheckCircle, Stethoscope, BadgeCheck } from 'lucide-react';
+import { User, Mail, ArrowRight, Loader2, CheckCircle, Stethoscope, BadgeCheck, Lock } from 'lucide-react';
 
 const cities = ['Dhaka', 'Chattogram', 'Sylhet', 'Rajshahi', 'Other'];
 
