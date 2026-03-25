@@ -135,18 +135,11 @@ export const DoctorsTeam = () => {
                   </p>
 
                   {/* CTA */}
-                  <button
-                    className={`px-6 py-2 rounded-full text-[14px] font-body font-medium border transition-colors duration-200
-                      ${isActive
-                        ? 'border-white/60 text-text-primary bg-background hover:bg-primary-foreground hover:text-primary hover:border-transparent'
-                        : 'border-border text-text-primary bg-transparent hover:bg-primary hover:text-white hover:border-primary'
-                      }`}
-                  >
+                  <button className="px-6 py-2 rounded-full text-[14px] font-body font-medium border border-primary bg-primary text-primary-foreground hover:bg-primary/85 transition-colors duration-200">
                     Join Waitlist
                   </button>
-                </motion.div>
-              );
-            })}
+              </motion.div>
+            ))}
           </AnimatePresence>
         </div>
 
