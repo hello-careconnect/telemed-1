@@ -9,10 +9,10 @@ import doctorYoungGlasses from '@/assets/doctor-young-glasses.jpg';
 import doctorMature from '@/assets/doctor-mature.jpg';
 
 const heroSlides = [
-  { image: doctorRafiq,        alt: 'Dr. Rafiq Ahmed',       name: 'Dr. Rafiq A.',    spec: 'Dermatologist',  rating: '4.7' },
-  { image: doctorNasreen,      alt: 'Dr. Nasreen Chowdhury', name: 'Dr. Nasreen C.', spec: 'General Physician', rating: '4.8' },
-  { image: doctorYoungGlasses, alt: 'Dr. Tanvir Hossain',   name: 'Dr. Tanvir H.',  spec: 'Neurologist',    rating: '4.9' },
-  { image: doctorMature,       alt: 'Dr. Karim Uddin',       name: 'Dr. Karim U.',   spec: 'Cardiologist',   rating: '4.6' },
+  { image: doctorRafiq,        alt: 'Dr. Rafiq Ahmed',       name: 'Dr. Rafiq Ahmed',       spec: 'Dermatologist',     rating: '4.7', reviews: 82  },
+  { image: doctorNasreen,      alt: 'Dr. Nasreen Chowdhury', name: 'Dr. Nasreen Sultana',   spec: 'General Physician', rating: '4.8', reviews: 114 },
+  { image: doctorYoungGlasses, alt: 'Dr. Tanvir Hossain',   name: 'Dr. Imran Chowdhury',   spec: 'Neurologist',       rating: '4.9', reviews: 103 },
+  { image: doctorMature,       alt: 'Dr. Karim Uddin',       name: 'Dr. Karim Uddin',       spec: 'Orthopedic Surgeon',rating: '4.6', reviews: 78  },
 ];
 
 const rotatingLines = [
