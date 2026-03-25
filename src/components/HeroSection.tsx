@@ -1,6 +1,6 @@
 import { motion, AnimatePresence } from 'framer-motion';
 import { useEffect, useRef, useState } from 'react';
-import { ArrowRight, Play, ShieldCheck, Lock, Star, CheckCircle, Building2, Clock, Smartphone, Phone, MessageCircle, ChevronLeft, ChevronRight } from 'lucide-react';
+import { ArrowRight, Play, ShieldCheck, Lock, Star, CheckCircle, Building2, Clock, Smartphone, Phone, MessageCircle, ChevronLeft, ChevronRight, Sparkles, MapPin, Video, HeartPulse, CalendarCheck } from 'lucide-react';
 import doctorRafiq from '@/assets/doctor-rafiq.webp';
 import doctorAvatar1 from '@/assets/doctor-avatar-1.jpg';
 import doctorNasreen from '@/assets/doctor-nasreen.webp';
@@ -170,6 +170,26 @@ export const HeroSection = () => {
             <br />
             Bangladesh's first platform that gives you control.
           </motion.p>
+
+          {/* Feature highlight chips */}
+          <motion.div variants={fadeUp} className="mt-6 flex flex-wrap gap-2">
+            {[
+              { icon: Star,         label: 'Highly Rated Doctors' },
+              { icon: Sparkles,     label: 'Find Doctors with AI' },
+              { icon: MapPin,       label: 'Nearby Hospitals' },
+              { icon: Video,        label: 'Video Consult 24/7' },
+              { icon: HeartPulse,   label: 'Specialist Matching' },
+              { icon: CalendarCheck,label: 'Instant Booking' },
+            ].map(({ icon: Icon, label }) => (
+              <span
+                key={label}
+                className="inline-flex items-center gap-1.5 bg-accent border border-border rounded-full px-3 py-1.5 text-[13px] font-body font-medium text-text-body hover:border-primary hover:text-primary transition-colors duration-200"
+              >
+                <Icon className="w-3.5 h-3.5 text-primary" strokeWidth={1.8} />
+                {label}
+              </span>
+            ))}
+          </motion.div>
 
           <motion.div variants={fadeUp} className="mt-8 flex flex-col sm:flex-row gap-3">
             <button
