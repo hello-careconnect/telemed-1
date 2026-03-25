@@ -243,10 +243,16 @@ export const HeroSection = () => {
               >
                 {/* Photo */}
                 <div className="aspect-[4/5] relative overflow-hidden bg-surface-2">
+                  {/* Skeleton shown until image is loaded */}
+                  {!loadedSet.has(slideIndex) && (
+                    <div className="absolute inset-0 bg-surface-2 animate-pulse" />
+                  )}
                   <img
                     src={heroSlides[slideIndex].image}
                     alt={heroSlides[slideIndex].alt}
-                    className="w-full h-full object-cover object-top"
+                    loading="eager"
+                    className={`w-full h-full object-cover object-top transition-opacity duration-300 ${loadedSet.has(slideIndex) ? 'opacity-100' : 'opacity-0'}`}
+                    onLoad={() => setLoadedSet((prev) => new Set(prev).add(slideIndex))}
                   />
                   {/* Rating badge */}
                   <div className="absolute top-4 left-4 bg-background/90 backdrop-blur-sm rounded-full px-3 py-1 flex items-center gap-1.5 shadow-sm">
@@ -288,7 +294,7 @@ export const HeroSection = () => {
                 {heroSlides.map((_, i) => (
                   <button
                     key={i}
-                    onClick={() => setSlideIndex(i)}
+                    onClick={() => handleDotClick(i)}
                     className={`rounded-full transition-all duration-300 ${
                       i === slideIndex
                         ? 'w-5 h-2 bg-primary'
@@ -300,13 +306,13 @@ export const HeroSection = () => {
               {/* Arrows */}
               <div className="flex gap-2">
                 <button
-                  onClick={() => setSlideIndex((prev) => (prev - 1 + heroSlides.length) % heroSlides.length)}
+                  onClick={handlePrev}
                   className="w-9 h-9 rounded-full border border-border hover:border-primary hover:text-primary flex items-center justify-center transition-colors"
                 >
                   <ChevronLeft className="w-4 h-4" />
                 </button>
                 <button
-                  onClick={() => setSlideIndex((prev) => (prev + 1) % heroSlides.length)}
+                  onClick={handleNext}
                   className="w-9 h-9 rounded-full border border-border hover:border-primary hover:text-primary flex items-center justify-center transition-colors"
                 >
                   <ChevronRight className="w-4 h-4" />
