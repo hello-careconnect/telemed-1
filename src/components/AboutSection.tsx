@@ -62,7 +62,7 @@ export const AboutSection = () => {
           <span className="inline-flex items-center bg-accent text-primary rounded-full px-4 py-1.5 text-[13px] font-medium font-body">
             About CareConnect
           </span>
-          <h2 className="mt-6 font-heading font-bold text-[32px] sm:text-[40px] text-text-primary leading-[1.12]">
+          <h2 className="mt-3 font-heading font-bold text-[32px] sm:text-[40px] text-text-primary leading-[1.12]">
             At CareConnect, we make healthcare{' '}
             <span className="font-display italic text-primary">simple</span>, accessible, and personal.
           </h2>
