@@ -171,7 +171,7 @@ export const HeroSection = () => {
           </motion.div>
         </motion.div>
 
-        {/* Right 45% — Doctor Hero Image */}
+        {/* Right 45% — Doctor Hero Slider */}
         <motion.div
           className="lg:w-[45%] w-full relative hidden md:flex justify-center"
           initial={{ opacity: 0, x: 40 }}
@@ -179,14 +179,38 @@ export const HeroSection = () => {
           transition={{ duration: 0.7, delay: 0.3 }}
         >
           <div className="relative">
+            {/* Slider frame */}
             <div className="w-[280px] h-[360px] md:w-[340px] md:h-[430px] lg:w-[420px] lg:h-[520px] rounded-[32px] overflow-hidden shadow-xl relative">
-              <img
-                src={doctorRafiq}
-                alt="Experienced doctor with stethoscope"
-                className="w-full h-full object-cover object-top"
-              />
+              <AnimatePresence mode="sync">
+                <motion.img
+                  key={slideIndex}
+                  src={heroSlides[slideIndex].image}
+                  alt={heroSlides[slideIndex].alt}
+                  className="absolute inset-0 w-full h-full object-cover object-top"
+                  initial={{ opacity: 0, scale: 1.04 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  exit={{ opacity: 0, scale: 0.97 }}
+                  transition={{ duration: 0.7, ease: 'easeInOut' }}
+                />
+              </AnimatePresence>
+
+              {/* Slide dots */}
+              <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-1.5 z-10">
+                {heroSlides.map((_, i) => (
+                  <button
+                    key={i}
+                    onClick={() => setSlideIndex(i)}
+                    className={`rounded-full transition-all duration-300 ${
+                      i === slideIndex
+                        ? 'w-5 h-1.5 bg-background'
+                        : 'w-1.5 h-1.5 bg-background/50'
+                    }`}
+                  />
+                ))}
+              </div>
             </div>
 
+            {/* Floating badge — 200+ */}
             <motion.div
               animate={{ y: [0, -8, 0] }}
               transition={{ duration: 3.5, ease: 'easeInOut', repeat: Infinity }}
@@ -196,6 +220,7 @@ export const HeroSection = () => {
               <p className="font-body text-[11px] lg:text-[13px] text-text-muted">Best Doctors</p>
             </motion.div>
 
+            {/* Floating badge — Rating */}
             <motion.div
               animate={{ y: [0, -6, 0] }}
               transition={{ duration: 4, ease: 'easeInOut', repeat: Infinity, delay: 1.2 }}
@@ -212,6 +237,7 @@ export const HeroSection = () => {
               <p className="font-body text-[11px] lg:text-[12px] text-text-muted mt-0.5">Average rating</p>
             </motion.div>
 
+            {/* Floating badge — Available Now */}
             <motion.div
               animate={{ y: [0, -10, 0] }}
               transition={{ duration: 3.8, ease: 'easeInOut', repeat: Infinity, delay: 2 }}
@@ -224,19 +250,25 @@ export const HeroSection = () => {
               <p className="font-body text-[11px] lg:text-[12px] text-primary-foreground/70 mt-0.5">Book instantly</p>
             </motion.div>
 
-            <motion.div
-              animate={{ y: [0, -6, 0] }}
-              transition={{ duration: 4.2, ease: 'easeInOut', repeat: Infinity, delay: 0.8 }}
-              className="absolute -left-4 lg:-left-6 bottom-4 lg:bottom-8 z-20 bg-background rounded-2xl shadow-xl p-2 lg:p-3 border border-border flex items-center gap-2 lg:gap-3"
-            >
-              <div className="w-8 h-8 lg:w-10 lg:h-10 rounded-full overflow-hidden">
-                <img src={doctorAvatar1} alt="Dr. Aisha" className="w-full h-full object-cover" />
-              </div>
-              <div>
-                <p className="font-heading font-semibold text-[12px] lg:text-[13px] text-text-primary">Dr. Aisha R.</p>
-                <p className="font-body text-[10px] lg:text-[11px] text-text-muted">Cardiologist · ⭐ 4.9</p>
-              </div>
-            </motion.div>
+            {/* Floating badge — Doctor name (synced with slide) */}
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={slideIndex}
+                initial={{ opacity: 0, y: 8 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -8 }}
+                transition={{ duration: 0.4 }}
+                className="absolute -left-4 lg:-left-6 bottom-4 lg:bottom-8 z-20 bg-background rounded-2xl shadow-xl p-2 lg:p-3 border border-border flex items-center gap-2 lg:gap-3"
+              >
+                <div className="w-8 h-8 lg:w-10 lg:h-10 rounded-full overflow-hidden">
+                  <img src={heroSlides[slideIndex].image} alt={heroSlides[slideIndex].name} className="w-full h-full object-cover object-top" />
+                </div>
+                <div>
+                  <p className="font-heading font-semibold text-[12px] lg:text-[13px] text-text-primary">{heroSlides[slideIndex].name}</p>
+                  <p className="font-body text-[10px] lg:text-[11px] text-text-muted">{heroSlides[slideIndex].spec} · ⭐ {heroSlides[slideIndex].rating}</p>
+                </div>
+              </motion.div>
+            </AnimatePresence>
           </div>
         </motion.div>
 
