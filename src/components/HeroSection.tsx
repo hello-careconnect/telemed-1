@@ -35,6 +35,7 @@ const fadeUp = {
 export const HeroSection = () => {
   const indexRef = useRef(0);
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [slideIndex, setSlideIndex] = useState(0);
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -42,6 +43,13 @@ export const HeroSection = () => {
       setCurrentIndex(indexRef.current);
     }, 3000);
     return () => clearInterval(interval);
+  }, []);
+
+  useEffect(() => {
+    const slideTimer = setInterval(() => {
+      setSlideIndex((prev) => (prev + 1) % heroSlides.length);
+    }, 3500);
+    return () => clearInterval(slideTimer);
   }, []);
 
   const scrollToForm = () => {
