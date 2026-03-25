@@ -128,7 +128,7 @@ export const DoctorsTeam = () => {
                   </p>
 
                   {/* CTA */}
-                  <button className="px-6 py-2 rounded-full text-[14px] font-body font-medium border border-primary bg-primary text-primary-foreground hover:bg-primary/85 transition-colors duration-200">
+                  <button className="px-6 py-2 rounded-full text-[14px] font-body font-medium border border-border bg-background text-text-primary hover:bg-primary hover:text-primary-foreground hover:border-primary transition-colors duration-200">
                     Join Waitlist
                   </button>
               </motion.div>
