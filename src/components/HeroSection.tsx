@@ -8,6 +8,13 @@ import doctorClipboard from '@/assets/doctor-clipboard.jpg';
 import doctorYoungGlasses from '@/assets/doctor-young-glasses.jpg';
 import doctorMature from '@/assets/doctor-mature.jpg';
 
+const heroSlides = [
+  { image: doctorRafiq,        alt: 'Dr. Rafiq Ahmed',       name: 'Dr. Rafiq A.',    spec: 'Dermatologist',  rating: '4.7' },
+  { image: doctorNasreen,      alt: 'Dr. Nasreen Chowdhury', name: 'Dr. Nasreen C.', spec: 'General Physician', rating: '4.8' },
+  { image: doctorYoungGlasses, alt: 'Dr. Tanvir Hossain',   name: 'Dr. Tanvir H.',  spec: 'Neurologist',    rating: '4.9' },
+  { image: doctorMature,       alt: 'Dr. Karim Uddin',       name: 'Dr. Karim U.',   spec: 'Cardiologist',   rating: '4.6' },
+];
+
 const rotatingLines = [
   'Book in under 2 minutes.',
   'Real reviews from real patients.',
