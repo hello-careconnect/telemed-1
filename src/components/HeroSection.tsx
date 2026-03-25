@@ -71,7 +71,7 @@ export const HeroSection = () => {
             </span>
           </motion.div>
 
-          <motion.h1 variants={fadeUp} className="mt-8">
+          <motion.h1 variants={fadeUp} className="mt-3">
             <span className="block font-heading font-bold text-text-primary text-[42px] sm:text-[56px] lg:text-[72px] leading-[1.08]">
               Find the doctor
             </span>
