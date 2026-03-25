@@ -135,18 +135,18 @@ export const HowItWorks = () => {
                 >
                   <div className="flex items-center gap-4 px-5 py-4">
                     {/* Icon */}
-                    <div className={`w-11 h-11 rounded-xl flex items-center justify-center shrink-0 transition-colors duration-300 ${
+                    <div className={`w-10 h-10 rounded-xl flex items-center justify-center shrink-0 transition-colors duration-300 ${
                       isActive ? 'bg-primary' : 'bg-accent group-hover:bg-primary/10'
                     }`}>
-                      <s.icon className={`w-5 h-5 transition-colors ${isActive ? 'text-primary-foreground' : 'text-primary'}`} strokeWidth={1.5} />
+                      <s.icon className={`w-[18px] h-[18px] transition-colors ${isActive ? 'text-primary-foreground' : 'text-primary'}`} strokeWidth={1.5} />
                     </div>
 
                     {/* Text */}
-                    <div className="flex-1 min-w-0">
-                      <p className={`font-body text-[11px] font-semibold uppercase tracking-widest mb-0.5 ${isActive ? 'text-primary' : 'text-text-muted'}`}>
+                    <div className="flex-1 min-w-0 flex flex-col justify-center">
+                      <p className={`font-body text-[11px] font-semibold uppercase tracking-widest leading-none mb-1 ${isActive ? 'text-primary' : 'text-text-muted'}`}>
                         {s.step}
                       </p>
-                      <p className={`font-heading font-semibold text-[15px] leading-[1.3] ${isActive ? 'text-text-primary' : 'text-text-body'}`}>
+                      <p className={`font-heading font-semibold text-[15px] leading-snug ${isActive ? 'text-text-primary' : 'text-text-body'}`}>
                         {s.title}
                       </p>
                     </div>
