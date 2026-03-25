@@ -62,7 +62,7 @@ const AnimatedStat = ({ value, inView }: { value: string; inView: boolean }) => 
   }, [inView, value]);
 
   return (
-    <p className="font-heading font-black text-[38px] sm:text-[44px] lg:text-[52px] text-dark-text leading-[1] whitespace-nowrap">
+    <p className="font-heading font-black text-[38px] sm:text-[44px] lg:text-[52px] text-primary-foreground leading-[1] whitespace-nowrap">
       {display}
     </p>
   );
