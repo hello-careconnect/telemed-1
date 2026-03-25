@@ -68,14 +68,8 @@ export const DoctorsTeam = () => {
   const [startIdx, setStartIdx] = useState(0);
   const visibleCount = useVisibleCount();
 
-  const next = () => {
-    setStartIdx((prev) => (prev + 1) % doctors.length);
-    setActiveIdx((prev) => (prev + 1) % visibleCount);
-  };
-  const prev = () => {
-    setStartIdx((prev) => (prev - 1 + doctors.length) % doctors.length);
-    setActiveIdx((prev) => (prev - 1 + visibleCount) % visibleCount);
-  };
+  const next = () => setStartIdx((prev) => (prev + 1) % doctors.length);
+  const prev = () => setStartIdx((prev) => (prev - 1 + doctors.length) % doctors.length);
 
   const visibleDoctors = [];
   for (let i = 0; i < Math.min(visibleCount, doctors.length); i++) {
