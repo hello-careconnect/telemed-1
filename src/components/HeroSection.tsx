@@ -171,7 +171,25 @@ export const HeroSection = () => {
             Bangladesh's first platform that gives you control.
           </motion.p>
 
-          <motion.div variants={fadeUp} className="mt-8 flex flex-col sm:flex-row gap-3">
+          {/* Feature highlight chips */}
+          <motion.div variants={fadeUp} className="mt-6 flex flex-wrap gap-2">
+            {[
+              { icon: Star,         label: 'Highly Rated Doctors' },
+              { icon: Sparkles,     label: 'Find Doctors with AI' },
+              { icon: MapPin,       label: 'Nearby Hospitals' },
+              { icon: Video,        label: 'Video Consult 24/7' },
+              { icon: HeartPulse,   label: 'Specialist Matching' },
+              { icon: CalendarCheck,label: 'Instant Booking' },
+            ].map(({ icon: Icon, label }) => (
+              <span
+                key={label}
+                className="inline-flex items-center gap-1.5 bg-accent border border-border rounded-full px-3 py-1.5 text-[13px] font-body font-medium text-text-body hover:border-primary hover:text-primary transition-colors duration-200"
+              >
+                <Icon className="w-3.5 h-3.5 text-primary" strokeWidth={1.8} />
+                {label}
+              </span>
+            ))}
+          </motion.div>
             <button
               onClick={scrollToForm}
               className="group bg-primary text-primary-foreground rounded-full px-8 py-4 text-[16px] font-semibold font-body shadow-teal-glow hover:bg-primary-dark hover:-translate-y-0.5 hover:shadow-teal-glow-lg transition-all duration-200 flex items-center justify-center gap-2"
