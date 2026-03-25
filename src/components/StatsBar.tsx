@@ -13,7 +13,7 @@ export const StatsBar = () => {
   const inView = useInView(ref, { once: true });
 
   return (
-    <section className="bg-dark-bg py-10 sm:py-12 lg:py-16" ref={ref}>
+    <section className="bg-primary py-10 sm:py-12 lg:py-16" ref={ref}>
       <div className="container max-w-[1440px] mx-auto px-6">
         <div className="grid w-full grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-5 lg:divide-x lg:gap-0 divide-[rgba(255,255,255,0.10)]">
           {stats.map((stat, i) => (
@@ -22,7 +22,7 @@ export const StatsBar = () => {
               initial={{ opacity: 0, y: 16 }}
               animate={inView ? { opacity: 1, y: 0 } : {}}
               transition={{ delay: i * 0.1, duration: 0.4 }}
-              className="px-4 sm:px-6 lg:px-14 py-6 lg:py-4 text-center flex flex-col items-center justify-center bg-[rgba(255,255,255,0.04)] lg:bg-transparent rounded-2xl lg:rounded-none"
+              className="px-4 sm:px-6 lg:px-14 py-6 lg:py-4 text-center flex flex-col items-center justify-center bg-[rgba(255,255,255,0.08)] lg:bg-transparent rounded-2xl lg:rounded-none"
             >
               <AnimatedStat value={stat.value} inView={inView} />
               <p className="font-body text-[13px] text-[rgba(255,255,255,0.55)] mt-3 uppercase tracking-widest max-w-[18ch]">
@@ -62,7 +62,7 @@ const AnimatedStat = ({ value, inView }: { value: string; inView: boolean }) => 
   }, [inView, value]);
 
   return (
-    <p className="font-heading font-black text-[38px] sm:text-[44px] lg:text-[52px] text-dark-text leading-[1] whitespace-nowrap">
+    <p className="font-heading font-black text-[38px] sm:text-[44px] lg:text-[52px] text-primary-foreground leading-[1] whitespace-nowrap">
       {display}
     </p>
   );
