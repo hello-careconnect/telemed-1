@@ -171,104 +171,97 @@ export const HeroSection = () => {
           </motion.div>
         </motion.div>
 
-        {/* Right 45% — Doctor Hero Slider */}
+        {/* Right 45% — Doctor Card Slider */}
         <motion.div
-          className="lg:w-[45%] w-full relative hidden md:flex justify-center"
+          className="lg:w-[45%] w-full relative hidden md:flex justify-center items-center"
           initial={{ opacity: 0, x: 40 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.7, delay: 0.3 }}
         >
-          <div className="relative">
-            {/* Slider frame */}
-            <div className="w-[280px] h-[360px] md:w-[340px] md:h-[430px] lg:w-[420px] lg:h-[520px] rounded-[32px] overflow-hidden shadow-xl relative">
-              <AnimatePresence mode="sync">
-                <motion.img
-                  key={slideIndex}
-                  src={heroSlides[slideIndex].image}
-                  alt={heroSlides[slideIndex].alt}
-                  className="absolute inset-0 w-full h-full object-cover object-top"
-                  initial={{ opacity: 0, scale: 1.04 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  exit={{ opacity: 0, scale: 0.97 }}
-                  transition={{ duration: 0.7, ease: 'easeInOut' }}
-                />
-              </AnimatePresence>
+          <div className="relative w-[280px] md:w-[320px] lg:w-[360px]">
 
-              {/* Slide dots */}
-              <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-1.5 z-10">
+            {/* Card */}
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={slideIndex}
+                initial={{ opacity: 0, x: 40 }}
+                animate={{ opacity: 1, x: 0 }}
+                exit={{ opacity: 0, x: -40 }}
+                transition={{ duration: 0.45, ease: 'easeInOut' }}
+                className="bg-surface rounded-[24px] overflow-hidden border border-border shadow-lg"
+              >
+                {/* Photo */}
+                <div className="aspect-[4/5] relative overflow-hidden bg-surface-2">
+                  <img
+                    src={heroSlides[slideIndex].image}
+                    alt={heroSlides[slideIndex].alt}
+                    className="w-full h-full object-cover object-top"
+                  />
+                  {/* Rating badge */}
+                  <div className="absolute top-4 left-4 bg-background/90 backdrop-blur-sm rounded-full px-3 py-1 flex items-center gap-1.5 shadow-sm">
+                    <Star className="w-3.5 h-3.5 fill-warning text-warning" />
+                    <span className="font-body font-semibold text-[13px] text-text-primary">{heroSlides[slideIndex].rating}</span>
+                  </div>
+                  {/* Available badge */}
+                  <div className="absolute top-4 right-4 bg-primary rounded-full px-3 py-1 flex items-center gap-1.5 shadow-sm">
+                    <CheckCircle className="w-3 h-3 text-primary-foreground" />
+                    <span className="font-body font-semibold text-[11px] text-primary-foreground">Available Now</span>
+                  </div>
+                </div>
+
+                {/* Info */}
+                <div className="p-5">
+                  <div className="flex items-center justify-between">
+                    <div>
+                      <p className="font-heading font-semibold text-[17px] text-text-primary">{heroSlides[slideIndex].name}</p>
+                      <p className="font-body text-[14px] text-primary">{heroSlides[slideIndex].spec}</p>
+                    </div>
+                    <div className="flex gap-2">
+                      <button className="w-9 h-9 rounded-full border border-border hover:border-primary hover:bg-accent flex items-center justify-center transition-all">
+                        <Phone className="w-4 h-4 text-text-muted" />
+                      </button>
+                      <button className="w-9 h-9 rounded-full border border-border hover:border-primary hover:bg-accent flex items-center justify-center transition-all">
+                        <MessageCircle className="w-4 h-4 text-text-muted" />
+                      </button>
+                    </div>
+                  </div>
+                  <p className="font-body text-[13px] text-text-muted mt-2">{heroSlides[slideIndex].reviews} verified reviews</p>
+                </div>
+              </motion.div>
+            </AnimatePresence>
+
+            {/* Navigation row */}
+            <div className="flex items-center justify-between mt-4 px-1">
+              {/* Dots */}
+              <div className="flex gap-1.5">
                 {heroSlides.map((_, i) => (
                   <button
                     key={i}
                     onClick={() => setSlideIndex(i)}
                     className={`rounded-full transition-all duration-300 ${
                       i === slideIndex
-                        ? 'w-5 h-1.5 bg-background'
-                        : 'w-1.5 h-1.5 bg-background/50'
+                        ? 'w-5 h-2 bg-primary'
+                        : 'w-2 h-2 bg-border'
                     }`}
                   />
                 ))}
               </div>
+              {/* Arrows */}
+              <div className="flex gap-2">
+                <button
+                  onClick={() => setSlideIndex((prev) => (prev - 1 + heroSlides.length) % heroSlides.length)}
+                  className="w-9 h-9 rounded-full border border-border hover:border-primary hover:text-primary flex items-center justify-center transition-colors"
+                >
+                  <ChevronLeft className="w-4 h-4" />
+                </button>
+                <button
+                  onClick={() => setSlideIndex((prev) => (prev + 1) % heroSlides.length)}
+                  className="w-9 h-9 rounded-full border border-border hover:border-primary hover:text-primary flex items-center justify-center transition-colors"
+                >
+                  <ChevronRight className="w-4 h-4" />
+                </button>
+              </div>
             </div>
-
-            {/* Floating badge — 200+ */}
-            <motion.div
-              animate={{ y: [0, -8, 0] }}
-              transition={{ duration: 3.5, ease: 'easeInOut', repeat: Infinity }}
-              className="absolute -right-4 lg:-right-8 top-8 lg:top-16 z-20 bg-background rounded-2xl shadow-xl px-4 lg:px-5 py-2 lg:py-3 border border-border"
-            >
-              <p className="font-heading font-bold text-[20px] lg:text-[24px] text-primary">200+</p>
-              <p className="font-body text-[11px] lg:text-[13px] text-text-muted">Best Doctors</p>
-            </motion.div>
-
-            {/* Floating badge — Rating */}
-            <motion.div
-              animate={{ y: [0, -6, 0] }}
-              transition={{ duration: 4, ease: 'easeInOut', repeat: Infinity, delay: 1.2 }}
-              className="absolute -left-6 lg:-left-12 top-1/3 z-20 bg-background rounded-2xl shadow-xl px-4 lg:px-5 py-2 lg:py-3 border border-border"
-            >
-              <div className="flex items-center gap-2">
-                <div className="flex gap-0.5">
-                  {[...Array(5)].map((_, i) => (
-                    <Star key={i} className="w-3 h-3 lg:w-3.5 lg:h-3.5 fill-warning text-warning" />
-                  ))}
-                </div>
-                <span className="font-heading font-bold text-[13px] lg:text-[15px] text-text-primary">4.9</span>
-              </div>
-              <p className="font-body text-[11px] lg:text-[12px] text-text-muted mt-0.5">Average rating</p>
-            </motion.div>
-
-            {/* Floating badge — Available Now */}
-            <motion.div
-              animate={{ y: [0, -10, 0] }}
-              transition={{ duration: 3.8, ease: 'easeInOut', repeat: Infinity, delay: 2 }}
-              className="absolute -right-2 lg:-right-4 bottom-16 lg:bottom-20 z-20 bg-primary rounded-2xl shadow-xl px-4 lg:px-5 py-2 lg:py-3"
-            >
-              <div className="flex items-center gap-2">
-                <CheckCircle className="w-4 h-4 text-primary-foreground" />
-                <p className="font-body font-medium text-[12px] lg:text-[14px] text-primary-foreground">Available Now</p>
-              </div>
-              <p className="font-body text-[11px] lg:text-[12px] text-primary-foreground/70 mt-0.5">Book instantly</p>
-            </motion.div>
-
-            {/* Floating badge — Doctor name (synced with slide) */}
-            <AnimatePresence mode="wait">
-              <motion.div
-                key={slideIndex}
-                initial={{ opacity: 0, y: 8 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -8 }}
-                transition={{ duration: 0.4 }}
-                className="absolute -left-4 lg:-left-6 bottom-4 lg:bottom-8 z-20 bg-background rounded-2xl shadow-xl p-2 lg:p-3 border border-border flex items-center gap-2 lg:gap-3"
-              >
-                <div className="w-8 h-8 lg:w-10 lg:h-10 rounded-full overflow-hidden">
-                  <img src={heroSlides[slideIndex].image} alt={heroSlides[slideIndex].name} className="w-full h-full object-cover object-top" />
-                </div>
-                <div>
-                  <p className="font-heading font-semibold text-[12px] lg:text-[13px] text-text-primary">{heroSlides[slideIndex].name}</p>
-                  <p className="font-body text-[10px] lg:text-[11px] text-text-muted">{heroSlides[slideIndex].spec} · ⭐ {heroSlides[slideIndex].rating}</p>
-                </div>
-              </motion.div>
-            </AnimatePresence>
           </div>
         </motion.div>
 
