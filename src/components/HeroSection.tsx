@@ -32,10 +32,44 @@ const fadeUp = {
   show: { opacity: 1, y: 0, transition: { duration: 0.5, ease: 'easeOut' as const } },
 };
 
+// Preload all slide images so they're ready before the transition fires
+const preloadedImages = heroSlides.map((slide) => {
+  const img = new Image();
+  img.src = slide.image;
+  return img;
+});
+
 export const HeroSection = () => {
   const indexRef = useRef(0);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [slideIndex, setSlideIndex] = useState(0);
+  const [loadedSet, setLoadedSet] = useState<Set<number>>(() => new Set([0]));
+  const timerRef = useRef<ReturnType<typeof setInterval> | null>(null);
+
+  // Eagerly preload every image and mark it ready in loadedSet
+  useEffect(() => {
+    heroSlides.forEach((slide, i) => {
+      const img = new Image();
+      img.src = slide.image;
+      img.onload = () => setLoadedSet((prev) => new Set(prev).add(i));
+    });
+  }, []);
+
+  // Auto-advance only after the NEXT slide image is loaded
+  const goToSlide = (next: number) => {
+    if (loadedSet.has(next)) {
+      setSlideIndex(next);
+    } else {
+      // Wait for the image to finish loading then transition
+      const img = preloadedImages[next];
+      const onLoad = () => {
+        setLoadedSet((prev) => new Set(prev).add(next));
+        setSlideIndex(next);
+      };
+      if (img.complete) onLoad();
+      else img.addEventListener('load', onLoad, { once: true });
+    }
+  };
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -46,11 +80,28 @@ export const HeroSection = () => {
   }, []);
 
   useEffect(() => {
-    const slideTimer = setInterval(() => {
-      setSlideIndex((prev) => (prev + 1) % heroSlides.length);
-    }, 3500);
-    return () => clearInterval(slideTimer);
-  }, []);
+    timerRef.current = setInterval(() => {
+      const next = (slideIndex + 1) % heroSlides.length;
+      goToSlide(next);
+    }, 4500);
+    return () => { if (timerRef.current) clearInterval(timerRef.current); };
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [slideIndex, loadedSet]);
+
+  const handleDotClick = (i: number) => {
+    if (timerRef.current) clearInterval(timerRef.current);
+    goToSlide(i);
+  };
+
+  const handlePrev = () => {
+    if (timerRef.current) clearInterval(timerRef.current);
+    goToSlide((slideIndex - 1 + heroSlides.length) % heroSlides.length);
+  };
+
+  const handleNext = () => {
+    if (timerRef.current) clearInterval(timerRef.current);
+    goToSlide((slideIndex + 1) % heroSlides.length);
+  };
 
   const scrollToForm = () => {
     document.getElementById('waitlist-form')?.scrollIntoView({ behavior: 'smooth' });
@@ -178,6 +229,14 @@ export const HeroSection = () => {
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.7, delay: 0.3 }}
         >
+          {/* Hidden preload images — ensures browser fetches all before they're needed */}
+          <div className="sr-only" aria-hidden>
+            {heroSlides.map((s, i) => (
+              <img key={i} src={s.image} alt="" loading="eager"
+                onLoad={() => setLoadedSet((prev) => new Set(prev).add(i))} />
+            ))}
+          </div>
+
           <div className="relative w-[280px] md:w-[320px] lg:w-[360px]">
 
             {/* Card */}
@@ -192,10 +251,16 @@ export const HeroSection = () => {
               >
                 {/* Photo */}
                 <div className="aspect-[4/5] relative overflow-hidden bg-surface-2">
+                  {/* Skeleton shown until image is loaded */}
+                  {!loadedSet.has(slideIndex) && (
+                    <div className="absolute inset-0 bg-surface-2 animate-pulse" />
+                  )}
                   <img
                     src={heroSlides[slideIndex].image}
                     alt={heroSlides[slideIndex].alt}
-                    className="w-full h-full object-cover object-top"
+                    loading="eager"
+                    className={`w-full h-full object-cover object-top transition-opacity duration-300 ${loadedSet.has(slideIndex) ? 'opacity-100' : 'opacity-0'}`}
+                    onLoad={() => setLoadedSet((prev) => new Set(prev).add(slideIndex))}
                   />
                   {/* Rating badge */}
                   <div className="absolute top-4 left-4 bg-background/90 backdrop-blur-sm rounded-full px-3 py-1 flex items-center gap-1.5 shadow-sm">
@@ -237,7 +302,7 @@ export const HeroSection = () => {
                 {heroSlides.map((_, i) => (
                   <button
                     key={i}
-                    onClick={() => setSlideIndex(i)}
+                    onClick={() => handleDotClick(i)}
                     className={`rounded-full transition-all duration-300 ${
                       i === slideIndex
                         ? 'w-5 h-2 bg-primary'
@@ -249,13 +314,13 @@ export const HeroSection = () => {
               {/* Arrows */}
               <div className="flex gap-2">
                 <button
-                  onClick={() => setSlideIndex((prev) => (prev - 1 + heroSlides.length) % heroSlides.length)}
+                  onClick={handlePrev}
                   className="w-9 h-9 rounded-full border border-border hover:border-primary hover:text-primary flex items-center justify-center transition-colors"
                 >
                   <ChevronLeft className="w-4 h-4" />
                 </button>
                 <button
-                  onClick={() => setSlideIndex((prev) => (prev + 1) % heroSlides.length)}
+                  onClick={handleNext}
                   className="w-9 h-9 rounded-full border border-border hover:border-primary hover:text-primary flex items-center justify-center transition-colors"
                 >
                   <ChevronRight className="w-4 h-4" />
