@@ -19,7 +19,6 @@ import { ExitIntent } from '@/components/ExitIntent';
 const Index = () => {
   return (
     <>
-      <CustomCursor />
       <Navbar />
       <main>
         <HeroSection />
