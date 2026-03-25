@@ -171,24 +171,9 @@ export const HeroSection = () => {
             Bangladesh's first platform that gives you control.
           </motion.p>
 
-          {/* Feature highlight chips */}
-          <motion.div variants={fadeUp} className="mt-6 flex flex-wrap gap-2">
-            {[
-              { icon: Star,         label: 'Highly Rated Doctors' },
-              { icon: Sparkles,     label: 'Find Doctors with AI' },
-              { icon: MapPin,       label: 'Nearby Hospitals' },
-              { icon: Video,        label: 'Video Consult 24/7' },
-              { icon: HeartPulse,   label: 'Specialist Matching' },
-              { icon: CalendarCheck,label: 'Instant Booking' },
-            ].map(({ icon: Icon, label }) => (
-              <span
-                key={label}
-                className="inline-flex items-center gap-1.5 bg-accent border border-border rounded-full px-3 py-1.5 text-[13px] font-body font-medium text-text-body hover:border-primary hover:text-primary transition-colors duration-200"
-              >
-                <Icon className="w-3.5 h-3.5 text-primary" strokeWidth={1.8} />
-                {label}
-              </span>
-            ))}
+          {/* Feature highlight chips — flip between two groups of 3 */}
+          <motion.div variants={fadeUp} className="mt-6">
+            <FeatureChips />
           </motion.div>
 
           <motion.div variants={fadeUp} className="mt-8 flex flex-col sm:flex-row gap-3">
@@ -399,3 +384,49 @@ const MobileHeroCards = () => (
   </div>
 );
 
+const featureGroups = [
+  [
+    { icon: Star,          label: 'Highly Rated Doctors' },
+    { icon: Sparkles,      label: 'Find Doctors with AI' },
+    { icon: MapPin,        label: 'Nearby Hospitals' },
+  ],
+  [
+    { icon: Video,         label: 'Video Consult 24/7' },
+    { icon: HeartPulse,    label: 'Specialist Matching' },
+    { icon: CalendarCheck, label: 'Instant Booking' },
+  ],
+];
+
+const FeatureChips = () => {
+  const [group, setGroup] = useState(0);
+
+  useEffect(() => {
+    const t = setInterval(() => setGroup((g) => (g + 1) % featureGroups.length), 2800);
+    return () => clearInterval(t);
+  }, []);
+
+  return (
+    <div className="relative h-[40px] overflow-hidden">
+      <AnimatePresence mode="wait">
+        <motion.div
+          key={group}
+          initial={{ opacity: 0, y: 14 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={{ opacity: 0, y: -14 }}
+          transition={{ duration: 0.35, ease: 'easeOut' }}
+          className="absolute inset-0 flex items-center gap-2"
+        >
+          {featureGroups[group].map(({ icon: Icon, label }) => (
+            <span
+              key={label}
+              className="inline-flex items-center gap-1.5 bg-accent border border-border rounded-full px-3 py-1.5 text-[13px] font-body font-medium text-text-body hover:border-primary hover:text-primary transition-colors duration-200 whitespace-nowrap"
+            >
+              <Icon className="w-3.5 h-3.5 text-primary shrink-0" strokeWidth={1.8} />
+              {label}
+            </span>
+          ))}
+        </motion.div>
+      </AnimatePresence>
+    </div>
+  );
+};
