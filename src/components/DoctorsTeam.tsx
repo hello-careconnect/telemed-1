@@ -1,6 +1,6 @@
 import { useRef, useState, useEffect } from 'react';
 import { motion, useInView, AnimatePresence } from 'framer-motion';
-import { Phone, MessageCircle, ChevronLeft, ChevronRight, Star } from 'lucide-react';
+import { ChevronLeft, ChevronRight } from 'lucide-react';
 import doctorAisha from '@/assets/doctor-aisha-new.jpg';
 import doctorKarimUddin from '@/assets/doctor-karim-uddin.jpg';
 import doctorNasreen from '@/assets/doctor-nasreen.webp';
@@ -11,59 +11,47 @@ import doctorYoungGlasses from '@/assets/doctor-young-glasses.jpg';
 const doctors = [
   {
     name: 'Dr. Aisha Rahman',
-    specialty: 'Cardiologist',
-    rating: '4.9',
-    reviews: 127,
+    specialty: 'Family Medicine Specialist',
     image: doctorAisha,
     objectPosition: 'center center',
   },
   {
     name: 'Dr. Karim Hassan',
-    specialty: 'Pediatrician',
-    rating: '4.8',
-    reviews: 94,
+    specialty: 'Cardiology Expert',
     image: doctorClipboard,
     objectPosition: 'center top',
   },
   {
     name: 'Dr. Nasreen Sultana',
     specialty: 'Gynecologist',
-    rating: '4.9',
-    reviews: 156,
     image: doctorNasreen,
     objectPosition: 'center top',
   },
   {
     name: 'Dr. Rafiq Ahmed',
     specialty: 'Dermatologist',
-    rating: '4.7',
-    reviews: 82,
     image: doctorRafiq,
     objectPosition: 'center top',
   },
   {
     name: 'Dr. Imran Chowdhury',
     specialty: 'Neurologist',
-    rating: '4.8',
-    reviews: 103,
     image: doctorYoungGlasses,
     objectPosition: 'center top',
   },
   {
     name: 'Dr. Karim Uddin',
     specialty: 'Orthopedic Surgeon',
-    rating: '4.7',
-    reviews: 78,
     image: doctorKarimUddin,
     objectPosition: 'center top',
   },
 ];
 
 const useVisibleCount = () => {
-  const [count, setCount] = useState(1);
+  const [count, setCount] = useState(4);
   useEffect(() => {
     const update = () => {
-      if (window.innerWidth >= 1024) setCount(3);
+      if (window.innerWidth >= 1024) setCount(4);
       else if (window.innerWidth >= 640) setCount(2);
       else setCount(1);
     };
@@ -77,99 +65,118 @@ const useVisibleCount = () => {
 export const DoctorsTeam = () => {
   const ref = useRef<HTMLDivElement>(null);
   const inView = useInView(ref, { once: true, margin: '-100px' });
+  const [activeIdx, setActiveIdx] = useState(1);
   const [startIdx, setStartIdx] = useState(0);
   const visibleCount = useVisibleCount();
 
-  const next = () => setStartIdx((prev) => (prev + 1) % doctors.length);
-  const prev = () => setStartIdx((prev) => (prev - 1 + doctors.length) % doctors.length);
+  const next = () => {
+    setStartIdx((prev) => (prev + 1) % doctors.length);
+    setActiveIdx((prev) => (prev + 1) % visibleCount);
+  };
+  const prev = () => {
+    setStartIdx((prev) => (prev - 1 + doctors.length) % doctors.length);
+    setActiveIdx((prev) => (prev - 1 + visibleCount) % visibleCount);
+  };
 
   const visibleDoctors = [];
   for (let i = 0; i < Math.min(visibleCount, doctors.length); i++) {
     visibleDoctors.push(doctors[(startIdx + i) % doctors.length]);
   }
 
-  const gridCols = visibleCount === 1 ? 'grid-cols-1' : visibleCount === 2 ? 'grid-cols-2' : 'grid-cols-3';
-
   return (
     <section className="py-12 sm:py-16 lg:py-28 bg-background">
       <div className="container max-w-[1440px] mx-auto px-6">
-        <div className="flex flex-col sm:flex-row justify-between items-start sm:items-end mb-10 sm:mb-16 gap-4">
-          <div>
-            <span className="inline-flex items-center bg-accent text-primary rounded-full px-4 py-1.5 text-[13px] font-medium font-body">
-              Our Specialists
-            </span>
-            <h2 className="mt-6 font-heading font-bold text-[28px] sm:text-[40px] text-text-primary leading-[1.12]">
-              Meet our{' '}
-              <span className="font-display italic text-primary">expert</span>{' '}
-              doctors
-            </h2>
-            <p className="mt-3 font-body text-[15px] sm:text-[17px] text-text-body max-w-lg">
-              Highly experienced doctors and specialists committed to your unique health journey.
-            </p>
-          </div>
-          <div className="flex gap-2">
+        {/* Header */}
+        <div className="text-center mb-10 sm:mb-14">
+          <span className="inline-flex items-center bg-accent text-primary rounded-full px-4 py-1.5 text-[13px] font-medium font-body">
+            Our Specialists
+          </span>
+          <h2 className="mt-6 font-heading font-bold text-[28px] sm:text-[40px] text-text-primary leading-[1.12]">
+            Verified Specialists Joining the Platform
+          </h2>
+          <p className="mt-3 font-body text-[15px] sm:text-[17px] text-text-body max-w-xl mx-auto">
+            Bangladesh's most trusted doctors are verifying their listings ahead of launch.
+          </p>
+        </div>
+
+        {/* Cards */}
+        <div ref={ref} className={`grid gap-5 ${visibleCount === 1 ? 'grid-cols-1' : visibleCount === 2 ? 'grid-cols-2' : 'grid-cols-4'}`}>
+          <AnimatePresence mode="wait">
+            {visibleDoctors.map((doc, i) => {
+              const isActive = i === activeIdx;
+              return (
+                <motion.div
+                  key={doc.name + startIdx}
+                  initial={{ opacity: 0, y: 24 }}
+                  animate={inView ? { opacity: 1, y: 0 } : {}}
+                  exit={{ opacity: 0, y: -24 }}
+                  transition={{ delay: i * 0.08, duration: 0.35 }}
+                  onClick={() => setActiveIdx(i)}
+                  className={`group relative flex flex-col items-center text-center rounded-[24px] px-6 py-8 cursor-pointer transition-all duration-300 border
+                    ${isActive
+                      ? 'bg-primary border-primary shadow-xl scale-[1.04]'
+                      : 'bg-surface border-border hover:border-primary hover:shadow-md'
+                    }`}
+                >
+                  {/* Circular photo */}
+                  <div className={`w-24 h-24 rounded-full overflow-hidden mb-5 ring-4 transition-all duration-300
+                    ${isActive ? 'ring-white/30' : 'ring-border'}`}>
+                    <img
+                      src={doc.image}
+                      alt={doc.name}
+                      className="w-full h-full object-cover"
+                      style={{ objectPosition: doc.objectPosition }}
+                      loading="lazy"
+                    />
+                  </div>
+
+                  {/* Name */}
+                  <p className={`font-heading font-semibold text-[16px] mb-1 transition-colors duration-300
+                    ${isActive ? 'text-primary-foreground' : 'text-text-primary'}`}>
+                    {doc.name}
+                  </p>
+
+                  {/* Specialty */}
+                  <p className={`font-body text-[14px] mb-5 transition-colors duration-300
+                    ${isActive ? 'text-primary-foreground/80' : 'text-primary'}`}>
+                    {doc.specialty}
+                  </p>
+
+                  {/* CTA */}
+                  <button
+                    className={`px-6 py-2 rounded-full text-[14px] font-body font-medium border transition-colors duration-200
+                      ${isActive
+                        ? 'border-white/60 text-text-primary bg-background hover:bg-primary-foreground hover:text-primary hover:border-transparent'
+                        : 'border-border text-text-primary bg-transparent hover:bg-primary hover:text-white hover:border-primary'
+                      }`}
+                  >
+                    Join Waitlist
+                  </button>
+                </motion.div>
+              );
+            })}
+          </AnimatePresence>
+        </div>
+
+        {/* Navigation + View Full Roster */}
+        <div className="flex flex-col items-center gap-6 mt-10">
+          <div className="flex gap-3">
             <button
               onClick={prev}
-              className="w-11 h-11 rounded-full border border-border hover:border-primary hover:text-primary flex items-center justify-center transition-colors"
+              className="w-10 h-10 rounded-full border border-border hover:border-primary hover:text-primary flex items-center justify-center transition-colors"
             >
-              <ChevronLeft className="w-5 h-5" />
+              <ChevronLeft className="w-4 h-4" />
             </button>
             <button
               onClick={next}
-              className="w-11 h-11 rounded-full border border-border hover:border-primary hover:text-primary flex items-center justify-center transition-colors"
+              className="w-10 h-10 rounded-full border border-border hover:border-primary hover:text-primary flex items-center justify-center transition-colors"
             >
-              <ChevronRight className="w-5 h-5" />
+              <ChevronRight className="w-4 h-4" />
             </button>
           </div>
-        </div>
-
-        <div ref={ref} className={`grid ${gridCols} gap-6`}>
-          <AnimatePresence mode="wait">
-            {visibleDoctors.map((doc, i) => (
-              <motion.div
-                key={doc.name + startIdx}
-                initial={{ opacity: 0, x: 40 }}
-                animate={inView ? { opacity: 1, x: 0 } : {}}
-                exit={{ opacity: 0, x: -40 }}
-                transition={{ delay: i * 0.08, duration: 0.3 }}
-                className="group bg-surface rounded-[24px] overflow-hidden border border-border hover:border-primary hover:shadow-lg transition-all duration-250"
-              >
-                {/* Photo area */}
-                <div className="aspect-[4/5] bg-surface-2 relative overflow-hidden flex items-center justify-center">
-                  <img
-                    src={doc.image}
-                    alt={doc.name}
-                    className="w-full h-full object-cover object-center"
-                    loading="lazy"
-                  />
-                  {/* Rating badge */}
-                  <div className="absolute top-4 left-4 bg-background/90 backdrop-blur-sm rounded-full px-3 py-1 flex items-center gap-1">
-                    <Star className="w-3.5 h-3.5 fill-warning text-warning" />
-                    <span className="font-body font-semibold text-[13px] text-text-primary">{doc.rating}</span>
-                  </div>
-                </div>
-
-                {/* Info */}
-                <div className="p-5">
-                  <div className="flex items-center justify-between">
-                    <div>
-                      <p className="font-heading font-semibold text-[17px] text-text-primary">{doc.name}</p>
-                      <p className="font-body text-[14px] text-primary">{doc.specialty}</p>
-                    </div>
-                    <div className="flex gap-2">
-                      <button className="w-9 h-9 rounded-full border border-border hover:border-primary hover:bg-accent flex items-center justify-center transition-all">
-                        <Phone className="w-4 h-4 text-text-muted" />
-                      </button>
-                      <button className="w-9 h-9 rounded-full border border-border hover:border-primary hover:bg-accent flex items-center justify-center transition-all">
-                        <MessageCircle className="w-4 h-4 text-text-muted" />
-                      </button>
-                    </div>
-                  </div>
-                  <p className="font-body text-[13px] text-text-muted mt-2">{doc.reviews} verified reviews</p>
-                </div>
-              </motion.div>
-            ))}
-          </AnimatePresence>
+          <button className="font-body text-[14px] text-primary hover:underline underline-offset-4 transition-colors">
+            View Full Roster
+          </button>
         </div>
       </div>
     </section>
