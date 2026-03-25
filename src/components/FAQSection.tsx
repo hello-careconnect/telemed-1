@@ -34,7 +34,7 @@ export const FAQSection = () => {
   const inView = useInView(ref, { once: true, margin: '-100px' });
 
   return (
-    <section id="about" className="py-12 sm:py-16 lg:py-28 bg-background">
+    <section id="about" className="py-8 sm:py-12 lg:py-16 bg-background">
       <div className="container max-w-[1440px] mx-auto px-6" ref={ref}>
         <div className="flex flex-col lg:flex-row gap-8 lg:gap-16">
           {/* Left */}

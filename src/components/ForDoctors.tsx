@@ -19,7 +19,7 @@ export const ForDoctors = () => {
   };
 
   return (
-    <section id="for-doctors" className="bg-dark-bg py-12 sm:py-16 lg:py-28">
+    <section id="for-doctors" className="bg-dark-bg py-8 sm:py-12 lg:py-16">
       <div className="container max-w-[1440px] mx-auto px-6 flex flex-col lg:flex-row gap-8 lg:gap-16 items-center" ref={ref}>
         {/* Left — Content */}
         <div className="lg:w-[55%]">
