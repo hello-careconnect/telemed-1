@@ -12,7 +12,7 @@ import { WaitlistForm } from '@/components/WaitlistForm';
 import { IncentiveBlock } from '@/components/IncentiveBlock';
 import { FAQSection } from '@/components/FAQSection';
 import { Footer } from '@/components/Footer';
-import { CustomCursor } from '@/components/CustomCursor';
+
 import { CookieBanner } from '@/components/CookieBanner';
 import { ExitIntent } from '@/components/ExitIntent';
 
