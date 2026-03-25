@@ -97,11 +97,11 @@ export const HowItWorks = () => {
   };
 
   return (
-    <section id="how-it-works" className="py-12 sm:py-16 lg:py-28 bg-background">
+    <section id="how-it-works" className="py-8 sm:py-12 lg:py-16 bg-background">
       <div className="container max-w-[1440px] mx-auto px-6">
 
         {/* Header */}
-        <div className="text-center max-w-2xl mx-auto mb-10 sm:mb-16">
+        <div className="text-center max-w-2xl mx-auto mb-8 sm:mb-10">
           <span className="inline-flex items-center bg-accent text-primary rounded-full px-4 py-1.5 text-[13px] font-medium font-body">
             Simple by design
           </span>
