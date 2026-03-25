@@ -229,6 +229,14 @@ export const HeroSection = () => {
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.7, delay: 0.3 }}
         >
+          {/* Hidden preload images — ensures browser fetches all before they're needed */}
+          <div className="sr-only" aria-hidden>
+            {heroSlides.map((s, i) => (
+              <img key={i} src={s.image} alt="" loading="eager"
+                onLoad={() => setLoadedSet((prev) => new Set(prev).add(i))} />
+            ))}
+          </div>
+
           <div className="relative w-[280px] md:w-[320px] lg:w-[360px]">
 
             {/* Card */}
