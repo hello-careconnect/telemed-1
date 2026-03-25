@@ -147,7 +147,7 @@ export const HeroSection = () => {
             </span>
           </motion.h1>
 
-          <motion.div variants={fadeUp} className="h-10 mt-4 overflow-hidden">
+          <motion.div variants={fadeUp} className="h-10 mt-2 overflow-hidden">
             <AnimatePresence mode="wait">
               <motion.p
                 key={currentIndex}
@@ -164,7 +164,7 @@ export const HeroSection = () => {
 
           <motion.p
             variants={fadeUp}
-            className="mt-6 font-body text-[17px] text-text-body leading-[1.65] max-w-[460px]"
+            className="mt-3 font-body text-[17px] text-text-body leading-[1.65] max-w-[460px]"
           >
             Verified doctors. Transparent reviews. Instant booking.
             <br />
