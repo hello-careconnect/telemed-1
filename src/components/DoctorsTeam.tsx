@@ -65,7 +65,6 @@ const useVisibleCount = () => {
 export const DoctorsTeam = () => {
   const ref = useRef<HTMLDivElement>(null);
   const inView = useInView(ref, { once: true, margin: '-100px' });
-  const [activeIdx, setActiveIdx] = useState(0);
   const [startIdx, setStartIdx] = useState(0);
   const visibleCount = useVisibleCount();
 
