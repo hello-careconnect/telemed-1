@@ -65,18 +65,11 @@ const useVisibleCount = () => {
 export const DoctorsTeam = () => {
   const ref = useRef<HTMLDivElement>(null);
   const inView = useInView(ref, { once: true, margin: '-100px' });
-  const [activeIdx, setActiveIdx] = useState(0);
   const [startIdx, setStartIdx] = useState(0);
   const visibleCount = useVisibleCount();
 
-  const next = () => {
-    setStartIdx((prev) => (prev + 1) % doctors.length);
-    setActiveIdx((prev) => (prev + 1) % visibleCount);
-  };
-  const prev = () => {
-    setStartIdx((prev) => (prev - 1 + doctors.length) % doctors.length);
-    setActiveIdx((prev) => (prev - 1 + visibleCount) % visibleCount);
-  };
+  const next = () => setStartIdx((prev) => (prev + 1) % doctors.length);
+  const prev = () => setStartIdx((prev) => (prev - 1 + doctors.length) % doctors.length);
 
   const visibleDoctors = [];
   for (let i = 0; i < Math.min(visibleCount, doctors.length); i++) {
@@ -104,25 +97,17 @@ export const DoctorsTeam = () => {
         {/* Cards */}
         <div ref={ref} className={`grid gap-5 ${visibleCount === 1 ? 'grid-cols-1' : visibleCount === 2 ? 'grid-cols-2' : 'grid-cols-4'}`}>
           <AnimatePresence mode="wait">
-            {visibleDoctors.map((doc, i) => {
-              const isActive = i === activeIdx;
-              return (
-                <motion.div
-                  key={doc.name + startIdx}
-                  initial={{ opacity: 0, y: 24 }}
-                  animate={inView ? { opacity: 1, y: 0 } : {}}
-                  exit={{ opacity: 0, y: -24 }}
-                  transition={{ delay: i * 0.08, duration: 0.35 }}
-                  onClick={() => setActiveIdx(i)}
-                  className={`group relative flex flex-col items-center text-center rounded-[24px] px-6 py-8 cursor-pointer transition-all duration-300 border
-                    ${isActive
-                      ? 'bg-primary border-primary shadow-xl scale-[1.04]'
-                      : 'bg-surface border-border hover:border-primary hover:shadow-md'
-                    }`}
-                >
+            {visibleDoctors.map((doc, i) => (
+              <motion.div
+                key={doc.name + startIdx}
+                initial={{ opacity: 0, y: 24 }}
+                animate={inView ? { opacity: 1, y: 0 } : {}}
+                exit={{ opacity: 0, y: -24 }}
+                transition={{ delay: i * 0.08, duration: 0.35 }}
+                className="group relative flex flex-col items-center text-center rounded-[24px] px-6 py-8 bg-surface border border-border hover:border-primary hover:shadow-md transition-all duration-300"
+              >
                   {/* Circular photo */}
-                  <div className={`w-24 h-24 rounded-full overflow-hidden mb-5 ring-4 transition-all duration-300
-                    ${isActive ? 'ring-white/30' : 'ring-border'}`}>
+                  <div className="w-24 h-24 rounded-full overflow-hidden mb-5 ring-4 ring-border">
                     <img
                       src={doc.image}
                       alt={doc.name}
@@ -133,30 +118,21 @@ export const DoctorsTeam = () => {
                   </div>
 
                   {/* Name */}
-                  <p className={`font-heading font-semibold text-[16px] mb-1 transition-colors duration-300
-                    ${isActive ? 'text-primary-foreground' : 'text-text-primary'}`}>
+                  <p className="font-heading font-semibold text-[16px] mb-1 text-text-primary">
                     {doc.name}
                   </p>
 
                   {/* Specialty */}
-                  <p className={`font-body text-[14px] mb-5 transition-colors duration-300
-                    ${isActive ? 'text-primary-foreground/80' : 'text-primary'}`}>
+                  <p className="font-body text-[14px] mb-5 text-primary">
                     {doc.specialty}
                   </p>
 
                   {/* CTA */}
-                  <button
-                    className={`px-6 py-2 rounded-full text-[14px] font-body font-medium border transition-colors duration-200
-                      ${isActive
-                        ? 'border-white/60 text-text-primary bg-background hover:bg-primary-foreground hover:text-primary hover:border-transparent'
-                        : 'border-border text-text-primary bg-transparent hover:bg-primary hover:text-white hover:border-primary'
-                      }`}
-                  >
+                  <button className="px-6 py-2 rounded-full text-[14px] font-body font-medium border border-primary bg-primary text-primary-foreground hover:bg-primary/85 transition-colors duration-200">
                     Join Waitlist
                   </button>
-                </motion.div>
-              );
-            })}
+              </motion.div>
+            ))}
           </AnimatePresence>
         </div>
 
