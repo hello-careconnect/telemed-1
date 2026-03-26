@@ -187,7 +187,7 @@ export const HowItWorks = () => {
                 className="flex-1 bg-surface rounded-[28px] border border-border p-8 lg:p-10 flex flex-col relative overflow-hidden"
               >
                 {/* Watermark */}
-                <span className="absolute bottom-0 right-4 font-heading font-black text-[140px] text-surface-2 leading-[1] select-none pointer-events-none">
+                <span className="absolute top-4 right-6 font-heading font-black text-[72px] text-surface-2 leading-[1] select-none pointer-events-none">
                   {steps[active].num}
                 </span>
 
