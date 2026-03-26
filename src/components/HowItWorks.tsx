@@ -184,7 +184,7 @@ export const HowItWorks = () => {
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -12 }}
                 transition={{ duration: 0.35, ease: 'easeOut' }}
-                className="flex-1 bg-surface rounded-[28px] border border-border p-8 lg:p-10 flex flex-col min-h-[360px] relative overflow-hidden"
+                className="flex-1 bg-surface rounded-[28px] border border-border p-8 lg:p-10 flex flex-col relative overflow-hidden"
               >
                 {/* Watermark */}
                 <span className="absolute bottom-0 right-4 font-heading font-black text-[140px] text-surface-2 leading-[1] select-none pointer-events-none">
