@@ -217,7 +217,7 @@ export const HowItWorks = () => {
                 </div>
 
                 {/* Step dots */}
-                <div className="flex gap-2 mt-8 relative z-10">
+                <div className="flex gap-2 mt-auto pt-8 relative z-10">
                   {steps.map((_, i) => (
                     <button
                       key={i}
