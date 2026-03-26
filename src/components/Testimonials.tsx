@@ -13,7 +13,7 @@ const testimonials = [
     initials: 'FH',
     image: testimonialFarida,
     imagePosition: 'center 15%',
-    title: 'Nori Trust Saved My Mother\'s Life',
+    title: 'CareConnect Saved My Mother\'s Life',
   },
   {
     quote: 'I trust a doctor more when I can read what other patients actually said. Not just a star number, the full review. This platform finally does that.',
