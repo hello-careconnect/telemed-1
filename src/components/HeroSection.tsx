@@ -256,3 +256,99 @@ const FeatureChips = () => {
     </div>
   );
 };
+
+const FeatureCardCarousel = () => {
+  const [activeIndex, setActiveIndex] = useState(0);
+  const timerRef = useRef<ReturnType<typeof setInterval> | null>(null);
+
+  const startTimer = useCallback(() => {
+    if (timerRef.current) clearInterval(timerRef.current);
+    timerRef.current = setInterval(() => {
+      setActiveIndex((prev) => (prev + 1) % heroFeatures.length);
+    }, 3500);
+  }, []);
+
+  useEffect(() => {
+    startTimer();
+    return () => { if (timerRef.current) clearInterval(timerRef.current); };
+  }, [startTimer]);
+
+  const handlePrev = () => {
+    setActiveIndex((prev) => (prev - 1 + heroFeatures.length) % heroFeatures.length);
+    startTimer();
+  };
+
+  const handleNext = () => {
+    setActiveIndex((prev) => (prev + 1) % heroFeatures.length);
+    startTimer();
+  };
+
+  const handleDot = (i: number) => {
+    setActiveIndex(i);
+    startTimer();
+  };
+
+  const current = heroFeatures[activeIndex];
+  const Icon = current.icon;
+
+  return (
+    <div className="w-[280px] md:w-[320px] lg:w-[360px]">
+      <AnimatePresence mode="wait">
+        <motion.div
+          key={activeIndex}
+          initial={{ opacity: 0, x: 40 }}
+          animate={{ opacity: 1, x: 0 }}
+          exit={{ opacity: 0, x: -40 }}
+          transition={{ duration: 0.4, ease: 'easeInOut' }}
+          className="bg-surface rounded-[24px] border border-border shadow-lg overflow-hidden"
+        >
+          {/* Icon area — replaces the photo */}
+          <div className="aspect-[4/3] relative flex items-center justify-center bg-accent/40">
+            <div className="w-20 h-20 rounded-2xl bg-primary/10 flex items-center justify-center">
+              <Icon className="w-10 h-10 text-primary" strokeWidth={1.5} />
+            </div>
+            {/* Step badge */}
+            <div className="absolute top-4 left-4 bg-background/90 backdrop-blur-sm rounded-full px-3 py-1 flex items-center gap-1.5 shadow-sm">
+              <span className="font-body font-semibold text-[13px] text-text-primary">{activeIndex + 1}/{heroFeatures.length}</span>
+            </div>
+          </div>
+
+          {/* Info */}
+          <div className="p-5">
+            <p className="font-heading font-semibold text-[18px] text-text-primary">{current.title}</p>
+            <p className="font-body text-[14px] text-text-muted mt-2 leading-relaxed">{current.desc}</p>
+          </div>
+        </motion.div>
+      </AnimatePresence>
+
+      {/* Navigation */}
+      <div className="flex items-center justify-between mt-4 px-1">
+        <div className="flex gap-1.5">
+          {heroFeatures.map((_, i) => (
+            <button
+              key={i}
+              onClick={() => handleDot(i)}
+              className={`rounded-full transition-all duration-300 ${
+                i === activeIndex ? 'w-5 h-2 bg-primary' : 'w-2 h-2 bg-border'
+              }`}
+            />
+          ))}
+        </div>
+        <div className="flex gap-2">
+          <button
+            onClick={handlePrev}
+            className="w-9 h-9 rounded-full border border-border hover:border-primary hover:text-primary flex items-center justify-center transition-colors"
+          >
+            <ChevronLeft className="w-4 h-4" />
+          </button>
+          <button
+            onClick={handleNext}
+            className="w-9 h-9 rounded-full border border-border hover:border-primary hover:text-primary flex items-center justify-center transition-colors"
+          >
+            <ChevronRight className="w-4 h-4" />
+          </button>
+        </div>
+      </div>
+    </div>
+  );
+};
