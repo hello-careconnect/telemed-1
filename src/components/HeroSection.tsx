@@ -259,14 +259,37 @@ const FeatureChips = () => {
 
 const FeatureCardCarousel = () => {
   const [activeIndex, setActiveIndex] = useState(0);
+  const [direction, setDirection] = useState(1); // 1 = forward, -1 = backward
   const timerRef = useRef<ReturnType<typeof setInterval> | null>(null);
+  const [isPaused, setIsPaused] = useState(false);
+  const [progress, setProgress] = useState(0);
+  const progressRef = useRef<ReturnType<typeof requestAnimationFrame> | null>(null);
+  const startTimeRef = useRef(Date.now());
+  const DURATION = 4000;
 
   const startTimer = useCallback(() => {
     if (timerRef.current) clearInterval(timerRef.current);
+    startTimeRef.current = Date.now();
+    setProgress(0);
     timerRef.current = setInterval(() => {
+      setDirection(1);
       setActiveIndex((prev) => (prev + 1) % heroFeatures.length);
-    }, 3500);
+      startTimeRef.current = Date.now();
+    }, DURATION);
   }, []);
+
+  // Progress bar animation
+  useEffect(() => {
+    const animate = () => {
+      if (!isPaused) {
+        const elapsed = Date.now() - startTimeRef.current;
+        setProgress(Math.min((elapsed / DURATION) * 100, 100));
+      }
+      progressRef.current = requestAnimationFrame(animate);
+    };
+    progressRef.current = requestAnimationFrame(animate);
+    return () => { if (progressRef.current) cancelAnimationFrame(progressRef.current); };
+  }, [isPaused, activeIndex]);
 
   useEffect(() => {
     startTimer();
@@ -274,52 +297,168 @@ const FeatureCardCarousel = () => {
   }, [startTimer]);
 
   const handlePrev = () => {
+    setDirection(-1);
     setActiveIndex((prev) => (prev - 1 + heroFeatures.length) % heroFeatures.length);
     startTimer();
   };
 
   const handleNext = () => {
+    setDirection(1);
     setActiveIndex((prev) => (prev + 1) % heroFeatures.length);
     startTimer();
   };
 
   const handleDot = (i: number) => {
+    setDirection(i > activeIndex ? 1 : -1);
     setActiveIndex(i);
+    startTimer();
+  };
+
+  const handlePause = () => {
+    setIsPaused(true);
+    if (timerRef.current) clearInterval(timerRef.current);
+  };
+
+  const handleResume = () => {
+    setIsPaused(false);
     startTimer();
   };
 
   const current = heroFeatures[activeIndex];
   const Icon = current.icon;
+  const nextIndex = (activeIndex + 1) % heroFeatures.length;
+  const NextIcon = heroFeatures[nextIndex].icon;
+
+  const variants = {
+    enter: (d: number) => ({ opacity: 0, x: d > 0 ? 60 : -60, scale: 0.95, rotateY: d > 0 ? 8 : -8 }),
+    center: { opacity: 1, x: 0, scale: 1, rotateY: 0 },
+    exit: (d: number) => ({ opacity: 0, x: d > 0 ? -60 : 60, scale: 0.95, rotateY: d > 0 ? -8 : 8 }),
+  };
 
   return (
-    <div className="w-[280px] md:w-[320px] lg:w-[360px]">
-      <AnimatePresence mode="wait">
-        <motion.div
-          key={activeIndex}
-          initial={{ opacity: 0, x: 40 }}
-          animate={{ opacity: 1, x: 0 }}
-          exit={{ opacity: 0, x: -40 }}
-          transition={{ duration: 0.4, ease: 'easeInOut' }}
-          className="bg-surface rounded-[24px] border border-border shadow-lg overflow-hidden"
-        >
-          {/* Icon area — replaces the photo */}
-          <div className="aspect-[4/3] relative flex items-center justify-center bg-accent/40">
-            <div className="w-20 h-20 rounded-2xl bg-primary/10 flex items-center justify-center">
-              <Icon className="w-10 h-10 text-primary" strokeWidth={1.5} />
+    <div
+      className="w-[280px] md:w-[320px] lg:w-[360px]"
+      onMouseEnter={handlePause}
+      onMouseLeave={handleResume}
+    >
+      {/* Card */}
+      <div className="relative" style={{ perspective: '800px' }}>
+        <AnimatePresence mode="wait" custom={direction}>
+          <motion.div
+            key={activeIndex}
+            custom={direction}
+            variants={variants}
+            initial="enter"
+            animate="center"
+            exit="exit"
+            transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
+            className="bg-surface rounded-[24px] border border-border shadow-lg overflow-hidden cursor-grab active:cursor-grabbing"
+            drag="x"
+            dragConstraints={{ left: 0, right: 0 }}
+            dragElastic={0.15}
+            onDragEnd={(_, info) => {
+              if (info.offset.x < -50) handleNext();
+              else if (info.offset.x > 50) handlePrev();
+            }}
+          >
+            {/* Icon area with animated background */}
+            <div className="aspect-[4/3] relative flex items-center justify-center overflow-hidden bg-accent/30">
+              {/* Animated rings */}
+              <motion.div
+                className="absolute w-40 h-40 rounded-full border-2 border-primary/10"
+                animate={{ scale: [1, 1.4, 1], opacity: [0.3, 0, 0.3] }}
+                transition={{ duration: 3, repeat: Infinity, ease: 'easeInOut' }}
+              />
+              <motion.div
+                className="absolute w-28 h-28 rounded-full border-2 border-primary/15"
+                animate={{ scale: [1, 1.3, 1], opacity: [0.4, 0.1, 0.4] }}
+                transition={{ duration: 3, repeat: Infinity, ease: 'easeInOut', delay: 0.5 }}
+              />
+              {/* Floating particles */}
+              {[...Array(4)].map((_, i) => (
+                <motion.div
+                  key={i}
+                  className="absolute w-2 h-2 rounded-full bg-primary/20"
+                  animate={{
+                    y: [0, -20, 0],
+                    x: [0, i % 2 === 0 ? 10 : -10, 0],
+                    opacity: [0, 0.6, 0],
+                  }}
+                  transition={{ duration: 2.5, repeat: Infinity, delay: i * 0.6, ease: 'easeInOut' }}
+                  style={{ top: `${30 + i * 15}%`, left: `${20 + i * 18}%` }}
+                />
+              ))}
+              {/* Icon with entrance animation */}
+              <motion.div
+                key={`icon-${activeIndex}`}
+                initial={{ scale: 0, rotate: -20 }}
+                animate={{ scale: 1, rotate: 0 }}
+                transition={{ type: 'spring', stiffness: 200, damping: 15, delay: 0.1 }}
+                className="w-20 h-20 rounded-2xl bg-primary/10 backdrop-blur-sm flex items-center justify-center z-10 shadow-sm"
+              >
+                <Icon className="w-10 h-10 text-primary" strokeWidth={1.5} />
+              </motion.div>
+              {/* Step badge */}
+              <div className="absolute top-4 left-4 bg-background/90 backdrop-blur-sm rounded-full px-3 py-1 shadow-sm">
+                <span className="font-body font-semibold text-[13px] text-text-primary">{activeIndex + 1}/{heroFeatures.length}</span>
+              </div>
+              {/* Pause indicator */}
+              {isPaused && (
+                <motion.div
+                  initial={{ opacity: 0, scale: 0.8 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  className="absolute top-4 right-4 bg-background/90 backdrop-blur-sm rounded-full px-2.5 py-1 shadow-sm"
+                >
+                  <span className="font-body text-[11px] text-text-muted">Paused</span>
+                </motion.div>
+              )}
             </div>
-            {/* Step badge */}
-            <div className="absolute top-4 left-4 bg-background/90 backdrop-blur-sm rounded-full px-3 py-1 flex items-center gap-1.5 shadow-sm">
-              <span className="font-body font-semibold text-[13px] text-text-primary">{activeIndex + 1}/{heroFeatures.length}</span>
-            </div>
-          </div>
 
-          {/* Info */}
-          <div className="p-5">
-            <p className="font-heading font-semibold text-[18px] text-text-primary">{current.title}</p>
-            <p className="font-body text-[14px] text-text-muted mt-2 leading-relaxed">{current.desc}</p>
-          </div>
-        </motion.div>
-      </AnimatePresence>
+            {/* Info with staggered text */}
+            <div className="p-5">
+              <motion.p
+                key={`title-${activeIndex}`}
+                initial={{ opacity: 0, y: 8 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.15, duration: 0.3 }}
+                className="font-heading font-semibold text-[18px] text-text-primary"
+              >
+                {current.title}
+              </motion.p>
+              <motion.p
+                key={`desc-${activeIndex}`}
+                initial={{ opacity: 0, y: 8 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.25, duration: 0.3 }}
+                className="font-body text-[14px] text-text-muted mt-2 leading-relaxed"
+              >
+                {current.desc}
+              </motion.p>
+
+              {/* Up next preview */}
+              <motion.div
+                key={`next-${activeIndex}`}
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: 0.4, duration: 0.3 }}
+                className="mt-4 pt-3 border-t border-border flex items-center gap-2"
+              >
+                <span className="font-body text-[11px] text-text-muted uppercase tracking-wider">Up next</span>
+                <NextIcon className="w-3.5 h-3.5 text-primary/60" strokeWidth={1.8} />
+                <span className="font-body text-[12px] text-text-body">{heroFeatures[nextIndex].title}</span>
+              </motion.div>
+            </div>
+
+            {/* Progress bar */}
+            <div className="h-[3px] bg-border/50">
+              <motion.div
+                className="h-full bg-primary/60 rounded-r-full"
+                style={{ width: `${progress}%` }}
+              />
+            </div>
+          </motion.div>
+        </AnimatePresence>
+      </div>
 
       {/* Navigation */}
       <div className="flex items-center justify-between mt-4 px-1">
@@ -329,24 +468,28 @@ const FeatureCardCarousel = () => {
               key={i}
               onClick={() => handleDot(i)}
               className={`rounded-full transition-all duration-300 ${
-                i === activeIndex ? 'w-5 h-2 bg-primary' : 'w-2 h-2 bg-border'
+                i === activeIndex ? 'w-5 h-2 bg-primary' : 'w-2 h-2 bg-border hover:bg-primary/40'
               }`}
             />
           ))}
         </div>
         <div className="flex gap-2">
-          <button
+          <motion.button
+            whileHover={{ scale: 1.1 }}
+            whileTap={{ scale: 0.9 }}
             onClick={handlePrev}
-            className="w-9 h-9 rounded-full border border-border hover:border-primary hover:text-primary flex items-center justify-center transition-colors"
+            className="w-9 h-9 rounded-full border border-border hover:border-primary hover:text-primary hover:bg-accent flex items-center justify-center transition-colors"
           >
             <ChevronLeft className="w-4 h-4" />
-          </button>
-          <button
+          </motion.button>
+          <motion.button
+            whileHover={{ scale: 1.1 }}
+            whileTap={{ scale: 0.9 }}
             onClick={handleNext}
-            className="w-9 h-9 rounded-full border border-border hover:border-primary hover:text-primary flex items-center justify-center transition-colors"
+            className="w-9 h-9 rounded-full border border-border hover:border-primary hover:text-primary hover:bg-accent flex items-center justify-center transition-colors"
           >
             <ChevronRight className="w-4 h-4" />
-          </button>
+          </motion.button>
         </div>
       </div>
     </div>
