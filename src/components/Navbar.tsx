@@ -28,7 +28,7 @@ export const Navbar = () => {
         boxShadow: scrolled ? 'var(--shadow-sm)' : 'none',
       }}
     >
-      <div className="container h-full flex items-center justify-between max-w-[1440px] mx-auto px-6">
+      <div className="container h-full flex items-center justify-between max-w-[1140px] mx-auto px-6">
         <Logo size={32} />
 
         {/* Desktop nav */}

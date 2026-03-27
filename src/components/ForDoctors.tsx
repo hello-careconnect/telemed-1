@@ -20,7 +20,7 @@ export const ForDoctors = () => {
 
   return (
     <section id="for-doctors" className="bg-dark-bg py-8 sm:py-12 lg:py-16">
-      <div className="container max-w-[1440px] mx-auto px-6 flex flex-col lg:flex-row gap-8 lg:gap-16 items-center" ref={ref}>
+      <div className="container max-w-[1140px] mx-auto px-6 flex flex-col lg:flex-row gap-8 lg:gap-16 items-center" ref={ref}>
         {/* Left — Content */}
         <div className="lg:w-[55%]">
           <span className="inline-flex items-center bg-[rgba(255,255,255,0.08)] text-accent-alt rounded-full px-4 py-1.5 text-[13px] font-medium font-body">

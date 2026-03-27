@@ -381,7 +381,7 @@ export const AppShowcase = () => {
         background: 'radial-gradient(ellipse at 40% 60%, #d4ede9 0%, #e8f5f2 40%, #f0f4f3 100%)',
       }}
     >
-      <div className="container max-w-[1440px] mx-auto px-6 flex flex-col lg:flex-row items-center gap-10 lg:gap-16" ref={ref}>
+      <div className="container max-w-[1140px] mx-auto px-6 flex flex-col lg:flex-row items-center gap-10 lg:gap-16" ref={ref}>
         {/* Left — Phone mockup */}
         <motion.div
           className="lg:w-1/2 w-full flex justify-center"
