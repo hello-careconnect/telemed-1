@@ -1,18 +1,20 @@
 import { motion, AnimatePresence } from 'framer-motion';
 import { useEffect, useRef, useState } from 'react';
-import { ArrowRight, Play, ShieldCheck, Lock, Star, CheckCircle, Building2, Clock, Smartphone, Phone, MessageCircle, ChevronLeft, ChevronRight, Sparkles, MapPin, Video, HeartPulse, CalendarCheck } from 'lucide-react';
+import { ArrowRight, Play, ShieldCheck, Lock, Star, Building2, Clock, Smartphone, Sparkles, MapPin, Video, HeartPulse, CalendarCheck, Stethoscope } from 'lucide-react';
 import doctorRafiq from '@/assets/doctor-rafiq.webp';
 import doctorAvatar1 from '@/assets/doctor-avatar-1.jpg';
 import doctorNasreen from '@/assets/doctor-nasreen.webp';
 import doctorClipboard from '@/assets/doctor-clipboard.jpg';
 import doctorYoungGlasses from '@/assets/doctor-young-glasses.jpg';
-import doctorMature from '@/assets/doctor-mature.jpg';
 
-const heroSlides = [
-  { image: doctorRafiq,        alt: 'Dr. Rafiq Ahmed',       name: 'Dr. Rafiq Ahmed',       spec: 'Dermatologist',     rating: '4.7', reviews: 82  },
-  { image: doctorNasreen,      alt: 'Dr. Nasreen Chowdhury', name: 'Dr. Nasreen Sultana',   spec: 'General Physician', rating: '4.8', reviews: 114 },
-  { image: doctorYoungGlasses, alt: 'Dr. Tanvir Hossain',   name: 'Dr. Imran Chowdhury',   spec: 'Neurologist',       rating: '4.9', reviews: 103 },
-  { image: doctorMature,       alt: 'Dr. Karim Uddin',       name: 'Dr. Karim Uddin',       spec: 'Orthopedic Surgeon',rating: '4.6', reviews: 78  },
+const heroFeatures = [
+  { icon: Stethoscope,   title: 'BMDC Verified Doctors',    desc: 'Every doctor credential-checked & verified' },
+  { icon: Star,          title: 'Transparent Reviews',       desc: 'Real ratings from real patients' },
+  { icon: Video,         title: 'Video Consult 24/7',        desc: 'See a doctor anytime, from anywhere' },
+  { icon: CalendarCheck, title: 'Instant Booking',           desc: 'Book appointments in under 2 minutes' },
+  { icon: Sparkles,      title: 'AI-Powered Matching',       desc: 'Find the right specialist for your needs' },
+  { icon: MapPin,        title: 'Nearby Hospitals',          desc: 'Locate trusted clinics & hospitals near you' },
+  { icon: HeartPulse,    title: 'Health Records',            desc: 'Your medical history, always accessible' },
 ];
 
 const rotatingLines = [
@@ -32,44 +34,9 @@ const fadeUp = {
   show: { opacity: 1, y: 0, transition: { duration: 0.5, ease: 'easeOut' as const } },
 };
 
-// Preload all slide images so they're ready before the transition fires
-const preloadedImages = heroSlides.map((slide) => {
-  const img = new Image();
-  img.src = slide.image;
-  return img;
-});
-
 export const HeroSection = () => {
   const indexRef = useRef(0);
   const [currentIndex, setCurrentIndex] = useState(0);
-  const [slideIndex, setSlideIndex] = useState(0);
-  const [loadedSet, setLoadedSet] = useState<Set<number>>(() => new Set([0]));
-  const timerRef = useRef<ReturnType<typeof setInterval> | null>(null);
-
-  // Eagerly preload every image and mark it ready in loadedSet
-  useEffect(() => {
-    heroSlides.forEach((slide, i) => {
-      const img = new Image();
-      img.src = slide.image;
-      img.onload = () => setLoadedSet((prev) => new Set(prev).add(i));
-    });
-  }, []);
-
-  // Auto-advance only after the NEXT slide image is loaded
-  const goToSlide = (next: number) => {
-    if (loadedSet.has(next)) {
-      setSlideIndex(next);
-    } else {
-      // Wait for the image to finish loading then transition
-      const img = preloadedImages[next];
-      const onLoad = () => {
-        setLoadedSet((prev) => new Set(prev).add(next));
-        setSlideIndex(next);
-      };
-      if (img.complete) onLoad();
-      else img.addEventListener('load', onLoad, { once: true });
-    }
-  };
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -78,30 +45,6 @@ export const HeroSection = () => {
     }, 3000);
     return () => clearInterval(interval);
   }, []);
-
-  useEffect(() => {
-    timerRef.current = setInterval(() => {
-      const next = (slideIndex + 1) % heroSlides.length;
-      goToSlide(next);
-    }, 4500);
-    return () => { if (timerRef.current) clearInterval(timerRef.current); };
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [slideIndex, loadedSet]);
-
-  const handleDotClick = (i: number) => {
-    if (timerRef.current) clearInterval(timerRef.current);
-    goToSlide(i);
-  };
-
-  const handlePrev = () => {
-    if (timerRef.current) clearInterval(timerRef.current);
-    goToSlide((slideIndex - 1 + heroSlides.length) % heroSlides.length);
-  };
-
-  const handleNext = () => {
-    if (timerRef.current) clearInterval(timerRef.current);
-    goToSlide((slideIndex + 1) % heroSlides.length);
-  };
 
   const scrollToForm = () => {
     document.getElementById('waitlist-form')?.scrollIntoView({ behavior: 'smooth' });
@@ -171,7 +114,7 @@ export const HeroSection = () => {
             Bangladesh's first platform that gives you control.
           </motion.p>
 
-          {/* Feature highlight chips — flip between two groups of 3 */}
+          {/* Feature highlight chips */}
           <motion.div variants={fadeUp} className="mt-6">
             <FeatureChips />
           </motion.div>
@@ -227,116 +170,52 @@ export const HeroSection = () => {
           </motion.div>
         </motion.div>
 
-        {/* Right 45% — Doctor Card Slider */}
+        {/* Right 45% — Feature Cards */}
         <motion.div
-          className="lg:w-[45%] w-full relative hidden md:flex justify-start lg:justify-start items-center lg:pl-8"
+          className="lg:w-[45%] w-full relative hidden md:flex justify-start items-start lg:pl-8"
           initial={{ opacity: 0, x: 40 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.7, delay: 0.3 }}
         >
-          {/* Hidden preload images — ensures browser fetches all before they're needed */}
-          <div className="sr-only" aria-hidden>
-            {heroSlides.map((s, i) => (
-              <img key={i} src={s.image} alt="" loading="eager"
-                onLoad={() => setLoadedSet((prev) => new Set(prev).add(i))} />
-            ))}
-          </div>
-
-          <div className="relative w-[280px] md:w-[320px] lg:w-[360px]">
-
-            {/* Card */}
-            <AnimatePresence mode="wait">
+          <div className="grid grid-cols-2 gap-3 w-full max-w-[420px]">
+            {heroFeatures.map(({ icon: Icon, title, desc }, i) => (
               <motion.div
-                key={slideIndex}
-                initial={{ opacity: 0, x: 40 }}
-                animate={{ opacity: 1, x: 0 }}
-                exit={{ opacity: 0, x: -40 }}
-                transition={{ duration: 0.45, ease: 'easeInOut' }}
-                className="bg-surface rounded-[24px] overflow-hidden border border-border shadow-lg"
+                key={title}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.4, delay: 0.4 + i * 0.08 }}
+                className={`group bg-surface rounded-2xl border border-border p-4 hover:border-primary/40 hover:shadow-md transition-all duration-200 ${
+                  i === heroFeatures.length - 1 ? 'col-span-2' : ''
+                }`}
               >
-                {/* Photo */}
-                <div className="aspect-[4/5] relative overflow-hidden bg-surface-2">
-                  {/* Skeleton shown until image is loaded */}
-                  {!loadedSet.has(slideIndex) && (
-                    <div className="absolute inset-0 bg-surface-2 animate-pulse" />
-                  )}
-                  <img
-                    src={heroSlides[slideIndex].image}
-                    alt={heroSlides[slideIndex].alt}
-                    loading="eager"
-                    className={`w-full h-full object-cover object-top transition-opacity duration-300 ${loadedSet.has(slideIndex) ? 'opacity-100' : 'opacity-0'}`}
-                    onLoad={() => setLoadedSet((prev) => new Set(prev).add(slideIndex))}
-                  />
-                  {/* Rating badge */}
-                  <div className="absolute top-4 left-4 bg-background/90 backdrop-blur-sm rounded-full px-3 py-1 flex items-center gap-1.5 shadow-sm">
-                    <Star className="w-3.5 h-3.5 fill-warning text-warning" />
-                    <span className="font-body font-semibold text-[13px] text-text-primary">{heroSlides[slideIndex].rating}</span>
-                  </div>
-                  {/* Available badge */}
-                  <div className="absolute top-4 right-4 bg-primary rounded-full px-3 py-1 flex items-center gap-1.5 shadow-sm">
-                    <CheckCircle className="w-3 h-3 text-primary-foreground" />
-                    <span className="font-body font-semibold text-[11px] text-primary-foreground">Available Now</span>
-                  </div>
+                <div className="w-9 h-9 rounded-xl bg-accent flex items-center justify-center mb-3 group-hover:bg-primary/10 transition-colors">
+                  <Icon className="w-[18px] h-[18px] text-primary" strokeWidth={1.8} />
                 </div>
-
-                {/* Info */}
-                <div className="p-5">
-                  <div className="flex items-center justify-between">
-                    <div>
-                      <p className="font-heading font-semibold text-[17px] text-text-primary">{heroSlides[slideIndex].name}</p>
-                      <p className="font-body text-[14px] text-primary">{heroSlides[slideIndex].spec}</p>
-                    </div>
-                    <div className="flex gap-2">
-                      <button className="w-9 h-9 rounded-full border border-border hover:border-primary hover:bg-accent flex items-center justify-center transition-all">
-                        <Phone className="w-4 h-4 text-text-muted" />
-                      </button>
-                      <button className="w-9 h-9 rounded-full border border-border hover:border-primary hover:bg-accent flex items-center justify-center transition-all">
-                        <MessageCircle className="w-4 h-4 text-text-muted" />
-                      </button>
-                    </div>
-                  </div>
-                  <p className="font-body text-[13px] text-text-muted mt-2">{heroSlides[slideIndex].reviews} verified reviews</p>
-                </div>
+                <p className="font-heading font-semibold text-[14px] text-text-primary leading-tight">{title}</p>
+                <p className="font-body text-[12px] text-text-muted mt-1 leading-relaxed">{desc}</p>
               </motion.div>
-            </AnimatePresence>
-
-            {/* Navigation row */}
-            <div className="flex items-center justify-between mt-4 px-1">
-              {/* Dots */}
-              <div className="flex gap-1.5">
-                {heroSlides.map((_, i) => (
-                  <button
-                    key={i}
-                    onClick={() => handleDotClick(i)}
-                    className={`rounded-full transition-all duration-300 ${
-                      i === slideIndex
-                        ? 'w-5 h-2 bg-primary'
-                        : 'w-2 h-2 bg-border'
-                    }`}
-                  />
-                ))}
-              </div>
-              {/* Arrows */}
-              <div className="flex gap-2">
-                <button
-                  onClick={handlePrev}
-                  className="w-9 h-9 rounded-full border border-border hover:border-primary hover:text-primary flex items-center justify-center transition-colors"
-                >
-                  <ChevronLeft className="w-4 h-4" />
-                </button>
-                <button
-                  onClick={handleNext}
-                  className="w-9 h-9 rounded-full border border-border hover:border-primary hover:text-primary flex items-center justify-center transition-colors"
-                >
-                  <ChevronRight className="w-4 h-4" />
-                </button>
-              </div>
-            </div>
+            ))}
           </div>
         </motion.div>
 
+        {/* Mobile feature cards */}
         <div className="md:hidden w-full mt-4">
-          <MobileHeroCards />
+          <div className="grid grid-cols-2 gap-3">
+            {heroFeatures.map(({ icon: Icon, title, desc }, i) => (
+              <div
+                key={title}
+                className={`bg-surface rounded-2xl border border-border p-4 ${
+                  i === heroFeatures.length - 1 ? 'col-span-2' : ''
+                }`}
+              >
+                <div className="w-9 h-9 rounded-xl bg-accent flex items-center justify-center mb-2">
+                  <Icon className="w-[18px] h-[18px] text-primary" strokeWidth={1.8} />
+                </div>
+                <p className="font-heading font-semibold text-[13px] text-text-primary leading-tight">{title}</p>
+                <p className="font-body text-[11px] text-text-muted mt-1">{desc}</p>
+              </div>
+            ))}
+          </div>
         </div>
       </div>
 
@@ -363,26 +242,6 @@ export const HeroSection = () => {
     </section>
   );
 };
-
-const MobileHeroCards = () => (
-  <div className="space-y-3">
-    {[
-      { name: 'Dr. Aisha Rahman', spec: 'Cardiologist', rating: '4.9', badge: 'Available Now', badgeColor: 'bg-success/10 text-success', image: doctorAvatar1 },
-      { name: 'Dr. Rafiq Ahmed', spec: 'Dermatologist', rating: '4.7', badge: 'Today 3 PM', badgeColor: 'bg-warning/10 text-warning', image: doctorRafiq },
-    ].map((doc) => (
-      <div key={doc.name} className="bg-surface rounded-2xl p-4 border border-border flex items-center gap-3">
-        <div className="w-12 h-12 rounded-full overflow-hidden">
-          <img src={doc.image} alt={doc.name} className="w-full h-full object-cover" />
-        </div>
-        <div className="flex-1">
-          <p className="font-heading font-semibold text-[15px] text-text-primary">{doc.name}</p>
-          <p className="font-body text-[13px] text-text-muted">{doc.spec} · ⭐ {doc.rating}</p>
-        </div>
-        <span className={`text-[11px] font-medium font-body px-2 py-1 rounded-full ${doc.badgeColor}`}>{doc.badge}</span>
-      </div>
-    ))}
-  </div>
-);
 
 const featureGroups = [
   [
