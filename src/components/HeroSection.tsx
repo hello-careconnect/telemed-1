@@ -6,13 +6,15 @@ import doctorAvatar1 from '@/assets/doctor-avatar-1.jpg';
 import doctorNasreen from '@/assets/doctor-nasreen.webp';
 import doctorClipboard from '@/assets/doctor-clipboard.jpg';
 import doctorYoungGlasses from '@/assets/doctor-young-glasses.jpg';
-import doctorMature from '@/assets/doctor-mature.jpg';
 
-const heroSlides = [
-  { image: doctorRafiq,        alt: 'Dr. Rafiq Ahmed',       name: 'Dr. Rafiq Ahmed',       spec: 'Dermatologist',     rating: '4.7', reviews: 82  },
-  { image: doctorNasreen,      alt: 'Dr. Nasreen Chowdhury', name: 'Dr. Nasreen Sultana',   spec: 'General Physician', rating: '4.8', reviews: 114 },
-  { image: doctorYoungGlasses, alt: 'Dr. Tanvir Hossain',   name: 'Dr. Imran Chowdhury',   spec: 'Neurologist',       rating: '4.9', reviews: 103 },
-  { image: doctorMature,       alt: 'Dr. Karim Uddin',       name: 'Dr. Karim Uddin',       spec: 'Orthopedic Surgeon',rating: '4.6', reviews: 78  },
+const heroFeatures = [
+  { icon: Stethoscope,   title: 'BMDC Verified Doctors',    desc: 'Every doctor credential-checked & verified' },
+  { icon: Star,          title: 'Transparent Reviews',       desc: 'Real ratings from real patients' },
+  { icon: Video,         title: 'Video Consult 24/7',        desc: 'See a doctor anytime, from anywhere' },
+  { icon: CalendarCheck, title: 'Instant Booking',           desc: 'Book appointments in under 2 minutes' },
+  { icon: Sparkles,      title: 'AI-Powered Matching',       desc: 'Find the right specialist for your needs' },
+  { icon: MapPin,        title: 'Nearby Hospitals',          desc: 'Locate trusted clinics & hospitals near you' },
+  { icon: HeartPulse,    title: 'Health Records',            desc: 'Your medical history, always accessible' },
 ];
 
 const rotatingLines = [
