@@ -29,7 +29,7 @@ export const ExitIntent = () => {
 
   return (
     <Dialog open={open} onOpenChange={setOpen}>
-      <DialogContent className="max-w-2xl w-full rounded-[32px] overflow-hidden p-0 border-none gap-0">
+      <DialogContent className="max-w-2xl w-full rounded-[32px] overflow-hidden p-0 border-none gap-0 [&>button:last-child]:hidden">
         <div className="flex min-h-[400px]">
           {/* Left decorative */}
           <div className="hidden sm:flex w-[45%] bg-primary relative items-center justify-center overflow-hidden">
@@ -44,7 +44,7 @@ export const ExitIntent = () => {
           <div className="flex-1 bg-background p-8 sm:p-10 flex flex-col justify-center relative">
             <button
               onClick={() => setOpen(false)}
-              className="absolute top-4 right-4 text-text-muted hover:text-text-primary transition-colors"
+              className="absolute top-4 right-4 text-muted-foreground hover:text-foreground transition-colors z-10"
               aria-label="Close"
             >
               <X className="w-5 h-5" />
