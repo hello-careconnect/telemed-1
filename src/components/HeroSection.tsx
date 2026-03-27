@@ -229,7 +229,7 @@ export const HeroSection = () => {
 
         {/* Right 45% — Doctor Card Slider */}
         <motion.div
-          className="lg:w-[45%] w-full relative hidden md:flex justify-center items-center"
+          className="lg:w-[45%] w-full relative hidden md:flex justify-start lg:justify-start items-center lg:pl-8"
           initial={{ opacity: 0, x: 40 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.7, delay: 0.3 }}
