@@ -376,10 +376,6 @@ const FeatureCardCarousel = () => {
               >
                 <Icon className="w-10 h-10 text-primary" strokeWidth={1.5} />
               </motion.div>
-              {/* Step badge */}
-              <div className="absolute top-4 left-4 bg-background/90 backdrop-blur-sm rounded-full px-3 py-1 shadow-sm">
-                <span className="font-body font-semibold text-[13px] text-text-primary">{activeIndex + 1}/{heroFeatures.length}</span>
-              </div>
               {/* Pause indicator */}
               {isPaused && (
                 <motion.div
