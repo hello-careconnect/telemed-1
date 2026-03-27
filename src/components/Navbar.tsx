@@ -64,12 +64,7 @@ export const Navbar = () => {
               <Menu className="w-6 h-6" />
             </button>
           </SheetTrigger>
-          <SheetContent side="right" className="bg-background w-80 p-6 flex flex-col">
-            <div className="flex justify-end mb-8">
-              <button onClick={() => setOpen(false)} aria-label="Close menu">
-                <X className="w-6 h-6 text-text-body" />
-              </button>
-            </div>
+           <SheetContent side="right" className="bg-background w-80 p-6 pt-14 flex flex-col">
             <div className="flex flex-col gap-0">
               {navLinks.map((link) => (
                 <a
