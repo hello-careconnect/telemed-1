@@ -170,52 +170,19 @@ export const HeroSection = () => {
           </motion.div>
         </motion.div>
 
-        {/* Right 45% — Feature Cards */}
+        {/* Right 45% — Feature Card Carousel */}
         <motion.div
-          className="lg:w-[45%] w-full relative hidden md:flex justify-start items-start lg:pl-8"
+          className="lg:w-[45%] w-full relative hidden md:flex justify-start items-center lg:pl-8"
           initial={{ opacity: 0, x: 40 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.7, delay: 0.3 }}
         >
-          <div className="grid grid-cols-2 gap-3 w-full max-w-[420px]">
-            {heroFeatures.map(({ icon: Icon, title, desc }, i) => (
-              <motion.div
-                key={title}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.4, delay: 0.4 + i * 0.08 }}
-                className={`group bg-surface rounded-2xl border border-border p-4 hover:border-primary/40 hover:shadow-md transition-all duration-200 ${
-                  i === heroFeatures.length - 1 ? 'col-span-2' : ''
-                }`}
-              >
-                <div className="w-9 h-9 rounded-xl bg-accent flex items-center justify-center mb-3 group-hover:bg-primary/10 transition-colors">
-                  <Icon className="w-[18px] h-[18px] text-primary" strokeWidth={1.8} />
-                </div>
-                <p className="font-heading font-semibold text-[14px] text-text-primary leading-tight">{title}</p>
-                <p className="font-body text-[12px] text-text-muted mt-1 leading-relaxed">{desc}</p>
-              </motion.div>
-            ))}
-          </div>
+          <FeatureCardCarousel />
         </motion.div>
 
-        {/* Mobile feature cards */}
+        {/* Mobile */}
         <div className="md:hidden w-full mt-4">
-          <div className="grid grid-cols-2 gap-3">
-            {heroFeatures.map(({ icon: Icon, title, desc }, i) => (
-              <div
-                key={title}
-                className={`bg-surface rounded-2xl border border-border p-4 ${
-                  i === heroFeatures.length - 1 ? 'col-span-2' : ''
-                }`}
-              >
-                <div className="w-9 h-9 rounded-xl bg-accent flex items-center justify-center mb-2">
-                  <Icon className="w-[18px] h-[18px] text-primary" strokeWidth={1.8} />
-                </div>
-                <p className="font-heading font-semibold text-[13px] text-text-primary leading-tight">{title}</p>
-                <p className="font-body text-[11px] text-text-muted mt-1">{desc}</p>
-              </div>
-            ))}
-          </div>
+          <FeatureCardCarousel />
         </div>
       </div>
 
