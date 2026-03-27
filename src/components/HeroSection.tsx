@@ -413,18 +413,6 @@ const FeatureCardCarousel = () => {
                 {current.desc}
               </motion.p>
 
-              {/* Up next preview */}
-              <motion.div
-                key={`next-${activeIndex}`}
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ delay: 0.4, duration: 0.3 }}
-                className="mt-4 pt-3 border-t border-border flex items-center gap-2"
-              >
-                <span className="font-body text-[11px] text-text-muted uppercase tracking-wider">Up next</span>
-                <NextIcon className="w-3.5 h-3.5 text-primary/60" strokeWidth={1.8} />
-                <span className="font-body text-[12px] text-text-body">{heroFeatures[nextIndex].title}</span>
-              </motion.div>
             </div>
 
             {/* Progress bar */}
