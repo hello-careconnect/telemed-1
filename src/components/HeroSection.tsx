@@ -114,10 +114,6 @@ export const HeroSection = () => {
             Bangladesh's first platform that gives you control.
           </motion.p>
 
-          {/* Feature highlight chips */}
-          <motion.div variants={fadeUp} className="mt-6">
-            <FeatureChips />
-          </motion.div>
 
           <motion.div variants={fadeUp} className="mt-8 flex flex-col sm:flex-row gap-3">
             <button
@@ -135,24 +131,6 @@ export const HeroSection = () => {
               See how it works
             </button>
           </motion.div>
-
-          <motion.div variants={fadeUp} className="mt-8 flex items-center gap-4 sm:gap-6 flex-wrap text-[13px] font-body font-medium text-text-body">
-            <span className="flex items-center gap-1.5">
-              <ShieldCheck className="w-5 h-5 text-primary" />
-              BMDC Verified
-            </span>
-            <span className="text-border">|</span>
-            <span className="flex items-center gap-1.5">
-              <Lock className="w-5 h-5 text-primary" />
-              Data Private
-            </span>
-            <span className="text-border hidden sm:inline">|</span>
-            <span className="flex items-center gap-1.5">
-              <Star className="w-5 h-5 text-primary" />
-              Free 1st Consult
-            </span>
-          </motion.div>
-
           <motion.div variants={fadeUp} className="mt-8 flex items-center gap-3">
             <div className="flex -space-x-3">
               {[doctorAvatar1, doctorRafiq, doctorNasreen, doctorClipboard, doctorYoungGlasses].map((img, i) => (
