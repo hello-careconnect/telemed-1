@@ -116,7 +116,21 @@ export const HeroSection = () => {
 
 
           <motion.div variants={fadeUp} className="mt-8 flex flex-col sm:flex-row gap-3">
-
+            <button
+              onClick={scrollToForm}
+              className="group bg-primary text-primary-foreground rounded-full px-8 py-4 text-[16px] font-semibold font-body shadow-teal-glow hover:bg-primary-dark hover:-translate-y-0.5 hover:shadow-teal-glow-lg transition-all duration-200 flex items-center justify-center gap-2"
+            >
+              Join the Waitlist
+              <ArrowRight className="w-4 h-4 transition-transform duration-200 group-hover:translate-x-1" />
+            </button>
+            <button
+              onClick={scrollToHow}
+              className="rounded-full px-8 py-4 text-[16px] font-semibold font-body text-text-primary border-[1.5px] border-border hover:border-primary hover:text-primary transition-all duration-200 flex items-center justify-center gap-2"
+            >
+              <Play className="w-4 h-4" />
+              See how it works
+            </button>
+          </motion.div>
           <motion.div variants={fadeUp} className="mt-8 flex items-center gap-3">
             <div className="flex -space-x-3">
               {[doctorAvatar1, doctorRafiq, doctorNasreen, doctorClipboard, doctorYoungGlasses].map((img, i) => (
