@@ -1,6 +1,6 @@
 import { motion, AnimatePresence } from 'framer-motion';
-import { useEffect, useRef, useState } from 'react';
-import { ArrowRight, Play, ShieldCheck, Lock, Star, Building2, Clock, Smartphone, Sparkles, MapPin, Video, HeartPulse, CalendarCheck, Stethoscope } from 'lucide-react';
+import { useEffect, useRef, useState, useCallback } from 'react';
+import { ArrowRight, Play, ShieldCheck, Lock, Star, Building2, Clock, Smartphone, Sparkles, MapPin, Video, HeartPulse, CalendarCheck, Stethoscope, ChevronLeft, ChevronRight } from 'lucide-react';
 import doctorRafiq from '@/assets/doctor-rafiq.webp';
 import doctorAvatar1 from '@/assets/doctor-avatar-1.jpg';
 import doctorNasreen from '@/assets/doctor-nasreen.webp';
@@ -170,52 +170,19 @@ export const HeroSection = () => {
           </motion.div>
         </motion.div>
 
-        {/* Right 45% — Feature Cards */}
+        {/* Right 45% — Feature Card Carousel */}
         <motion.div
-          className="lg:w-[45%] w-full relative hidden md:flex justify-start items-start lg:pl-8"
+          className="lg:w-[45%] w-full relative hidden md:flex justify-start items-center lg:pl-8"
           initial={{ opacity: 0, x: 40 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.7, delay: 0.3 }}
         >
-          <div className="grid grid-cols-2 gap-3 w-full max-w-[420px]">
-            {heroFeatures.map(({ icon: Icon, title, desc }, i) => (
-              <motion.div
-                key={title}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.4, delay: 0.4 + i * 0.08 }}
-                className={`group bg-surface rounded-2xl border border-border p-4 hover:border-primary/40 hover:shadow-md transition-all duration-200 ${
-                  i === heroFeatures.length - 1 ? 'col-span-2' : ''
-                }`}
-              >
-                <div className="w-9 h-9 rounded-xl bg-accent flex items-center justify-center mb-3 group-hover:bg-primary/10 transition-colors">
-                  <Icon className="w-[18px] h-[18px] text-primary" strokeWidth={1.8} />
-                </div>
-                <p className="font-heading font-semibold text-[14px] text-text-primary leading-tight">{title}</p>
-                <p className="font-body text-[12px] text-text-muted mt-1 leading-relaxed">{desc}</p>
-              </motion.div>
-            ))}
-          </div>
+          <FeatureCardCarousel />
         </motion.div>
 
-        {/* Mobile feature cards */}
+        {/* Mobile */}
         <div className="md:hidden w-full mt-4">
-          <div className="grid grid-cols-2 gap-3">
-            {heroFeatures.map(({ icon: Icon, title, desc }, i) => (
-              <div
-                key={title}
-                className={`bg-surface rounded-2xl border border-border p-4 ${
-                  i === heroFeatures.length - 1 ? 'col-span-2' : ''
-                }`}
-              >
-                <div className="w-9 h-9 rounded-xl bg-accent flex items-center justify-center mb-2">
-                  <Icon className="w-[18px] h-[18px] text-primary" strokeWidth={1.8} />
-                </div>
-                <p className="font-heading font-semibold text-[13px] text-text-primary leading-tight">{title}</p>
-                <p className="font-body text-[11px] text-text-muted mt-1">{desc}</p>
-              </div>
-            ))}
-          </div>
+          <FeatureCardCarousel />
         </div>
       </div>
 
@@ -286,6 +253,102 @@ const FeatureChips = () => {
           ))}
         </motion.div>
       </AnimatePresence>
+    </div>
+  );
+};
+
+const FeatureCardCarousel = () => {
+  const [activeIndex, setActiveIndex] = useState(0);
+  const timerRef = useRef<ReturnType<typeof setInterval> | null>(null);
+
+  const startTimer = useCallback(() => {
+    if (timerRef.current) clearInterval(timerRef.current);
+    timerRef.current = setInterval(() => {
+      setActiveIndex((prev) => (prev + 1) % heroFeatures.length);
+    }, 3500);
+  }, []);
+
+  useEffect(() => {
+    startTimer();
+    return () => { if (timerRef.current) clearInterval(timerRef.current); };
+  }, [startTimer]);
+
+  const handlePrev = () => {
+    setActiveIndex((prev) => (prev - 1 + heroFeatures.length) % heroFeatures.length);
+    startTimer();
+  };
+
+  const handleNext = () => {
+    setActiveIndex((prev) => (prev + 1) % heroFeatures.length);
+    startTimer();
+  };
+
+  const handleDot = (i: number) => {
+    setActiveIndex(i);
+    startTimer();
+  };
+
+  const current = heroFeatures[activeIndex];
+  const Icon = current.icon;
+
+  return (
+    <div className="w-[280px] md:w-[320px] lg:w-[360px]">
+      <AnimatePresence mode="wait">
+        <motion.div
+          key={activeIndex}
+          initial={{ opacity: 0, x: 40 }}
+          animate={{ opacity: 1, x: 0 }}
+          exit={{ opacity: 0, x: -40 }}
+          transition={{ duration: 0.4, ease: 'easeInOut' }}
+          className="bg-surface rounded-[24px] border border-border shadow-lg overflow-hidden"
+        >
+          {/* Icon area — replaces the photo */}
+          <div className="aspect-[4/3] relative flex items-center justify-center bg-accent/40">
+            <div className="w-20 h-20 rounded-2xl bg-primary/10 flex items-center justify-center">
+              <Icon className="w-10 h-10 text-primary" strokeWidth={1.5} />
+            </div>
+            {/* Step badge */}
+            <div className="absolute top-4 left-4 bg-background/90 backdrop-blur-sm rounded-full px-3 py-1 flex items-center gap-1.5 shadow-sm">
+              <span className="font-body font-semibold text-[13px] text-text-primary">{activeIndex + 1}/{heroFeatures.length}</span>
+            </div>
+          </div>
+
+          {/* Info */}
+          <div className="p-5">
+            <p className="font-heading font-semibold text-[18px] text-text-primary">{current.title}</p>
+            <p className="font-body text-[14px] text-text-muted mt-2 leading-relaxed">{current.desc}</p>
+          </div>
+        </motion.div>
+      </AnimatePresence>
+
+      {/* Navigation */}
+      <div className="flex items-center justify-between mt-4 px-1">
+        <div className="flex gap-1.5">
+          {heroFeatures.map((_, i) => (
+            <button
+              key={i}
+              onClick={() => handleDot(i)}
+              className={`rounded-full transition-all duration-300 ${
+                i === activeIndex ? 'w-5 h-2 bg-primary' : 'w-2 h-2 bg-border'
+              }`}
+            />
+          ))}
+        </div>
+        <div className="flex gap-2">
+          <button
+            onClick={handlePrev}
+            className="w-9 h-9 rounded-full border border-border hover:border-primary hover:text-primary flex items-center justify-center transition-colors"
+          >
+            <ChevronLeft className="w-4 h-4" />
+          </button>
+          <button
+            onClick={handleNext}
+            className="w-9 h-9 rounded-full border border-border hover:border-primary hover:text-primary flex items-center justify-center transition-colors"
+          >
+            <ChevronRight className="w-4 h-4" />
+          </button>
+        </div>
+      </div>
     </div>
   );
 };
