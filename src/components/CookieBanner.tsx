@@ -26,7 +26,7 @@ export const CookieBanner = () => {
           transition={{ duration: 0.4, ease: 'easeOut' }}
           className="fixed bottom-0 left-0 right-0 z-50 bg-background border-t border-border shadow-[0_-8px_32px_rgba(0,0,0,0.08)] py-4 px-6 sm:px-8"
         >
-          <div className="container max-w-[1440px] mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
+          <div className="container max-w-[1140px] mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
             <div className="flex items-center gap-3">
               <Logo size={24} />
               <p className="font-body text-[14px] text-text-body">

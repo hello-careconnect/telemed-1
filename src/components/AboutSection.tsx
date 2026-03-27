@@ -11,7 +11,7 @@ export const AboutSection = () => {
 
   return (
     <section className="py-8 sm:py-12 lg:py-16 bg-background">
-      <div className="container max-w-[1440px] mx-auto px-6 flex flex-col lg:flex-row items-center gap-8 lg:gap-16" ref={ref}>
+      <div className="container max-w-[1140px] mx-auto px-6 flex flex-col lg:flex-row items-center gap-8 lg:gap-16" ref={ref}>
         {/* Left — Image */}
         <motion.div
           className="lg:w-1/2 w-full"

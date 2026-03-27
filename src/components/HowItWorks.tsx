@@ -98,7 +98,7 @@ export const HowItWorks = () => {
 
   return (
     <section id="how-it-works" className="py-8 sm:py-12 lg:py-16 bg-background">
-      <div className="container max-w-[1440px] mx-auto px-6">
+      <div className="container max-w-[1140px] mx-auto px-6">
 
         {/* Header */}
         <div className="text-center max-w-2xl mx-auto mb-8 sm:mb-10">
