@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Dialog, DialogContent } from '@/components/ui/dialog';
-import { ArrowRight, X } from 'lucide-react';
+import { X } from 'lucide-react';
 
 export const ExitIntent = () => {
   const [open, setOpen] = useState(false);
