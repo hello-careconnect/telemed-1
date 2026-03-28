@@ -375,11 +375,11 @@ export const AppShowcase = () => {
   };
 
   return (
-    <section className="overflow-hidden py-12 lg:py-16 bg-background">
+    <section className="py-12 lg:py-16 bg-background">
       <div className="container max-w-[1140px] mx-auto px-6 flex flex-col lg:flex-row items-center gap-10 lg:gap-16" ref={ref}>
         {/* Left — Phone mockup */}
         <motion.div
-          className="lg:w-1/2 w-full flex justify-center"
+          className="lg:w-1/2 w-full flex justify-center overflow-visible"
           initial={{ opacity: 0, x: -40 }}
           animate={inView ? { opacity: 1, x: 0 } : {}}
           transition={{ duration: 0.6 }}
