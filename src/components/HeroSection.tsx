@@ -164,7 +164,7 @@ export const HeroSection = () => {
               <FeatureCardCarousel />
             </div>
             {/* 2x2 Benefits grid on the right */}
-            <div className="md:w-1/2 grid grid-cols-2 gap-5">
+            <div className="md:w-1/2 grid grid-cols-2 lg:grid-cols-4 gap-5">
               {[
                 { icon: Building2, label: 'Certified Doctors', desc: 'BMDC verified credentials' },
                 { icon: Clock, label: '24/7 Availability', desc: 'Video consults anytime' },
