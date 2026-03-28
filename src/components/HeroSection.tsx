@@ -154,20 +154,6 @@ export const HeroSection = () => {
           </motion.div>
         </motion.div>
 
-        {/* Right 45% — Feature Card Carousel */}
-        <motion.div
-          className="lg:w-[45%] w-full relative hidden md:flex justify-center lg:justify-start items-center lg:pl-8"
-          initial={{ opacity: 0, x: 40 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.7, delay: 0.3 }}
-        >
-          <FeatureCardCarousel />
-        </motion.div>
-
-        {/* Mobile */}
-        <div className="md:hidden w-full mt-4">
-          <FeatureCardCarousel />
-        </div>
       </div>
 
       <div className="border-t border-border bg-background py-8">
