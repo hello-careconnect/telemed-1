@@ -1,6 +1,6 @@
 import { useRef } from 'react'; // force rebuild
 import { motion, useInView } from 'framer-motion';
-import { CheckCircle, ArrowRight, BarChart3 } from 'lucide-react';
+import { CheckCircle, ArrowRight, BarChart3, Shield } from 'lucide-react';
 import doctorForDoctors from '@/assets/doctor-fordoctors.png';
 
 const benefits = [
