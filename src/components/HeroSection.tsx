@@ -6,7 +6,7 @@ import doctorAvatar1 from '@/assets/doctor-avatar-1.jpg';
 import doctorNasreen from '@/assets/doctor-nasreen.webp';
 import doctorClipboard from '@/assets/doctor-clipboard.jpg';
 import doctorYoungGlasses from '@/assets/doctor-young-glasses.jpg';
-import instantBookingImg from '@/assets/instant-booking.png';
+import instantBookingImg from '@/assets/instant-booking.jpg';
 import videoConsultImg from '@/assets/video-consult.jpg';
 import bmdcVerifiedImg from '@/assets/bmdc-verified.jpg';
 import nearbyHospitalsImg from '@/assets/nearby-hospitals.jpg';
