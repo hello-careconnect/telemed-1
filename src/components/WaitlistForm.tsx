@@ -35,7 +35,7 @@ export const WaitlistForm = () => {
           <p className="mt-3 font-display italic text-primary text-[24px] sm:text-[28px]">
             Be first. Be cared for.
           </p>
-          <p className="mt-4 font-body text-[18px] text-text-body max-w-lg mx-auto">
+          <p className="mt-4 font-body text-[18px] text-text-body max-w-2xl mx-auto whitespace-nowrap">
             First 500 signups receive a free General Physician consultation, worth BDT 300.
           </p>
         </div>
