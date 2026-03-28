@@ -73,10 +73,9 @@ export const IncentiveBlock = () => {
 
           <button
             onClick={scrollToForm}
-            className="group mt-10 bg-primary-foreground text-primary rounded-full px-10 py-4 text-[17px] font-semibold font-body hover:opacity-90 transition-all duration-200 inline-flex items-center gap-2 shadow-xl"
+            className="mt-10 bg-primary-foreground text-primary rounded-full px-10 py-4 text-[17px] font-semibold font-body hover:opacity-90 transition-all duration-200 shadow-xl"
           >
             Start Consultation
-            <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
           </button>
 
           {/* Spots bar */}
