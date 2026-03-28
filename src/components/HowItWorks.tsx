@@ -8,7 +8,7 @@ const steps = [
     step: 'Step 01',
     title: "Share What's on Your Mind",
     body: 'Tell us your symptoms or describe your health concern. Our smart system matches you to the right specialist instantly.',
-    detail: 'Describe in your own words — no medical jargon needed. Available in Bangla & English.',
+    detail: 'Describe in your own words, no medical jargon needed. Available in Bangla & English.',
     num: '01',
     color: 'from-primary/10 to-accent',
   },
