@@ -1,13 +1,13 @@
 import { useRef } from 'react'; // force rebuild
 import { motion, useInView } from 'framer-motion';
-import { CircleCheck, BarChart3 } from 'lucide-react';
+import { BadgeCheck, Users, FileText, BarChart3 } from 'lucide-react';
 import doctorForDoctors from '@/assets/doctor-fordoctors.png';
 
 const benefits = [
-  { title: 'Free verified listing', desc: 'Manage your schedule and availability' },
-  { title: 'Reach verified patients', desc: 'Build your online reputation with real reviews' },
-  { title: 'Digital prescriptions', desc: 'Issue prescriptions and manage follow-ups digitally' },
-  { title: 'Your own analytics', desc: 'View patient reach, profile visits, booking rates' },
+  { title: 'Free verified listing', desc: 'Manage your schedule and availability', icon: BadgeCheck },
+  { title: 'Reach verified patients', desc: 'Build your online reputation with real reviews', icon: Users },
+  { title: 'Digital prescriptions', desc: 'Issue prescriptions and manage follow-ups digitally', icon: FileText },
+  { title: 'Your own analytics', desc: 'View patient reach, profile visits, booking rates', icon: BarChart3 },
 ];
 
 export const ForDoctors = () => {
