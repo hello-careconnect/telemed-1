@@ -65,11 +65,11 @@ export const ForDoctors = () => {
 
         {/* Right — Doctor image (background removed) */}
         <div className="lg:w-[45%] w-full relative lg:self-stretch min-h-[400px] lg:min-h-0">
-          <div className="relative h-full flex items-end justify-center">
+          <div className="relative h-full flex items-end justify-center lg:absolute lg:inset-0 lg:justify-end">
             <img
               src={doctorForDoctors}
               alt="Experienced doctor standing confidently with arms crossed"
-              className="w-full max-w-[520px] h-auto relative z-10 object-contain"
+              className="w-full max-w-none h-auto relative z-10 object-contain lg:h-full lg:w-auto lg:max-h-[110%] lg:-mb-8"
               loading="lazy"
             />
 
