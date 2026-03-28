@@ -93,7 +93,7 @@ export const ForDoctors = () => {
           <div className="lg:hidden mt-12 space-y-3">
             {['BMDC Verified Badge', 'Your own analytics', '3 months free premium listing'].map((item) => (
               <div key={item} className="flex items-center gap-3 bg-[rgba(255,255,255,0.05)] rounded-xl p-4">
-                <CircleCheck className="w-5 h-5 text-accent-alt shrink-0" strokeWidth={1.5} />
+                <BadgeCheck className="w-5 h-5 text-accent-alt shrink-0" strokeWidth={1.5} />
                 <p className="font-body text-[15px] text-dark-text">{item}</p>
               </div>
             ))}
