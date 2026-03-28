@@ -11,7 +11,7 @@ import videoConsultImg from '@/assets/video-consult.jpg';
 import bmdcVerifiedImg from '@/assets/bmdc-verified.jpg';
 
 const heroFeatures = [
-  { icon: Stethoscope,   title: 'BMDC Verified Doctors',    desc: 'Every doctor credential-checked & verified' },
+  { icon: Stethoscope,   title: 'BMDC Verified Doctors',    desc: 'Every doctor credential-checked & verified', image: bmdcVerifiedImg },
   { icon: Star,          title: 'Transparent Reviews',       desc: 'Real ratings from real patients' },
   { icon: Video,         title: 'Video Consult 24/7',        desc: 'See a doctor anytime, from anywhere', image: videoConsultImg },
   { icon: CalendarCheck, title: 'Instant Booking',           desc: 'Book appointments in under 2 minutes', image: instantBookingImg },
