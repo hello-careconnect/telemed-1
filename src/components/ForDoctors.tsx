@@ -1,6 +1,6 @@
 import { useRef } from 'react'; // force rebuild
 import { motion, useInView } from 'framer-motion';
-import { CheckCircle, ArrowRight, BarChart3 } from 'lucide-react';
+import { CircleCheck, ArrowRight, BarChart3 } from 'lucide-react';
 import doctorForDoctors from '@/assets/doctor-fordoctors.png';
 
 const benefits = [
@@ -43,7 +43,7 @@ export const ForDoctors = () => {
                 transition={{ delay: i * 0.1, duration: 0.4 }}
                 className="flex items-start gap-3"
               >
-                <CheckCircle className="w-[22px] h-[22px] text-accent-alt shrink-0 mt-0.5" />
+                <CircleCheck className="w-[22px] h-[22px] text-accent-alt shrink-0 mt-0.5" strokeWidth={1.5} />
                 <div>
                   <p className="font-heading font-semibold text-[17px] text-dark-text">{b.title}</p>
                   <p className="font-body text-[15px] text-[rgba(255,255,255,0.55)]">{b.desc}</p>
@@ -94,7 +94,7 @@ export const ForDoctors = () => {
           <div className="lg:hidden mt-12 space-y-3">
             {['BMDC Verified Badge', 'Your own analytics', '3 months free premium listing'].map((item) => (
               <div key={item} className="flex items-center gap-3 bg-[rgba(255,255,255,0.05)] rounded-xl p-4">
-                <CheckCircle className="w-5 h-5 text-accent-alt shrink-0" />
+                <CircleCheck className="w-5 h-5 text-accent-alt shrink-0" strokeWidth={1.5} />
                 <p className="font-body text-[15px] text-dark-text">{item}</p>
               </div>
             ))}
