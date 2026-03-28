@@ -154,39 +154,32 @@ export const HeroSection = () => {
           </motion.div>
         </motion.div>
 
-        {/* Right 45% — Feature Card Carousel */}
-        <motion.div
-          className="lg:w-[45%] w-full relative hidden md:flex justify-center lg:justify-start items-center lg:pl-8"
-          initial={{ opacity: 0, x: 40 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.7, delay: 0.3 }}
-        >
-          <FeatureCardCarousel />
-        </motion.div>
-
-        {/* Mobile */}
-        <div className="md:hidden w-full mt-4">
-          <FeatureCardCarousel />
-        </div>
       </div>
 
-      <div className="border-t border-border bg-background py-5">
+      <div className="border-t border-border bg-background py-8">
         <div className="container max-w-[1140px] mx-auto px-6">
-          <div className="flex flex-wrap justify-center gap-6 sm:gap-10">
-            {[
-              { icon: Building2, label: 'Certified Doctors', desc: 'BMDC verified credentials' },
-              { icon: Clock, label: '24/7 Availability', desc: 'Video consults anytime' },
-              { icon: Lock, label: 'Secure & Private', desc: 'Your data, your control' },
-              { icon: Smartphone, label: 'Easy & Accessible', desc: 'Book in under 2 mins' },
-            ].map((item) => (
-              <div key={item.label} className="flex items-center gap-3 text-center sm:text-left">
-                <item.icon className="w-6 h-6 text-primary" strokeWidth={1.5} />
-                <div>
-                  <p className="font-heading font-semibold text-[14px] text-text-primary">{item.label}</p>
-                  <p className="font-body text-[12px] text-text-muted">{item.desc}</p>
+          <div className="flex flex-col md:flex-row items-center gap-8">
+            {/* Carousel on the left */}
+            <div className="md:w-1/2 flex justify-center">
+              <FeatureCardCarousel />
+            </div>
+            {/* 2x2 Benefits grid on the right */}
+            <div className="md:w-1/2 grid grid-cols-2 gap-5">
+              {[
+                { icon: Building2, label: 'Certified Doctors', desc: 'BMDC verified credentials' },
+                { icon: Clock, label: '24/7 Availability', desc: 'Video consults anytime' },
+                { icon: Lock, label: 'Secure & Private', desc: 'Your data, your control' },
+                { icon: Smartphone, label: 'Easy & Accessible', desc: 'Book in under 2 mins' },
+              ].map((item) => (
+                <div key={item.label} className="flex items-start gap-3 bg-surface rounded-2xl p-4 border border-border">
+                  <item.icon className="w-6 h-6 text-primary shrink-0 mt-0.5" strokeWidth={1.5} />
+                  <div>
+                    <p className="font-heading font-semibold text-[14px] text-text-primary">{item.label}</p>
+                    <p className="font-body text-[12px] text-text-muted mt-0.5">{item.desc}</p>
+                  </div>
                 </div>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
         </div>
       </div>
