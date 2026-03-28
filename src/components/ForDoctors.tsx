@@ -27,8 +27,8 @@ export const ForDoctors = () => {
             For Healthcare Professionals
           </span>
           <h2 className="mt-6 font-heading font-bold text-[36px] sm:text-[42px] text-dark-text leading-[1.1]">
-            Are you a doctor?{' '}
-            <span className="font-display italic text-accent-alt">List<br />free.</span>
+            Are you a doctor?<br />
+            <span className="font-display italic text-accent-alt">List free.</span>
           </h2>
           <p className="mt-4 font-body text-[18px] text-[rgba(255,255,255,0.65)] max-w-lg">
             Be among the first verified doctors on Bangladesh's most trusted health platform. Boost your online presence and attract more patients.
