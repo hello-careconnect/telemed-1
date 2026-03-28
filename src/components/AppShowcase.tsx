@@ -375,7 +375,7 @@ export const AppShowcase = () => {
   };
 
   return (
-    <section className="overflow-hidden py-12 lg:py-16 bg-background">
+    <section className="py-12 lg:py-16 bg-background">
       <div className="container max-w-[1140px] mx-auto px-6 flex flex-col lg:flex-row items-center gap-10 lg:gap-16" ref={ref}>
         {/* Left — Phone mockup */}
         <motion.div
