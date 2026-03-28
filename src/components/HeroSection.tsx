@@ -6,12 +6,13 @@ import doctorAvatar1 from '@/assets/doctor-avatar-1.jpg';
 import doctorNasreen from '@/assets/doctor-nasreen.webp';
 import doctorClipboard from '@/assets/doctor-clipboard.jpg';
 import doctorYoungGlasses from '@/assets/doctor-young-glasses.jpg';
+import instantBookingImg from '@/assets/instant-booking.png';
 
 const heroFeatures = [
   { icon: Stethoscope,   title: 'BMDC Verified Doctors',    desc: 'Every doctor credential-checked & verified' },
   { icon: Star,          title: 'Transparent Reviews',       desc: 'Real ratings from real patients' },
   { icon: Video,         title: 'Video Consult 24/7',        desc: 'See a doctor anytime, from anywhere' },
-  { icon: CalendarCheck, title: 'Instant Booking',           desc: 'Book appointments in under 2 minutes' },
+  { icon: CalendarCheck, title: 'Instant Booking',           desc: 'Book appointments in under 2 minutes', image: instantBookingImg },
   { icon: Sparkles,      title: 'AI-Powered Matching',       desc: 'Find the right specialist for your needs' },
   { icon: MapPin,        title: 'Nearby Hospitals',          desc: 'Locate trusted clinics & hospitals near you' },
   { icon: HeartPulse,    title: 'Health Records',            desc: 'Your medical history, always accessible' },
@@ -341,41 +342,47 @@ const FeatureCardCarousel = () => {
           >
             {/* Icon area with animated background */}
             <div className="aspect-[4/3] relative flex items-center justify-center overflow-hidden bg-accent/30">
-              {/* Animated rings */}
-              <motion.div
-                className="absolute w-40 h-40 rounded-full border-2 border-primary/10"
-                animate={{ scale: [1, 1.4, 1], opacity: [0.3, 0, 0.3] }}
-                transition={{ duration: 3, repeat: Infinity, ease: 'easeInOut' }}
-              />
-              <motion.div
-                className="absolute w-28 h-28 rounded-full border-2 border-primary/15"
-                animate={{ scale: [1, 1.3, 1], opacity: [0.4, 0.1, 0.4] }}
-                transition={{ duration: 3, repeat: Infinity, ease: 'easeInOut', delay: 0.5 }}
-              />
-              {/* Floating particles */}
-              {[...Array(4)].map((_, i) => (
-                <motion.div
-                  key={i}
-                  className="absolute w-2 h-2 rounded-full bg-primary/20"
-                  animate={{
-                    y: [0, -20, 0],
-                    x: [0, i % 2 === 0 ? 10 : -10, 0],
-                    opacity: [0, 0.6, 0],
-                  }}
-                  transition={{ duration: 2.5, repeat: Infinity, delay: i * 0.6, ease: 'easeInOut' }}
-                  style={{ top: `${30 + i * 15}%`, left: `${20 + i * 18}%` }}
-                />
-              ))}
-              {/* Icon with entrance animation */}
-              <motion.div
-                key={`icon-${activeIndex}`}
-                initial={{ scale: 0, rotate: -20 }}
-                animate={{ scale: 1, rotate: 0 }}
-                transition={{ type: 'spring', stiffness: 200, damping: 15, delay: 0.1 }}
-                className="w-20 h-20 rounded-2xl bg-primary/10 backdrop-blur-sm flex items-center justify-center z-10 shadow-sm"
-              >
-                <Icon className="w-10 h-10 text-primary" strokeWidth={1.5} />
-              </motion.div>
+              {current.image ? (
+                <img src={current.image} alt={current.title} className="absolute inset-0 w-full h-full object-cover" />
+              ) : (
+                <>
+                  {/* Animated rings */}
+                  <motion.div
+                    className="absolute w-40 h-40 rounded-full border-2 border-primary/10"
+                    animate={{ scale: [1, 1.4, 1], opacity: [0.3, 0, 0.3] }}
+                    transition={{ duration: 3, repeat: Infinity, ease: 'easeInOut' }}
+                  />
+                  <motion.div
+                    className="absolute w-28 h-28 rounded-full border-2 border-primary/15"
+                    animate={{ scale: [1, 1.3, 1], opacity: [0.4, 0.1, 0.4] }}
+                    transition={{ duration: 3, repeat: Infinity, ease: 'easeInOut', delay: 0.5 }}
+                  />
+                  {/* Floating particles */}
+                  {[...Array(4)].map((_, i) => (
+                    <motion.div
+                      key={i}
+                      className="absolute w-2 h-2 rounded-full bg-primary/20"
+                      animate={{
+                        y: [0, -20, 0],
+                        x: [0, i % 2 === 0 ? 10 : -10, 0],
+                        opacity: [0, 0.6, 0],
+                      }}
+                      transition={{ duration: 2.5, repeat: Infinity, delay: i * 0.6, ease: 'easeInOut' }}
+                      style={{ top: `${30 + i * 15}%`, left: `${20 + i * 18}%` }}
+                    />
+                  ))}
+                  {/* Icon with entrance animation */}
+                  <motion.div
+                    key={`icon-${activeIndex}`}
+                    initial={{ scale: 0, rotate: -20 }}
+                    animate={{ scale: 1, rotate: 0 }}
+                    transition={{ type: 'spring', stiffness: 200, damping: 15, delay: 0.1 }}
+                    className="w-20 h-20 rounded-2xl bg-primary/10 backdrop-blur-sm flex items-center justify-center z-10 shadow-sm"
+                  >
+                    <Icon className="w-10 h-10 text-primary" strokeWidth={1.5} />
+                  </motion.div>
+                </>
+              )}
               {/* Pause indicator */}
               {isPaused && (
                 <motion.div
