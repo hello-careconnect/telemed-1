@@ -47,9 +47,9 @@ export const IncentiveBlock = () => {
             <span className="font-display italic">Let CareConnect make it simple.</span>
           </h2>
 
-          <p className="mt-4 font-body text-[18px] text-[rgba(255,255,255,0.80)] mx-auto">
+          <p className="mt-4 font-body text-[16px] sm:text-[18px] text-[rgba(255,255,255,0.80)] mx-auto max-w-lg">
             One free General Physician consultation, BDT 300 value.
-            <br />
+            <br className="hidden sm:block" />
             No card. No catch. First 500 get it free.
           </p>
 

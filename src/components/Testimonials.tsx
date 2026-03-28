@@ -52,7 +52,7 @@ export const Testimonials = () => {
             <span className="font-display italic text-primary">choose us</span>{' '}
             every year
           </h2>
-          <p className="mt-4 font-body text-[18px] text-text-body max-w-2xl mx-auto whitespace-nowrap">
+          <p className="mt-4 font-body text-[16px] sm:text-[18px] text-text-body max-w-2xl mx-auto lg:whitespace-nowrap">
             We spoke to 200+ people in Dhaka and Chattogram. Here is what they told us.
           </p>
         </div>

@@ -44,7 +44,7 @@ export const AboutSection = () => {
               initial={{ opacity: 0, scale: 0.9 }}
               animate={inView ? { opacity: 1, scale: 1 } : {}}
               transition={{ delay: 0.45 }}
-              className="absolute -top-4 -left-4 bg-background rounded-2xl shadow-xl px-5 py-3 border border-border"
+              className="absolute -top-3 left-0 sm:-top-4 sm:-left-4 bg-background rounded-2xl shadow-xl px-4 py-2.5 sm:px-5 sm:py-3 border border-border"
             >
               <p className="font-heading font-black text-[28px] text-primary leading-[1]">100%</p>
               <p className="font-body text-[11px] text-text-muted mt-0.5">Quality Commitment</p>

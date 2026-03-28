@@ -89,7 +89,7 @@ export const DoctorsTeam = () => {
             <span className="font-display italic text-primary">expert</span>{' '}
             doctors
           </h2>
-          <p className="mt-3 font-body text-[15px] sm:text-[17px] text-text-body whitespace-nowrap mx-auto">
+          <p className="mt-3 font-body text-[15px] sm:text-[17px] text-text-body lg:whitespace-nowrap mx-auto">
             Bangladesh's most trusted doctors are verifying their listings ahead of launch.
           </p>
         </div>
