@@ -158,13 +158,13 @@ export const HeroSection = () => {
 
       <div className="border-t border-border bg-background py-8">
         <div className="container max-w-[1140px] mx-auto px-6">
-          <div className="flex flex-col md:flex-row items-center gap-8">
-            {/* Carousel on the left */}
-            <div className="md:w-1/2 flex justify-center">
+          <div className="flex flex-col md:flex-row lg:flex-col items-center gap-8">
+            {/* Carousel */}
+            <div className="md:w-1/2 lg:w-full flex justify-center">
               <FeatureCardCarousel />
             </div>
-            {/* 2x2 Benefits grid on the right */}
-            <div className="md:w-1/2 grid grid-cols-2 gap-5">
+            {/* Benefits grid: 2x2 on tablet, single row on desktop */}
+            <div className="md:w-1/2 lg:w-full grid grid-cols-2 lg:grid-cols-4 gap-5">
               {[
                 { icon: Building2, label: 'Certified Doctors', desc: 'BMDC verified credentials' },
                 { icon: Clock, label: '24/7 Availability', desc: 'Video consults anytime' },
