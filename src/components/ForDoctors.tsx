@@ -19,8 +19,8 @@ export const ForDoctors = () => {
   };
 
   return (
-    <section id="for-doctors" className="bg-dark-bg py-8 sm:py-12 lg:py-16">
-      <div className="container max-w-[1140px] mx-auto px-6 flex flex-col lg:flex-row gap-8 lg:gap-16 items-center" ref={ref}>
+    <section id="for-doctors" className="bg-dark-bg py-8 sm:py-12 lg:py-0 lg:min-h-[600px] relative overflow-hidden">
+      <div className="container max-w-[1140px] mx-auto px-6 flex flex-col lg:flex-row gap-8 lg:gap-16 items-center lg:py-16" ref={ref}>
         {/* Left — Content */}
         <div className="lg:w-[55%]">
           <span className="inline-flex items-center bg-[rgba(255,255,255,0.08)] text-accent-alt rounded-full px-4 py-1.5 text-[13px] font-medium font-body">
@@ -64,16 +64,14 @@ export const ForDoctors = () => {
         </div>
 
         {/* Right — Doctor image (background removed) */}
-        <div className="lg:w-[45%] w-full relative">
-          <div className="relative">
-            <div className="w-full max-w-[400px] mx-auto relative">
-              <img
-                src={doctorForDoctors}
-                alt="Experienced doctor standing confidently with arms crossed"
-                className="w-full h-auto relative z-10"
-                loading="lazy"
-              />
-            </div>
+        <div className="lg:w-[45%] w-full relative lg:self-stretch">
+          <div className="relative h-full flex items-end justify-center">
+            <img
+              src={doctorForDoctors}
+              alt="Experienced doctor standing confidently with arms crossed"
+              className="w-full max-w-[450px] h-auto relative z-10 lg:max-h-[calc(100%+2rem)] object-contain"
+              loading="lazy"
+            />
 
             {/* Feature card overlay */}
             <motion.div
