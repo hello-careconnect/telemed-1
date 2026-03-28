@@ -22,7 +22,7 @@ export const ForDoctors = () => {
     <section id="for-doctors" className="bg-dark-bg py-8 sm:py-12 lg:py-0 lg:min-h-[600px] relative overflow-hidden">
       <div className="container max-w-[1140px] mx-auto px-6 flex flex-col lg:flex-row gap-8 lg:gap-16 items-center lg:py-0" ref={ref}>
         {/* Left — Content */}
-        <div className="lg:w-[55%]">
+        <div className="lg:w-[55%] lg:py-16">
           <span className="inline-flex items-center bg-[rgba(255,255,255,0.08)] text-accent-alt rounded-full px-4 py-1.5 text-[13px] font-medium font-body">
             For Healthcare Professionals
           </span>
