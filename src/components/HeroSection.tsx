@@ -169,7 +169,7 @@ export const HeroSection = () => {
         </div>
       </div>
 
-      <div className="border-t border-border bg-surface py-5">
+      <div className="border-t border-border bg-background py-5">
         <div className="container max-w-[1140px] mx-auto px-6">
           <div className="flex flex-wrap justify-center gap-6 sm:gap-10">
             {[
