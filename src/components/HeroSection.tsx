@@ -11,6 +11,7 @@ import videoConsultImg from '@/assets/video-consult.jpg';
 import bmdcVerifiedImg from '@/assets/bmdc-verified.jpg';
 import nearbyHospitalsImg from '@/assets/nearby-hospitals.jpg';
 import healthRecordsImg from '@/assets/health-records.jpg';
+import aiMatchingImg from '@/assets/ai-matching.jpg';
 
 const heroFeatures = [
   { icon: Stethoscope,   title: 'BMDC Verified Doctors',    desc: 'Every doctor credential-checked & verified', image: bmdcVerifiedImg },
