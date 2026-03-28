@@ -37,19 +37,21 @@ export const IncentiveBlock = () => {
       <div className="absolute bottom-[-150px] right-[-150px] w-[600px] h-[600px] rounded-full bg-[rgba(255,255,255,0.04)]" />
 
       <div className="relative z-10 py-12 sm:py-16 lg:py-24">
-        <div className="container max-w-3xl mx-auto px-6 text-center">
+        <div className="container max-w-4xl mx-auto px-6 text-center">
           <span className="inline-flex bg-[rgba(255,255,255,0.15)] text-primary-foreground rounded-full px-4 py-1.5 text-[13px] font-medium font-body">
             Limited Early Access
           </span>
 
-          <h2 className="mt-6 font-heading font-bold text-[36px] sm:text-[48px] text-primary-foreground leading-[1.1]">
+          <h2 className="mt-6 font-heading font-bold text-[36px] sm:text-[48px] text-primary-foreground leading-[1.1] whitespace-nowrap">
             Health shouldn't be complicated.
             <br />
             <span className="font-display italic">Let CareConnect make it simple.</span>
           </h2>
 
-          <p className="mt-4 font-body text-[18px] text-[rgba(255,255,255,0.80)] max-w-lg mx-auto">
-            One free General Physician consultation, BDT 300 value. No card. No catch. First 500 get it free.
+          <p className="mt-4 font-body text-[18px] text-[rgba(255,255,255,0.80)] mx-auto">
+            One free General Physician consultation, BDT 300 value.
+            <br />
+            No card. No catch. First 500 get it free.
           </p>
 
           {/* Countdown */}
