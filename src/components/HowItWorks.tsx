@@ -34,7 +34,7 @@ const steps = [
     icon: ClipboardList,
     step: 'Step 04',
     title: 'Get Your Care Plan',
-    body: 'Receive a digital prescription, order medicines, and get follow-up reminders — all from one platform.',
+    body: 'Receive a digital prescription, order medicines, and get follow-up reminders, all from one platform.',
     detail: 'Prescriptions sent directly to your phone. Medicine delivery available.',
     num: '04',
     color: 'from-primary/10 to-accent',
