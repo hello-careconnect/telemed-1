@@ -154,17 +154,42 @@ export const HeroSection = () => {
           </motion.div>
         </motion.div>
 
+        {/* Right 45% — Carousel + Benefits (desktop only) */}
+        <motion.div
+          className="hidden lg:flex lg:w-[45%] flex-col items-center gap-6"
+          initial={{ opacity: 0, x: 30 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.5, delay: 0.2 }}
+        >
+          <FeatureCardCarousel />
+          <div className="grid grid-cols-2 gap-4 w-full max-w-[400px]">
+            {[
+              { icon: Building2, label: 'Certified Doctors', desc: 'BMDC verified credentials' },
+              { icon: Clock, label: '24/7 Availability', desc: 'Video consults anytime' },
+              { icon: Lock, label: 'Secure & Private', desc: 'Your data, your control' },
+              { icon: Smartphone, label: 'Easy & Accessible', desc: 'Book in under 2 mins' },
+            ].map((item) => (
+              <div key={item.label} className="flex items-start gap-3 bg-surface rounded-2xl p-4 border border-border">
+                <item.icon className="w-6 h-6 text-primary shrink-0 mt-0.5" strokeWidth={1.5} />
+                <div>
+                  <p className="font-heading font-semibold text-[14px] text-text-primary">{item.label}</p>
+                  <p className="font-body text-[12px] text-text-muted mt-0.5">{item.desc}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </motion.div>
+
       </div>
 
-      <div className="border-t border-border bg-background py-8">
+      {/* Tablet/mobile: carousel + benefits below hero */}
+      <div className="border-t border-border bg-background py-8 lg:hidden">
         <div className="container max-w-[1140px] mx-auto px-6">
-          <div className="flex flex-col md:flex-row lg:flex-col items-center gap-8">
-            {/* Carousel */}
-            <div className="md:w-1/2 lg:w-full flex justify-center">
+          <div className="flex flex-col md:flex-row items-center gap-8">
+            <div className="md:w-1/2 flex justify-center">
               <FeatureCardCarousel />
             </div>
-            {/* Benefits grid: 2x2 on tablet, single row on desktop */}
-            <div className="md:w-1/2 lg:w-full grid grid-cols-2 lg:grid-cols-4 gap-5">
+            <div className="md:w-1/2 grid grid-cols-2 gap-5">
               {[
                 { icon: Building2, label: 'Certified Doctors', desc: 'BMDC verified credentials' },
                 { icon: Clock, label: '24/7 Availability', desc: 'Video consults anytime' },
