@@ -1,6 +1,6 @@
 import { useRef } from 'react'; // force rebuild
 import { motion, useInView } from 'framer-motion';
-import { CheckCircle, ArrowRight, BarChart3 } from 'lucide-react';
+import { CheckCircle, ArrowRight, BarChart3, Shield } from 'lucide-react';
 import doctorForDoctors from '@/assets/doctor-fordoctors.png';
 
 const benefits = [
@@ -73,7 +73,18 @@ export const ForDoctors = () => {
               loading="lazy"
             />
 
-            {/* Feature card overlay — centered over lower body */}
+            {/* Top-left badge */}
+            <motion.div
+              initial={{ opacity: 0, y: -20 }}
+              animate={inView ? { opacity: 1, y: 0 } : {}}
+              transition={{ delay: 0.2 }}
+              className="absolute top-[8%] left-[5%] bg-background rounded-2xl shadow-xl px-5 py-3 z-20"
+            >
+              <p className="font-heading font-bold text-[28px] text-primary leading-none">5K+</p>
+              <p className="font-body text-[13px] text-text-muted">Doctors Verified</p>
+            </motion.div>
+
+            {/* Bottom-right card */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={inView ? { opacity: 1, y: 0 } : {}}
