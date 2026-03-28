@@ -156,7 +156,7 @@ export const HeroSection = () => {
 
         {/* Right 45% — Feature Card Carousel */}
         <motion.div
-          className="lg:w-[45%] w-full relative hidden md:flex justify-start items-center lg:pl-8"
+          className="lg:w-[45%] w-full relative hidden md:flex justify-center lg:justify-start items-center lg:pl-8"
           initial={{ opacity: 0, x: 40 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.7, delay: 0.3 }}
