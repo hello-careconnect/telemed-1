@@ -43,7 +43,7 @@ export const ForDoctors = () => {
                 transition={{ delay: i * 0.1, duration: 0.4 }}
                 className="flex items-start gap-3"
               >
-                <CircleCheck className="w-[22px] h-[22px] text-accent-alt shrink-0 mt-0.5" strokeWidth={1.5} />
+                <b.icon className="w-[22px] h-[22px] text-accent-alt shrink-0 mt-0.5" strokeWidth={1.5} />
                 <div>
                   <p className="font-heading font-semibold text-[17px] text-dark-text">{b.title}</p>
                   <p className="font-body text-[15px] text-[rgba(255,255,255,0.55)]">{b.desc}</p>
