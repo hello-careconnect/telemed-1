@@ -1,5 +1,4 @@
 import { useState, useEffect } from 'react';
-import { ArrowRight } from 'lucide-react';
 
 export const IncentiveBlock = () => {
   const [time, setTime] = useState({ days: 0, hours: 0, mins: 0 });
