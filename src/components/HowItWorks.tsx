@@ -175,7 +175,7 @@ export const HowItWorks = () => {
             initial={{ opacity: 0, x: 24 }}
             animate={inView ? { opacity: 1, x: 0 } : {}}
             transition={{ delay: 0.2, duration: 0.5 }}
-            className="lg:w-[58%] flex flex-col"
+            className="lg:w-[58%] flex flex-col min-h-0"
           >
             <AnimatePresence mode="wait">
               <motion.div
