@@ -1,13 +1,13 @@
 import { useRef } from 'react'; // force rebuild
 import { motion, useInView } from 'framer-motion';
-import { CircleCheck, BarChart3 } from 'lucide-react';
+import { BadgeCheck, Users, FileText, BarChart3 } from 'lucide-react';
 import doctorForDoctors from '@/assets/doctor-fordoctors.png';
 
 const benefits = [
-  { title: 'Free verified listing', desc: 'Manage your schedule and availability' },
-  { title: 'Reach verified patients', desc: 'Build your online reputation with real reviews' },
-  { title: 'Digital prescriptions', desc: 'Issue prescriptions and manage follow-ups digitally' },
-  { title: 'Your own analytics', desc: 'View patient reach, profile visits, booking rates' },
+  { title: 'Free verified listing', desc: 'Manage your schedule and availability', icon: BadgeCheck },
+  { title: 'Reach verified patients', desc: 'Build your online reputation with real reviews', icon: Users },
+  { title: 'Digital prescriptions', desc: 'Issue prescriptions and manage follow-ups digitally', icon: FileText },
+  { title: 'Your own analytics', desc: 'View patient reach, profile visits, booking rates', icon: BarChart3 },
 ];
 
 export const ForDoctors = () => {
@@ -43,7 +43,7 @@ export const ForDoctors = () => {
                 transition={{ delay: i * 0.1, duration: 0.4 }}
                 className="flex items-start gap-3"
               >
-                <CircleCheck className="w-[22px] h-[22px] text-accent-alt shrink-0 mt-0.5" strokeWidth={1.5} />
+                <b.icon className="w-[22px] h-[22px] text-accent-alt shrink-0 mt-0.5" strokeWidth={1.5} />
                 <div>
                   <p className="font-heading font-semibold text-[17px] text-dark-text">{b.title}</p>
                   <p className="font-body text-[15px] text-[rgba(255,255,255,0.55)]">{b.desc}</p>
@@ -93,7 +93,7 @@ export const ForDoctors = () => {
           <div className="lg:hidden mt-12 space-y-3">
             {['BMDC Verified Badge', 'Your own analytics', '3 months free premium listing'].map((item) => (
               <div key={item} className="flex items-center gap-3 bg-[rgba(255,255,255,0.05)] rounded-xl p-4">
-                <CircleCheck className="w-5 h-5 text-accent-alt shrink-0" strokeWidth={1.5} />
+                <BadgeCheck className="w-5 h-5 text-accent-alt shrink-0" strokeWidth={1.5} />
                 <p className="font-body text-[15px] text-dark-text">{item}</p>
               </div>
             ))}
