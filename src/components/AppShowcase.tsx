@@ -429,10 +429,9 @@ export const AppShowcase = () => {
           <div className="flex justify-center lg:justify-start">
             <button
               onClick={scrollToForm}
-              className="group mt-8 lg:mt-10 bg-primary text-primary-foreground rounded-full px-8 py-4 text-[16px] font-semibold font-body shadow-teal-glow hover:bg-primary-dark hover:-translate-y-0.5 hover:shadow-teal-glow-lg transition-all duration-200 flex items-center gap-2"
+              className="mt-8 lg:mt-10 bg-primary text-primary-foreground rounded-full px-8 py-4 text-[16px] font-semibold font-body shadow-teal-glow hover:bg-primary-dark hover:-translate-y-0.5 hover:shadow-teal-glow-lg transition-all duration-200"
             >
               Get Early Access
-              <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
             </button>
           </div>
         </motion.div>

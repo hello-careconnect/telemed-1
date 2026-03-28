@@ -153,7 +153,6 @@ export const WaitlistForm = () => {
                 {status === 'idle' && (
                   <>
                     Claim My Spot, Free Consultation
-                    <ArrowRight className="w-4 h-4" />
                   </>
                 )}
                 {status === 'loading' && <Loader2 className="w-5 h-5 animate-spin" />}

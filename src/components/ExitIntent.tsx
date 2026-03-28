@@ -70,10 +70,9 @@ export const ExitIntent = () => {
 
             <button
               onClick={scrollToForm}
-              className="group mt-3 w-full bg-primary text-primary-foreground rounded-full py-4 text-[16px] font-semibold font-body shadow-teal-glow hover:bg-primary-dark transition-all duration-200 flex items-center justify-center gap-2"
+              className="mt-3 w-full bg-primary text-primary-foreground rounded-full py-4 text-[16px] font-semibold font-body shadow-teal-glow hover:bg-primary-dark transition-all duration-200"
             >
               Claim My Free Spot
-              <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
             </button>
 
             <button
