@@ -1,7 +1,7 @@
 import { useRef } from 'react'; // force rebuild
 import { motion, useInView } from 'framer-motion';
 import { CheckCircle, ArrowRight, BarChart3 } from 'lucide-react';
-import doctorMature from '@/assets/doctor-mature.jpg';
+import doctorForDoctors from '@/assets/doctor-fordoctors.png';
 
 const benefits = [
   { title: 'Free verified listing', desc: 'Manage your schedule and availability' },
@@ -66,11 +66,11 @@ export const ForDoctors = () => {
         {/* Right — Doctor image (background removed) */}
         <div className="lg:w-[45%] w-full relative">
           <div className="relative">
-            <div className="w-full aspect-[3/4] max-w-[400px] mx-auto rounded-[28px] overflow-hidden relative">
+            <div className="w-full max-w-[400px] mx-auto relative">
               <img
-                src={doctorMature}
+                src={doctorForDoctors}
                 alt="Experienced doctor standing confidently with arms crossed"
-                className="w-full h-full object-cover object-[82%_center] relative z-10"
+                className="w-full h-auto relative z-10"
                 loading="lazy"
               />
             </div>
