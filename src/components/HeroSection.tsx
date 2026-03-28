@@ -6,12 +6,13 @@ import doctorAvatar1 from '@/assets/doctor-avatar-1.jpg';
 import doctorNasreen from '@/assets/doctor-nasreen.webp';
 import doctorClipboard from '@/assets/doctor-clipboard.jpg';
 import doctorYoungGlasses from '@/assets/doctor-young-glasses.jpg';
+import instantBookingImg from '@/assets/instant-booking.png';
 
 const heroFeatures = [
   { icon: Stethoscope,   title: 'BMDC Verified Doctors',    desc: 'Every doctor credential-checked & verified' },
   { icon: Star,          title: 'Transparent Reviews',       desc: 'Real ratings from real patients' },
   { icon: Video,         title: 'Video Consult 24/7',        desc: 'See a doctor anytime, from anywhere' },
-  { icon: CalendarCheck, title: 'Instant Booking',           desc: 'Book appointments in under 2 minutes' },
+  { icon: CalendarCheck, title: 'Instant Booking',           desc: 'Book appointments in under 2 minutes', image: instantBookingImg },
   { icon: Sparkles,      title: 'AI-Powered Matching',       desc: 'Find the right specialist for your needs' },
   { icon: MapPin,        title: 'Nearby Hospitals',          desc: 'Locate trusted clinics & hospitals near you' },
   { icon: HeartPulse,    title: 'Health Records',            desc: 'Your medical history, always accessible' },
