@@ -36,7 +36,7 @@ export const Footer = () => (
               </a>
             ))}
           </div>
-          <div className="mt-1">
+          <div className="-mt-1">
             <img src={paymentMethods} alt="Accepted payment methods" className="max-w-[280px] h-auto opacity-80 -ml-5" loading="lazy" />
           </div>
         </div>
