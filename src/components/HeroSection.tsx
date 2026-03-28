@@ -8,6 +8,7 @@ import doctorClipboard from '@/assets/doctor-clipboard.jpg';
 import doctorYoungGlasses from '@/assets/doctor-young-glasses.jpg';
 import instantBookingImg from '@/assets/instant-booking.png';
 import videoConsultImg from '@/assets/video-consult.jpg';
+import bmdcVerifiedImg from '@/assets/bmdc-verified.jpg';
 
 const heroFeatures = [
   { icon: Stethoscope,   title: 'BMDC Verified Doctors',    desc: 'Every doctor credential-checked & verified' },
