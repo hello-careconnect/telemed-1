@@ -69,7 +69,7 @@ export const ForDoctors = () => {
             <img
               src={doctorForDoctors}
               alt="Experienced doctor standing confidently with arms crossed"
-              className="w-full max-w-none h-auto relative z-10 object-contain lg:h-full lg:w-auto lg:max-h-[110%] lg:-mb-8"
+              className="w-full max-w-none h-auto relative z-10 object-contain lg:h-full lg:w-auto lg:max-h-[115%] lg:mb-0"
               loading="lazy"
             />
 
