@@ -356,7 +356,7 @@ const FeatureCardCarousel = () => {
             {/* Icon area with animated background */}
             <div className="aspect-[4/3] relative flex items-center justify-center overflow-hidden bg-accent/30">
               {current.image ? (
-                <img src={current.image} alt={current.title} className="absolute inset-0 w-full h-full object-cover" />
+                <img src={current.image} alt={current.title} className="absolute inset-0 w-full h-full object-cover" loading="eager" decoding="async" />
               ) : (
                 <>
                   {/* Animated rings */}
