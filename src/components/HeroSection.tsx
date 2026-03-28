@@ -6,7 +6,7 @@ import doctorAvatar1 from '@/assets/doctor-avatar-1.jpg';
 import doctorNasreen from '@/assets/doctor-nasreen.webp';
 import doctorClipboard from '@/assets/doctor-clipboard.jpg';
 import doctorYoungGlasses from '@/assets/doctor-young-glasses.jpg';
-import instantBookingImg from '@/assets/instant-booking.png';
+import instantBookingImg from '@/assets/instant-booking.jpg';
 import videoConsultImg from '@/assets/video-consult.jpg';
 import bmdcVerifiedImg from '@/assets/bmdc-verified.jpg';
 import nearbyHospitalsImg from '@/assets/nearby-hospitals.jpg';
@@ -240,9 +240,18 @@ const FeatureChips = () => {
   );
 };
 
+// Preload all carousel images on mount
+const carouselImages = heroFeatures.filter(f => f.image).map(f => f.image!);
+if (typeof window !== 'undefined') {
+  carouselImages.forEach(src => {
+    const img = new Image();
+    img.src = src;
+  });
+}
+
 const FeatureCardCarousel = () => {
   const [activeIndex, setActiveIndex] = useState(0);
-  const [direction, setDirection] = useState(1); // 1 = forward, -1 = backward
+  const [direction, setDirection] = useState(1);
   const timerRef = useRef<ReturnType<typeof setInterval> | null>(null);
   const [isPaused, setIsPaused] = useState(false);
   const [progress, setProgress] = useState(0);
@@ -347,7 +356,7 @@ const FeatureCardCarousel = () => {
             {/* Icon area with animated background */}
             <div className="aspect-[4/3] relative flex items-center justify-center overflow-hidden bg-accent/30">
               {current.image ? (
-                <img src={current.image} alt={current.title} className="absolute inset-0 w-full h-full object-cover" />
+                <img src={current.image} alt={current.title} className="absolute inset-0 w-full h-full object-cover" loading="eager" decoding="async" />
               ) : (
                 <>
                   {/* Animated rings */}
