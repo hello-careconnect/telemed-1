@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Logo } from './Logo';
-import { ArrowRight, Menu, X } from 'lucide-react';
+import { Menu, X } from 'lucide-react';
 import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
 
 const navLinks = ['How it Works', 'For Doctors', 'About'];

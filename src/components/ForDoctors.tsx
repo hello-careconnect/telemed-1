@@ -1,6 +1,6 @@
 import { useRef } from 'react'; // force rebuild
 import { motion, useInView } from 'framer-motion';
-import { CircleCheck, ArrowRight, BarChart3 } from 'lucide-react';
+import { CircleCheck, BarChart3 } from 'lucide-react';
 import doctorForDoctors from '@/assets/doctor-fordoctors.png';
 
 const benefits = [
@@ -55,10 +55,9 @@ export const ForDoctors = () => {
           <div className="mt-10 flex flex-col sm:flex-row gap-3">
             <button
               onClick={scrollToForm}
-              className="group bg-accent-alt text-dark-bg rounded-full px-8 py-4 text-[16px] font-semibold font-body hover:opacity-90 transition-all duration-200 flex items-center justify-center gap-2"
+              className="bg-accent-alt text-dark-bg rounded-full px-8 py-4 text-[16px] font-semibold font-body hover:opacity-90 transition-all duration-200"
             >
               List My Practice
-              <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
             </button>
           </div>
         </div>

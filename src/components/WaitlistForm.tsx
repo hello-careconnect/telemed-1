@@ -1,6 +1,6 @@
 import { useState, useRef } from 'react';
 import { motion, useInView, AnimatePresence } from 'framer-motion';
-import { User, Mail, ArrowRight, Loader2, CheckCircle, Stethoscope, BadgeCheck, Lock } from 'lucide-react';
+import { User, Mail, Loader2, CheckCircle, Stethoscope, BadgeCheck, Lock } from 'lucide-react';
 
 const cities = ['Dhaka', 'Chattogram', 'Sylhet', 'Rajshahi', 'Other'];
 
@@ -153,7 +153,6 @@ export const WaitlistForm = () => {
                 {status === 'idle' && (
                   <>
                     Claim My Spot, Free Consultation
-                    <ArrowRight className="w-4 h-4" />
                   </>
                 )}
                 {status === 'loading' && <Loader2 className="w-5 h-5 animate-spin" />}
