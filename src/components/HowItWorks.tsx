@@ -110,7 +110,7 @@ export const HowItWorks = () => {
             <span className="font-display italic text-primary">works</span>
           </h2>
           <p className="mt-3 font-body text-[17px] text-text-body max-w-none mx-auto whitespace-nowrap">
-            From your first message to your care plan — 4 simple steps.
+            From your first message to your care plan - 4 simple steps.
           </p>
         </div>
 
