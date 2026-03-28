@@ -1,6 +1,6 @@
 import { useRef } from 'react';
 import { motion, useInView } from 'framer-motion';
-import { ArrowRight, Home, Search, Calendar, User, Stethoscope, Pill, ClipboardList, MessageCircle, Bell } from 'lucide-react';
+import { Home, Search, Calendar, User, Stethoscope, Pill, ClipboardList, MessageCircle, Bell } from 'lucide-react';
 
 const IPhoneFrame = () => {
   return (
