@@ -41,7 +41,7 @@ export const IncentiveBlock = () => {
             Limited Early Access
           </span>
 
-          <h2 className="mt-6 font-heading font-bold text-[36px] sm:text-[48px] text-primary-foreground leading-[1.1] whitespace-nowrap">
+          <h2 className="mt-6 font-heading font-bold text-[28px] sm:text-[36px] lg:text-[48px] text-primary-foreground leading-[1.1]">
             Health shouldn't be complicated.
             <br />
             <span className="font-display italic">Let CareConnect make it simple.</span>
