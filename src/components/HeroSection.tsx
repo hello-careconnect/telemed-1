@@ -388,15 +388,6 @@ const FeatureCardCarousel = () => {
                 </>
               )}
               {/* Pause indicator */}
-              {isPaused && (
-                <motion.div
-                  initial={{ opacity: 0, scale: 0.8 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  className="absolute top-4 right-4 bg-background/90 backdrop-blur-sm rounded-full px-2.5 py-1 shadow-sm"
-                >
-                  <span className="font-body text-[11px] text-text-muted">Paused</span>
-                </motion.div>
-              )}
             </div>
 
             {/* Info with staggered text */}
