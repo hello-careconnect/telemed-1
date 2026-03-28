@@ -240,9 +240,18 @@ const FeatureChips = () => {
   );
 };
 
+// Preload all carousel images on mount
+const carouselImages = heroFeatures.filter(f => f.image).map(f => f.image!);
+if (typeof window !== 'undefined') {
+  carouselImages.forEach(src => {
+    const img = new Image();
+    img.src = src;
+  });
+}
+
 const FeatureCardCarousel = () => {
   const [activeIndex, setActiveIndex] = useState(0);
-  const [direction, setDirection] = useState(1); // 1 = forward, -1 = backward
+  const [direction, setDirection] = useState(1);
   const timerRef = useRef<ReturnType<typeof setInterval> | null>(null);
   const [isPaused, setIsPaused] = useState(false);
   const [progress, setProgress] = useState(0);
