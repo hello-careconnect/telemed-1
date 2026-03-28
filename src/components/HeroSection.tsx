@@ -9,6 +9,7 @@ import doctorYoungGlasses from '@/assets/doctor-young-glasses.jpg';
 import instantBookingImg from '@/assets/instant-booking.png';
 import videoConsultImg from '@/assets/video-consult.jpg';
 import bmdcVerifiedImg from '@/assets/bmdc-verified.jpg';
+import nearbyHospitalsImg from '@/assets/nearby-hospitals.jpg';
 
 const heroFeatures = [
   { icon: Stethoscope,   title: 'BMDC Verified Doctors',    desc: 'Every doctor credential-checked & verified', image: bmdcVerifiedImg },
@@ -16,7 +17,7 @@ const heroFeatures = [
   { icon: Video,         title: 'Video Consult 24/7',        desc: 'See a doctor anytime, from anywhere', image: videoConsultImg },
   { icon: CalendarCheck, title: 'Instant Booking',           desc: 'Book appointments in under 2 minutes', image: instantBookingImg },
   { icon: Sparkles,      title: 'AI-Powered Matching',       desc: 'Find the right specialist for your needs' },
-  { icon: MapPin,        title: 'Nearby Hospitals',          desc: 'Locate trusted clinics & hospitals near you' },
+  { icon: MapPin,        title: 'Nearby Hospitals',          desc: 'Locate trusted clinics & hospitals near you', image: nearbyHospitalsImg },
   { icon: HeartPulse,    title: 'Health Records',            desc: 'Your medical history, always accessible' },
 ];
 
