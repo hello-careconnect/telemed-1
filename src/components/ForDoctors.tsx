@@ -64,16 +64,14 @@ export const ForDoctors = () => {
         </div>
 
         {/* Right — Doctor image (background removed) */}
-        <div className="lg:w-[45%] w-full relative">
-          <div className="relative">
-            <div className="w-full max-w-[400px] mx-auto relative">
-              <img
-                src={doctorForDoctors}
-                alt="Experienced doctor standing confidently with arms crossed"
-                className="w-full h-auto relative z-10"
-                loading="lazy"
-              />
-            </div>
+        <div className="lg:w-[45%] w-full relative lg:self-stretch">
+          <div className="relative h-full flex items-end justify-center">
+            <img
+              src={doctorForDoctors}
+              alt="Experienced doctor standing confidently with arms crossed"
+              className="w-full max-w-[450px] h-auto relative z-10 lg:max-h-[calc(100%+2rem)] object-contain"
+              loading="lazy"
+            />
 
             {/* Feature card overlay */}
             <motion.div
