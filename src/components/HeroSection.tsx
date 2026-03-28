@@ -66,7 +66,7 @@ export const HeroSection = () => {
         background: `
           radial-gradient(ellipse at 80% 20%, rgba(10,158,138,0.07) 0%, transparent 65%),
           radial-gradient(ellipse at 10% 90%, rgba(62,207,180,0.05) 0%, transparent 50%),
-          #fff
+          hsl(160, 30%, 97%)
         `,
       }}
     >
@@ -169,7 +169,7 @@ export const HeroSection = () => {
         </div>
       </div>
 
-      <div className="border-t border-border bg-surface py-5">
+      <div className="border-t border-border bg-background py-5">
         <div className="container max-w-[1140px] mx-auto px-6">
           <div className="flex flex-wrap justify-center gap-6 sm:gap-10">
             {[
