@@ -36,8 +36,8 @@ export const Footer = () => (
               </a>
             ))}
           </div>
-          <div className="mt-6">
-            <img src={paymentMethods} alt="Accepted payment methods" className="max-w-full h-auto opacity-80" loading="lazy" />
+          <div className="mt-4">
+            <img src={paymentMethods} alt="Accepted payment methods" className="max-w-[280px] h-auto opacity-80" loading="lazy" />
           </div>
         </div>
 
