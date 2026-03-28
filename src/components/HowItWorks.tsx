@@ -114,7 +114,7 @@ export const HowItWorks = () => {
           </p>
         </div>
 
-        <div ref={ref} className="flex flex-col lg:flex-row gap-6 lg:gap-10">
+        <div ref={ref} className="flex flex-col lg:flex-row lg:items-stretch gap-6 lg:gap-10">
 
           {/* Left — Step selectors */}
           <div className="lg:w-[42%] flex flex-col gap-3">
@@ -175,7 +175,7 @@ export const HowItWorks = () => {
             initial={{ opacity: 0, x: 24 }}
             animate={inView ? { opacity: 1, x: 0 } : {}}
             transition={{ delay: 0.2, duration: 0.5 }}
-            className="lg:w-[58%] flex flex-col"
+            className="lg:w-[58%] flex flex-col min-h-0"
           >
             <AnimatePresence mode="wait">
               <motion.div
@@ -184,7 +184,7 @@ export const HowItWorks = () => {
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -12 }}
                 transition={{ duration: 0.35, ease: 'easeOut' }}
-                className="flex-1 bg-surface rounded-[28px] border border-border p-8 lg:p-10 flex flex-col relative overflow-hidden"
+                className="flex-1 bg-surface rounded-[28px] border border-border p-8 lg:p-10 flex flex-col relative overflow-hidden min-h-0"
               >
                 {/* Watermark */}
                 <span className="absolute top-4 right-6 font-heading font-black text-[72px] text-surface-2 leading-[1] select-none pointer-events-none">
