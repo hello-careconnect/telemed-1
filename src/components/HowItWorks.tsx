@@ -8,7 +8,7 @@ const steps = [
     step: 'Step 01',
     title: "Share What's on Your Mind",
     body: 'Tell us your symptoms or describe your health concern. Our smart system matches you to the right specialist instantly.',
-    detail: 'Describe in your own words — no medical jargon needed. Available in Bangla & English.',
+    detail: 'Describe in your own words, no medical jargon needed. Available in Bangla & English.',
     num: '01',
     color: 'from-primary/10 to-accent',
   },
@@ -34,7 +34,7 @@ const steps = [
     icon: ClipboardList,
     step: 'Step 04',
     title: 'Get Your Care Plan',
-    body: 'Receive a digital prescription, order medicines, and get follow-up reminders — all from one platform.',
+    body: 'Receive a digital prescription, order medicines, and get follow-up reminders, all from one platform.',
     detail: 'Prescriptions sent directly to your phone. Medicine delivery available.',
     num: '04',
     color: 'from-primary/10 to-accent',
@@ -110,7 +110,7 @@ export const HowItWorks = () => {
             <span className="font-display italic text-primary">works</span>
           </h2>
           <p className="mt-3 font-body text-[17px] text-text-body max-w-none mx-auto whitespace-nowrap">
-            From your first message to your care plan — 4 simple steps.
+            From your first message to your care plan - 4 simple steps.
           </p>
         </div>
 
