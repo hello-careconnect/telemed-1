@@ -330,7 +330,7 @@ const FeatureCardCarousel = () => {
 
   return (
     <div
-      className="w-[280px] md:w-[320px] lg:w-[360px]"
+      className="w-[280px] md:w-[400px] lg:w-[360px]"
       onMouseEnter={handlePause}
       onMouseLeave={handleResume}
     >
