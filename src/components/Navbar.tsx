@@ -82,10 +82,9 @@ export const Navbar = () => {
             <div className="mt-auto">
               <button
                 onClick={scrollToForm}
-                className="w-full bg-primary text-primary-foreground rounded-full py-4 text-[16px] font-semibold font-body shadow-teal-glow flex items-center justify-center gap-2"
+                className="w-full bg-primary text-primary-foreground rounded-full py-4 text-[16px] font-semibold font-body shadow-teal-glow flex items-center justify-center"
               >
                 Join Waitlist
-                <ArrowRight className="w-4 h-4" />
               </button>
             </div>
           </SheetContent>
