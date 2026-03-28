@@ -114,7 +114,7 @@ export const HowItWorks = () => {
           </p>
         </div>
 
-        <div ref={ref} className="flex flex-col lg:flex-row gap-6 lg:gap-10">
+        <div ref={ref} className="flex flex-col lg:flex-row lg:items-stretch gap-6 lg:gap-10">
 
           {/* Left — Step selectors */}
           <div className="lg:w-[42%] flex flex-col gap-3">
