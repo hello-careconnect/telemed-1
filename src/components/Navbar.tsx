@@ -50,10 +50,9 @@ export const Navbar = () => {
           </button>
           <button
             onClick={scrollToForm}
-            className="group bg-primary text-primary-foreground rounded-full px-6 py-2.5 text-[15px] font-semibold font-body hover:bg-primary-dark transition-all duration-200 shadow-teal-glow hover:-translate-y-px flex items-center gap-2"
+            className="bg-primary text-primary-foreground rounded-full px-6 py-2.5 text-[15px] font-semibold font-body hover:bg-primary-dark transition-all duration-200 shadow-teal-glow hover:-translate-y-px"
           >
             Join Waitlist
-            <ArrowRight className="w-4 h-4 transition-transform duration-200 group-hover:translate-x-1" />
           </button>
         </div>
 
@@ -83,10 +82,9 @@ export const Navbar = () => {
             <div className="mt-auto">
               <button
                 onClick={scrollToForm}
-                className="w-full bg-primary text-primary-foreground rounded-full py-4 text-[16px] font-semibold font-body shadow-teal-glow flex items-center justify-center gap-2"
+                className="w-full bg-primary text-primary-foreground rounded-full py-4 text-[16px] font-semibold font-body shadow-teal-glow flex items-center justify-center"
               >
                 Join Waitlist
-                <ArrowRight className="w-4 h-4" />
               </button>
             </div>
           </SheetContent>
