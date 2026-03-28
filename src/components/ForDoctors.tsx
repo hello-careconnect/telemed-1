@@ -64,21 +64,21 @@ export const ForDoctors = () => {
         </div>
 
         {/* Right — Doctor image (background removed) */}
-        <div className="lg:w-[45%] w-full relative lg:self-stretch min-h-[400px] lg:min-h-0">
-          <div className="relative h-full flex items-end justify-center lg:absolute lg:inset-0 lg:justify-end">
+        <div className="lg:w-[45%] w-full relative lg:self-stretch min-h-[400px] lg:min-h-0 overflow-hidden">
+          <div className="relative h-full flex items-end justify-end lg:absolute lg:inset-0">
             <img
               src={doctorForDoctors}
               alt="Experienced doctor standing confidently with arms crossed"
-              className="w-full max-w-none h-auto relative z-10 object-contain lg:h-full lg:w-auto lg:max-h-[110%] lg:-mb-8"
+              className="w-full max-w-none h-auto relative z-10 object-contain lg:h-full lg:w-auto lg:max-h-[110%] lg:-mb-8 lg:-mr-8"
               loading="lazy"
             />
 
-            {/* Feature card overlay */}
+            {/* Feature card overlay — covers bottom crop edge */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={inView ? { opacity: 1, y: 0 } : {}}
               transition={{ delay: 0.3 }}
-              className="absolute -bottom-4 left-0 right-0 mx-auto max-w-[360px] bg-background rounded-2xl shadow-xl p-4 flex items-center gap-4 z-20"
+              className="absolute bottom-0 right-4 lg:right-8 max-w-[320px] bg-background rounded-2xl shadow-xl p-4 flex items-center gap-4 z-20"
             >
               <div className="bg-accent rounded-xl w-12 h-12 flex items-center justify-center shrink-0">
                 <BarChart3 className="w-6 h-6 text-primary" strokeWidth={1.5} />
