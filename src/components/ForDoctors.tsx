@@ -78,7 +78,7 @@ export const ForDoctors = () => {
               initial={{ opacity: 0, y: 20 }}
               animate={inView ? { opacity: 1, y: 0 } : {}}
               transition={{ delay: 0.3 }}
-              className="absolute bottom-[15%] left-1/2 -translate-x-1/2 max-w-[320px] w-[85%] bg-background rounded-2xl shadow-xl p-4 flex items-center gap-4 z-20"
+              className="absolute bottom-[5%] left-1/2 -translate-x-1/2 max-w-[320px] w-[85%] bg-background rounded-2xl shadow-xl p-4 flex items-center gap-4 z-20"
             >
               <div className="bg-accent rounded-xl w-12 h-12 flex items-center justify-center shrink-0">
                 <BarChart3 className="w-6 h-6 text-primary" strokeWidth={1.5} />
