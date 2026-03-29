@@ -34,7 +34,7 @@ export const ExitIntent = () => {
           {/* Left decorative */}
           <div className="hidden sm:flex w-[45%] bg-primary relative items-center justify-center overflow-hidden">
             <p className="font-display italic text-primary-foreground/20 text-[80px] leading-[1.1] px-6">
-              Better care is waiting.
+              Your health, our commitment — anytime, anywhere.
             </p>
             <div className="absolute top-10 left-10 w-32 h-32 rounded-full bg-[rgba(255,255,255,0.05)]" />
             <div className="absolute bottom-6 right-6 w-20 h-20 rounded-full bg-[rgba(255,255,255,0.03)]" />
@@ -55,7 +55,7 @@ export const ExitIntent = () => {
             </span>
 
             <h3 className="font-heading font-bold text-[24px] sm:text-[26px] text-text-primary leading-[1.2]">
-              412 spots left. Claim yours.
+              412 spots left.<br />Claim yours.
             </h3>
 
             <p className="mt-3 font-body text-[15px] text-text-body">
