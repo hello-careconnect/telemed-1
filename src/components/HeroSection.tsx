@@ -162,15 +162,21 @@ export const HeroSection = () => {
           transition={{ duration: 0.5, delay: 0.2 }}
         >
           <FeatureCardCarousel />
-          <div className="grid grid-cols-2 gap-4 w-full max-w-[400px]">
+        </motion.div>
+      </div>
+
+      {/* Trust benefits strip — full width below hero on desktop */}
+      <div className="hidden lg:block border-t border-border bg-background/60 backdrop-blur-sm">
+        <div className="container max-w-[1140px] mx-auto px-6 py-5">
+          <div className="grid grid-cols-4 gap-6">
             {[
               { icon: Building2, label: 'Certified Doctors', desc: 'BMDC verified credentials' },
               { icon: Clock, label: '24/7 Availability', desc: 'Video consults anytime' },
               { icon: Lock, label: 'Secure & Private', desc: 'Your data, your control' },
               { icon: Smartphone, label: 'Easy & Accessible', desc: 'Book in under 2 mins' },
             ].map((item) => (
-              <div key={item.label} className="flex items-start gap-3 bg-surface rounded-2xl p-4 border border-border">
-                <item.icon className="w-6 h-6 text-primary shrink-0 mt-0.5" strokeWidth={1.5} />
+              <div key={item.label} className="flex items-center gap-3">
+                <item.icon className="w-6 h-6 text-primary shrink-0" strokeWidth={1.5} />
                 <div>
                   <p className="font-heading font-semibold text-[14px] text-text-primary">{item.label}</p>
                   <p className="font-body text-[12px] text-text-muted mt-0.5">{item.desc}</p>
@@ -178,9 +184,10 @@ export const HeroSection = () => {
               </div>
             ))}
           </div>
-        </motion.div>
-
+        </div>
       </div>
+
+
 
       {/* Tablet/mobile: carousel + benefits below hero */}
       <div className="border-t border-border bg-background py-8 lg:hidden">
