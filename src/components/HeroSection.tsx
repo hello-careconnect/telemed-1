@@ -186,9 +186,8 @@ export const HeroSection = () => {
           </div>
         </div>
       </div>
-        </motion.div>
 
-      </div>
+
 
       {/* Tablet/mobile: carousel + benefits below hero */}
       <div className="border-t border-border bg-background py-8 lg:hidden">
