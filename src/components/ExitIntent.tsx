@@ -55,7 +55,7 @@ export const ExitIntent = () => {
             </span>
 
             <h3 className="font-heading font-bold text-[24px] sm:text-[26px] text-text-primary leading-[1.2]">
-              412 spots left. Claim yours.
+              412 spots left.<br />Claim yours.
             </h3>
 
             <p className="mt-3 font-body text-[15px] text-text-body">
