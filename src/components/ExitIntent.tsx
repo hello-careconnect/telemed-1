@@ -34,7 +34,7 @@ export const ExitIntent = () => {
           {/* Left decorative */}
           <div className="hidden sm:flex w-[45%] bg-primary relative items-center justify-center overflow-hidden">
             <p className="font-display italic text-primary-foreground/20 text-[80px] leading-[1.1] px-6">
-              Better care is waiting.
+              Your health, our commitment — anytime, anywhere.
             </p>
             <div className="absolute top-10 left-10 w-32 h-32 rounded-full bg-[rgba(255,255,255,0.05)]" />
             <div className="absolute bottom-6 right-6 w-20 h-20 rounded-full bg-[rgba(255,255,255,0.03)]" />
