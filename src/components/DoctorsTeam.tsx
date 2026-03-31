@@ -80,11 +80,24 @@ const useVisibleCount = () => {
   return count;
 };
 
+// Preload all doctor images so carousel navigation is instant
+const preloadImages = () => {
+  doctors.forEach((doc) => {
+    const img = new Image();
+    img.src = doc.image;
+  });
+};
+
+
 export const DoctorsTeam = () => {
   const ref = useRef<HTMLDivElement>(null);
   const inView = useInView(ref, { once: true, margin: '-100px' });
   const [startIdx, setStartIdx] = useState(0);
   const visibleCount = useVisibleCount();
+
+  useEffect(() => {
+    preloadImages();
+  }, []);
 
   const next = () => setStartIdx((prev) => (prev + 1) % doctors.length);
   const prev = () => setStartIdx((prev) => (prev - 1 + doctors.length) % doctors.length);
@@ -131,7 +144,7 @@ export const DoctorsTeam = () => {
                       alt={doc.name}
                       className="w-full h-full object-cover"
                       style={{ objectPosition: doc.objectPosition }}
-                      loading="lazy"
+                      loading="eager"
                     />
                   </div>
 
