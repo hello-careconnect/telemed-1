@@ -10,7 +10,7 @@ const stats = [
 
 export const StatsBar = () => {
   const ref = useRef<HTMLDivElement>(null);
-  const inView = useInView(ref, { once: true });
+  const inView = useInView(ref, { once: false, margin: '-50px' });
 
   return (
     <section className="bg-primary py-10 sm:py-12 lg:py-16" ref={ref}>
@@ -19,9 +19,9 @@ export const StatsBar = () => {
           {stats.map((stat, i) => (
             <motion.div
               key={stat.label}
-              initial={{ opacity: 0, y: 16 }}
-              animate={inView ? { opacity: 1, y: 0 } : {}}
-              transition={{ delay: i * 0.1, duration: 0.4 }}
+              initial={{ opacity: 0, x: -40 }}
+              animate={inView ? { opacity: 1, x: 0 } : { opacity: 0, x: -40 }}
+              transition={{ delay: i * 0.2, duration: 0.5, ease: 'easeOut' }}
               className="px-4 sm:px-6 lg:px-14 py-6 lg:py-4 text-center flex flex-col items-center justify-center bg-[rgba(255,255,255,0.08)] lg:bg-transparent rounded-2xl lg:rounded-none"
             >
               <AnimatedStat value={stat.value} inView={inView} />
