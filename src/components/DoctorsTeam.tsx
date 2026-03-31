@@ -34,7 +34,7 @@ const doctors = [
     objectPosition: 'center top',
     rating: 4.9,
     reviews: 203,
-    videoAvailable: true,
+    distance: '2.8 km',
   },
   {
     name: 'Dr. Rafiq Ahmed',
