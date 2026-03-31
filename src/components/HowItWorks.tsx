@@ -208,7 +208,7 @@ export const HowItWorks = () => {
                   </p>
 
                   {/* Detail chip */}
-                  <div className="inline-flex items-center bg-accent rounded-full px-4 py-2">
+                  <div className="inline-flex items-center bg-accent rounded-full px-4 py-2 whitespace-nowrap">
                     <p className="font-body text-[13px] text-primary font-medium">
                       {steps[active].detail}
                     </p>
