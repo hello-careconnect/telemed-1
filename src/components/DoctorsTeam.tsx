@@ -1,6 +1,6 @@
 import { useRef, useState, useEffect } from 'react';
 import { motion, useInView, AnimatePresence } from 'framer-motion';
-import { ChevronLeft, ChevronRight, Video, Star, ShieldCheck } from 'lucide-react';
+import { ChevronLeft, ChevronRight, MapPin, Star, ShieldCheck } from 'lucide-react';
 import doctorAisha from '@/assets/doctor-aisha-new.jpg';
 import doctorKarimUddin from '@/assets/doctor-karim-uddin.jpg';
 import doctorNasreen from '@/assets/doctor-nasreen.webp';
@@ -16,7 +16,7 @@ const doctors = [
     objectPosition: 'center center',
     rating: 4.9,
     reviews: 127,
-    videoAvailable: true,
+    distance: '1.2 km',
   },
   {
     name: 'Dr. Karim Hassan',
@@ -25,7 +25,7 @@ const doctors = [
     objectPosition: 'center top',
     rating: 4.8,
     reviews: 94,
-    videoAvailable: true,
+    distance: '3.5 km',
   },
   {
     name: 'Dr. Nasreen Sultana',
@@ -34,7 +34,7 @@ const doctors = [
     objectPosition: 'center top',
     rating: 4.9,
     reviews: 203,
-    videoAvailable: true,
+    distance: '2.8 km',
   },
   {
     name: 'Dr. Rafiq Ahmed',
@@ -43,7 +43,7 @@ const doctors = [
     objectPosition: 'center top',
     rating: 4.7,
     reviews: 86,
-    videoAvailable: true,
+    distance: '4.1 km',
   },
   {
     name: 'Dr. Imran Chowdhury',
@@ -52,7 +52,7 @@ const doctors = [
     objectPosition: 'center top',
     rating: 4.8,
     reviews: 112,
-    videoAvailable: true,
+    distance: '1.9 km',
   },
   {
     name: 'Dr. Karim Uddin',
@@ -61,7 +61,7 @@ const doctors = [
     objectPosition: 'center top',
     rating: 4.6,
     reviews: 71,
-    videoAvailable: true,
+    distance: '5.3 km',
   },
 ];
 
@@ -158,12 +158,10 @@ export const DoctorsTeam = () => {
                       <span className="font-body text-[13px] font-semibold text-text-primary">{doc.rating}</span>
                       <span className="font-body text-[12px] text-text-muted">({doc.reviews})</span>
                     </div>
-                    {doc.videoAvailable && (
-                      <div className="flex items-center gap-1 text-primary">
-                        <Video className="w-3.5 h-3.5" strokeWidth={1.5} />
-                        <span className="font-body text-[12px] font-medium">Video</span>
-                      </div>
-                    )}
+                    <div className="flex items-center gap-1 text-text-muted">
+                      <MapPin className="w-3.5 h-3.5" strokeWidth={1.5} />
+                      <span className="font-body text-[12px] font-medium">{doc.distance}</span>
+                    </div>
                   </div>
 
                   {/* CTA */}
