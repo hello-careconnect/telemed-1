@@ -43,7 +43,7 @@ const doctors = [
     objectPosition: 'center top',
     rating: 4.7,
     reviews: 86,
-    videoAvailable: true,
+    distance: '4.1 km',
   },
   {
     name: 'Dr. Imran Chowdhury',
