@@ -203,7 +203,7 @@ export const DoctorsTeam = () => {
             </button>
           </div>
           <button className="font-body text-[14px] text-primary hover:underline underline-offset-4 transition-colors">
-            View Full Roster
+            Check Other Doctors
           </button>
         </div>
       </div>
