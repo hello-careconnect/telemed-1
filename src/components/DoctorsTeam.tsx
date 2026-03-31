@@ -135,15 +135,36 @@ export const DoctorsTeam = () => {
                     />
                   </div>
 
+                  {/* Verified badge */}
+                  <div className="flex items-center gap-1 mb-3">
+                    <ShieldCheck className="w-3.5 h-3.5 text-primary" strokeWidth={2} />
+                    <span className="font-body text-[11px] text-primary font-medium">Verified</span>
+                  </div>
+
                   {/* Name */}
                   <p className="font-heading font-semibold text-[16px] mb-1 text-text-primary">
                     {doc.name}
                   </p>
 
                   {/* Specialty */}
-                  <p className="font-body text-[14px] mb-5 text-primary">
+                  <p className="font-body text-[14px] mb-3 text-primary">
                     {doc.specialty}
                   </p>
+
+                  {/* Rating & Video */}
+                  <div className="flex items-center gap-3 mb-5">
+                    <div className="flex items-center gap-1">
+                      <Star className="w-3.5 h-3.5 text-[hsl(45,90%,50%)] fill-[hsl(45,90%,50%)]" />
+                      <span className="font-body text-[13px] font-semibold text-text-primary">{doc.rating}</span>
+                      <span className="font-body text-[12px] text-text-muted">({doc.reviews})</span>
+                    </div>
+                    {doc.videoAvailable && (
+                      <div className="flex items-center gap-1 text-primary">
+                        <Video className="w-3.5 h-3.5" strokeWidth={1.5} />
+                        <span className="font-body text-[12px] font-medium">Video</span>
+                      </div>
+                    )}
+                  </div>
 
                   {/* CTA */}
                   <button className="px-6 py-2 rounded-full text-[14px] font-body font-medium border border-border bg-background text-text-primary hover:bg-primary hover:text-primary-foreground hover:border-primary transition-colors duration-200">
