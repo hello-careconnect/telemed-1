@@ -25,7 +25,7 @@ const doctors = [
     objectPosition: 'center top',
     rating: 4.8,
     reviews: 94,
-    videoAvailable: true,
+    distance: '3.5 km',
   },
   {
     name: 'Dr. Nasreen Sultana',
