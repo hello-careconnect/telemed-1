@@ -52,7 +52,7 @@ const doctors = [
     objectPosition: 'center top',
     rating: 4.8,
     reviews: 112,
-    videoAvailable: true,
+    distance: '1.9 km',
   },
   {
     name: 'Dr. Karim Uddin',
