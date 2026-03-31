@@ -5,7 +5,7 @@ const stats = [
   { value: '5,000+', label: 'DOCTORS BEING VERIFIED' },
   { value: '< 2 min', label: 'AVERAGE BOOKING TIME' },
   { value: '24/7', label: 'VIDEO CONSULTATIONS' },
-  { value: 'Free', label: 'FIRST CONSULTATION' },
+  { value: '0 ৳', label: 'FIRST CONSULTATION' },
 ];
 
 export const StatsBar = () => {
