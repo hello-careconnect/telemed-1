@@ -95,6 +95,10 @@ export const DoctorsTeam = () => {
   const [startIdx, setStartIdx] = useState(0);
   const visibleCount = useVisibleCount();
 
+  useEffect(() => {
+    preloadImages();
+  }, []);
+
   const next = () => setStartIdx((prev) => (prev + 1) % doctors.length);
   const prev = () => setStartIdx((prev) => (prev - 1 + doctors.length) % doctors.length);
 
