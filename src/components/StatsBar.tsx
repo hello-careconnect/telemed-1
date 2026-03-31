@@ -25,7 +25,7 @@ export const StatsBar = () => {
               className="px-4 sm:px-6 lg:px-14 py-6 lg:py-4 text-center flex flex-col items-center justify-center bg-[rgba(255,255,255,0.08)] lg:bg-transparent rounded-2xl lg:rounded-none"
             >
               <AnimatedStat value={stat.value} inView={inView} />
-              <p className="font-body text-[13px] text-[rgba(255,255,255,0.55)] mt-3 uppercase tracking-widest max-w-[18ch]">
+              <p className="font-body text-[11px] text-[rgba(255,255,255,0.55)] mt-3 uppercase tracking-widest whitespace-nowrap">
                 {stat.label}
               </p>
             </motion.div>
