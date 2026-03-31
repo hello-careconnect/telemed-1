@@ -16,7 +16,7 @@ const doctors = [
     objectPosition: 'center center',
     rating: 4.9,
     reviews: 127,
-    videoAvailable: true,
+    distance: '1.2 km',
   },
   {
     name: 'Dr. Karim Hassan',
