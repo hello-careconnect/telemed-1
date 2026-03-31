@@ -158,12 +158,10 @@ export const DoctorsTeam = () => {
                       <span className="font-body text-[13px] font-semibold text-text-primary">{doc.rating}</span>
                       <span className="font-body text-[12px] text-text-muted">({doc.reviews})</span>
                     </div>
-                    {doc.videoAvailable && (
-                      <div className="flex items-center gap-1 text-primary">
-                        <Video className="w-3.5 h-3.5" strokeWidth={1.5} />
-                        <span className="font-body text-[12px] font-medium">Video</span>
-                      </div>
-                    )}
+                    <div className="flex items-center gap-1 text-text-muted">
+                      <MapPin className="w-3.5 h-3.5" strokeWidth={1.5} />
+                      <span className="font-body text-[12px] font-medium">{doc.distance}</span>
+                    </div>
                   </div>
 
                   {/* CTA */}
