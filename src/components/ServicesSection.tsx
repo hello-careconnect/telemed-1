@@ -7,37 +7,43 @@ const services = [
     icon: Stethoscope,
     title: 'General Health Consultations',
     desc: 'Talk to certified GPs, get prescriptions, and manage your health, all from home.',
-    color: 'bg-primary/10 text-primary',
+    iconColor: 'text-[hsl(168,60%,40%)]',
+    bgColor: 'bg-[hsl(168,60%,40%,0.1)]',
   },
   {
     icon: Heart,
     title: "Women's Health & Wellness",
     desc: 'Confidential consultations for reproductive health, pregnancy care, and more.',
-    color: 'bg-primary/10 text-primary',
+    iconColor: 'text-[hsl(340,65%,55%)]',
+    bgColor: 'bg-[hsl(340,65%,55%,0.1)]',
   },
   {
     icon: Baby,
     title: 'Pediatric & Child Care',
     desc: "Expert advice for your child's health from trusted pediatricians across Bangladesh.",
-    color: 'bg-primary/10 text-primary',
+    iconColor: 'text-[hsl(210,60%,50%)]',
+    bgColor: 'bg-[hsl(210,60%,50%,0.1)]',
   },
   {
     icon: Sparkles,
     title: 'Skin & Dermatology Care',
     desc: 'Get expert dermatology care for skin conditions, acne, allergies, and cosmetic concerns.',
-    color: 'bg-primary/10 text-primary',
+    iconColor: 'text-[hsl(28,70%,50%)]',
+    bgColor: 'bg-[hsl(28,70%,50%,0.1)]',
   },
   {
     icon: Brain,
     title: 'Mental Health & Counseling',
     desc: 'Access licensed therapists and counselors for stress, anxiety, depression, and more.',
-    color: 'bg-primary/10 text-primary',
+    iconColor: 'text-[hsl(270,50%,55%)]',
+    bgColor: 'bg-[hsl(270,50%,55%,0.1)]',
   },
   {
     icon: Leaf,
     title: 'Nutrition & Lifestyle Coaching',
     desc: 'Personalized dietary plans and lifestyle guidance from certified nutritionists.',
-    color: 'bg-primary/10 text-primary',
+    iconColor: 'text-[hsl(140,50%,42%)]',
+    bgColor: 'bg-[hsl(140,50%,42%,0.1)]',
   },
 ];
 
@@ -70,7 +76,7 @@ export const ServicesSection = () => {
               transition={{ delay: i * 0.08, duration: 0.4 }}
               className="group bg-background rounded-[24px] p-7 border border-border hover:border-primary hover:shadow-lg hover:-translate-y-1 transition-all duration-250"
             >
-              <div className={`w-12 h-12 rounded-xl ${s.color} flex items-center justify-center mb-5`}>
+              <div className={`w-12 h-12 rounded-xl ${s.bgColor} ${s.iconColor} flex items-center justify-center mb-5`}>
                 <s.icon className="w-6 h-6" strokeWidth={1.5} />
               </div>
               <h3 className="font-heading font-semibold text-[18px] text-text-primary mb-2 group-hover:text-primary transition-colors">
