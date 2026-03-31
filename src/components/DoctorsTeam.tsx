@@ -131,7 +131,7 @@ export const DoctorsTeam = () => {
                       alt={doc.name}
                       className="w-full h-full object-cover"
                       style={{ objectPosition: doc.objectPosition }}
-                      loading="lazy"
+                      loading={i < 4 ? "eager" : "lazy"}
                     />
                   </div>
 
