@@ -448,48 +448,8 @@ const FeatureCardCarousel = () => {
 
             </div>
 
-            {/* Progress bar */}
-            <div className="h-[3px] bg-border/50">
-              <motion.div
-                className="h-full bg-primary/60 rounded-r-full"
-                style={{ width: `${progress}%` }}
-              />
-            </div>
           </motion.div>
         </AnimatePresence>
-      </div>
-
-      {/* Navigation */}
-      <div className="flex items-center justify-between mt-4 px-1">
-        <div className="flex gap-1.5">
-          {heroFeatures.map((_, i) => (
-            <button
-              key={i}
-              onClick={() => handleDot(i)}
-              className={`rounded-full transition-all duration-300 ${
-                i === activeIndex ? 'w-5 h-2 bg-primary' : 'w-2 h-2 bg-border hover:bg-primary/40'
-              }`}
-            />
-          ))}
-        </div>
-        <div className="flex gap-2">
-          <motion.button
-            whileHover={{ scale: 1.1 }}
-            whileTap={{ scale: 0.9 }}
-            onClick={handlePrev}
-            className="w-9 h-9 rounded-full border border-border hover:border-primary hover:text-primary hover:bg-accent flex items-center justify-center transition-colors"
-          >
-            <ChevronLeft className="w-4 h-4" />
-          </motion.button>
-          <motion.button
-            whileHover={{ scale: 1.1 }}
-            whileTap={{ scale: 0.9 }}
-            onClick={handleNext}
-            className="w-9 h-9 rounded-full border border-border hover:border-primary hover:text-primary hover:bg-accent flex items-center justify-center transition-colors"
-          >
-            <ChevronRight className="w-4 h-4" />
-          </motion.button>
-        </div>
       </div>
     </div>
   );
