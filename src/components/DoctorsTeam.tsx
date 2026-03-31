@@ -80,6 +80,15 @@ const useVisibleCount = () => {
   return count;
 };
 
+// Preload all doctor images so carousel navigation is instant
+const preloadImages = () => {
+  doctors.forEach((doc) => {
+    const img = new Image();
+    img.src = doc.image;
+  });
+};
+
+
 export const DoctorsTeam = () => {
   const ref = useRef<HTMLDivElement>(null);
   const inView = useInView(ref, { once: true, margin: '-100px' });
