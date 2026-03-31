@@ -184,7 +184,7 @@ export const HowItWorks = () => {
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -12 }}
                 transition={{ duration: 0.35, ease: 'easeOut' }}
-                className="h-full bg-surface rounded-[28px] border border-border p-8 lg:p-10 flex flex-col justify-center relative overflow-hidden"
+                className="h-full bg-surface rounded-[28px] border border-border p-6 lg:p-8 flex flex-col justify-center relative overflow-hidden"
               >
                 {/* Watermark */}
                 <span className="absolute top-4 right-6 font-heading font-black text-[72px] text-surface-2 leading-[1] select-none pointer-events-none">
@@ -193,17 +193,17 @@ export const HowItWorks = () => {
 
                 <div className="relative z-10">
                   {/* Icon large */}
-                  <div className="w-16 h-16 rounded-2xl bg-primary flex items-center justify-center mb-6 shadow-teal-glow">
-                    {(() => { const Icon = steps[active].icon; return <Icon className="w-8 h-8 text-primary-foreground" strokeWidth={1.5} />; })()}
+                  <div className="w-12 h-12 rounded-xl bg-primary flex items-center justify-center mb-4 shadow-teal-glow">
+                    {(() => { const Icon = steps[active].icon; return <Icon className="w-6 h-6 text-primary-foreground" strokeWidth={1.5} />; })()}
                   </div>
 
-                  <p className="font-body text-[12px] font-semibold uppercase tracking-[0.14em] text-primary mb-2">
+                  <p className="font-body text-[11px] font-semibold uppercase tracking-[0.14em] text-primary mb-1.5">
                     {steps[active].step}
                   </p>
-                  <h3 className="font-heading font-bold text-[26px] sm:text-[30px] text-text-primary leading-[1.2] mb-4">
+                  <h3 className="font-heading font-bold text-[22px] sm:text-[26px] text-text-primary leading-[1.2] mb-3">
                     {steps[active].title}
                   </h3>
-                  <p className="font-body text-[16px] text-text-body leading-[1.7] mb-4 max-w-md">
+                  <p className="font-body text-[15px] text-text-body leading-[1.6] mb-3 max-w-md">
                     {steps[active].body}
                   </p>
 
