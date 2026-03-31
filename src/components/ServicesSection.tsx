@@ -42,8 +42,8 @@ const services = [
     icon: Leaf,
     title: 'Nutrition & Lifestyle Coaching',
     desc: 'Personalized dietary plans and lifestyle guidance from certified nutritionists.',
-    iconColor: 'text-[hsl(140,50%,42%)]',
-    bgColor: 'bg-[hsl(140,50%,42%,0.1)]',
+    iconColor: 'text-[hsl(80,55%,40%)]',
+    bgColor: 'bg-[hsl(80,55%,40%,0.1)]',
   },
 ];
 
