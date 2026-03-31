@@ -215,16 +215,6 @@ export const HowItWorks = () => {
                   </div>
                 </div>
 
-                {/* Step dots */}
-                <div className="flex gap-2 mt-auto pt-8 relative z-10">
-                  {steps.map((_, i) => (
-                    <button
-                      key={i}
-                      onClick={() => handleStepClick(i)}
-                      className={`rounded-full transition-all duration-300 ${i === active ? 'w-6 h-2 bg-primary' : 'w-2 h-2 bg-border hover:bg-primary/40'}`}
-                    />
-                  ))}
-                </div>
               </motion.div>
             </AnimatePresence>
           </motion.div>
