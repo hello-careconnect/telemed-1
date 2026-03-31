@@ -76,7 +76,7 @@ export const ServicesSection = () => {
               transition={{ delay: i * 0.08, duration: 0.4 }}
               className="group bg-background rounded-[24px] p-7 border border-border hover:border-primary hover:shadow-lg hover:-translate-y-1 transition-all duration-250"
             >
-              <div className={`w-12 h-12 rounded-xl ${s.color} flex items-center justify-center mb-5`}>
+              <div className={`w-12 h-12 rounded-xl ${s.bgColor} ${s.iconColor} flex items-center justify-center mb-5`}>
                 <s.icon className="w-6 h-6" strokeWidth={1.5} />
               </div>
               <h3 className="font-heading font-semibold text-[18px] text-text-primary mb-2 group-hover:text-primary transition-colors">
