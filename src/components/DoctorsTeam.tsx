@@ -1,6 +1,6 @@
 import { useRef, useState, useEffect } from 'react';
 import { motion, useInView, AnimatePresence } from 'framer-motion';
-import { ChevronLeft, ChevronRight, Video, Star, ShieldCheck } from 'lucide-react';
+import { ChevronLeft, ChevronRight, MapPin, Star, ShieldCheck } from 'lucide-react';
 import doctorAisha from '@/assets/doctor-aisha-new.jpg';
 import doctorKarimUddin from '@/assets/doctor-karim-uddin.jpg';
 import doctorNasreen from '@/assets/doctor-nasreen.webp';
