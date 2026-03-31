@@ -61,7 +61,7 @@ const doctors = [
     objectPosition: 'center top',
     rating: 4.6,
     reviews: 71,
-    videoAvailable: true,
+    distance: '5.3 km',
   },
 ];
 
