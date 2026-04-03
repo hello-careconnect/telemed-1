@@ -44,7 +44,7 @@ export const FAQSection = () => {
             </span>
             <h2 className="mt-6 font-heading font-bold text-[32px] sm:text-[38px] text-text-primary leading-[1.15]">
               Smart Care Starts with{' '}
-              <span className="font-display italic text-primary">Good Information</span>
+              <span className="font-display text-primary">Good Information</span>
             </h2>
             <p className="mt-3 font-body text-[16px] text-text-body max-w-md">
               Everything you need to know before joining the platform.

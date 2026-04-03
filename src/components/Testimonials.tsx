@@ -49,7 +49,7 @@ export const Testimonials = () => {
           </span>
           <h2 className="mt-6 font-heading font-bold text-[32px] sm:text-[40px] text-text-primary leading-[1.15]">
             Why 30,000+ patients{' '}
-            <span className="font-display italic text-primary">choose us</span>{' '}
+            <span className="font-display text-primary">choose us</span>{' '}
             every year
           </h2>
           <p className="mt-4 font-body text-[16px] sm:text-[18px] text-text-body max-w-2xl mx-auto lg:whitespace-nowrap">
@@ -67,7 +67,7 @@ export const Testimonials = () => {
               className="relative bg-background rounded-[24px] p-8 shadow-md border border-border hover:-translate-y-1 hover:shadow-lg transition-all duration-250"
             >
               {/* Decorative quote */}
-              <span className="absolute top-4 left-6 font-display italic text-[72px] text-surface-2 leading-[1] select-none pointer-events-none">
+              <span className="absolute top-4 left-6 font-display text-[72px] text-surface-2 leading-[1] select-none pointer-events-none">
                 "
               </span>
 

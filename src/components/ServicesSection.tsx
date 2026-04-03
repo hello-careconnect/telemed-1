@@ -60,7 +60,7 @@ export const ServicesSection = () => {
           </span>
           <h2 className="mt-6 font-heading font-bold text-[32px] sm:text-[40px] text-text-primary leading-[1.12]">
             Our consultation{' '}
-            <span className="font-display italic text-primary">services</span>
+            <span className="font-display text-primary">services</span>
           </h2>
           <p className="mt-4 font-body text-[17px] text-text-body max-w-2xl mx-auto whitespace-nowrap">
             Comprehensive healthcare at your fingertips, from general checkups to specialized treatments.

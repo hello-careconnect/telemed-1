@@ -107,7 +107,7 @@ export const HowItWorks = () => {
           </span>
           <h2 className="mt-3 font-heading font-bold text-[32px] sm:text-[40px] text-text-primary leading-[1.15]">
             How CareConnect{' '}
-            <span className="font-display italic text-primary">works</span>
+            <span className="font-display text-primary">works</span>
           </h2>
           <p className="mt-3 font-body text-[15px] sm:text-[17px] text-text-body max-w-none mx-auto lg:whitespace-nowrap">
             From your first message to your care plan - 4 simple steps.

@@ -32,7 +32,7 @@ export const WaitlistForm = () => {
           <h2 className="mt-6 font-heading font-bold text-[36px] sm:text-[42px] text-text-primary leading-[1.1]">
             Join the waitlist.
           </h2>
-          <p className="mt-3 font-display italic text-primary text-[24px] sm:text-[28px]">
+          <p className="mt-3 font-display text-primary text-[24px] sm:text-[28px]">
             Be first. Be cared for.
           </p>
           <p className="mt-4 font-body text-[16px] sm:text-[18px] text-text-body max-w-2xl mx-auto lg:whitespace-nowrap">

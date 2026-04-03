@@ -14,9 +14,9 @@ export default {
     },
     extend: {
       fontFamily: {
-        display: ["Fraunces", "serif"],
-        heading: ["Sora", "sans-serif"],
-        body: ["DM Sans", "sans-serif"],
+        display: ["Helvetica", "sans-serif"],
+        heading: ["Helvetica", "sans-serif"],
+        body: ["Helvetica", "sans-serif"],
       },
       colors: {
         border: "hsl(var(--border))",
@@ -101,10 +101,19 @@ export default {
           from: { height: "var(--radix-accordion-content-height)" },
           to: { height: "0" },
         },
+        "carousel-progress": {
+          from: { width: "0%" },
+          to: { width: "100%" },
+        },
+        shimmer: {
+          "0%": { transform: "translateX(-100%)" },
+          "100%": { transform: "translateX(200%)" },
+        },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
+        "carousel-progress": "carousel-progress 4s linear forwards",
       },
     },
   },

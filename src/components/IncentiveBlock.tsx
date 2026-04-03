@@ -44,7 +44,7 @@ export const IncentiveBlock = () => {
           <h2 className="mt-6 font-heading font-bold text-[28px] sm:text-[36px] lg:text-[48px] text-primary-foreground leading-[1.1]">
             Health shouldn't be complicated.
             <br />
-            <span className="font-display italic">Let CareConnect make it simple.</span>
+            <span className="font-display">Let CareConnect make it simple.</span>
           </h2>
 
           <p className="mt-4 font-body text-[16px] sm:text-[18px] text-[rgba(255,255,255,0.80)] mx-auto max-w-lg">

@@ -2,6 +2,46 @@
 @tailwind components;
 @tailwind utilities;
 
+@font-face {
+  font-family: 'Helvetica';
+  src: url('/src/assets/fonts/helvetica-light-587ebe5a59211.woff') format('woff');
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Helvetica';
+  src: url('/src/assets/fonts/Helvetica.woff') format('woff');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Helvetica';
+  src: url('/src/assets/fonts/Helvetica-Oblique.woff') format('woff');
+  font-weight: 400;
+  font-style: oblique;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Helvetica';
+  src: url('/src/assets/fonts/Helvetica-Bold.woff') format('woff');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Helvetica';
+  src: url('/src/assets/fonts/Helvetica-BoldOblique.woff') format('woff');
+  font-weight: 700;
+  font-style: oblique;
+  font-display: swap;
+}
+
 @layer base {
   :root {
     /* Platform palette */
@@ -13,13 +53,13 @@
 
     /* Surfaces */
     --background: 160 30% 97%;
-    --foreground: 192 40% 8%;
+    --foreground: 216 40% 19%;
     --color-surface: 160 30% 97%;
     --color-surface-2: 164 28% 94%;
 
     /* Text */
-    --color-text-primary: 192 40% 8%;
-    --color-text-body: 192 18% 29%;
+    --color-text-primary: 216 40% 19%;
+    --color-text-body: 216 22% 32%;
     --color-text-muted: 190 15% 61%;
 
     /* Border */
@@ -39,13 +79,13 @@
 
     /* Shadcn mappings */
     --card: 0 0% 100%;
-    --card-foreground: 192 40% 8%;
+    --card-foreground: 216 40% 19%;
     --popover: 0 0% 100%;
-    --popover-foreground: 192 40% 8%;
+    --popover-foreground: 216 40% 19%;
     --primary: 168 85% 33%;
     --primary-foreground: 0 0% 100%;
     --secondary: 164 28% 94%;
-    --secondary-foreground: 192 40% 8%;
+    --secondary-foreground: 216 40% 19%;
     --muted: 160 30% 97%;
     --muted-foreground: 190 15% 61%;
     --accent: 168 60% 93%;
@@ -62,9 +102,9 @@
     --shadow-xl: 0 24px 64px rgba(0, 0, 0, 0.14);
 
     /* Typography */
-    --font-display: 'Fraunces', serif;
-    --font-heading: 'Sora', sans-serif;
-    --font-body: 'DM Sans', sans-serif;
+    --font-display: 'Helvetica', sans-serif;
+    --font-heading: 'Helvetica', sans-serif;
+    --font-body: 'Helvetica', sans-serif;
 
     /* Radius tokens */
     --radius-sm: 6px;

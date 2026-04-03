@@ -117,7 +117,7 @@ export const DoctorsTeam = () => {
           </span>
           <h2 className="mt-6 font-heading font-bold text-[28px] sm:text-[40px] text-text-primary leading-[1.12]">
             Meet our{' '}
-            <span className="font-display italic text-primary">expert</span>{' '}
+            <span className="font-display text-primary">expert</span>{' '}
             doctors
           </h2>
           <p className="mt-3 font-body text-[15px] sm:text-[17px] text-text-body lg:whitespace-nowrap mx-auto">

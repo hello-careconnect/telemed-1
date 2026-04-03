@@ -1,6 +1,6 @@
 import { motion, AnimatePresence } from 'framer-motion';
 import { useEffect, useRef, useState, useCallback } from 'react';
-import { Play, ShieldCheck, Lock, Star, Building2, Clock, Smartphone, Sparkles, MapPin, Video, HeartPulse, CalendarCheck, Stethoscope, ChevronLeft, ChevronRight } from 'lucide-react';
+import { Play, Lock, Star, Building2, Clock, Smartphone, Sparkles, MapPin, Video, HeartPulse, CalendarCheck, Stethoscope, ArrowRight, Users, BadgeCheck, Timer } from 'lucide-react';
 import doctorRafiq from '@/assets/doctor-rafiq.webp';
 import doctorAvatar1 from '@/assets/doctor-avatar-1.jpg';
 import doctorNasreen from '@/assets/doctor-nasreen.webp';
@@ -72,7 +72,7 @@ export const HeroSection = () => {
         `,
       }}
     >
-      <div className="container max-w-[1140px] mx-auto px-6 flex flex-col lg:flex-row items-center gap-8 lg:gap-0 py-10 sm:py-16 lg:py-24">
+      <div className="container max-w-[1140px] mx-auto px-6 flex flex-col lg:flex-row items-start gap-8 lg:gap-12 py-10 sm:py-16 lg:py-24">
         {/* Left 55% */}
         <motion.div
           className="lg:w-[55%] w-full"
@@ -80,81 +80,87 @@ export const HeroSection = () => {
           initial="hidden"
           animate="show"
         >
+          {/* Badge */}
           <motion.div variants={fadeUp}>
-            <span className="inline-flex items-center gap-2 bg-accent text-primary rounded-full px-4 py-1.5 text-[13px] font-medium font-body">
-              <span className="w-2 h-2 rounded-full bg-success animate-pulse" />
-              Early Access · Launching in Dhaka &amp; Chattogram
+            <span className="relative inline-flex items-center gap-2 bg-primary/[0.08] border border-primary/20 text-primary rounded-full px-4 py-1.5 text-[13px] font-medium font-body overflow-hidden">
+              <span className="absolute inset-0 bg-gradient-to-r from-transparent via-primary/10 to-transparent animate-[shimmer_2.5s_ease-in-out_infinite]" />
+              <span className="relative flex items-center gap-2">
+                <span className="w-2 h-2 rounded-full bg-success animate-pulse" />
+                Early Access · Launching in Dhaka &amp; Chattogram
+              </span>
             </span>
           </motion.div>
 
-          <motion.h1 variants={fadeUp} className="mt-3">
-            <span className="block font-heading font-bold text-text-primary text-[36px] sm:text-[56px] lg:text-[72px] leading-[1.08]">
-              Find the doctor
+          {/* Headline */}
+          <motion.h1 variants={fadeUp} className="mt-5 font-heading font-bold text-text-primary text-[36px] sm:text-[56px] lg:text-[72px] leading-[1.05]">
+            <span className="block">
+              Find the{' '}
+              <span className="relative inline-block">
+                <span className="relative z-10 text-primary">doctor</span>
+                <motion.span
+                  className="absolute -bottom-1 left-0 right-0 h-[6px] sm:h-[8px] bg-primary/15 rounded-full"
+                  initial={{ scaleX: 0 }}
+                  animate={{ scaleX: 1 }}
+                  transition={{ delay: 0.6, duration: 0.5, ease: 'easeOut' }}
+                  style={{ originX: 0 }}
+                />
+              </span>
             </span>
-            <span className="block font-heading font-bold text-text-primary text-[36px] sm:text-[56px] lg:text-[72px] leading-[1.08]">
+            <span className="block">
               you can{' '}
-              <span className="font-display italic font-extrabold text-primary">trust.</span>
+              <span className="relative inline-block">
+                trust
+                <span className="text-primary">.</span>
+              </span>
             </span>
           </motion.h1>
 
-          <motion.div variants={fadeUp} className="h-10 mt-2 overflow-hidden">
+          {/* Rotating subtitle */}
+          <motion.div variants={fadeUp} className="h-8 sm:h-10 mt-3 overflow-hidden">
             <AnimatePresence mode="wait">
               <motion.p
                 key={currentIndex}
-                initial={{ opacity: 0, y: 8 }}
+                initial={{ opacity: 0, y: 12 }}
                 animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -8 }}
+                exit={{ opacity: 0, y: -12 }}
                 transition={{ duration: 0.35 }}
-                className="font-heading font-medium text-[20px] sm:text-[22px] text-text-muted"
+                className="font-body font-medium text-[17px] sm:text-[20px] text-primary/70"
               >
                 {rotatingLines[currentIndex % rotatingLines.length]}
               </motion.p>
             </AnimatePresence>
           </motion.div>
 
+          {/* Description */}
           <motion.p
             variants={fadeUp}
-            className="mt-3 font-body text-[17px] text-text-body leading-[1.65] max-w-[460px]"
+            className="mt-3 font-body text-[16px] sm:text-[17px] text-text-body leading-[1.7] max-w-[460px]"
           >
-            Verified doctors. Transparent reviews. Instant booking.
-            <br />
-            Bangladesh's first platform that gives you control.
+            Bangladesh's first platform that puts patients in control —
+            verified credentials, honest reviews, and booking in minutes.
           </motion.p>
 
-
+          {/* CTAs */}
           <motion.div variants={fadeUp} className="mt-8 flex flex-col sm:flex-row gap-3">
             <button
               onClick={scrollToForm}
-              className="group bg-primary text-primary-foreground rounded-full px-8 py-4 text-[16px] font-semibold font-body shadow-teal-glow hover:bg-primary-dark hover:-translate-y-0.5 hover:shadow-teal-glow-lg transition-all duration-200 flex items-center justify-center"
+              className="group bg-primary text-primary-foreground rounded-full px-8 py-4 text-[16px] font-semibold font-body shadow-teal-glow hover:bg-primary-dark hover:-translate-y-0.5 hover:shadow-teal-glow-lg transition-all duration-200 flex items-center justify-center gap-2"
             >
               Join the Waitlist
+              <ArrowRight className="w-4 h-4 transition-transform duration-200 group-hover:translate-x-1" />
             </button>
             <button
               onClick={scrollToHow}
-              className="rounded-full px-8 py-4 text-[16px] font-semibold font-body text-text-primary border-[1.5px] border-border hover:border-primary hover:text-primary transition-all duration-200 flex items-center justify-center gap-2"
+              className="rounded-full px-8 py-4 text-[16px] font-semibold font-body text-text-primary border-[1.5px] border-border hover:border-primary hover:text-primary hover:bg-primary/[0.03] transition-all duration-200 flex items-center justify-center gap-2"
             >
               <Play className="w-4 h-4" />
               See how it works
             </button>
           </motion.div>
-          <motion.div variants={fadeUp} className="mt-8 flex items-center gap-3">
-            <div className="flex -space-x-3">
-              {[doctorAvatar1, doctorRafiq, doctorNasreen, doctorClipboard, doctorYoungGlasses].map((img, i) => (
-                <div
-                  key={i}
-                  className="w-10 h-10 rounded-full border-2 border-background overflow-hidden"
-                >
-                  <img src={img} alt="" className="w-full h-full object-cover" loading="lazy" />
-                </div>
-              ))}
-            </div>
-            <p className="font-body text-[14px] text-text-body">
-              <span className="font-bold text-text-primary">500+</span> doctors being verified
-            </p>
-          </motion.div>
+
         </motion.div>
 
-        {/* Right 45% — Carousel + Benefits (desktop only) */}
+        {/* Right 45% — Carousel + Social proof (desktop only) */}
         <motion.div
           className="hidden lg:flex lg:w-[45%] flex-col items-center gap-6"
           initial={{ opacity: 0, x: 30 }}
@@ -162,6 +168,29 @@ export const HeroSection = () => {
           transition={{ duration: 0.5, delay: 0.2 }}
         >
           <FeatureCardCarousel />
+
+          {/* Social proof */}
+          <div className="flex items-center gap-3">
+            <div className="flex -space-x-2.5">
+              {[doctorAvatar1, doctorRafiq, doctorNasreen, doctorClipboard, doctorYoungGlasses].map((img, i) => (
+                <motion.div
+                  key={i}
+                  initial={{ opacity: 0, scale: 0.5 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{ delay: 0.8 + i * 0.08, duration: 0.3 }}
+                  className="w-8 h-8 rounded-full border-[2px] border-background overflow-hidden shadow-sm"
+                >
+                  <img src={img} alt="" className="w-full h-full object-cover" loading="lazy" />
+                </motion.div>
+              ))}
+            </div>
+            <div className="flex items-center gap-1.5">
+              <span className="w-1.5 h-1.5 rounded-full bg-success animate-pulse" />
+              <p className="font-body text-[13px] text-text-muted">
+                Doctors joining <span className="font-semibold text-text-body">every day</span>
+              </p>
+            </div>
+          </div>
         </motion.div>
       </div>
 
@@ -280,34 +309,15 @@ const FeatureCardCarousel = () => {
   const [direction, setDirection] = useState(1);
   const timerRef = useRef<ReturnType<typeof setInterval> | null>(null);
   const [isPaused, setIsPaused] = useState(false);
-  const [progress, setProgress] = useState(0);
-  const progressRef = useRef<ReturnType<typeof requestAnimationFrame> | null>(null);
-  const startTimeRef = useRef(Date.now());
   const DURATION = 4000;
 
   const startTimer = useCallback(() => {
     if (timerRef.current) clearInterval(timerRef.current);
-    startTimeRef.current = Date.now();
-    setProgress(0);
     timerRef.current = setInterval(() => {
       setDirection(1);
       setActiveIndex((prev) => (prev + 1) % heroFeatures.length);
-      startTimeRef.current = Date.now();
     }, DURATION);
   }, []);
-
-  // Progress bar animation
-  useEffect(() => {
-    const animate = () => {
-      if (!isPaused) {
-        const elapsed = Date.now() - startTimeRef.current;
-        setProgress(Math.min((elapsed / DURATION) * 100, 100));
-      }
-      progressRef.current = requestAnimationFrame(animate);
-    };
-    progressRef.current = requestAnimationFrame(animate);
-    return () => { if (progressRef.current) cancelAnimationFrame(progressRef.current); };
-  }, [isPaused, activeIndex]);
 
   useEffect(() => {
     startTimer();
@@ -344,13 +354,11 @@ const FeatureCardCarousel = () => {
 
   const current = heroFeatures[activeIndex];
   const Icon = current.icon;
-  const nextIndex = (activeIndex + 1) % heroFeatures.length;
-  const NextIcon = heroFeatures[nextIndex].icon;
 
   const variants = {
-    enter: (d: number) => ({ opacity: 0, x: d > 0 ? 60 : -60, scale: 0.95, rotateY: d > 0 ? 8 : -8 }),
-    center: { opacity: 1, x: 0, scale: 1, rotateY: 0 },
-    exit: (d: number) => ({ opacity: 0, x: d > 0 ? -60 : 60, scale: 0.95, rotateY: d > 0 ? -8 : 8 }),
+    enter: (d: number) => ({ opacity: 0, x: d > 0 ? 40 : -40, scale: 0.97 }),
+    center: { opacity: 1, x: 0, scale: 1 },
+    exit: (d: number) => ({ opacity: 0, x: d > 0 ? -40 : 40, scale: 0.97 }),
   };
 
   return (
@@ -360,8 +368,8 @@ const FeatureCardCarousel = () => {
       onMouseLeave={handleResume}
     >
       {/* Card */}
-      <div className="relative" style={{ perspective: '800px' }}>
-        <AnimatePresence mode="wait" custom={direction}>
+      <div className="relative w-full">
+        <AnimatePresence initial={false} mode="popLayout" custom={direction}>
           <motion.div
             key={activeIndex}
             custom={direction}
@@ -369,8 +377,8 @@ const FeatureCardCarousel = () => {
             initial="enter"
             animate="center"
             exit="exit"
-            transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
-            className="bg-surface rounded-[24px] border border-border shadow-lg overflow-hidden cursor-grab active:cursor-grabbing"
+            transition={{ duration: 0.4, ease: [0.25, 0.46, 0.45, 0.94] }}
+            className="rounded-[24px] border border-border shadow-lg overflow-hidden cursor-grab active:cursor-grabbing"
             drag="x"
             dragConstraints={{ left: 0, right: 0 }}
             dragElastic={0.15}
@@ -379,13 +387,28 @@ const FeatureCardCarousel = () => {
               else if (info.offset.x > 50) handlePrev();
             }}
           >
-            {/* Icon area with animated background */}
-            <div className="aspect-[4/3] lg:aspect-[3/2.5] relative flex items-center justify-center overflow-hidden bg-accent/30">
+            {/* Image + overlay */}
+            <div className="aspect-[4/3] lg:aspect-[3/2.2] relative flex items-center justify-center overflow-hidden bg-[#1d2d44]">
+
+              {/* Progress bar */}
+              <div className="absolute top-0 left-0 right-0 h-[3px] bg-white/20 z-20">
+                <div
+                  key={activeIndex}
+                  className="h-full bg-white/70 animate-carousel-progress"
+                  style={{ animationPlayState: isPaused ? 'paused' : 'running' }}
+                />
+              </div>
+
               {current.image ? (
-                <img src={current.image} alt={current.title} className="absolute inset-0 w-full h-full object-cover" loading="eager" decoding="async" />
+                <img
+                  src={current.image}
+                  alt={current.title}
+                  className="absolute inset-0 w-full h-full object-cover"
+                  loading="eager"
+                  decoding="async"
+                />
               ) : (
                 <>
-                  {/* Animated rings */}
                   <motion.div
                     className="absolute w-40 h-40 rounded-full border-2 border-primary/10"
                     animate={{ scale: [1, 1.4, 1], opacity: [0.3, 0, 0.3] }}
@@ -396,21 +419,15 @@ const FeatureCardCarousel = () => {
                     animate={{ scale: [1, 1.3, 1], opacity: [0.4, 0.1, 0.4] }}
                     transition={{ duration: 3, repeat: Infinity, ease: 'easeInOut', delay: 0.5 }}
                   />
-                  {/* Floating particles */}
                   {[...Array(4)].map((_, i) => (
                     <motion.div
                       key={i}
                       className="absolute w-2 h-2 rounded-full bg-primary/20"
-                      animate={{
-                        y: [0, -20, 0],
-                        x: [0, i % 2 === 0 ? 10 : -10, 0],
-                        opacity: [0, 0.6, 0],
-                      }}
+                      animate={{ y: [0, -20, 0], x: [0, i % 2 === 0 ? 10 : -10, 0], opacity: [0, 0.6, 0] }}
                       transition={{ duration: 2.5, repeat: Infinity, delay: i * 0.6, ease: 'easeInOut' }}
                       style={{ top: `${30 + i * 15}%`, left: `${20 + i * 18}%` }}
                     />
                   ))}
-                  {/* Icon with entrance animation */}
                   <motion.div
                     key={`icon-${activeIndex}`}
                     initial={{ scale: 0, rotate: -20 }}
@@ -422,34 +439,51 @@ const FeatureCardCarousel = () => {
                   </motion.div>
                 </>
               )}
-              {/* Pause indicator */}
+
+              {/* Gradient scrim */}
+              <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
+
+              {/* Text overlay */}
+              <div className="absolute bottom-0 left-0 right-0 p-5 z-10">
+                <motion.p
+                  key={`title-${activeIndex}`}
+                  initial={{ opacity: 0, y: 8 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.15, duration: 0.3 }}
+                  className="font-heading font-semibold text-[18px] text-white"
+                >
+                  {current.title}
+                </motion.p>
+                <motion.p
+                  key={`desc-${activeIndex}`}
+                  initial={{ opacity: 0, y: 8 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.25, duration: 0.3 }}
+                  className="font-body text-[13px] text-white/70 mt-1 leading-relaxed"
+                >
+                  {current.desc}
+                </motion.p>
+              </div>
             </div>
-
-            {/* Info with staggered text */}
-            <div className="p-5">
-              <motion.p
-                key={`title-${activeIndex}`}
-                initial={{ opacity: 0, y: 8 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.15, duration: 0.3 }}
-                className="font-heading font-semibold text-[18px] text-text-primary"
-              >
-                {current.title}
-              </motion.p>
-              <motion.p
-                key={`desc-${activeIndex}`}
-                initial={{ opacity: 0, y: 8 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.25, duration: 0.3 }}
-                className="font-body text-[14px] text-text-muted mt-2 leading-relaxed"
-              >
-                {current.desc}
-              </motion.p>
-
-            </div>
-
           </motion.div>
         </AnimatePresence>
+      </div>
+
+      {/* Icon nav chips */}
+      <div className="flex items-center justify-center gap-3 mt-4">
+        {heroFeatures.map(({ icon: ChipIcon }, i) => (
+          <button
+            key={i}
+            onClick={() => handleDot(i)}
+            className={`w-9 h-9 rounded-full flex items-center justify-center transition-all duration-300 ${
+              i === activeIndex
+                ? 'bg-primary text-primary-foreground scale-110 shadow-md'
+                : 'bg-border/70 text-text-muted hover:bg-border hover:text-text-body'
+            }`}
+          >
+            <ChipIcon className="w-4 h-4" strokeWidth={2} />
+          </button>
+        ))}
       </div>
     </div>
   );

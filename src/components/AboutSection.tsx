@@ -64,9 +64,9 @@ export const AboutSection = () => {
           </span>
           <h2 className="mt-3 font-heading font-bold text-[32px] sm:text-[40px] text-text-primary leading-[1.12]">
             Making healthcare{' '}
-            <span className="font-display italic text-primary">simple</span>,{' '}
-            <span className="font-display italic text-primary">accessible</span>, and{' '}
-            <span className="font-display italic text-primary">personal</span>.
+            <span className="font-display text-primary">simple</span>,{' '}
+            <span className="font-display text-primary">accessible</span>, and{' '}
+            <span className="font-display text-primary">personal</span>.
           </h2>
           <p className="mt-6 font-body text-[17px] text-text-body leading-[1.7] max-w-lg">
             Our mission is to connect you with trusted doctors anytime, anywhere, ensuring you get the care you need without the wait. We treat you like family, providing compassionate and comprehensive healthcare tailored to your individual needs.
