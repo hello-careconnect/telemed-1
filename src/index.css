@@ -134,7 +134,7 @@
   --color-primary: 255 65% 38%;
   --color-primary-light: 255 50% 95%;
   --color-primary-dark: 255 65% 28%;
-  --color-accent-alt: 255 50% 55%;
+  --color-accent-alt: 255 50% 65%;
   --background: 250 25% 97%;
   --color-surface: 250 25% 97%;
   --color-surface-2: 252 22% 94%;
@@ -145,6 +145,9 @@
   --secondary: 252 22% 94%;
   --accent: 255 50% 95%;
   --accent-foreground: 255 65% 28%;
+  --color-dark-bg: 250 45% 11%;
+  --color-dark-surface: 252 40% 16%;
+  --color-dark-text: 250 40% 93%;
   --shadow-lg: 0 12px 40px rgba(75, 48, 163, 0.12);
   --glow-color: 75, 48, 163;
   --hero-glow-1: rgba(75, 48, 163, 0.07);
@@ -156,7 +159,7 @@
   --color-primary: 270 45% 42%;
   --color-primary-light: 270 40% 95%;
   --color-primary-dark: 270 45% 32%;
-  --color-accent-alt: 270 40% 55%;
+  --color-accent-alt: 270 40% 68%;
   --background: 268 20% 97%;
   --color-surface: 268 20% 97%;
   --color-surface-2: 270 18% 94%;
@@ -167,6 +170,9 @@
   --secondary: 270 18% 94%;
   --accent: 270 40% 95%;
   --accent-foreground: 270 45% 32%;
+  --color-dark-bg: 268 38% 11%;
+  --color-dark-surface: 270 34% 16%;
+  --color-dark-text: 268 38% 93%;
   --shadow-lg: 0 12px 40px rgba(120, 60, 160, 0.12);
   --glow-color: 120, 60, 160;
   --hero-glow-1: rgba(120, 60, 160, 0.07);
@@ -178,7 +184,7 @@
   --color-primary: 155 70% 25%;
   --color-primary-light: 155 50% 93%;
   --color-primary-dark: 155 70% 18%;
-  --color-accent-alt: 155 55% 42%;
+  --color-accent-alt: 155 55% 55%;
   --background: 152 25% 97%;
   --color-surface: 152 25% 97%;
   --color-surface-2: 155 20% 94%;
@@ -189,6 +195,9 @@
   --secondary: 155 20% 94%;
   --accent: 155 50% 93%;
   --accent-foreground: 155 70% 18%;
+  --color-dark-bg: 154 50% 9%;
+  --color-dark-surface: 155 45% 14%;
+  --color-dark-text: 154 40% 93%;
   --shadow-lg: 0 12px 40px rgba(20, 108, 67, 0.12);
   --glow-color: 20, 108, 67;
   --hero-glow-1: rgba(20, 108, 67, 0.07);
@@ -200,7 +209,7 @@
   --color-primary: 220 55% 40%;
   --color-primary-light: 220 40% 95%;
   --color-primary-dark: 220 55% 30%;
-  --color-accent-alt: 220 45% 55%;
+  --color-accent-alt: 220 45% 65%;
   --background: 218 22% 97%;
   --color-surface: 218 22% 97%;
   --color-surface-2: 220 18% 94%;
@@ -211,6 +220,9 @@
   --secondary: 220 18% 94%;
   --accent: 220 40% 95%;
   --accent-foreground: 220 55% 30%;
+  --color-dark-bg: 220 42% 11%;
+  --color-dark-surface: 220 38% 16%;
+  --color-dark-text: 220 38% 93%;
   --shadow-lg: 0 12px 40px rgba(46, 80, 143, 0.12);
   --glow-color: 46, 80, 143;
   --hero-glow-1: rgba(46, 80, 143, 0.07);
@@ -222,7 +234,7 @@
   --color-primary: 266 32% 64%;
   --color-primary-light: 266 30% 95%;
   --color-primary-dark: 266 32% 50%;
-  --color-accent-alt: 266 28% 70%;
+  --color-accent-alt: 266 28% 72%;
   --background: 265 20% 97%;
   --color-surface: 265 20% 97%;
   --color-surface-2: 266 16% 94%;
@@ -234,18 +246,21 @@
   --secondary: 266 16% 94%;
   --accent: 266 30% 95%;
   --accent-foreground: 266 32% 50%;
+  --color-dark-bg: 265 28% 11%;
+  --color-dark-surface: 266 24% 16%;
+  --color-dark-text: 265 28% 93%;
   --shadow-lg: 0 12px 40px rgba(130, 100, 170, 0.12);
   --glow-color: 130, 100, 170;
   --hero-glow-1: rgba(130, 100, 170, 0.07);
   --hero-glow-2: rgba(160, 130, 200, 0.05);
 }
 
-/* 6. Sage — #99d98c light sage green */
+/* 6. Sage — #99d98c */
 :root[data-theme="sage"] {
   --color-primary: 110 50% 45%;
   --color-primary-light: 110 45% 94%;
   --color-primary-dark: 110 50% 32%;
-  --color-accent-alt: 110 45% 58%;
+  --color-accent-alt: 110 45% 60%;
   --background: 108 22% 97%;
   --color-surface: 108 22% 97%;
   --color-surface-2: 110 18% 94%;
@@ -257,6 +272,9 @@
   --secondary: 110 18% 94%;
   --accent: 110 45% 94%;
   --accent-foreground: 110 50% 32%;
+  --color-dark-bg: 110 40% 10%;
+  --color-dark-surface: 110 36% 15%;
+  --color-dark-text: 110 35% 93%;
   --shadow-lg: 0 12px 40px rgba(110, 185, 100, 0.12);
   --glow-color: 110, 185, 100;
   --hero-glow-1: rgba(110, 185, 100, 0.07);
@@ -268,7 +286,7 @@
   --color-primary: 196 77% 38%;
   --color-primary-light: 196 60% 93%;
   --color-primary-dark: 196 77% 28%;
-  --color-accent-alt: 196 60% 52%;
+  --color-accent-alt: 196 60% 60%;
   --background: 194 25% 97%;
   --color-surface: 194 25% 97%;
   --color-surface-2: 196 20% 94%;
@@ -280,6 +298,9 @@
   --secondary: 196 20% 94%;
   --accent: 196 60% 93%;
   --accent-foreground: 196 77% 28%;
+  --color-dark-bg: 196 55% 10%;
+  --color-dark-surface: 196 50% 15%;
+  --color-dark-text: 196 45% 93%;
   --shadow-lg: 0 12px 40px rgba(22, 138, 173, 0.12);
   --glow-color: 22, 138, 173;
   --hero-glow-1: rgba(22, 138, 173, 0.07);
@@ -327,6 +348,43 @@
   --color-surface: 210 60% 98%;
   --color-surface-2: 210 40% 95%;
   --border: 210 20% 90%;
+}
+
+/* ── Font overrides ── */
+:root[data-font="sf"] {
+  --font-display: -apple-system, 'SF Pro Display', system-ui, sans-serif;
+  --font-heading: -apple-system, 'SF Pro Display', system-ui, sans-serif;
+  --font-body: -apple-system, 'SF Pro Text', system-ui, sans-serif;
+}
+:root[data-font="georgia"] {
+  --font-display: Georgia, 'Times New Roman', serif;
+  --font-heading: Georgia, 'Times New Roman', serif;
+  --font-body: Georgia, 'Times New Roman', serif;
+}
+:root[data-font="gillsans"] {
+  --font-display: 'Gill Sans', 'Gill Sans MT', Calibri, sans-serif;
+  --font-heading: 'Gill Sans', 'Gill Sans MT', Calibri, sans-serif;
+  --font-body: 'Gill Sans', 'Gill Sans MT', Calibri, sans-serif;
+}
+:root[data-font="optima"] {
+  --font-display: Optima, Candara, 'Noto Sans', sans-serif;
+  --font-heading: Optima, Candara, 'Noto Sans', sans-serif;
+  --font-body: Optima, Candara, 'Noto Sans', sans-serif;
+}
+:root[data-font="baskerville"] {
+  --font-display: Baskerville, 'Baskerville Old Face', 'Hoefler Text', serif;
+  --font-heading: Baskerville, 'Baskerville Old Face', 'Hoefler Text', serif;
+  --font-body: Baskerville, 'Baskerville Old Face', 'Hoefler Text', serif;
+}
+:root[data-font="trebuchet"] {
+  --font-display: 'Trebuchet MS', 'Fira Sans', sans-serif;
+  --font-heading: 'Trebuchet MS', 'Fira Sans', sans-serif;
+  --font-body: 'Trebuchet MS', 'Fira Sans', sans-serif;
+}
+:root[data-font="arial"] {
+  --font-display: Arial, 'Helvetica Neue', sans-serif;
+  --font-heading: Arial, 'Helvetica Neue', sans-serif;
+  --font-body: Arial, 'Helvetica Neue', sans-serif;
 }
 
 /* ── Foreground / text overrides ── */

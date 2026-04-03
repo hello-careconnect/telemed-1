@@ -6,6 +6,9 @@ import { StatsBar } from '@/components/StatsBar';
 import { HowItWorks } from '@/components/HowItWorks';
 import { DoctorsTeam } from '@/components/DoctorsTeam';
 import { ForDoctors } from '@/components/ForDoctors';
+import { PatientJourney } from '@/components/PatientJourney';
+import { DoctorJourney } from '@/components/DoctorJourney';
+import { HospitalJourney } from '@/components/HospitalJourney';
 import { Testimonials } from '@/components/Testimonials';
 import { AppShowcase } from '@/components/AppShowcase';
 import { WaitlistForm } from '@/components/WaitlistForm';
@@ -29,6 +32,9 @@ const Index = () => {
         <HowItWorks />
         <DoctorsTeam />
         <ForDoctors />
+        <PatientJourney />
+        <DoctorJourney />
+        <HospitalJourney />
         <AppShowcase />
         <Testimonials />
         <WaitlistForm />
