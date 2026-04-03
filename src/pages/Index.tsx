@@ -26,15 +26,15 @@ const Index = () => {
       <Navbar />
       <main>
         <HeroSection />
-        <AboutSection />
+        <PatientJourney />
+        <DoctorJourney />
+        <HospitalJourney />
+        {/*<AboutSection />*/}
         <ServicesSection />
         <StatsBar />
         <HowItWorks />
         <DoctorsTeam />
         <ForDoctors />
-        <PatientJourney />
-        <DoctorJourney />
-        <HospitalJourney />
         <AppShowcase />
         <Testimonials />
         <WaitlistForm />
