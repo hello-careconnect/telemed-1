@@ -89,8 +89,8 @@ export default {
         md: "var(--shadow-md)",
         lg: "var(--shadow-lg)",
         xl: "var(--shadow-xl)",
-        "teal-glow": "0 4px 16px rgba(10,158,138,0.30)",
-        "teal-glow-lg": "0 8px 24px rgba(10,158,138,0.45)",
+        "teal-glow": "0 4px 16px rgba(var(--glow-color),0.30)",
+        "teal-glow-lg": "0 8px 24px rgba(var(--glow-color),0.45)",
       },
       keyframes: {
         "accordion-down": {

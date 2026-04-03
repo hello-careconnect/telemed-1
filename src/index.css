@@ -100,6 +100,9 @@
     --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.10);
     --shadow-lg: 0 12px 40px rgba(10, 158, 138, 0.12);
     --shadow-xl: 0 24px 64px rgba(0, 0, 0, 0.14);
+    --glow-color: 10, 158, 138;
+    --hero-glow-1: rgba(10, 158, 138, 0.07);
+    --hero-glow-2: rgba(62, 207, 180, 0.05);
 
     /* Typography */
     --font-display: 'Helvetica', sans-serif;
@@ -123,6 +126,256 @@
     --sidebar-border: 220 13% 91%;
     --sidebar-ring: 217.2 91.2% 59.8%;
   }
+}
+
+/* ── Theme overrides ── */
+/* 1. Deep Indigo */
+:root[data-theme="indigo"] {
+  --color-primary: 255 65% 38%;
+  --color-primary-light: 255 50% 95%;
+  --color-primary-dark: 255 65% 28%;
+  --color-accent-alt: 255 50% 55%;
+  --background: 250 25% 97%;
+  --color-surface: 250 25% 97%;
+  --color-surface-2: 252 22% 94%;
+  --border: 250 14% 89%;
+  --input: 250 14% 89%;
+  --ring: 255 65% 38%;
+  --primary: 255 65% 38%;
+  --secondary: 252 22% 94%;
+  --accent: 255 50% 95%;
+  --accent-foreground: 255 65% 28%;
+  --shadow-lg: 0 12px 40px rgba(75, 48, 163, 0.12);
+  --glow-color: 75, 48, 163;
+  --hero-glow-1: rgba(75, 48, 163, 0.07);
+  --hero-glow-2: rgba(130, 100, 200, 0.05);
+}
+
+/* 2. Warm Violet */
+:root[data-theme="violet"] {
+  --color-primary: 270 45% 42%;
+  --color-primary-light: 270 40% 95%;
+  --color-primary-dark: 270 45% 32%;
+  --color-accent-alt: 270 40% 55%;
+  --background: 268 20% 97%;
+  --color-surface: 268 20% 97%;
+  --color-surface-2: 270 18% 94%;
+  --border: 268 12% 89%;
+  --input: 268 12% 89%;
+  --ring: 270 45% 42%;
+  --primary: 270 45% 42%;
+  --secondary: 270 18% 94%;
+  --accent: 270 40% 95%;
+  --accent-foreground: 270 45% 32%;
+  --shadow-lg: 0 12px 40px rgba(120, 60, 160, 0.12);
+  --glow-color: 120, 60, 160;
+  --hero-glow-1: rgba(120, 60, 160, 0.07);
+  --hero-glow-2: rgba(160, 100, 200, 0.05);
+}
+
+/* 3. Rich Emerald */
+:root[data-theme="emerald"] {
+  --color-primary: 155 70% 25%;
+  --color-primary-light: 155 50% 93%;
+  --color-primary-dark: 155 70% 18%;
+  --color-accent-alt: 155 55% 42%;
+  --background: 152 25% 97%;
+  --color-surface: 152 25% 97%;
+  --color-surface-2: 155 20% 94%;
+  --border: 152 14% 89%;
+  --input: 152 14% 89%;
+  --ring: 155 70% 25%;
+  --primary: 155 70% 25%;
+  --secondary: 155 20% 94%;
+  --accent: 155 50% 93%;
+  --accent-foreground: 155 70% 18%;
+  --shadow-lg: 0 12px 40px rgba(20, 108, 67, 0.12);
+  --glow-color: 20, 108, 67;
+  --hero-glow-1: rgba(20, 108, 67, 0.07);
+  --hero-glow-2: rgba(40, 160, 100, 0.05);
+}
+
+/* 4. Slate Blue */
+:root[data-theme="slate"] {
+  --color-primary: 220 55% 40%;
+  --color-primary-light: 220 40% 95%;
+  --color-primary-dark: 220 55% 30%;
+  --color-accent-alt: 220 45% 55%;
+  --background: 218 22% 97%;
+  --color-surface: 218 22% 97%;
+  --color-surface-2: 220 18% 94%;
+  --border: 218 14% 89%;
+  --input: 218 14% 89%;
+  --ring: 220 55% 40%;
+  --primary: 220 55% 40%;
+  --secondary: 220 18% 94%;
+  --accent: 220 40% 95%;
+  --accent-foreground: 220 55% 30%;
+  --shadow-lg: 0 12px 40px rgba(46, 80, 143, 0.12);
+  --glow-color: 46, 80, 143;
+  --hero-glow-1: rgba(46, 80, 143, 0.07);
+  --hero-glow-2: rgba(80, 120, 180, 0.05);
+}
+
+/* 5. Violet 2 — muted lavender */
+:root[data-theme="voilet2"] {
+  --color-primary: 266 32% 64%;
+  --color-primary-light: 266 30% 95%;
+  --color-primary-dark: 266 32% 50%;
+  --color-accent-alt: 266 28% 70%;
+  --background: 265 20% 97%;
+  --color-surface: 265 20% 97%;
+  --color-surface-2: 266 16% 94%;
+  --border: 265 12% 89%;
+  --input: 265 12% 89%;
+  --ring: 266 32% 64%;
+  --primary: 266 32% 64%;
+  --primary-foreground: 0 0% 100%;
+  --secondary: 266 16% 94%;
+  --accent: 266 30% 95%;
+  --accent-foreground: 266 32% 50%;
+  --shadow-lg: 0 12px 40px rgba(130, 100, 170, 0.12);
+  --glow-color: 130, 100, 170;
+  --hero-glow-1: rgba(130, 100, 170, 0.07);
+  --hero-glow-2: rgba(160, 130, 200, 0.05);
+}
+
+/* 6. Sage — #99d98c light sage green */
+:root[data-theme="sage"] {
+  --color-primary: 110 50% 45%;
+  --color-primary-light: 110 45% 94%;
+  --color-primary-dark: 110 50% 32%;
+  --color-accent-alt: 110 45% 58%;
+  --background: 108 22% 97%;
+  --color-surface: 108 22% 97%;
+  --color-surface-2: 110 18% 94%;
+  --border: 108 14% 89%;
+  --input: 108 14% 89%;
+  --ring: 110 50% 45%;
+  --primary: 110 50% 45%;
+  --primary-foreground: 0 0% 100%;
+  --secondary: 110 18% 94%;
+  --accent: 110 45% 94%;
+  --accent-foreground: 110 50% 32%;
+  --shadow-lg: 0 12px 40px rgba(110, 185, 100, 0.12);
+  --glow-color: 110, 185, 100;
+  --hero-glow-1: rgba(110, 185, 100, 0.07);
+  --hero-glow-2: rgba(153, 217, 140, 0.05);
+}
+
+/* 7. Ocean — #168aad */
+:root[data-theme="ocean"] {
+  --color-primary: 196 77% 38%;
+  --color-primary-light: 196 60% 93%;
+  --color-primary-dark: 196 77% 28%;
+  --color-accent-alt: 196 60% 52%;
+  --background: 194 25% 97%;
+  --color-surface: 194 25% 97%;
+  --color-surface-2: 196 20% 94%;
+  --border: 194 14% 89%;
+  --input: 194 14% 89%;
+  --ring: 196 77% 38%;
+  --primary: 196 77% 38%;
+  --primary-foreground: 0 0% 100%;
+  --secondary: 196 20% 94%;
+  --accent: 196 60% 93%;
+  --accent-foreground: 196 77% 28%;
+  --shadow-lg: 0 12px 40px rgba(22, 138, 173, 0.12);
+  --glow-color: 22, 138, 173;
+  --hero-glow-1: rgba(22, 138, 173, 0.07);
+  --hero-glow-2: rgba(60, 180, 210, 0.05);
+}
+
+/* ── Background overrides ── */
+:root[data-bg="bg-sage"] {
+  --background: 82 22% 90%;
+  --color-surface: 82 22% 90%;
+  --color-surface-2: 82 18% 87%;
+  --border: 82 12% 82%;
+}
+
+:root[data-bg="bg-white"] {
+  --background: 0 0% 100%;
+  --color-surface: 0 0% 100%;
+  --color-surface-2: 0 0% 97%;
+  --border: 0 0% 91%;
+}
+
+:root[data-bg="bg-cream"] {
+  --background: 38 40% 97%;
+  --color-surface: 38 40% 97%;
+  --color-surface-2: 38 30% 94%;
+  --border: 38 18% 89%;
+}
+
+:root[data-bg="bg-blush"] {
+  --background: 0 50% 98%;
+  --color-surface: 0 50% 98%;
+  --color-surface-2: 0 35% 95%;
+  --border: 0 20% 90%;
+}
+
+:root[data-bg="bg-stone"] {
+  --background: 30 18% 96%;
+  --color-surface: 30 18% 96%;
+  --color-surface-2: 30 14% 93%;
+  --border: 30 10% 88%;
+}
+
+:root[data-bg="bg-sky"] {
+  --background: 210 60% 98%;
+  --color-surface: 210 60% 98%;
+  --color-surface-2: 210 40% 95%;
+  --border: 210 20% 90%;
+}
+
+/* ── Foreground / text overrides ── */
+/* Warm — brown-tinted text */
+:root[data-fg="warm"] {
+  --foreground: 24 30% 18%;
+  --color-text-primary: 24 30% 18%;
+  --color-text-body: 20 18% 35%;
+  --color-text-muted: 25 12% 58%;
+  --card-foreground: 24 30% 18%;
+  --popover-foreground: 24 30% 18%;
+  --secondary-foreground: 24 30% 18%;
+  --accent-foreground: 24 30% 18%;
+}
+
+/* Cool — blue-tinted text */
+:root[data-fg="cool"] {
+  --foreground: 230 30% 18%;
+  --color-text-primary: 230 30% 18%;
+  --color-text-body: 225 18% 36%;
+  --color-text-muted: 220 12% 58%;
+  --card-foreground: 230 30% 18%;
+  --popover-foreground: 230 30% 18%;
+  --secondary-foreground: 230 30% 18%;
+  --accent-foreground: 230 30% 18%;
+}
+
+/* Ink — near-black, high contrast */
+:root[data-fg="ink"] {
+  --foreground: 0 0% 8%;
+  --color-text-primary: 0 0% 8%;
+  --color-text-body: 0 0% 25%;
+  --color-text-muted: 0 0% 52%;
+  --card-foreground: 0 0% 8%;
+  --popover-foreground: 0 0% 8%;
+  --secondary-foreground: 0 0% 8%;
+  --accent-foreground: 0 0% 8%;
+}
+
+/* Soft — desaturated, gentle */
+:root[data-fg="soft"] {
+  --foreground: 210 20% 30%;
+  --color-text-primary: 210 20% 30%;
+  --color-text-body: 210 12% 45%;
+  --color-text-muted: 210 8% 62%;
+  --card-foreground: 210 20% 30%;
+  --popover-foreground: 210 20% 30%;
+  --secondary-foreground: 210 20% 30%;
+  --accent-foreground: 210 20% 30%;
 }
 
 @layer base {

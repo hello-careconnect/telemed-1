@@ -62,16 +62,14 @@ export const HeroSection = () => {
   };
 
   return (
-    <section
-      className="min-h-screen pt-[72px] relative overflow-hidden"
-      style={{
-        background: `
-          radial-gradient(ellipse at 80% 20%, rgba(10,158,138,0.07) 0%, transparent 65%),
-          radial-gradient(ellipse at 10% 90%, rgba(62,207,180,0.05) 0%, transparent 50%),
-          hsl(160, 30%, 97%)
-        `,
-      }}
-    >
+    <section className="min-h-screen pt-[72px] relative overflow-hidden bg-background">
+      {/* Radial glows — driven by CSS vars so they update with theme */}
+      <div className="absolute inset-0 pointer-events-none">
+        <div className="absolute top-0 right-0 w-[60%] h-[60%] rounded-full"
+          style={{ background: 'radial-gradient(ellipse at 80% 20%, var(--hero-glow-1) 0%, transparent 65%)' }} />
+        <div className="absolute bottom-0 left-0 w-[50%] h-[50%] rounded-full"
+          style={{ background: 'radial-gradient(ellipse at 10% 90%, var(--hero-glow-2) 0%, transparent 60%)' }} />
+      </div>
       <div className="container max-w-[1140px] mx-auto px-6 flex flex-col lg:flex-row items-start gap-8 lg:gap-12 py-10 sm:py-16 lg:py-24">
         {/* Left 55% */}
         <motion.div
