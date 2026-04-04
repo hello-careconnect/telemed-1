@@ -13,17 +13,26 @@ interface BottomNavProps {
 }
 
 export const BottomNav = ({ tabs, activeIndex, theme = 'dark' }: BottomNavProps) => {
+  const isLight = theme === 'light'
+  const inactiveColor = isLight ? '#8E8E93' : 'rgba(255,255,255,0.38)'
+  const activeColor = '#0A9E8A'
+
   return (
     <div
       style={{
-        height: 52,
-        background: theme === 'dark' ? 'hsl(var(--background))' : '#0D2B2E',
-        borderTop: theme === 'dark' ? '1px solid hsl(var(--border))' : '1px solid rgba(255,255,255,0.08)',
+        background: isLight
+          ? 'rgba(249,249,249,0.97)'
+          : 'rgba(22,22,24,0.97)',
+        backdropFilter: 'blur(20px)',
+        WebkitBackdropFilter: 'blur(20px)',
+        borderTop: `0.5px solid ${isLight ? 'rgba(0,0,0,0.14)' : 'rgba(255,255,255,0.08)'}`,
         display: 'flex',
-        alignItems: 'center',
+        alignItems: 'flex-start',
         justifyContent: 'space-around',
-        paddingLeft: 8,
-        paddingRight: 8,
+        paddingTop: 10,
+        paddingLeft: 4,
+        paddingRight: 4,
+        paddingBottom: 28,
         flexShrink: 0,
       }}
     >
@@ -39,24 +48,23 @@ export const BottomNav = ({ tabs, activeIndex, theme = 'dark' }: BottomNavProps)
               alignItems: 'center',
               gap: 3,
               flex: 1,
-              opacity: isActive ? 1 : 0.45,
-              position: 'relative',
             }}
           >
             <Icon
               style={{
-                width: 20,
-                height: 20,
-                color: isActive ? '#0A9E8A' : (theme === 'dark' ? '#3D5155' : 'rgba(255,255,255,0.70)'),
-                strokeWidth: isActive ? 2.5 : 1.8,
+                width: 22,
+                height: 22,
+                color: isActive ? activeColor : inactiveColor,
+                strokeWidth: isActive ? 2.2 : 1.6,
               }}
             />
             <span style={{
-              fontFamily: 'DM Sans, sans-serif',
-              fontWeight: isActive ? 600 : 400,
-              fontSize: 9,
-              color: isActive ? '#0A9E8A' : (theme === 'dark' ? '#8AAAB0' : 'rgba(255,255,255,0.55)'),
-              letterSpacing: 0.2,
+              fontFamily: '-apple-system, BlinkMacSystemFont, "SF Pro Text", sans-serif',
+              fontWeight: isActive ? 500 : 400,
+              fontSize: 10,
+              color: isActive ? activeColor : inactiveColor,
+              letterSpacing: -0.1,
+              lineHeight: 1,
             }}>
               {tab.label}
             </span>

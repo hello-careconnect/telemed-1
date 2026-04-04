@@ -27,10 +27,10 @@ const Index = () => {
       <main>
         <HeroSection />
         <PatientJourney />
+        <ServicesSection />
         <DoctorJourney />
         <HospitalJourney />
         {/*<AboutSection />*/}
-        <ServicesSection />
         <StatsBar />
         <HowItWorks />
         <DoctorsTeam />

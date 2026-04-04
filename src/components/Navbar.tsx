@@ -3,7 +3,11 @@ import { Logo } from './Logo';
 import { Menu, X } from 'lucide-react';
 import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
 
-const navLinks = ['How it Works', 'For Doctors', 'About'];
+const navLinks = [
+  { label: 'How it Works', id: 'how-it-works' },
+  { label: 'For Doctors',  id: 'doctor-section' },
+  { label: 'About',        id: 'about' },
+];
 
 export const Navbar = () => {
   const [scrolled, setScrolled] = useState(false);
@@ -15,10 +19,12 @@ export const Navbar = () => {
     return () => window.removeEventListener('scroll', onScroll);
   }, []);
 
-  const scrollToForm = () => {
-    document.getElementById('waitlist-form')?.scrollIntoView({ behavior: 'smooth' });
+  const scrollTo = (id: string) => {
+    document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
     setOpen(false);
   };
+
+  const scrollToForm = () => scrollTo('waitlist-form');
 
   return (
     <nav
@@ -34,13 +40,13 @@ export const Navbar = () => {
         {/* Desktop nav */}
         <div className="hidden md:flex items-center gap-8">
           {navLinks.map((link) => (
-            <a
-              key={link}
-              href={`#${link.toLowerCase().replace(/\s/g, '-')}`}
+            <button
+              key={link.id}
+              onClick={() => scrollTo(link.id)}
               className="text-[15px] font-medium font-body text-text-body hover:text-primary transition-colors duration-150"
             >
-              {link}
-            </a>
+              {link.label}
+            </button>
           ))}
         </div>
 
@@ -66,14 +72,13 @@ export const Navbar = () => {
            <SheetContent side="right" className="bg-background w-80 p-6 pt-14 flex flex-col">
             <div className="flex flex-col gap-0">
               {navLinks.map((link) => (
-                <a
-                  key={link}
-                  href={`#${link.toLowerCase().replace(/\s/g, '-')}`}
-                  onClick={() => setOpen(false)}
-                  className="text-[17px] font-medium font-body text-text-primary py-4 border-b border-border hover:text-primary transition-colors"
+                <button
+                  key={link.id}
+                  onClick={() => scrollTo(link.id)}
+                  className="text-[17px] font-medium font-body text-text-primary py-4 border-b border-border hover:text-primary transition-colors text-left"
                 >
-                  {link}
-                </a>
+                  {link.label}
+                </button>
               ))}
               <button className="text-[17px] font-medium font-body text-text-primary py-4 border-b border-border text-left hover:text-primary transition-colors">
                 Log in
