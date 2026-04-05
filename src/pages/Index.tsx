@@ -18,7 +18,6 @@ import { Footer } from '@/components/Footer';
 
 import { CookieBanner } from '@/components/CookieBanner';
 import { ExitIntent } from '@/components/ExitIntent';
-import { ThemeSwitcher } from '@/components/ThemeSwitcher';
 
 const Index = () => {
   return (
@@ -44,7 +43,6 @@ const Index = () => {
       <Footer />
       <CookieBanner />
       <ExitIntent />
-      <ThemeSwitcher />
     </>
   );
 };

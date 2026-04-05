@@ -64,20 +64,15 @@ export const HeroSection = () => {
       {/*</div>*/}
       <div className="container max-w-[1140px] mx-auto px-6 flex flex-col lg:flex-row items-start gap-8 lg:gap-12 py-10 sm:py-16 lg:py-24">
         {/* Left 55% */}
-        <div className="lg:w-[55%] w-full">
+        <div className="lg:w-[55%] w-full text-left">
           {/* Badge */}
-          <div>
-            <span className="relative inline-flex items-center gap-2 bg-primary/[0.08] border border-primary/20 text-primary rounded-full px-4 py-1.5 text-[13px] font-medium font-body overflow-hidden">
-              <span className="absolute inset-0 bg-gradient-to-r from-transparent via-primary/10 to-transparent animate-[shimmer_2.5s_ease-in-out_infinite]" />
-              <span className="relative flex items-center gap-2">
-                <span className="w-2 h-2 rounded-full bg-success animate-pulse" />
+
+          <span className="inline-flex items-center text-primary text-sm font-medium font-body">
                 Early Access · Launching in Dhaka &amp; Chattogram
-              </span>
             </span>
-          </div>
 
           {/* Headline */}
-          <h1 className="mt-6 font-heading font-bold text-text-primary text-[36px] sm:text-[56px] lg:text-[72px] leading-[1]">
+          <h1 className="font-heading font-bold text-text-primary text-[36px] sm:text-[56px] lg:text-[72px] leading-[1] -ml-[6px]">
             <span className="block">
               Find the{' '}
               <span className="relative inline-block">
@@ -116,7 +111,7 @@ export const HeroSection = () => {
 
 
           {/* CTAs */}
-          <div className="mt-4 flex flex-col sm:flex-row gap-2.5">
+          <div className="mt-4 flex flex-col sm:flex-row items-start gap-2.5">
             <button
               onClick={scrollToForm}
               className="group bg-primary text-primary-foreground rounded-full px-7 py-3 text-[15px] font-semibold font-body shadow-teal-glow hover:bg-primary-dark hover:-translate-y-0.5 hover:shadow-teal-glow-lg transition-all duration-200 flex items-center justify-center gap-2"
