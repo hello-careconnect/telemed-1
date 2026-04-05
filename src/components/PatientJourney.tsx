@@ -225,7 +225,7 @@ export const PatientJourney = () => {
         id="patient-section"
         className="hidden lg:block"
       >
-        <div className="bg-background flex flex-col items-center py-8">
+        <div className="bg-soft-img flex flex-col items-center py-8">
           {/* Header */}
           <div ref={headerRef} className="text-center shrink-0 mb-4">
             <span className="inline-flex items-center text-primary rounded-full font-medium font-body">
@@ -354,7 +354,7 @@ const MobilePatientJourney = () => {
   };
 
   return (
-    <section id="patient-section-mobile" className="lg:hidden py-10 bg-background" style={{ overflowX: 'clip' }}>
+    <section id="patient-section-mobile" className="lg:hidden py-10 bg-soft-img" style={{ overflowX: 'clip' }}>
       {/* Header */}
       <div className="text-center mb-4 px-6">
         <span className="inline-flex items-center text-primary rounded-full font-medium font-body">

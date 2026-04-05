@@ -21,21 +21,21 @@ import { ExitIntent } from '@/components/ExitIntent';
 
 const Index = () => {
   return (
-    <>
+    <div className="relative">
       <Navbar />
       <main>
         <HeroSection />
+        <HowItWorks />
         <PatientJourney />
         <ServicesSection />
         <DoctorJourney />
         <HospitalJourney />
         {/*<AboutSection />*/}
         <StatsBar />
-        <HowItWorks />
         <DoctorsTeam />
         <ForDoctors />
         <AppShowcase />
-        <Testimonials />
+        {/* <Testimonials /> */}
         <WaitlistForm />
         <IncentiveBlock />
         <FAQSection />
@@ -43,7 +43,7 @@ const Index = () => {
       <Footer />
       <CookieBanner />
       <ExitIntent />
-    </>
+    </div>
   );
 };
 

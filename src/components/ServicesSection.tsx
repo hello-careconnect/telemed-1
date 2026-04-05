@@ -52,7 +52,7 @@ export const ServicesSection = () => {
   const inView = useInView(ref, { once: true, margin: '-100px' });
 
   return (
-    <section className="py-8 sm:py-12 lg:py-16 bg-background">
+    <section className="py-8 sm:py-12 lg:py-16 bg-soft-img">
       <div className="container max-w-[1140px] mx-auto px-6">
         <div className="text-center max-w-2xl mx-auto mb-8 sm:mb-10">
           <span className="inline-flex items-center text-primary rounded-full font-medium font-body">

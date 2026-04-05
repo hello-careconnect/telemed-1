@@ -54,8 +54,8 @@ export const HeroSection = () => {
   };
 
   return (
-    <section className=" pt-[72px] relative overflow-hidden bg-background">
-      <div className="container max-w-[1140px] mx-auto px-6 flex flex-col lg:flex-row items-start gap-8 lg:gap-12 py-12 sm:py-16 lg:py-24">
+    <section className="pt-[88px] min-h-screen relative overflow-hidden bg-soft-img">
+      <div className="container max-w-[1140px] mx-auto px-6 flex flex-col lg:flex-row items-start gap-8 lg:gap-12 py-12 sm:py-16 lg:my-24">
         {/* Left 55% */}
         <div className="lg:w-[55%] w-full text-center lg:text-left">
           {/* Badge */}

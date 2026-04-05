@@ -452,6 +452,17 @@
   }
 }
 
+/* Soft background image — used on the page wrapper */
+.bg-soft-img {
+  background-image:
+    linear-gradient(hsl(var(--background) / 0.6), hsl(var(--background) / 0.6)),
+    url('/assets/bg.jpg');
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+}
+
 /* Custom scrollbar */
 ::-webkit-scrollbar {
   width: 6px;

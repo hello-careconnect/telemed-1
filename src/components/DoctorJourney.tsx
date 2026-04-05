@@ -46,8 +46,11 @@ export const DoctorJourney = () => {
           <StickyPhoneMockup
             activeScreen={doctorFeatures[activeFeature].screen}
             screenKey={activeFeature}
+            activeIndex={activeFeature}
+            total={doctorFeatures.length}
+            align="end"
           />
-          <div className="space-y-4">
+          <div className="space-y-4 pt-4">
             {doctorFeatures.map((f, i) => (
               <FeatureRow
                 key={i}

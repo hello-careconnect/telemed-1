@@ -10,14 +10,7 @@ const navLinks = [
 ];
 
 export const Navbar = () => {
-  const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
-
-  useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 80);
-    window.addEventListener('scroll', onScroll);
-    return () => window.removeEventListener('scroll', onScroll);
-  }, []);
 
   // Lock body scroll when menu is open
   useEffect(() => {
@@ -36,36 +29,36 @@ export const Navbar = () => {
 
   return (
     <>
-      <nav
-        className="fixed top-0 left-0 right-0 z-50 transition-all duration-200 border-b border-border bg-background/90 backdrop-blur-sm"
-        style={{
-          height: scrolled ? 64 : 72,
-          boxShadow: scrolled ? 'var(--shadow-sm)' : 'none',
-        }}
-      >
-        <div className="container h-full flex items-center justify-between max-w-[1140px] mx-auto px-6">
-          <Logo size={32} />
+      {/* Floating pill wrapper */}
+      <div className="fixed top-0 left-0 right-0 z-50 flex justify-center px-4 pt-4">
+        <nav
+          className="w-full max-w-[1100px] flex items-center justify-between rounded-full px-3 py-2 bg-background/95 backdrop-blur-md border border-border"
+        >
+          <div className="pl-2">
+            <Logo size={28} />
+          </div>
 
-          {/* Desktop nav */}
-          <div className="hidden md:flex items-center gap-8">
+          {/* Desktop nav links */}
+          <div className="hidden md:flex items-center gap-1">
             {navLinks.map((link) => (
               <button
                 key={link.id}
                 onClick={() => scrollTo(link.id)}
-                className="text-[15px] font-medium font-body text-text-body hover:text-primary transition-colors duration-150"
+                className="px-4 py-2 rounded-full text-[14px] font-medium font-body text-text-body hover:text-text-primary hover:bg-surface transition-all duration-150"
               >
                 {link.label}
               </button>
             ))}
           </div>
 
-          <div className="hidden md:flex items-center gap-4">
-            <button className="text-[15px] font-medium font-body text-text-body hover:text-primary transition-colors duration-150">
-              Log in
+          {/* Desktop actions */}
+          <div className="hidden md:flex items-center gap-2 pr-1">
+            <button className="px-4 py-2 rounded-full text-[14px] font-medium font-body text-text-body hover:text-text-primary hover:bg-surface transition-all duration-150">
+              Sign in
             </button>
             <button
               onClick={scrollToForm}
-              className="bg-primary text-primary-foreground rounded-full px-6 py-2.5 text-[15px] font-semibold font-body hover:bg-primary-dark transition-all duration-200 shadow-teal-glow hover:-translate-y-px"
+              className="rounded-full bg-primary text-primary-foreground px-5 py-2 text-[14px] font-semibold font-body hover:bg-primary-dark transition-all duration-150 shadow-teal-glow"
             >
               Join Waitlist
             </button>
@@ -75,7 +68,7 @@ export const Navbar = () => {
           <button
             aria-label={open ? 'Close menu' : 'Open menu'}
             onClick={() => setOpen((v) => !v)}
-            className="md:hidden relative w-10 h-10 flex items-center justify-center rounded-full text-text-body hover:bg-surface transition-colors"
+            className="md:hidden w-9 h-9 flex items-center justify-center rounded-full text-text-body hover:bg-surface transition-colors"
           >
             <AnimatePresence mode="wait" initial={false}>
               {open ? (
@@ -101,8 +94,8 @@ export const Navbar = () => {
               )}
             </AnimatePresence>
           </button>
-        </div>
-      </nav>
+        </nav>
+      </div>
 
       {/* Full-screen mobile overlay */}
       <AnimatePresence>
@@ -113,10 +106,9 @@ export const Navbar = () => {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.22 }}
-            className="fixed inset-0 z-40 md:hidden bg-background/95 backdrop-blur-md flex flex-col"
-            style={{ paddingTop: scrolled ? 64 : 72 }}
+            className="fixed inset-0 z-40 md:hidden bg-background/95 backdrop-blur-md flex flex-col pt-20"
           >
-            {/* Nav links — centered, big, staggered */}
+            {/* Nav links */}
             <div className="flex-1 flex flex-col items-center justify-center gap-1 px-8">
               {navLinks.map((link, i) => (
                 <motion.button
@@ -139,7 +131,7 @@ export const Navbar = () => {
                 transition={{ delay: navLinks.length * 0.07 + 0.08, duration: 0.28 }}
                 className="w-full text-center text-[28px] font-heading font-bold text-text-primary hover:text-primary transition-colors duration-150 py-4"
               >
-                Log in
+                Sign in
               </motion.button>
             </div>
 
@@ -153,7 +145,7 @@ export const Navbar = () => {
             >
               <button
                 onClick={scrollToForm}
-                className="w-full bg-primary text-primary-foreground rounded-full py-4 text-[17px] font-semibold font-body shadow-teal-glow flex items-center justify-center gap-2 hover:bg-primary-dark transition-all duration-200"
+                className="w-full bg-text-primary text-white rounded-full py-4 text-[17px] font-semibold font-body flex items-center justify-center gap-2 hover:opacity-90 transition-all duration-200"
               >
                 Join the Waitlist
                 <ArrowRight className="w-4 h-4" />

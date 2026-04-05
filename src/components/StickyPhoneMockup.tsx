@@ -6,12 +6,13 @@ interface StickyPhoneMockupProps {
   screenKey: string | number;
   activeIndex?: number;
   total?: number;
+  align?: 'start' | 'center' | 'end';
 }
 
-export const StickyPhoneMockup = ({ activeScreen, screenKey, activeIndex = 0, total = 1 }: StickyPhoneMockupProps) => (
+export const StickyPhoneMockup = ({ activeScreen, screenKey, activeIndex = 0, total = 1, align = 'center' }: StickyPhoneMockupProps) => (
   <div
-    className="hidden lg:flex flex-col items-center gap-4"
-    style={{ position: 'sticky', top: 80, paddingTop: 16 }}
+    className={`hidden lg:flex flex-col gap-4 items-${align}`}
+    style={{ position: 'sticky', top: 80 }}
   >
     <PhoneFrame screenKey={screenKey}>
       {activeScreen}

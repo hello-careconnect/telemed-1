@@ -22,7 +22,7 @@ export const WaitlistForm = () => {
   };
 
   return (
-    <section id="waitlist-form" className="bg-background py-12 sm:py-16 lg:py-24 relative">
+    <section id="waitlist-form" className="bg-soft-img py-12 sm:py-16 lg:py-24 relative">
       <div className="container max-w-[1140px] mx-auto px-6">
         {/* Header */}
         <div className="text-center mb-8 sm:mb-12">
