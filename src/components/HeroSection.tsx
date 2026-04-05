@@ -55,16 +55,9 @@ export const HeroSection = () => {
 
   return (
     <section className=" pt-[72px] relative overflow-hidden bg-background">
-      {/*/!* Radial glows — driven by CSS vars so they update with theme *!/*/}
-      {/*<div className="absolute inset-0 pointer-events-none">*/}
-      {/*  <div className="absolute top-0 right-0 w-[60%] h-[60%] rounded-full"*/}
-      {/*    style={{ background: 'radial-gradient(ellipse at 80% 20%, var(--hero-glow-1) 0%, transparent 65%)' }} />*/}
-      {/*  <div className="absolute bottom-0 left-0 w-[50%] h-[50%] rounded-full"*/}
-      {/*    style={{ background: 'radial-gradient(ellipse at 10% 90%, var(--hero-glow-2) 0%, transparent 60%)' }} />*/}
-      {/*</div>*/}
-      <div className="container max-w-[1140px] mx-auto px-6 flex flex-col lg:flex-row items-start gap-8 lg:gap-12 py-10 sm:py-16 lg:py-24">
+      <div className="container max-w-[1140px] mx-auto px-6 flex flex-col lg:flex-row items-start gap-8 lg:gap-12 py-12 sm:py-16 lg:py-24">
         {/* Left 55% */}
-        <div className="lg:w-[55%] w-full text-left">
+        <div className="lg:w-[55%] w-full text-center lg:text-left">
           {/* Badge */}
 
           <span className="inline-flex items-center text-primary text-sm font-medium font-body">
@@ -72,7 +65,7 @@ export const HeroSection = () => {
             </span>
 
           {/* Headline */}
-          <h1 className="font-heading font-bold text-text-primary text-[36px] sm:text-[56px] lg:text-[72px] leading-[1] -ml-[6px]">
+          <h1 className="font-heading font-bold text-text-primary text-[36px] sm:text-[56px] lg:text-[72px] leading-[1] lg:-ml-[6px] mt-2">
             <span className="block">
               Find the{' '}
               <span className="relative inline-block">
@@ -89,7 +82,7 @@ export const HeroSection = () => {
             </span>
           </h1>
           {/* Description */}
-          <p className="mt-5 font-body text-[16px] sm:text-[17px] text-text-body leading-[1.7] max-w-[460px]">
+          <p className="mt-4 font-body text-[15px] sm:text-[17px] text-text-body leading-[1.7] max-w-[460px] mx-auto lg:mx-0">
             Bangladesh's first platform that puts patients in control —
             verified credentials, honest reviews, and booking in minutes.
           </p>
@@ -111,7 +104,7 @@ export const HeroSection = () => {
 
 
           {/* CTAs */}
-          <div className="mt-4 flex flex-col sm:flex-row items-start gap-2.5">
+          <div className="mt-5 flex flex-row flex-wrap justify-center lg:justify-start items-center gap-2.5">
             <button
               onClick={scrollToForm}
               className="group bg-primary text-primary-foreground rounded-full px-7 py-3 text-[15px] font-semibold font-body shadow-teal-glow hover:bg-primary-dark hover:-translate-y-0.5 hover:shadow-teal-glow-lg transition-all duration-200 flex items-center justify-center gap-2"
