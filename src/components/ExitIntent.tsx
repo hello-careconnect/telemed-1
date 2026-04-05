@@ -29,8 +29,8 @@ export const ExitIntent = () => {
 
   return (
     <Dialog open={open} onOpenChange={setOpen}>
-      <DialogContent className="max-w-2xl w-full rounded-[32px] overflow-hidden p-0 border-none gap-0 [&>button:last-child]:hidden">
-        <div className="flex min-h-[400px]">
+      <DialogContent className="max-w-2xl w-[calc(100%-32px)] sm:w-full rounded-[24px] sm:rounded-[32px] overflow-hidden p-0 border-none gap-0 [&>button:last-child]:hidden">
+        <div className="flex min-h-[360px] sm:min-h-[400px]">
           {/* Left decorative */}
           <div className="hidden sm:flex w-[45%] bg-primary relative items-center justify-center overflow-hidden">
             <p className="font-display text-primary-foreground/20 text-[50px] leading-[1.1] px-6">
@@ -41,7 +41,7 @@ export const ExitIntent = () => {
           </div>
 
           {/* Right content */}
-          <div className="flex-1 bg-background p-8 sm:p-10 flex flex-col justify-center relative">
+          <div className="flex-1 bg-background p-6 sm:p-10 flex flex-col justify-center relative">
             <button
               onClick={() => setOpen(false)}
               className="absolute top-4 right-4 text-muted-foreground hover:text-foreground transition-colors z-10"

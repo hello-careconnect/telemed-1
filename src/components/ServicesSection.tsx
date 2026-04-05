@@ -62,27 +62,27 @@ export const ServicesSection = () => {
             Our consultation{' '}
             <span className="font-display text-primary">services</span>
           </h2>
-          <p className="mt-4 font-body text-[17px] text-text-body max-w-2xl mx-auto whitespace-nowrap">
+          <p className="mt-4 font-body text-[15px] sm:text-[17px] text-text-body max-w-2xl mx-auto">
             Comprehensive healthcare at your fingertips, from general checkups to specialized treatments.
           </p>
         </div>
 
-        <div ref={ref} className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+        <div ref={ref} className="grid grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-5">
           {services.map((s, i) => (
             <motion.div
               key={s.title}
               initial={{ opacity: 0, y: 24 }}
               animate={inView ? { opacity: 1, y: 0 } : {}}
               transition={{ delay: i * 0.08, duration: 0.4 }}
-              className="group bg-background rounded-[24px] p-7 border border-border hover:border-primary hover:shadow-lg hover:-translate-y-1 transition-all duration-250"
+              className="group bg-background rounded-[20px] p-4 sm:p-7 border border-border hover:border-primary hover:shadow-lg hover:-translate-y-1 transition-all duration-250"
             >
-              <div className={`w-12 h-12 rounded-xl ${s.bgColor} ${s.iconColor} flex items-center justify-center mb-5`}>
-                <s.icon className="w-6 h-6" strokeWidth={1.5} />
+              <div className={`w-9 h-9 sm:w-12 sm:h-12 rounded-xl ${s.bgColor} ${s.iconColor} flex items-center justify-center mb-3 sm:mb-5`}>
+                <s.icon className="w-4 h-4 sm:w-6 sm:h-6" strokeWidth={1.5} />
               </div>
-              <h3 className="font-heading font-semibold text-[18px] text-text-primary mb-2 group-hover:text-primary transition-colors">
+              <h3 className="font-heading font-semibold text-[13px] sm:text-[18px] text-text-primary mb-1.5 sm:mb-2 group-hover:text-primary transition-colors leading-snug">
                 {s.title}
               </h3>
-              <p className="font-body text-[15px] text-text-body leading-[1.6]">{s.desc}</p>
+              <p className="font-body text-[12px] sm:text-[15px] text-text-body leading-[1.6] hidden sm:block">{s.desc}</p>
             </motion.div>
           ))}
         </div>

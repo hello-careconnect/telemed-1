@@ -24,7 +24,7 @@ export const CookieBanner = () => {
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, y: 20 }}
           transition={{ duration: 0.4, ease: 'easeOut' }}
-          className="fixed bottom-6 left-6 z-50 bg-background border border-border rounded-2xl shadow-[0_8px_32px_rgba(0,0,0,0.12)] py-4 px-6 max-w-sm w-full"
+          className="fixed bottom-0 left-0 right-0 sm:bottom-6 sm:left-6 sm:right-auto z-50 bg-background border border-border sm:rounded-2xl rounded-t-2xl shadow-[0_8px_32px_rgba(0,0,0,0.12)] py-4 px-5 sm:px-6 sm:max-w-sm w-full"
         >
           <div className="flex flex-col gap-4">
             <div className="flex items-center gap-3">

@@ -17,39 +17,54 @@ const socials = [
 export const Footer = () => (
   <footer className="bg-dark-bg pt-12 sm:pt-16 lg:pt-20 pb-8 sm:pb-10">
     <div className="container max-w-[1140px] mx-auto px-6">
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-[1.6fr_1fr_1fr_1fr] gap-8 sm:gap-10 lg:gap-12">
-        {/* Brand */}
-        <div>
+      {/* Brand + social */}
+      <div className="mb-8 lg:mb-0 lg:hidden">
+        <Logo dark size={32} />
+        <p className="mt-3 font-body font-light text-[14px] text-[rgba(255,255,255,0.60)] leading-[1.7] max-w-sm">
+          Bangladesh's first platform connecting patients with verified doctors, built for real people, in real cities.
+        </p>
+        <div className="mt-4 flex gap-3">
+          {socials.map((s) => (
+            <a key={s.name} href="#" aria-label={s.name}
+              className="w-9 h-9 rounded-full bg-[rgba(255,255,255,0.08)] hover:bg-primary flex items-center justify-center transition-colors duration-200 group">
+              <s.icon className="w-4 h-4 text-primary group-hover:text-primary-foreground transition-colors" strokeWidth={1.5} />
+            </a>
+          ))}
+        </div>
+        <div className="mt-4">
+          <img src={paymentMethods} alt="Accepted payment methods" className="max-w-[220px] h-auto opacity-80" loading="lazy" />
+        </div>
+      </div>
+
+      <div className="grid grid-cols-3 sm:grid-cols-3 lg:grid-cols-[1.6fr_1fr_1fr_1fr] gap-6 lg:gap-12">
+        {/* Brand — desktop only */}
+        <div className="hidden lg:block">
           <Logo dark size={32} />
           <p className="mt-4 font-body font-light text-[15px] text-[rgba(255,255,255,0.60)] leading-[1.7]">
             Bangladesh's first platform connecting patients with verified doctors, built for real people, in real cities.
           </p>
           <div className="mt-6 flex gap-3">
             {socials.map((s) => (
-              <a
-                key={s.name}
-                href="#"
-                aria-label={s.name}
-                className="w-9 h-9 rounded-full bg-[rgba(255,255,255,0.08)] hover:bg-primary flex items-center justify-center transition-colors duration-200 group"
-              >
+              <a key={s.name} href="#" aria-label={s.name}
+                className="w-9 h-9 rounded-full bg-[rgba(255,255,255,0.08)] hover:bg-primary flex items-center justify-center transition-colors duration-200 group">
                 <s.icon className="w-4 h-4 text-primary group-hover:text-primary-foreground transition-colors" strokeWidth={1.5} />
               </a>
             ))}
           </div>
-          <div className="-mt-10">
-            <img src={paymentMethods} alt="Accepted payment methods" className="max-w-[280px] h-auto opacity-80 -ml-5" loading="lazy" />
+          <div className="mt-5">
+            <img src={paymentMethods} alt="Accepted payment methods" className="max-w-[240px] h-auto opacity-80" loading="lazy" />
           </div>
         </div>
 
         {/* For Patients */}
         <div>
-          <h4 className="font-body font-semibold text-[13px] text-primary-foreground uppercase tracking-widest mb-5">
+          <h4 className="font-body font-semibold text-[11px] sm:text-[13px] text-primary-foreground uppercase tracking-widest mb-4">
             For Patients
           </h4>
-          <ul className="space-y-3">
+          <ul className="space-y-2.5">
             {forPatients.map((l) => (
               <li key={l}>
-                <a href="#" className="font-body text-[14px] text-[rgba(255,255,255,0.60)] hover:text-primary-foreground hover:translate-x-1 transition-all duration-200 inline-block">
+                <a href="#" className="font-body text-[13px] sm:text-[14px] text-[rgba(255,255,255,0.60)] hover:text-primary-foreground transition-colors duration-200 inline-block">
                   {l}
                 </a>
               </li>
@@ -59,13 +74,13 @@ export const Footer = () => (
 
         {/* For Doctors */}
         <div>
-          <h4 className="font-body font-semibold text-[13px] text-primary-foreground uppercase tracking-widest mb-5">
+          <h4 className="font-body font-semibold text-[11px] sm:text-[13px] text-primary-foreground uppercase tracking-widest mb-4">
             For Doctors
           </h4>
-          <ul className="space-y-3">
+          <ul className="space-y-2.5">
             {forDoctors.map((l) => (
               <li key={l}>
-                <a href="#" className="font-body text-[14px] text-[rgba(255,255,255,0.60)] hover:text-primary-foreground hover:translate-x-1 transition-all duration-200 inline-block">
+                <a href="#" className="font-body text-[13px] sm:text-[14px] text-[rgba(255,255,255,0.60)] hover:text-primary-foreground transition-colors duration-200 inline-block">
                   {l}
                 </a>
               </li>
@@ -75,13 +90,13 @@ export const Footer = () => (
 
         {/* Company */}
         <div>
-          <h4 className="font-body font-semibold text-[13px] text-primary-foreground uppercase tracking-widest mb-5">
+          <h4 className="font-body font-semibold text-[11px] sm:text-[13px] text-primary-foreground uppercase tracking-widest mb-4">
             Company
           </h4>
-          <ul className="space-y-3">
+          <ul className="space-y-2.5">
             {company.map((l) => (
               <li key={l}>
-                <a href="#" className="font-body text-[14px] text-[rgba(255,255,255,0.60)] hover:text-primary-foreground hover:translate-x-1 transition-all duration-200 inline-block">
+                <a href="#" className="font-body text-[13px] sm:text-[14px] text-[rgba(255,255,255,0.60)] hover:text-primary-foreground transition-colors duration-200 inline-block">
                   {l}
                 </a>
               </li>
