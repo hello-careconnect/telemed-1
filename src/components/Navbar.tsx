@@ -1,22 +1,24 @@
 import { useState, useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
 import { Logo } from './Logo';
-import { Menu, X, ArrowRight } from 'lucide-react';
+import { Menu, ArrowUpRight } from 'lucide-react';
+import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
 
 const navLinks = [
-  { label: 'How it Works', id: 'how-it-works' },
-  { label: 'For Doctors',  id: 'doctor-section' },
-  { label: 'About',        id: 'about' },
+  { label: 'For Patients',  href: '#how-it-works' },
+  { label: 'For Doctors',   href: '#doctor-section' },
+  { label: 'For Hospitals', href: '#hospital-section' },
+  { label: 'How it Works',  href: '#how-it-works' },
 ];
 
 export const Navbar = () => {
+  const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
 
-  // Lock body scroll when menu is open
   useEffect(() => {
-    document.body.style.overflow = open ? 'hidden' : '';
-    return () => { document.body.style.overflow = ''; };
-  }, [open]);
+    const onScroll = () => setScrolled(window.scrollY > 12);
+    window.addEventListener('scroll', onScroll, { passive: true });
+    return () => window.removeEventListener('scroll', onScroll);
+  }, []);
 
   const scrollTo = (id: string) => {
     setOpen(false);
@@ -25,135 +27,86 @@ export const Navbar = () => {
     }, 300);
   };
 
-  const scrollToForm = () => scrollTo('waitlist-form');
+  const scrollToForm = () => {
+    setOpen(false);
+    setTimeout(() => {
+      document.getElementById('waitlist-form')?.scrollIntoView({ behavior: 'smooth' });
+    }, 300);
+  };
 
   return (
-    <>
-      {/* Floating pill wrapper */}
-      <div className="fixed top-0 left-0 right-0 z-50 flex justify-center px-4 pt-4">
-        <nav
-          className="w-full max-w-[1100px] flex items-center justify-between rounded-full px-3 py-2 bg-background/95 backdrop-blur-md border border-border"
-        >
-          <div className="pl-2">
-            <Logo size={28} />
-          </div>
+    <nav className="fixed top-4 left-1/2 -translate-x-1/2 z-50 w-[calc(100%-2rem)] md:w-[calc(100%-1rem)] lg:w-[calc(100%-2rem)] max-w-[1140px] transition-all duration-300">
+      <div className={`px-4 md:px-4 lg:px-6 py-3 flex items-center justify-between transition-all duration-300 ${
+        scrolled
+          ? 'rounded-full bg-background/95 backdrop-blur-md border border-border shadow-sm'
+          : 'rounded-none bg-transparent border-transparent'
+      }`}>
+        <div className="shrink-0">
+          <Logo size={28} />
+        </div>
 
-          {/* Desktop nav links */}
-          <div className="hidden md:flex items-center gap-1">
+        {/* Desktop nav links — centered liquid-glass pill */}
+        <div className="hidden md:flex flex-1 items-center justify-center px-3 min-w-0">
+          <div className="flex items-center gap-0.5 lg:gap-1 max-w-full">
             {navLinks.map((link) => (
-              <button
-                key={link.id}
-                onClick={() => scrollTo(link.id)}
-                className="px-4 py-2 rounded-full text-[14px] font-medium font-body text-text-body hover:text-text-primary hover:bg-surface transition-all duration-150"
+              <a
+                key={link.label}
+                href={link.href}
+                className="whitespace-nowrap text-[15px] lg:text-[17px] font-semibold font-body text-text-body hover:text-text-primary transition-colors duration-150 px-2 lg:px-3 py-1.5 rounded-full hover:bg-primary/5"
               >
                 {link.label}
-              </button>
+              </a>
             ))}
           </div>
+        </div>
 
-          {/* Desktop actions */}
-          <div className="hidden md:flex items-center gap-2 pr-1">
-            <button className="px-4 py-2 rounded-full text-[14px] font-medium font-body text-text-body hover:text-text-primary hover:bg-surface transition-all duration-150">
-              Sign in
-            </button>
-            <button
-              onClick={scrollToForm}
-              className="rounded-full bg-primary text-primary-foreground px-5 py-2 text-[14px] font-semibold font-body hover:bg-primary-dark transition-all duration-150 shadow-teal-glow"
-            >
-              Join Waitlist
-            </button>
-          </div>
-
-          {/* Mobile toggle */}
-          <button
-            aria-label={open ? 'Close menu' : 'Open menu'}
-            onClick={() => setOpen((v) => !v)}
-            className="md:hidden w-9 h-9 flex items-center justify-center rounded-full text-text-body hover:bg-surface transition-colors"
-          >
-            <AnimatePresence mode="wait" initial={false}>
-              {open ? (
-                <motion.span
-                  key="close"
-                  initial={{ rotate: -90, opacity: 0 }}
-                  animate={{ rotate: 0, opacity: 1 }}
-                  exit={{ rotate: 90, opacity: 0 }}
-                  transition={{ duration: 0.18 }}
-                >
-                  <X className="w-5 h-5" />
-                </motion.span>
-              ) : (
-                <motion.span
-                  key="menu"
-                  initial={{ rotate: 90, opacity: 0 }}
-                  animate={{ rotate: 0, opacity: 1 }}
-                  exit={{ rotate: -90, opacity: 0 }}
-                  transition={{ duration: 0.18 }}
-                >
-                  <Menu className="w-5 h-5" />
-                </motion.span>
-              )}
-            </AnimatePresence>
+        {/* Desktop actions */}
+        <div className="hidden md:flex shrink-0 items-center gap-2 lg:gap-3">
+          <button className="whitespace-nowrap text-[16px] lg:text-[17px] font-semibold font-body text-text-body hover:text-text-primary transition-colors duration-150">
+            Log in
           </button>
-        </nav>
-      </div>
-
-      {/* Full-screen mobile overlay */}
-      <AnimatePresence>
-        {open && (
-          <motion.div
-            key="mobile-nav"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.22 }}
-            className="fixed inset-0 z-40 md:hidden bg-background/95 backdrop-blur-md flex flex-col pt-20"
+          <button
+            onClick={scrollToForm}
+            className="whitespace-nowrap bg-primary text-primary-foreground rounded-full px-4 lg:px-5 py-2 text-[17px] lg:text-[17px] font-semibold font-body hover:bg-primary-dark transition-all duration-200 shadow-teal-glow hover:-translate-y-px flex items-center gap-1 lg:gap-1.5"
           >
-            {/* Nav links */}
-            <div className="flex-1 flex flex-col items-center justify-center gap-1 px-8">
-              {navLinks.map((link, i) => (
-                <motion.button
-                  key={link.id}
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: 10 }}
-                  transition={{ delay: i * 0.07 + 0.08, duration: 0.28 }}
-                  onClick={() => scrollTo(link.id)}
-                  className="w-full text-center text-[28px] font-heading font-bold text-text-primary hover:text-primary transition-colors duration-150 py-4 border-b border-border/50 last:border-none"
+            Join Waitlist <ArrowUpRight className="w-3 h-3 lg:w-3.5 lg:h-3.5" />
+          </button>
+        </div>
+
+        {/* Mobile hamburger — Sheet drawer */}
+        <Sheet open={open} onOpenChange={setOpen}>
+          <SheetTrigger asChild className="md:hidden">
+            <button aria-label="Open menu" className="text-text-primary">
+              <Menu className="w-6 h-6" />
+            </button>
+          </SheetTrigger>
+          <SheetContent side="right" className="bg-background w-80 p-6 pt-14 flex flex-col border-l border-border">
+            <div className="flex flex-col gap-0">
+              {navLinks.map((link) => (
+                <a
+                  key={link.label}
+                  href={link.href}
+                  onClick={() => setOpen(false)}
+                  className="text-[17px] font-semibold font-body text-text-primary py-4 border-b border-border hover:text-primary transition-colors"
                 >
                   {link.label}
-                </motion.button>
+                </a>
               ))}
-
-              <motion.button
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: 10 }}
-                transition={{ delay: navLinks.length * 0.07 + 0.08, duration: 0.28 }}
-                className="w-full text-center text-[28px] font-heading font-bold text-text-primary hover:text-primary transition-colors duration-150 py-4"
-              >
-                Sign in
-              </motion.button>
+              <button className="text-[17px] font-semibold font-body text-text-primary py-4 border-b border-border text-left hover:text-primary transition-colors">
+                Log in
+              </button>
             </div>
-
-            {/* CTA pinned to bottom */}
-            <motion.div
-              initial={{ opacity: 0, y: 16 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: 16 }}
-              transition={{ delay: 0.32, duration: 0.28 }}
-              className="px-8 pb-12"
-            >
+            <div className="mt-auto">
               <button
                 onClick={scrollToForm}
-                className="w-full bg-text-primary text-white rounded-full py-4 text-[17px] font-semibold font-body flex items-center justify-center gap-2 hover:opacity-90 transition-all duration-200"
+                className="w-full bg-primary text-primary-foreground rounded-full py-4 text-[16px] font-semibold font-body shadow-teal-glow flex items-center justify-center gap-2"
               >
-                Join the Waitlist
-                <ArrowRight className="w-4 h-4" />
+                Join Waitlist <ArrowUpRight className="w-4 h-4" />
               </button>
-            </motion.div>
-          </motion.div>
-        )}
-      </AnimatePresence>
-    </>
+            </div>
+          </SheetContent>
+        </Sheet>
+      </div>
+    </nav>
   );
 };

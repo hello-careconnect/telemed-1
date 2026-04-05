@@ -23,15 +23,15 @@ interface Feature {
 }
 
 const patientFeatures: Feature[] = [
-  { icon: Video,         title: '24/7 Video Consultation',  description: 'Encrypted calls with verified doctors any time. Prescription issued immediately after.', screen: <PatientScreen_VideoConsult /> },
-  { icon: Brain,         title: 'AI Doctor Matching',       description: 'Describe symptoms in Bangla or English — AI finds the right specialist for you.', screen: <PatientScreen_AIMatching /> },
-  { icon: CalendarCheck, title: 'Instant Booking',          description: 'Pick your slot, pay via bKash or Nagad, confirmed in under 2 minutes.', screen: <PatientScreen_InstantBooking /> },
-  { icon: MapPin,        title: 'Nearby Hospitals',         description: 'Verified clinics sorted by distance with real-time hours and directions.', screen: <PatientScreen_NearbyHospitals /> },
-  { icon: Star,          title: 'Transparent Reviews',      description: 'Verified ratings from real appointments so you can choose with confidence.', screen: <PatientScreen_Reviews /> },
-  { icon: FolderHeart,   title: 'Health Records',           description: 'Prescriptions, labs, and notes in one secure place. Share with any doctor.', screen: <PatientScreen_HealthRecords /> },
-  { icon: Navigation,    title: 'Closest Doctor',           description: 'Find who is nearest and available right now, sorted by your location.', screen: <PatientScreen_ClosestDoctor /> },
-  { icon: FileText,      title: 'Digital Prescriptions',    description: 'Download as PDF or order medicines directly from the app.', screen: <PatientScreen_Prescription /> },
-  { icon: Activity,      title: 'AI Health Analysis',       description: 'Patterns across your appointments surfaced as insights. Available in Bangla.', screen: <PatientScreen_AIAnalysis /> },
+  { icon: Video,         title: '24/7 Video Consultation',     description: 'Connect with a licensed doctor any time of day or night from your phone or laptop. No travel, no waiting rooms. Encrypted video calls with digital prescriptions issued immediately after.', screen: <PatientScreen_VideoConsult /> },
+  { icon: Brain,         title: 'AI-Powered Doctor Matching',  description: 'Describe your symptoms in plain Bangla or English. Our system matches you with the right specialist based on your condition, location, and doctor success rates with similar cases.', screen: <PatientScreen_AIMatching /> },
+  { icon: CalendarCheck, title: 'Instant Booking',             description: 'Book an in-person visit or video consultation in under 2 minutes. Pick your slot, confirm payment via bKash or Nagad, and receive your booking instantly.', screen: <PatientScreen_InstantBooking /> },
+  { icon: MapPin,        title: 'Search Nearby Hospitals',     description: 'Find verified hospitals and clinics within your area. Filter by specialty, distance, availability, and patient ratings. See real-time opening hours and get turn-by-turn directions.', screen: <PatientScreen_NearbyHospitals /> },
+  { icon: Star,          title: 'Transparent and Real Reviews',description: 'Read verified patient reviews from real appointments. Star ratings, full review text, and doctor response rates, so you can choose with confidence.', screen: <PatientScreen_Reviews /> },
+  { icon: FolderHeart,   title: 'Access to Health Records',    description: 'All your prescriptions, lab reports, and consultation notes in one secure place. Share records with any doctor in seconds. Your medical history travels with you.', screen: <PatientScreen_HealthRecords /> },
+  { icon: Navigation,    title: 'Closest Doctor Sorting',      description: 'See doctors sorted by distance from your current location. No more calling 10 clinics. Find who is nearest and available right now.', screen: <PatientScreen_ClosestDoctor /> },
+  { icon: FileText,      title: 'Digital Prescriptions',       description: 'Receive a verified digital prescription after every consultation. Download as PDF, share with any pharmacy, or order medicines directly from the app.', screen: <PatientScreen_Prescription /> },
+  { icon: Activity,      title: 'AI Health Data Analysis',     description: 'Our system monitors patterns in your health data across appointments. Surface insights your doctors need to see. Available in Bangla and English.', screen: <PatientScreen_AIAnalysis /> },
 ];
 
 // Slight random-ish rotations per card for a natural floating feel
@@ -74,13 +74,14 @@ const FloatingCard = ({
         animate={{
           scale: isActive ? 1.07 : 0.93,
           opacity: isActive ? 1 : 0.32,
-          x: isActive ? (align === 'left' ? 10 : -10) : 0,
+          x: isActive ? (align === 'left' ? -16 : 16) : 0,
           rotateZ: rotZ,
           rotateY: align === 'left' ? (isActive ? -2 : -10) : (isActive ? 2 : 10),
         }}
         transition={{ duration: 0.45, ease: [0.25, 0.46, 0.45, 0.94] }}
-        className="w-[160px] rounded-[18px] p-4 cursor-pointer select-none bg-background"
+        className="rounded-[18px] p-4 cursor-pointer select-none bg-background"
         style={{
+          width: isActive ? 170 : 160,
           boxShadow: isActive
             ? '0 8px 24px rgba(10,158,138,0.28), 0 2px 6px rgba(10,158,138,0.15)'
             : '0 4px 12px rgba(10,158,138,0.12), 0 1px 4px rgba(10,158,138,0.07)',
@@ -227,13 +228,13 @@ export const PatientJourney = () => {
       >
         <div className="bg-soft-img flex flex-col items-center py-8">
           {/* Header */}
-          <div ref={headerRef} className="text-center shrink-0 mb-4">
-            <span className="inline-flex items-center text-primary rounded-full font-medium font-body">
-              How it works
-            </span>
+          <div ref={headerRef} className="text-center shrink-0 mb-16">
             <h2 className="font-heading font-bold text-[32px] sm:text-[38px] text-text-primary leading-tight">
               Everything you need, in one place
             </h2>
+            <p className="mt-3 font-body font-light text-[18px] text-text-body/60">
+              From finding the right doctor to managing your health, CareConnect handles it all.
+            </p>
           </div>
 
           {/* Cards + Phone */}
@@ -369,7 +370,7 @@ const MobilePatientJourney = () => {
       <div className="flex justify-center">
         <div
           className="origin-top scale-[0.72] sm:scale-[0.82]"
-          style={{ marginBottom: `${-620 * 0.28}px` }}
+          style={{ marginBottom: `${-580 * 0.28}px` }}
         >
           <PhoneFrame screenKey={active}>
             {patientFeatures[active].screen}

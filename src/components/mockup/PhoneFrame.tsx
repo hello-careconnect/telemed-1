@@ -9,115 +9,39 @@ interface PhoneFrameProps {
 
 export const PhoneFrame = ({ children, screenKey, className = '' }: PhoneFrameProps) => {
   return (
-    <div className={`relative select-none ${className}`} style={{ width: 288, flexShrink: 0 }}>
+    <div className={`relative select-none ${className}`} style={{ width: 280, flexShrink: 0 }}>
+      <div style={{ position: 'absolute', left: -3, top: 100, width: 3, height: 32, borderRadius: '3px 0 0 3px', background: 'linear-gradient(180deg, #2a3a3a 0%, #1a2a2a 50%, #2a3a3a 100%)' }} />
+      <div style={{ position: 'absolute', left: -3, top: 140, width: 3, height: 32, borderRadius: '3px 0 0 3px', background: 'linear-gradient(180deg, #2a3a3a 0%, #1a2a2a 50%, #2a3a3a 100%)' }} />
+      <div style={{ position: 'absolute', left: -3, top: 64, width: 3, height: 20, borderRadius: '3px 0 0 3px', background: 'linear-gradient(180deg, #2a3a3a 0%, #1a2a2a 50%, #2a3a3a 100%)' }} />
+      <div style={{ position: 'absolute', right: -3, top: 110, width: 3, height: 56, borderRadius: '0 3px 3px 0', background: 'linear-gradient(180deg, #2a3a3a 0%, #1a2a2a 50%, #2a3a3a 100%)' }} />
 
-      {/* ── Left buttons ── */}
-
-      {/* Action button */}
       <div style={{
-        position: 'absolute', left: -5, top: 104,
-        width: 5, height: 34,
-        borderRadius: '6px 0 0 6px',
-        background: 'linear-gradient(90deg, #2a2a2c, #1c1c1e)',
-        boxShadow: '-1px 0 2px rgba(0,0,0,0.18)',
-      }} />
-
-      {/* Volume up */}
-      <div style={{
-        position: 'absolute', left: -5, top: 156,
-        width: 5, height: 62,
-        borderRadius: '6px 0 0 6px',
-        background: 'linear-gradient(90deg, #2a2a2c, #1c1c1e)',
-        boxShadow: '-1px 0 2px rgba(0,0,0,0.18)',
-      }} />
-
-      {/* Volume down */}
-      <div style={{
-        position: 'absolute', left: -5, top: 232,
-        width: 5, height: 62,
-        borderRadius: '6px 0 0 6px',
-        background: 'linear-gradient(90deg, #2a2a2c, #1c1c1e)',
-        boxShadow: '-1px 0 2px rgba(0,0,0,0.18)',
-      }} />
-
-      {/* ── Right buttons ── */}
-
-      {/* Side / power button */}
-      <div style={{
-        position: 'absolute', right: -5, top: 180,
-        width: 5, height: 92,
-        borderRadius: '0 6px 6px 0',
-        background: 'linear-gradient(270deg, #2a2a2c, #1c1c1e)',
-        boxShadow: '1px 0 2px rgba(0,0,0,0.18)',
-      }} />
-
-
-{/* ── Main body ── */}
-      <div style={{
-        width: 288,
-        height: 620,
-        borderRadius: 44,
-        background: '#111113',
-        boxShadow: `
-          0 0 0 1.5px rgba(255,255,255,0.10),
-          0 0 0 2.5px rgba(0,0,0,0.9),
-          0 12px 24px rgba(0,0,0,0.12),
-          0 4px 10px rgba(0,0,0,0.08),
-          inset 0 1px 0 rgba(255,255,255,0.14)
-        `,
-        padding: 3,
-        position: 'relative',
-        boxSizing: 'border-box',
+        width: 280, height: 580, borderRadius: 48,
+        background: 'linear-gradient(160deg, #1e2e2e 0%, #0d1b1e 40%, #0a1518 100%)',
+        boxShadow: '0 40px 100px rgba(0,0,0,0.50), 0 0 0 1px rgba(255,255,255,0.08), inset 0 1px 0 rgba(255,255,255,0.12), inset 0 -1px 0 rgba(0,0,0,0.30)',
+        padding: 7, position: 'relative',
       }}>
-
-        {/* Screen glass */}
         <div style={{
-          width: '100%',
-          height: '100%',
-          borderRadius: 41,
-          overflow: 'hidden',
-          background: 'hsl(var(--background))',
-          position: 'relative',
+          width: '100%', height: '100%', borderRadius: 42, overflow: 'hidden',
+          background: 'hsl(var(--background))', position: 'relative',
+          boxShadow: 'inset 0 0 0 1px rgba(255,255,255,0.06)',
         }}>
-
-          {/* Screen content */}
           <AnimatePresence mode="wait">
             <motion.div
               key={screenKey}
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              transition={{ duration: 0.3, ease: 'easeInOut' }}
+              initial={{ opacity: 0, y: 16 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -16 }}
+              transition={{ duration: 0.32, ease: [0.25, 0.46, 0.45, 0.94] }}
               style={{ position: 'absolute', inset: 0 }}
             >
               {children}
             </motion.div>
           </AnimatePresence>
-
-          {/* Dynamic Island */}
           <div style={{
-            position: 'absolute',
-            top: 12,
-            left: '50%',
-            transform: 'translateX(-50%)',
-            width: 88,
-            height: 24,
-            borderRadius: 12,
-            background: '#000',
-            zIndex: 50,
-          }} />
-
-          {/* Home indicator */}
-          <div style={{
-            position: 'absolute',
-            bottom: 8,
-            left: '50%',
-            transform: 'translateX(-50%)',
-            width: 118,
-            height: 4,
-            borderRadius: 3,
-            background: 'rgba(0,0,0,0.18)',
-            zIndex: 50,
+            position: 'absolute', top: 0, left: 0, width: '60%', height: '40%',
+            background: 'linear-gradient(135deg, rgba(255,255,255,0.04) 0%, transparent 60%)',
+            borderRadius: '42px 0 0 0', pointerEvents: 'none', zIndex: 40,
           }} />
         </div>
       </div>

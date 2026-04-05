@@ -23,12 +23,8 @@ export const HospitalJourney = () => {
 
   return (
     <section id="hospital-section" className="relative py-10 sm:py-14 lg:py-16 bg-dark-bg">
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <video autoPlay loop muted playsInline preload="auto" className="w-full h-full object-cover opacity-15" src="/videos/mockup-bg.mp4" />
-        <div className="absolute inset-0 bg-gradient-to-b from-dark-bg via-dark-bg/30 to-dark-bg" />
-      </div>
       <div className="relative z-10 container max-w-[1140px] mx-auto px-6">
-        <div className="max-w-xl mx-auto text-center mb-10">
+        <div className="mx-auto text-center mb-10">
           <span className="inline-flex items-center bg-[rgba(255,255,255,0.08)] text-dark-text rounded-full px-4 py-1.5 text-[13px] font-medium font-body border border-[rgba(255,255,255,0.1)]">
             For Hospitals and Clinics
           </span>
@@ -40,7 +36,7 @@ export const HospitalJourney = () => {
           </p>
         </div>
 
-        <div className="hidden lg:grid" style={{ gridTemplateColumns: '1fr 1fr', gap: 80, alignItems: 'start' }}>
+        <div className="hidden lg:grid" style={{ gridTemplateColumns: '1fr 1fr', gap: 24, alignItems: 'start' }}>
           <div className="space-y-4">
             {hospitalFeatures.map((f, i) => (
               <FeatureRow
