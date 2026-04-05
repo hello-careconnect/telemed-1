@@ -124,7 +124,8 @@ export const PatientJourney = () => {
   const [activeFeature, setActiveFeature] = useState(0);
   const activeRef = useRef(0);        // non-reactive mirror for wheel handler
   const lockingRef = useRef(false);   // true while we own the scroll
-  const cooldownRef = useRef(false);  // debounce between steps
+  const accDeltaRef = useRef(0);      // accumulated deltaY across trackpad events
+  const steppingRef = useRef(false);  // true during post-step settling window
 
   // Sync ref with state
   useEffect(() => { activeRef.current = activeFeature; }, [activeFeature]);
@@ -138,49 +139,71 @@ export const PatientJourney = () => {
       const rect = section.getBoundingClientRect();
       const viewH = window.innerHeight;
 
-      const dir = e.deltaY > 0 ? 1 : -1;
-
-      // Activate when section substantially dominates the viewport
-      // (works even when section is taller than viewport, e.g. on MacBook screens)
       const inView = rect.top < viewH * 0.2 && rect.bottom > viewH * 0.7;
 
-      // Release lock and reset to first feature when section leaves the viewport
       if (!inView) {
         lockingRef.current = false;
-        if (activeRef.current !== 0) {
-          activeRef.current = 0;
-          setActiveFeature(0);
-          cooldownRef.current = false;
-        }
+        accDeltaRef.current = 0;
         return;
       }
 
       const cur = activeRef.current;
+      // Accumulate delta — handles both mouse (single large event) and trackpad (many small events)
+      accDeltaRef.current += e.deltaY;
+      const dir = accDeltaRef.current > 0 ? 1 : -1;
+      const THRESHOLD = 80; // px to accumulate before stepping
 
       // At first feature scrolling up, or last feature scrolling down → release scroll
       if ((cur === 0 && dir < 0) || (cur === patientFeatures.length - 1 && dir > 0)) {
         lockingRef.current = false;
+        accDeltaRef.current = 0;
         return;
       }
 
-      // Always prevent default while we're in the feature list — even during cooldown
       e.preventDefault();
       lockingRef.current = true;
 
-      // Only step once per cooldown window
-      if (cooldownRef.current) return;
-      cooldownRef.current = true;
+      // Haven't built up enough scroll intent yet
+      if (Math.abs(accDeltaRef.current) < THRESHOLD) return;
+
+      // Post-step settling: eat remaining momentum events without stepping again
+      if (steppingRef.current) {
+        accDeltaRef.current = 0;
+        return;
+      }
+
+      steppingRef.current = true;
+      accDeltaRef.current = 0;
 
       const next = Math.max(0, Math.min(patientFeatures.length - 1, cur + dir));
       activeRef.current = next;
       setActiveFeature(next);
 
-      setTimeout(() => { cooldownRef.current = false; }, 500);
+      // Settling window — long enough to absorb trackpad momentum
+      setTimeout(() => { steppingRef.current = false; }, 600);
     };
 
-    // Listen on window so we catch scroll even before the section is fully in view
+    // IntersectionObserver handles reset cleanly — decoupled from wheel events
+    // so there's no race between a queued setActiveFeature(0) and in-view stepping
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (!entry.isIntersecting) {
+          activeRef.current = 0;
+          setActiveFeature(0);
+          steppingRef.current = false;
+          accDeltaRef.current = 0;
+          lockingRef.current = false;
+        }
+      },
+      { threshold: 0.05 }
+    );
+    observer.observe(section);
+
     window.addEventListener('wheel', handleWheel, { passive: false });
-    return () => window.removeEventListener('wheel', handleWheel);
+    return () => {
+      window.removeEventListener('wheel', handleWheel);
+      observer.disconnect();
+    };
   }, []);
 
   const handleCardClick = (idx: number) => {
