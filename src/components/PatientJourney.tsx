@@ -63,7 +63,7 @@ const FloatingCard = ({
     <div style={{ perspective: '700px' }}>
       {/* Outer layer: continuous float — runs independently of active state */}
       <motion.div
-        animate={{ y: [0, -10, 0] }}
+        animate={{ y: [0, -6, 0] }}
         transition={{
           y: { duration: floatDuration, repeat: Infinity, ease: 'easeInOut', delay: floatDelay },
         }}
@@ -74,12 +74,12 @@ const FloatingCard = ({
         animate={{
           scale: isActive ? 1.07 : 0.93,
           opacity: isActive ? 1 : 0.32,
-          x: isActive ? (align === 'left' ? 16 : -16) : 0,
+          x: isActive ? (align === 'left' ? 10 : -10) : 0,
           rotateZ: rotZ,
           rotateY: align === 'left' ? (isActive ? -2 : -10) : (isActive ? 2 : 10),
         }}
         transition={{ duration: 0.45, ease: [0.25, 0.46, 0.45, 0.94] }}
-        className="w-[168px] rounded-[18px] p-4 cursor-pointer select-none bg-background"
+        className="w-[160px] rounded-[18px] p-4 cursor-pointer select-none bg-background"
         style={{
           boxShadow: isActive
             ? '0 8px 24px rgba(10,158,138,0.28), 0 2px 6px rgba(10,158,138,0.15)'
@@ -118,34 +118,61 @@ const FloatingCard = ({
 
 // ─── Main section ─────────────────────────────────────────────────────────────
 export const PatientJourney = () => {
-  const sectionRef = useRef<HTMLElement>(null);
+  const sectionRef = useRef<HTMLDivElement>(null);
   const [activeFeature, setActiveFeature] = useState(0);
-  const manualRef = useRef(false);
+  const activeRef = useRef(0);        // non-reactive mirror for wheel handler
+  const lockingRef = useRef(false);   // true while we own the scroll
+  const cooldownRef = useRef(false);  // debounce between steps
 
-  // Map scroll progress within the tall section → active feature index
+  // Sync ref with state
+  useEffect(() => { activeRef.current = activeFeature; }, [activeFeature]);
+
+  // Wheel-driven stepping: one feature per scroll gesture
   useEffect(() => {
-    const handleScroll = () => {
-      if (manualRef.current || !sectionRef.current) return;
-      const rect = sectionRef.current.getBoundingClientRect();
-      const scrollable = sectionRef.current.offsetHeight - (window.innerHeight - 72);
-      const scrolled = Math.max(0, -rect.top);
-      const progress = Math.min(1, scrolled / scrollable);
-      const idx = Math.min(
-        patientFeatures.length - 1,
-        Math.floor(progress * patientFeatures.length),
-      );
-      setActiveFeature(idx);
+    const section = sectionRef.current;
+    if (!section) return;
+
+    const handleWheel = (e: WheelEvent) => {
+      const rect = section.getBoundingClientRect();
+      const viewH = window.innerHeight;
+
+      // Activate when section top has scrolled near the navbar
+      const inView = rect.top <= viewH * 0.4 && rect.bottom > viewH * 0.3;
+
+      if (!inView && !lockingRef.current) return;
+
+      const cur = activeRef.current;
+      const dir = e.deltaY > 0 ? 1 : -1;
+
+      // At first feature scrolling up, or last feature scrolling down → release scroll
+      if ((cur === 0 && dir < 0) || (cur === patientFeatures.length - 1 && dir > 0)) {
+        lockingRef.current = false;
+        return;
+      }
+
+      // Always prevent default while we're in the feature list — even during cooldown
+      e.preventDefault();
+      lockingRef.current = true;
+
+      // Only step once per cooldown window
+      if (cooldownRef.current) return;
+      cooldownRef.current = true;
+
+      const next = Math.max(0, Math.min(patientFeatures.length - 1, cur + dir));
+      activeRef.current = next;
+      setActiveFeature(next);
+
+      setTimeout(() => { cooldownRef.current = false; }, 500);
     };
 
-    window.addEventListener('scroll', handleScroll, { passive: true });
-    handleScroll();
-    return () => window.removeEventListener('scroll', handleScroll);
+    // Listen on window so we catch scroll even before the section is fully in view
+    window.addEventListener('wheel', handleWheel, { passive: false });
+    return () => window.removeEventListener('wheel', handleWheel);
   }, []);
 
   const handleCardClick = (idx: number) => {
-    manualRef.current = true;
+    activeRef.current = idx;
     setActiveFeature(idx);
-    setTimeout(() => { manualRef.current = false; }, 700);
   };
 
   const leftFeatures  = patientFeatures.slice(0, 5);
@@ -156,19 +183,15 @@ export const PatientJourney = () => {
       {/* Shared scroll target — scrollMarginTop offsets the fixed navbar */}
       <div id="how-it-works" style={{ scrollMarginTop: '72px' }} />
 
-      {/* ── Desktop: scroll-jacked sticky view ─────────────────────────────── */}
+      {/* ── Desktop: wheel-stepped view ───────────────────────────────────── */}
       <section
         ref={sectionRef}
         id="patient-section"
-        className="relative hidden lg:block"
-        style={{ height: `${patientFeatures.length * 420 + 200}px` }}
+        className="hidden lg:block"
       >
-        <div
-          className="bg-background flex flex-col"
-          style={{ position: 'sticky', top: 72, height: 'calc(100vh - 72px)' }}
-        >
+        <div className="bg-background flex flex-col items-center py-8">
           {/* Header */}
-          <div className="text-center pt-3 pb-3 shrink-0">
+          <div className="text-center shrink-0 mb-4">
             <span className="inline-flex items-center text-primary rounded-full font-medium font-body">
               How it works
             </span>
@@ -177,8 +200,8 @@ export const PatientJourney = () => {
             </h2>
           </div>
 
-          {/* Cards + Phone — absolutely scattered within max-w container */}
-          <div className="relative flex-1 w-full max-w-[1140px] mx-auto px-8 pb-6">
+          {/* Cards + Phone */}
+          <div className="relative w-full max-w-[1140px] mx-auto px-8" style={{ height: 640 }}>
 
             {/* Phone — centered */}
             <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-10">
@@ -187,49 +210,48 @@ export const PatientJourney = () => {
               </PhoneFrame>
             </div>
 
-            {/* Left cards — outer edge ↔ inner edge alternation, irregular vertical gaps */}
-            {([
-              { top: '4%',  left: 0   },
-              { top: '21%', left: 150 },
-              { top: '43%', left: 10  },
-              { top: '60%', left: 145 },
-              { top: '80%', left: 5   },
-            ] as const).map((pos, i) => (
-              <div key={i} style={{ position: 'absolute', top: pos.top, left: pos.left, zIndex: activeFeature === i ? 20 : 1 }}>
-                <FloatingCard
-                  feature={leftFeatures[i]}
-                  index={i}
-                  isActive={activeFeature === i}
-                  align="left"
-                  onClick={() => handleCardClick(i)}
-                />
-              </div>
-            ))}
-
-            {/* Right cards — same outer ↔ inner pattern, offset phase */}
-            {([
-              { top: '7%',  right: 5   },
-              { top: '26%', right: 140 },
-              { top: '50%', right: 0   },
-              { top: '71%', right: 135 },
-            ] as const).map((pos, i) => {
-              const globalIdx = i + 5;
-              return (
-                <div key={globalIdx} style={{ position: 'absolute', top: pos.top, right: pos.right, zIndex: activeFeature === globalIdx ? 20 : 1 }}>
+            {/* Left cards — flex column, naturally packed, close to phone */}
+            <div
+              className="absolute flex flex-col gap-5"
+              style={{ left: 200, top: '50%', transform: 'translateY(-50%)' }}
+            >
+              {leftFeatures.map((feature, i) => (
+                <div key={i} style={{ marginLeft: i % 2 === 0 ? 0 : 36, zIndex: activeFeature === i ? 20 : 1 }}>
                   <FloatingCard
-                    feature={rightFeatures[i]}
-                    index={globalIdx}
-                    isActive={activeFeature === globalIdx}
-                    align="right"
-                    onClick={() => handleCardClick(globalIdx)}
+                    feature={feature}
+                    index={i}
+                    isActive={activeFeature === i}
+                    align="left"
+                    onClick={() => handleCardClick(i)}
                   />
                 </div>
-              );
-            })}
+              ))}
+            </div>
+
+            {/* Right cards — flex column, naturally packed, close to phone */}
+            <div
+              className="absolute flex flex-col gap-5"
+              style={{ right: 200, top: '50%', transform: 'translateY(-50%)' }}
+            >
+              {rightFeatures.map((feature, i) => {
+                const globalIdx = i + 5;
+                return (
+                  <div key={globalIdx} style={{ marginRight: i % 2 === 0 ? 0 : 36, zIndex: activeFeature === globalIdx ? 20 : 1 }}>
+                    <FloatingCard
+                      feature={rightFeatures[i]}
+                      index={globalIdx}
+                      isActive={activeFeature === globalIdx}
+                      align="right"
+                      onClick={() => handleCardClick(globalIdx)}
+                    />
+                  </div>
+                );
+              })}
+            </div>
           </div>
 
-          {/* Progress dots — centered under the phone */}
-          <div className="flex items-center justify-center gap-2.5 pb-6 shrink-0 relative z-30">
+          {/* Progress dots — directly under the phone */}
+          <div className="flex items-center justify-center gap-2.5 py-3 shrink-0 relative z-30">
             {patientFeatures.map((_, i) => (
               <button
                 key={i}
