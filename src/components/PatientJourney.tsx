@@ -140,12 +140,18 @@ export const PatientJourney = () => {
 
       const dir = e.deltaY > 0 ? 1 : -1;
 
-      // Activate only when the whole section is visible in the viewport
-      const inView = rect.top >= 0 && rect.bottom <= viewH;
+      // Activate when section substantially dominates the viewport
+      // (works even when section is taller than viewport, e.g. on MacBook screens)
+      const inView = rect.top < viewH * 0.2 && rect.bottom > viewH * 0.7;
 
-      // Release lock immediately if section left the viewport
+      // Release lock and reset to first feature when section leaves the viewport
       if (!inView) {
         lockingRef.current = false;
+        if (activeRef.current !== 0) {
+          activeRef.current = 0;
+          setActiveFeature(0);
+          cooldownRef.current = false;
+        }
         return;
       }
 
@@ -208,7 +214,7 @@ export const PatientJourney = () => {
           </div>
 
           {/* Cards + Phone */}
-          <div className="relative w-full max-w-[1140px] mx-auto px-8" style={{ height: 640 }}>
+          <div className="relative w-full max-w-[1140px] mx-auto px-8" style={{ height: 'min(640px, calc(100vh - 200px))' }}>
 
             {/* Phone — centered */}
             <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-10">
