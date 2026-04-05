@@ -93,6 +93,37 @@ export const FeatureRow = React.forwardRef<HTMLDivElement, FeatureRowProps>(
 
 FeatureRow.displayName = 'FeatureRow';
 
+export const MobileJourneyCard = ({ icon: Icon, title, description, isActive, onClick }: {
+  icon: LucideIcon;
+  title: string;
+  description: string;
+  isActive: boolean;
+  onClick: () => void;
+}) => (
+  <motion.div
+    onClick={onClick}
+    className={`w-[180px] flex-shrink-0 rounded-2xl p-4 cursor-pointer select-none transition-colors duration-200 ${
+      isActive
+        ? 'bg-primary/[0.06]'
+        : 'bg-surface'
+    }`}
+    animate={{ scale: isActive ? 1 : 0.95, opacity: isActive ? 1 : 0.6 }}
+    transition={{ duration: 0.25, ease: 'easeOut' }}
+  >
+    <div className={`inline-flex items-center justify-center w-8 h-8 rounded-xl mb-2 transition-colors duration-200 ${
+      isActive ? 'bg-primary text-primary-foreground' : 'bg-primary/10 text-primary'
+    }`}>
+      <Icon className="w-4 h-4" />
+    </div>
+    <h3 className={`font-heading font-semibold text-[14px] leading-snug transition-colors duration-200 ${
+      isActive ? 'text-text-primary' : 'text-text-body'
+    }`}>{title}</h3>
+    <p className="font-body text-[12px] leading-relaxed text-text-body mt-1.5">
+      {description}
+    </p>
+  </motion.div>
+);
+
 export const MobileFeatureCard = ({ icon: Icon, title, description, dark }: {
   icon: LucideIcon;
   title: string;

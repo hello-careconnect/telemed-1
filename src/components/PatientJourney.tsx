@@ -1,8 +1,8 @@
-import React, { useEffect, useRef, useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import React, { useCallback, useEffect, useRef, useState } from 'react';
+import { motion, AnimatePresence, useAnimationControls } from 'framer-motion';
 import { Video, MapPin, Brain, FolderHeart, Star, CalendarCheck, Navigation, FileText, Activity, type LucideIcon } from 'lucide-react';
 import { PhoneFrame } from './mockup/PhoneFrame';
-import { MobileFeatureCard } from './FeatureRow';
+import { MobileJourneyCard } from './FeatureRow';
 import {
   PatientScreen_VideoConsult,
   PatientScreen_NearbyHospitals,
@@ -119,6 +119,8 @@ const FloatingCard = ({
 // ─── Main section ─────────────────────────────────────────────────────────────
 export const PatientJourney = () => {
   const sectionRef = useRef<HTMLDivElement>(null);
+  const headerRef = useRef<HTMLDivElement>(null);
+  const dotsRef = useRef<HTMLDivElement>(null);
   const [activeFeature, setActiveFeature] = useState(0);
   const activeRef = useRef(0);        // non-reactive mirror for wheel handler
   const lockingRef = useRef(false);   // true while we own the scroll
@@ -136,13 +138,18 @@ export const PatientJourney = () => {
       const rect = section.getBoundingClientRect();
       const viewH = window.innerHeight;
 
-      // Activate when section top has scrolled near the navbar
-      const inView = rect.top <= viewH * 0.4 && rect.bottom > viewH * 0.3;
+      const dir = e.deltaY > 0 ? 1 : -1;
 
-      if (!inView && !lockingRef.current) return;
+      // Activate only when the whole section is visible in the viewport
+      const inView = rect.top >= 0 && rect.bottom <= viewH;
+
+      // Release lock immediately if section left the viewport
+      if (!inView) {
+        lockingRef.current = false;
+        return;
+      }
 
       const cur = activeRef.current;
-      const dir = e.deltaY > 0 ? 1 : -1;
 
       // At first feature scrolling up, or last feature scrolling down → release scroll
       if ((cur === 0 && dir < 0) || (cur === patientFeatures.length - 1 && dir > 0)) {
@@ -191,7 +198,7 @@ export const PatientJourney = () => {
       >
         <div className="bg-background flex flex-col items-center py-8">
           {/* Header */}
-          <div className="text-center shrink-0 mb-4">
+          <div ref={headerRef} className="text-center shrink-0 mb-4">
             <span className="inline-flex items-center text-primary rounded-full font-medium font-body">
               How it works
             </span>
@@ -251,7 +258,7 @@ export const PatientJourney = () => {
           </div>
 
           {/* Progress dots — directly under the phone */}
-          <div className="flex items-center justify-center gap-2.5 py-3 shrink-0 relative z-30">
+          <div ref={dotsRef} className="flex items-center justify-center gap-2.5 py-3 shrink-0 relative z-30">
             {patientFeatures.map((_, i) => (
               <button
                 key={i}
@@ -267,24 +274,121 @@ export const PatientJourney = () => {
         </div>
       </section>
 
-      {/* ── Mobile / tablet: normal scrolling grid ─────────────────────────── */}
-      <section id="patient-section-mobile" className="lg:hidden py-10 sm:py-14 bg-background">
-        <div className="container max-w-[1140px] mx-auto px-6">
-          <div className="max-w-xl mx-auto text-center mb-8">
-            <span className="inline-flex items-center bg-primary/[0.08] text-primary rounded-full px-4 py-1.5 text-[13px] font-medium font-body border border-primary/20">
-              For Patients
-            </span>
-            <h2 className="mt-3 font-heading font-bold text-[28px] sm:text-[34px] text-text-primary leading-tight">
-              Everything you need, in one place
-            </h2>
-          </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-            {patientFeatures.map((f, i) => (
-              <MobileFeatureCard key={i} icon={f.icon} title={f.title} description={f.description} />
-            ))}
-          </div>
-        </div>
-      </section>
+      {/* ── Mobile / tablet: phone + swipeable card strip ────────────────── */}
+      <MobilePatientJourney />
     </>
+  );
+};
+
+// ─── Mobile: phone mockup + swipeable card strip ─────────────────────────────
+const CARD_W = 180;
+const CARD_GAP = 12;
+
+const MobilePatientJourney = () => {
+  const [active, setActive] = useState(0);
+  const [autoplay, setAutoplay] = useState(true);
+  const pauseTimer = useRef<ReturnType<typeof setTimeout>>();
+  const stripControls = useAnimationControls();
+  const stripRef = useRef<HTMLDivElement>(null);
+  const isDragging = useRef(false);
+
+  // Auto-play: advance every 3.5s
+  useEffect(() => {
+    if (!autoplay) return;
+    const id = setInterval(() => {
+      setActive(prev => (prev + 1) % patientFeatures.length);
+    }, 3500);
+    return () => clearInterval(id);
+  }, [autoplay]);
+
+  // Pause auto-play on interaction, resume after 8s
+  const pauseAutoplay = useCallback(() => {
+    setAutoplay(false);
+    if (pauseTimer.current) clearTimeout(pauseTimer.current);
+    pauseTimer.current = setTimeout(() => setAutoplay(true), 8000);
+  }, []);
+
+  // Auto-scroll strip to keep active card centered
+  useEffect(() => {
+    const viewportW = stripRef.current?.parentElement?.clientWidth ?? 360;
+    const targetX = -(active * (CARD_W + CARD_GAP)) + (viewportW / 2 - CARD_W / 2);
+    const maxDrag = -(patientFeatures.length * (CARD_W + CARD_GAP) - viewportW);
+    const clamped = Math.min(0, Math.max(targetX, maxDrag));
+    if (!isDragging.current) {
+      stripControls.start({ x: clamped }, { duration: 0.4, ease: [0.25, 0.46, 0.45, 0.94] });
+    }
+  }, [active, stripControls]);
+
+  const handleCardClick = (idx: number) => {
+    setActive(idx);
+    pauseAutoplay();
+  };
+
+  return (
+    <section id="patient-section-mobile" className="lg:hidden py-10 bg-background" style={{ overflowX: 'clip' }}>
+      {/* Header */}
+      <div className="text-center mb-4 px-6">
+        <span className="inline-flex items-center text-primary rounded-full font-medium font-body">
+          How it works
+        </span>
+        <h2 className="font-heading font-bold text-[26px] sm:text-[32px] text-text-primary leading-tight">
+          Everything you need, in one place
+        </h2>
+      </div>
+
+      {/* Scaled phone mockup */}
+      <div className="flex justify-center">
+        <div
+          className="origin-top scale-[0.72] sm:scale-[0.82]"
+          style={{ marginBottom: `${-620 * 0.28}px` }}
+        >
+          <PhoneFrame screenKey={active}>
+            {patientFeatures[active].screen}
+          </PhoneFrame>
+        </div>
+      </div>
+
+      {/* Swipeable card strip */}
+      <div className="relative mt-2 px-4" ref={stripRef} style={{ overflowX: 'clip' }}>
+        <motion.div
+          drag="x"
+          dragConstraints={{
+            left: -(patientFeatures.length * (CARD_W + CARD_GAP) - (stripRef.current?.clientWidth ?? 340)),
+            right: 0,
+          }}
+          dragElastic={0.15}
+          onDragStart={() => { isDragging.current = true; pauseAutoplay(); }}
+          onDragEnd={() => { isDragging.current = false; }}
+          animate={stripControls}
+          className="flex gap-3 py-2"
+        >
+          {patientFeatures.map((f, i) => (
+            <MobileJourneyCard
+              key={i}
+              icon={f.icon}
+              title={f.title}
+              description={f.description}
+              isActive={active === i}
+              onClick={() => handleCardClick(i)}
+            />
+          ))}
+        </motion.div>
+      </div>
+
+      {/* Progress dots */}
+      <div className="flex items-center justify-center gap-2.5 py-3">
+        {patientFeatures.map((_, i) => (
+          <button
+            key={i}
+            onClick={() => handleCardClick(i)}
+            className={`rounded-full transition-all duration-300 ${
+              i === active
+                ? 'w-5 h-[5px] bg-primary'
+                : 'w-[5px] h-[5px] bg-border hover:bg-primary/40'
+            }`}
+          />
+        ))}
+      </div>
+    </section>
   );
 };
