@@ -96,8 +96,7 @@ export const HeroSection = () => {
             <span className="block">
               you can{' '}
               <span className="relative inline-block">
-                trust
-                <span className="text-primary">.</span>
+                trust.
               </span>
             </span>
           </h1>
