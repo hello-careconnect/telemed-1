@@ -102,8 +102,8 @@ export const HowItWorks = () => {
 
         {/* Header */}
         <div className="text-center max-w-2xl mx-auto mb-8 sm:mb-10">
-          <span className="inline-flex gap-x-2 items-center bg-accent text-primary rounded-full px-4 py-1.5 text-[13px] font-medium font-body">
-            <span className='bg-primary rounded-full text-white px-2 py-1'>New</span>Introducing AI-powered healthcare
+          <span className="inline-flex gap-x-2 items-center text-primary rounded-full text-sm font-medium font-body">
+            Introducing AI-powered healthcare
           </span>
           <h2 className="mt-3 font-heading font-bold text-[32px] sm:text-[40px] text-text-primary leading-[1.15]">
             How CareConnect{' '}

@@ -28,7 +28,7 @@ export const HospitalJourney = () => {
           <span className="inline-flex items-center bg-[rgba(255,255,255,0.08)] text-dark-text rounded-full px-4 py-1.5 text-[13px] font-medium font-body border border-[rgba(255,255,255,0.1)]">
             For Hospitals and Clinics
           </span>
-          <h2 className="mt-4 font-heading font-bold text-[32px] sm:text-[40px] text-dark-text leading-[1.15]">
+          <h2 className="mt-1 font-heading font-bold text-[32px] sm:text-[40px] text-dark-text leading-[1.15]">
             Run smarter operations from every touchpoint
           </h2>
           <p className="mt-3 font-body text-[18px] text-[rgba(255,255,255,0.6)]">
@@ -36,8 +36,8 @@ export const HospitalJourney = () => {
           </p>
         </div>
 
-        <div className="hidden lg:grid" style={{ gridTemplateColumns: '1fr 1fr', gap: 24, alignItems: 'start' }}>
-          <div className="space-y-4">
+        <div className="hidden lg:flex flex-row justify-center gap-3">
+          <div className="flex-1 space-y-4">
             {hospitalFeatures.map((f, i) => (
               <FeatureRow
                 key={i}
@@ -53,10 +53,12 @@ export const HospitalJourney = () => {
               />
             ))}
           </div>
-          <StickyPhoneMockup
-            activeScreen={hospitalFeatures[activeFeature].screen}
-            screenKey={activeFeature}
-          />
+          <div className="flex-1">
+            <StickyPhoneMockup
+              activeScreen={hospitalFeatures[activeFeature].screen}
+              screenKey={activeFeature}
+            />
+          </div>
         </div>
 
         <div className="lg:hidden space-y-4">

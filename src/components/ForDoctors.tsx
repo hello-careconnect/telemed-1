@@ -26,7 +26,7 @@ export const ForDoctors = () => {
           <span className="inline-flex items-center bg-[rgba(255,255,255,0.08)] text-accent-alt rounded-full px-4 py-1.5 text-[13px] font-medium font-body">
             For Healthcare Professionals
           </span>
-          <h2 className="mt-6 font-heading font-bold text-[36px] sm:text-[42px] text-dark-text leading-[1.1]">
+          <h2 className="mt-1 font-heading font-bold text-[36px] sm:text-[42px] text-dark-text leading-[1.1]">
             Are you a doctor?<br />
             <span className="font-display text-accent-alt">List free.</span>
           </h2>

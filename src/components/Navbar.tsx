@@ -38,7 +38,7 @@ export const Navbar = () => {
     <nav className="fixed top-4 left-1/2 -translate-x-1/2 z-50 w-[calc(100%-2rem)] md:w-[calc(100%-1rem)] lg:w-[calc(100%-2rem)] max-w-[1140px] transition-all duration-300">
       <div className={`px-4 md:px-4 lg:px-6 py-3 flex items-center justify-between transition-all duration-300 ${
         scrolled
-          ? 'rounded-full bg-background/95 backdrop-blur-md border border-border shadow-sm'
+          ? 'rounded-full bg-background/95 backdrop-blur-md border border-border'
           : 'rounded-none bg-transparent border-transparent'
       }`}>
         <div className="shrink-0">
@@ -52,6 +52,10 @@ export const Navbar = () => {
               <a
                 key={link.label}
                 href={link.href}
+                onClick={(e) => {
+                  e.preventDefault();
+                  scrollTo(link.href.replace('#', ''));
+                }}
                 className="whitespace-nowrap text-[15px] lg:text-[17px] font-semibold font-body text-text-body hover:text-text-primary transition-colors duration-150 px-2 lg:px-3 py-1.5 rounded-full hover:bg-primary/5"
               >
                 {link.label}
@@ -86,7 +90,10 @@ export const Navbar = () => {
                 <a
                   key={link.label}
                   href={link.href}
-                  onClick={() => setOpen(false)}
+                  onClick={(e) => {
+                    e.preventDefault();
+                    scrollTo(link.href.replace('#', ''));
+                  }}
                   className="text-[17px] font-semibold font-body text-text-primary py-4 border-b border-border hover:text-primary transition-colors"
                 >
                   {link.label}

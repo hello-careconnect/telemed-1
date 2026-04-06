@@ -1,6 +1,7 @@
 import { motion, AnimatePresence } from 'framer-motion';
 import { useEffect, useRef, useState, useCallback } from 'react';
 import useEmblaCarousel from 'embla-carousel-react';
+import { StatsBar } from './StatsBar';
 import { Play, Lock, Star, Building2, Clock, Smartphone, Sparkles, MapPin, Video, HeartPulse, CalendarCheck, Stethoscope, ArrowRight, Users, BadgeCheck, Timer } from 'lucide-react';
 import doctorRafiq from '@/assets/doctor-rafiq.webp';
 import doctorAvatar1 from '@/assets/doctor-avatar-1.jpg';
@@ -25,6 +26,8 @@ const heroFeatures = [
   { icon: HeartPulse,    title: 'Health Records',            desc: 'Your medical history, always accessible', image: healthRecordsImg },
 ];
 
+const heroWords = ['doctor', 'hospital', 'specialist', 'clinic'];
+
 const rotatingLines = [
   'Book in under 2 minutes.',
   'Real reviews from real patients.',
@@ -34,14 +37,14 @@ const rotatingLines = [
 
 
 export const HeroSection = () => {
-  const indexRef = useRef(0);
-  const [currentIndex, setCurrentIndex] = useState(0);
+  const wordIndexRef = useRef(0);
+  const [wordIndex, setWordIndex] = useState(0);
 
   useEffect(() => {
     const interval = setInterval(() => {
-      indexRef.current += 1;
-      setCurrentIndex(indexRef.current);
-    }, 3000);
+      wordIndexRef.current = (wordIndexRef.current + 1) % heroWords.length;
+      setWordIndex(wordIndexRef.current);
+    }, 2800);
     return () => clearInterval(interval);
   }, []);
 
@@ -54,23 +57,40 @@ export const HeroSection = () => {
   };
 
   return (
-    <section className="pt-[88px] min-h-screen relative overflow-hidden bg-soft-img">
-      <div className="container max-w-[1140px] mx-auto px-6 flex flex-col lg:flex-row items-start gap-8 lg:gap-12 py-12 sm:py-16 lg:my-24">
+    <section className="pt-[88px] lg:h-screen flex flex-col relative overflow-hidden bg-soft-img">
+      {/* Hero */}
+      <div className="container max-w-[1140px] mx-auto px-6 flex flex-col lg:flex-row items-start gap-8 lg:gap-12 py-12 sm:py-16 lg:py-10">
         {/* Left 55% */}
         <div className="lg:w-[55%] w-full text-center lg:text-left">
           {/* Badge */}
 
-          <span className="inline-flex items-center text-primary text-sm font-medium font-body">
+          <span className="inline-flex items-center bg-primary/10 text-primary rounded-full px-4 py-1.5 text-[13px] font-medium font-body border border-primary/20">
                 Early Access · Launching in Dhaka &amp; Chattogram
             </span>
 
           {/* Headline */}
-          <h1 className="font-heading font-bold text-text-primary text-[36px] sm:text-[56px] lg:text-[72px] leading-[1] lg:-ml-[6px] mt-2">
-            <span className="block">
+          <h1 className="font-heading font-bold text-text-primary text-[34px] sm:text-[50px] lg:text-[64px] leading-[1] lg:-ml-[6px] mt-1">
+            <span className="block whitespace-nowrap">
               Find the{' '}
-              <span className="relative inline-block">
-                <span className="relative z-10 text-primary">doctor</span>
-                <span className="absolute -bottom-1 left-0 right-0 h-[6px] sm:h-[8px] bg-primary/15 rounded-full" />
+              <span className="relative inline-flex overflow-clip whitespace-nowrap">
+                {/* Invisible sizer — drives the container width & height */}
+                <span className="invisible">{heroWords[wordIndex]}</span>
+                <AnimatePresence>
+                  <motion.span
+                    key={wordIndex}
+                    className="absolute left-0 top-0 z-10 text-primary whitespace-nowrap"
+                    initial={{ y: '100%', opacity: 0, filter: 'blur(4px)' }}
+                    animate={{ y: '0%', opacity: 1, filter: 'blur(0px)' }}
+                    exit={{ y: '-100%', opacity: 0, filter: 'blur(4px)' }}
+                    transition={{
+                      y: { type: 'spring', stiffness: 260, damping: 26 },
+                      opacity: { duration: 0.3 },
+                      filter: { duration: 0.3 },
+                    }}
+                  >
+                    {heroWords[wordIndex]}
+                  </motion.span>
+                </AnimatePresence>
               </span>
             </span>
             <span className="block">
@@ -86,20 +106,9 @@ export const HeroSection = () => {
             Bangladesh's first platform that puts patients in control —
             verified credentials, honest reviews, and booking in minutes.
           </p>
-          {/* Rotating subtitle */}
-          <div className="h-8 sm:h-10 mt-2 overflow-hidden">
-            <AnimatePresence mode="wait">
-              <motion.p
-                  key={currentIndex}
-                  initial={{ opacity: 0, y: 12 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: -12 }}
-                  transition={{ duration: 0.35 }}
-                  className="font-body font-medium text-[17px] sm:text-[20px] text-primary/70"
-              >
-                {rotatingLines[currentIndex % rotatingLines.length]}
-              </motion.p>
-            </AnimatePresence>
+          {/* Rotating subtitle — typewriter */}
+          <div className="h-8 sm:h-10 mt-2 flex items-center justify-center lg:justify-start">
+            <TypewriterLine lines={rotatingLines} />
           </div>
 
 
@@ -149,29 +158,7 @@ export const HeroSection = () => {
         </div>
       </div>
 
-      {/*/!* Trust benefits strip — full width below hero on desktop *!/*/}
-      {/*<div className="hidden lg:block border-t border-border bg-background/60 backdrop-blur-sm">*/}
-      {/*  <div className="container max-w-[1140px] mx-auto px-6 py-5">*/}
-      {/*    <div className="grid grid-cols-4 gap-6">*/}
-      {/*      {[*/}
-      {/*        { icon: Building2, label: 'Certified Doctors', desc: 'BMDC verified credentials' },*/}
-      {/*        { icon: Clock, label: '24/7 Availability', desc: 'Video consults anytime' },*/}
-      {/*        { icon: Lock, label: 'Secure & Private', desc: 'Your data, your control' },*/}
-      {/*        { icon: Smartphone, label: 'Easy & Accessible', desc: 'Book in under 2 mins' },*/}
-      {/*      ].map((item) => (*/}
-      {/*        <div key={item.label} className="flex items-center gap-3">*/}
-      {/*          <item.icon className="w-6 h-6 text-primary shrink-0" strokeWidth={1.5} />*/}
-      {/*          <div>*/}
-      {/*            <p className="font-heading font-semibold text-[14px] text-text-primary">{item.label}</p>*/}
-      {/*            <p className="font-body text-[12px] text-text-muted mt-0.5">{item.desc}</p>*/}
-      {/*          </div>*/}
-      {/*        </div>*/}
-      {/*      ))}*/}
-      {/*    </div>*/}
-      {/*  </div>*/}
-      {/*</div>*/}
-
-
+      <StatsBar />
 
       {/* Tablet/mobile: carousel + benefits below hero */}
       <div className="border-t border-border bg-background py-8 lg:hidden">
@@ -341,5 +328,55 @@ const FeatureCardCarousel = () => {
         ))}
       </div>
     </div>
+  );
+};
+
+const TypewriterLine = ({ lines }: { lines: string[] }) => {
+  const [text, setText] = useState('');
+  const [showCursor, setShowCursor] = useState(true);
+  const lineIdx = useRef(0);
+  const charIdx = useRef(0);
+  const isDeleting = useRef(false);
+  const pauseRef = useRef(false);
+
+  useEffect(() => {
+    const cursorInterval = setInterval(() => setShowCursor((v) => !v), 530);
+    return () => clearInterval(cursorInterval);
+  }, []);
+
+  useEffect(() => {
+    const tick = () => {
+      if (pauseRef.current) return;
+      const currentLine = lines[lineIdx.current % lines.length];
+
+      if (!isDeleting.current) {
+        charIdx.current += 1;
+        setText(currentLine.slice(0, charIdx.current));
+        if (charIdx.current === currentLine.length) {
+          pauseRef.current = true;
+          setTimeout(() => {
+            pauseRef.current = false;
+            isDeleting.current = true;
+          }, 1800);
+        }
+      } else {
+        charIdx.current -= 1;
+        setText(currentLine.slice(0, charIdx.current));
+        if (charIdx.current === 0) {
+          isDeleting.current = false;
+          lineIdx.current = (lineIdx.current + 1) % lines.length;
+        }
+      }
+    };
+
+    const id = setInterval(tick, isDeleting.current ? 35 : 65);
+    return () => clearInterval(id);
+  }, [text, lines]);
+
+  return (
+    <p className="font-body font-medium text-[17px] sm:text-[20px] text-primary/70">
+      {text}
+      <span className={`inline-block w-[2px] h-[1.1em] bg-primary/60 ml-0.5 align-middle transition-opacity duration-100 ${showCursor ? 'opacity-100' : 'opacity-0'}`} />
+    </p>
   );
 };

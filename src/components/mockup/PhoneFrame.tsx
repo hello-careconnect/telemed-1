@@ -18,7 +18,7 @@ export const PhoneFrame = ({ children, screenKey, className = '' }: PhoneFramePr
       <div style={{
         width: 280, height: 580, borderRadius: 48,
         background: 'linear-gradient(160deg, #1e2e2e 0%, #0d1b1e 40%, #0a1518 100%)',
-        boxShadow: '0 40px 100px rgba(0,0,0,0.50), 0 0 0 1px rgba(255,255,255,0.08), inset 0 1px 0 rgba(255,255,255,0.12), inset 0 -1px 0 rgba(0,0,0,0.30)',
+        boxShadow: '0 0 0 1px rgba(255,255,255,0.08), inset 0 1px 0 rgba(255,255,255,0.12), inset 0 -1px 0 rgba(0,0,0,0.30)',
         padding: 7, position: 'relative',
       }}>
         <div style={{

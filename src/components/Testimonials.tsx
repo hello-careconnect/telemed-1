@@ -47,7 +47,7 @@ export const Testimonials = () => {
           <span className="inline-flex items-center bg-accent text-primary rounded-full px-4 py-1.5 text-[13px] font-medium font-body">
             Testimonials
           </span>
-          <h2 className="mt-6 font-heading font-bold text-[32px] sm:text-[40px] text-text-primary leading-[1.15]">
+          <h2 className="mt-1 font-heading font-bold text-[32px] sm:text-[40px] text-text-primary leading-[1.15]">
             Why 30,000+ patients{' '}
             <span className="font-display text-primary">choose us</span>{' '}
             every year

@@ -27,10 +27,10 @@ export const DoctorJourney = () => {
     <section id="doctor-section" className="relative py-10 sm:py-14 lg:py-16 bg-dark-bg">
       <div className="relative z-10 container max-w-[1140px] mx-auto px-6">
         <div className="mx-auto text-center mb-10">
-          <span className="inline-flex items-center bg-primary text-primary-foreground rounded-full px-4 py-1.5 text-[13px] font-medium font-body">
+                   <span className="inline-flex items-center bg-[rgba(255,255,255,0.08)] text-dark-text rounded-full px-4 py-1.5 text-[13px] font-medium font-body border border-[rgba(255,255,255,0.1)]">
             For Doctors
           </span>
-          <h2 className="mt-4 font-heading font-bold text-[32px] sm:text-[40px] text-dark-text leading-[1.15]">
+          <h2 className="mt-1 font-heading font-bold text-[32px] sm:text-[40px] text-dark-text leading-[1.15]">
             Grow your practice with CareConnect
           </h2>
           <p className="mt-3 font-body text-[18px] text-[rgba(255,255,255,0.6)]">
@@ -38,12 +38,14 @@ export const DoctorJourney = () => {
           </p>
         </div>
 
-        <div className="hidden lg:grid" style={{ gridTemplateColumns: '1fr 1fr', gap: 24, alignItems: 'start' }}>
-          <StickyPhoneMockup
-            activeScreen={doctorFeatures[activeFeature].screen}
-            screenKey={activeFeature}
-          />
-          <div className="space-y-4">
+        <div className="hidden lg:flex flex-row justify-center gap-3">
+          <div className="flex-1">
+            <StickyPhoneMockup
+              activeScreen={doctorFeatures[activeFeature].screen}
+              screenKey={activeFeature}
+            />
+          </div>
+          <div className="flex-1 space-y-4">
             {doctorFeatures.map((f, i) => (
               <FeatureRow
                 key={i}

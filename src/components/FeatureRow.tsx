@@ -1,6 +1,6 @@
-import React from 'react';
-import { CheckCircle, type LucideIcon } from 'lucide-react';
-import { motion } from 'framer-motion';
+import React, { useState } from 'react';
+import { CheckCircle, ChevronDown, type LucideIcon } from 'lucide-react';
+import { motion, AnimatePresence } from 'framer-motion';
 
 interface FeatureRowProps {
   index: number;
@@ -14,51 +14,96 @@ interface FeatureRowProps {
 }
 
 export const FeatureRow = React.forwardRef<HTMLDivElement, FeatureRowProps>(
-  ({ isActive, icon: Icon, title, description, subFeatures, onClick, dark }, ref) => (
-    <div
-      ref={ref}
-      onClick={onClick}
-      className={`transition-all duration-300 rounded-2xl p-6 border-l-4 cursor-pointer ${
-        isActive
-          ? dark
-            ? 'border-l-primary bg-white/[0.07] shadow-lg'
-            : 'border-l-primary bg-primary/[0.05] shadow-sm'
-          : dark
-            ? 'border-l-transparent bg-white/[0.03] hover:bg-white/[0.06]'
-            : 'border-l-transparent hover:bg-accent/40'
-      }`}
-    >
-      <motion.div
-        className={`inline-flex items-center justify-center w-10 h-10 rounded-xl mb-3 transition-colors duration-300 ${
+  ({ isActive, icon: Icon, title, description, subFeatures, onClick, dark }, ref) => {
+    const [showMore, setShowMore] = useState(false);
+
+    return (
+      <div
+        ref={ref}
+        onClick={onClick}
+        className={`transition-all duration-300 rounded-2xl p-6 border-l-4 cursor-pointer ${
           isActive
-            ? 'bg-primary text-primary-foreground'
+            ? dark
+              ? 'border-l-primary bg-white/[0.07] shadow-lg'
+              : 'border-l-primary bg-primary/[0.05] shadow-sm'
             : dark
-              ? 'bg-white/10 text-primary'
-              : 'bg-primary/10 text-primary'
+              ? 'border-l-transparent bg-white/[0.03] hover:bg-white/[0.06]'
+              : 'border-l-transparent hover:bg-accent/40'
         }`}
-        animate={isActive ? { scale: [1, 1.15, 1], rotate: [0, -8, 8, 0] } : { scale: 1, rotate: 0 }}
-        transition={{ duration: 0.5, ease: 'easeInOut' }}
       >
-        <Icon className="w-5 h-5" />
-      </motion.div>
-      <h3 className={`font-heading font-semibold text-[20px] leading-tight ${dark ? 'text-white' : 'text-text-primary'}`}>
-        {title}
-      </h3>
-      <p className={`mt-3 font-body font-light text-[15px] leading-relaxed ${dark ? 'text-white/60' : 'text-text-body'}`}>
-        {description}
-      </p>
-      {subFeatures && (
-        <ul className="mt-3 space-y-1.5">
-          {subFeatures.map((f, i) => (
-            <li key={i} className={`flex items-start gap-2 font-body font-light text-[14px] ${dark ? 'text-white/60' : 'text-text-body'}`}>
-              <CheckCircle className="w-4 h-4 text-primary flex-shrink-0 mt-0.5" />
-              {f}
-            </li>
-          ))}
-        </ul>
-      )}
-    </div>
-  )
+        <motion.div
+          className={`inline-flex items-center justify-center w-10 h-10 rounded-xl mb-3 transition-colors duration-300 ${
+            isActive
+              ? 'bg-primary text-primary-foreground'
+              : dark
+                ? 'bg-white/10 text-primary'
+                : 'bg-primary/10 text-primary'
+          }`}
+          animate={isActive ? { scale: [1, 1.15, 1], rotate: [0, -8, 8, 0] } : { scale: 1, rotate: 0 }}
+          transition={{ duration: 0.5, ease: 'easeInOut' }}
+        >
+          <Icon className="w-5 h-5" />
+        </motion.div>
+        <h3 className={`font-heading font-semibold text-[20px] leading-tight ${dark ? 'text-white' : 'text-text-primary'}`}>
+          {title}
+        </h3>
+        <p className={`mt-3 font-body font-light text-[15px] leading-relaxed ${dark ? 'text-white/60' : 'text-text-body'}`}>
+          {description}
+        </p>
+
+        {subFeatures && subFeatures.length > 0 && (
+          <>
+            <button
+              onClick={(e) => {
+                e.stopPropagation();
+                setShowMore(!showMore);
+              }}
+              className={`mt-3 inline-flex items-center gap-1 font-body text-[13px] font-medium transition-colors duration-200 ${
+                dark
+                  ? 'text-primary hover:text-primary/80'
+                  : 'text-primary hover:text-primary/80'
+              }`}
+            >
+              {showMore ? 'Show less' : 'Show more'}
+              <motion.span
+                animate={{ rotate: showMore ? 180 : 0 }}
+                transition={{ duration: 0.3 }}
+                className="inline-flex"
+              >
+                <ChevronDown className="w-3.5 h-3.5" />
+              </motion.span>
+            </button>
+
+            <AnimatePresence initial={false}>
+              {showMore && (
+                <motion.ul
+                  initial={{ height: 0, opacity: 0 }}
+                  animate={{ height: 'auto', opacity: 1 }}
+                  exit={{ height: 0, opacity: 0 }}
+                  transition={{ duration: 0.35, ease: [0.4, 0, 0.2, 1] }}
+                  className="overflow-hidden mt-2 space-y-1.5"
+                >
+                  {subFeatures.map((f, i) => (
+                    <motion.li
+                      key={i}
+                      initial={{ opacity: 0, x: -10 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      exit={{ opacity: 0, x: -10 }}
+                      transition={{ delay: i * 0.06, duration: 0.25 }}
+                      className={`flex items-start gap-2 font-body font-light text-[14px] ${dark ? 'text-white/60' : 'text-text-body'}`}
+                    >
+                      <CheckCircle className="w-4 h-4 text-primary flex-shrink-0 mt-0.5" />
+                      {f}
+                    </motion.li>
+                  ))}
+                </motion.ul>
+              )}
+            </AnimatePresence>
+          </>
+        )}
+      </div>
+    );
+  }
 );
 
 FeatureRow.displayName = 'FeatureRow';
@@ -90,26 +135,64 @@ export const MobileJourneyCard = ({ icon: Icon, title, description, isActive, on
   </motion.div>
 );
 
-export const MobileFeatureCard = ({ icon: Icon, title, description, subFeatures, dark }: Omit<FeatureRowProps, 'index' | 'isActive'>) => (
-  <div className={`rounded-2xl p-5 ${
-    dark ? 'bg-white/[0.06] border border-white/10' : 'bg-background border border-border'
-  }`}>
-    <div className={`inline-flex items-center justify-center w-9 h-9 rounded-xl mb-3 ${
-      dark ? 'bg-white/10 text-primary' : 'bg-primary/10 text-primary'
+export const MobileFeatureCard = ({ icon: Icon, title, description, subFeatures, dark }: Omit<FeatureRowProps, 'index' | 'isActive'>) => {
+  const [showMore, setShowMore] = useState(false);
+
+  return (
+    <div className={`rounded-2xl p-5 ${
+      dark ? 'bg-white/[0.06] border border-white/10' : 'bg-background border border-border'
     }`}>
-      <Icon className="w-4 h-4" />
+      <div className={`inline-flex items-center justify-center w-9 h-9 rounded-xl mb-3 ${
+        dark ? 'bg-white/10 text-primary' : 'bg-primary/10 text-primary'
+      }`}>
+        <Icon className="w-4 h-4" />
+      </div>
+      <h3 className={`font-heading font-semibold text-[17px] ${dark ? 'text-white' : 'text-text-primary'}`}>{title}</h3>
+      <p className={`mt-1.5 font-body text-[14px] leading-relaxed ${dark ? 'text-white/55' : 'text-text-body'}`}>{description}</p>
+
+      {subFeatures && subFeatures.length > 0 && (
+        <>
+          <button
+            onClick={() => setShowMore(!showMore)}
+            className="mt-3 inline-flex items-center gap-1 font-body text-[13px] font-medium text-primary hover:text-primary/80 transition-colors duration-200"
+          >
+            {showMore ? 'Show less' : 'Show more'}
+            <motion.span
+              animate={{ rotate: showMore ? 180 : 0 }}
+              transition={{ duration: 0.3 }}
+              className="inline-flex"
+            >
+              <ChevronDown className="w-3.5 h-3.5" />
+            </motion.span>
+          </button>
+
+          <AnimatePresence initial={false}>
+            {showMore && (
+              <motion.ul
+                initial={{ height: 0, opacity: 0 }}
+                animate={{ height: 'auto', opacity: 1 }}
+                exit={{ height: 0, opacity: 0 }}
+                transition={{ duration: 0.35, ease: [0.4, 0, 0.2, 1] }}
+                className="overflow-hidden mt-2 space-y-1.5"
+              >
+                {subFeatures.map((f, i) => (
+                  <motion.li
+                    key={i}
+                    initial={{ opacity: 0, x: -10 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    exit={{ opacity: 0, x: -10 }}
+                    transition={{ delay: i * 0.06, duration: 0.25 }}
+                    className={`flex items-start gap-2 font-body font-light text-[13px] ${dark ? 'text-white/60' : 'text-text-body'}`}
+                  >
+                    <CheckCircle className="w-4 h-4 text-primary flex-shrink-0 mt-0.5" />
+                    {f}
+                  </motion.li>
+                ))}
+              </motion.ul>
+            )}
+          </AnimatePresence>
+        </>
+      )}
     </div>
-    <h3 className={`font-heading font-semibold text-[17px] ${dark ? 'text-white' : 'text-text-primary'}`}>{title}</h3>
-    <p className={`mt-1.5 font-body text-[14px] leading-relaxed ${dark ? 'text-white/55' : 'text-text-body'}`}>{description}</p>
-    {subFeatures && (
-      <ul className="mt-3 space-y-1.5">
-        {subFeatures.map((f, i) => (
-          <li key={i} className={`flex items-start gap-2 font-body font-light text-[13px] ${dark ? 'text-white/60' : 'text-text-body'}`}>
-            <CheckCircle className="w-4 h-4 text-primary flex-shrink-0 mt-0.5" />
-            {f}
-          </li>
-        ))}
-      </ul>
-    )}
-  </div>
-);
+  );
+};

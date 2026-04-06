@@ -2,7 +2,6 @@ import { Navbar } from '@/components/Navbar';
 import { HeroSection } from '@/components/HeroSection';
 import { AboutSection } from '@/components/AboutSection';
 import { ServicesSection } from '@/components/ServicesSection';
-import { StatsBar } from '@/components/StatsBar';
 import { HowItWorks } from '@/components/HowItWorks';
 import { DoctorsTeam } from '@/components/DoctorsTeam';
 import { ForDoctors } from '@/components/ForDoctors';
@@ -31,13 +30,12 @@ const Index = () => {
         <DoctorJourney />
         <HospitalJourney />
         {/*<AboutSection />*/}
-        <StatsBar />
         <DoctorsTeam />
-        <ForDoctors />
-        <AppShowcase />
+        {/* <ForDoctors /> */}
+        {/* <AppShowcase /> */}
         {/* <Testimonials /> */}
-        <WaitlistForm />
         <IncentiveBlock />
+        <WaitlistForm />
         <FAQSection />
       </main>
       <Footer />
