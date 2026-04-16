@@ -1,49 +1,18 @@
 import { useRef, useState, useEffect } from 'react';
 import { motion, useInView, AnimatePresence } from 'framer-motion';
-import { MessageSquare, Users, Video, ClipboardList, ArrowRight } from 'lucide-react';
+import { MessageSquare, Users, Video, ClipboardList, ArrowRight, type LucideIcon } from 'lucide-react';
+import { useLang, tx } from '@/context/LanguageContext';
+import { translations } from '@/i18n/translations';
 
-const steps = [
-  {
-    icon: MessageSquare,
-    step: 'Step 01',
-    title: "Share What's on Your Mind",
-    body: 'Tell us your symptoms or describe your health concern. Our smart system matches you to the right specialist instantly.',
-    detail: 'Describe in your own words, no medical jargon needed. Available in Bangla & English.',
-    num: '01',
-    color: 'from-primary/10 to-accent',
-  },
-  {
-    icon: Users,
-    step: 'Step 02',
-    title: 'Match with the Right Doctor',
-    body: 'Browse verified doctors by specialty, read real patient reviews, and choose the one that fits your needs and schedule.',
-    detail: 'Every doctor is BMDC-verified. Filter by rating, availability, or fee.',
-    num: '02',
-    color: 'from-primary/10 to-accent',
-  },
-  {
-    icon: Video,
-    step: 'Step 03',
-    title: 'Talk Face-to-Face',
-    body: 'Meet your doctor via secure HD video call or visit in-person. Get the care you need, when you need it, 24/7.',
-    detail: 'End-to-end encrypted. Works on any device, no app download required.',
-    num: '03',
-    color: 'from-primary/10 to-accent',
-  },
-  {
-    icon: ClipboardList,
-    step: 'Step 04',
-    title: 'Get Your Care Plan',
-    body: 'Receive a digital prescription, order medicines, and get follow-up reminders, all from one platform.',
-    detail: 'Prescriptions sent directly to your phone. Medicine delivery available.',
-    num: '04',
-    color: 'from-primary/10 to-accent',
-  },
-];
+const { howItWorks: t } = translations;
+
+const STEP_ICONS: LucideIcon[] = [MessageSquare, Users, Video, ClipboardList];
+const STEP_NUMS = ['01', '02', '03', '04'];
 
 const AUTO_INTERVAL = 3200;
 
 export const HowItWorks = () => {
+  const { lang } = useLang();
   const ref = useRef<HTMLDivElement>(null);
   const inView = useInView(ref, { once: true, margin: '-80px' });
   const [active, setActive] = useState(0);
@@ -51,17 +20,26 @@ export const HowItWorks = () => {
   const timerRef = useRef<ReturnType<typeof setInterval> | null>(null);
   const progressRef = useRef<ReturnType<typeof setInterval> | null>(null);
 
-  const startTimer = (current: number) => {
+  const steps = t.steps.map((s, i) => ({
+    icon: STEP_ICONS[i],
+    num:  STEP_NUMS[i],
+    step:   tx(s.step,   lang),
+    title:  tx(s.title,  lang),
+    body:   tx(s.body,   lang),
+    detail: tx(s.detail, lang),
+  }));
+
+  const startTimer = () => {
     if (timerRef.current) clearInterval(timerRef.current);
     if (progressRef.current) clearInterval(progressRef.current);
     setProgress(0);
 
     const tickMs = 30;
-    const steps_count = AUTO_INTERVAL / tickMs;
+    const stepsCount = AUTO_INTERVAL / tickMs;
     let ticks = 0;
     progressRef.current = setInterval(() => {
       ticks++;
-      setProgress(Math.min((ticks / steps_count) * 100, 100));
+      setProgress(Math.min((ticks / stepsCount) * 100, 100));
     }, tickMs);
 
     timerRef.current = setInterval(() => {
@@ -71,7 +49,7 @@ export const HowItWorks = () => {
 
   useEffect(() => {
     if (!inView) return;
-    startTimer(active);
+    startTimer();
     return () => {
       if (timerRef.current) clearInterval(timerRef.current);
       if (progressRef.current) clearInterval(progressRef.current);
@@ -81,7 +59,7 @@ export const HowItWorks = () => {
 
   useEffect(() => {
     if (!inView) return;
-    startTimer(active);
+    startTimer();
     return () => {
       if (timerRef.current) clearInterval(timerRef.current);
       if (progressRef.current) clearInterval(progressRef.current);
@@ -96,6 +74,8 @@ export const HowItWorks = () => {
     setActive(i);
   };
 
+  const activeStep = steps[active];
+
   return (
     <section id="how-it-works" className="py-8 sm:py-12 lg:py-16 bg-soft-img">
       <div className="container max-w-[1140px] mx-auto px-6">
@@ -103,14 +83,14 @@ export const HowItWorks = () => {
         {/* Header */}
         <div className="text-center max-w-2xl mx-auto mb-8 sm:mb-10">
           <span className="inline-flex gap-x-2 items-center text-primary rounded-full text-sm font-medium font-body">
-            Introducing AI-powered healthcare
+            {tx(t.badge, lang)}
           </span>
           <h2 className="mt-3 font-heading font-bold text-[32px] sm:text-[40px] text-text-primary leading-[1.15]">
-            How CareConnect{' '}
-            <span className="font-display text-primary">works</span>
+            {tx(t.heading, lang)}{' '}
+            <span className="font-display text-primary">{tx(t.headingAccent, lang)}</span>
           </h2>
           <p className="mt-3 font-body text-[15px] sm:text-[17px] text-text-body max-w-none mx-auto lg:whitespace-nowrap">
-            From your first message to your care plan - 4 simple steps.
+            {tx(t.subtext, lang)}
           </p>
         </div>
 
@@ -120,6 +100,7 @@ export const HowItWorks = () => {
           <div className="lg:w-[42%] flex flex-col gap-3">
             {steps.map((s, i) => {
               const isActive = active === i;
+              const Icon = s.icon;
               return (
                 <motion.button
                   key={s.num}
@@ -138,7 +119,7 @@ export const HowItWorks = () => {
                     <div className={`w-10 h-10 rounded-xl flex items-center justify-center shrink-0 transition-colors duration-300 ${
                       isActive ? 'bg-primary' : 'bg-accent group-hover:bg-primary/10'
                     }`}>
-                      <s.icon className={`w-[18px] h-[18px] transition-colors ${isActive ? 'text-primary-foreground' : 'text-primary'}`} strokeWidth={1.5} />
+                      <Icon className={`w-[18px] h-[18px] transition-colors ${isActive ? 'text-primary-foreground' : 'text-primary'}`} strokeWidth={1.5} />
                     </div>
 
                     {/* Text */}
@@ -188,29 +169,29 @@ export const HowItWorks = () => {
               >
                 {/* Watermark */}
                 <span className="absolute top-4 right-6 font-heading font-black text-[72px] text-surface-2 leading-[1] select-none pointer-events-none">
-                  {steps[active].num}
+                  {activeStep.num}
                 </span>
 
                 <div className="relative z-10">
                   {/* Icon large */}
                   <div className="w-12 h-12 rounded-xl bg-primary flex items-center justify-center mb-4 shadow-teal-glow">
-                    {(() => { const Icon = steps[active].icon; return <Icon className="w-6 h-6 text-primary-foreground" strokeWidth={1.5} />; })()}
+                    {(() => { const Icon = activeStep.icon; return <Icon className="w-6 h-6 text-primary-foreground" strokeWidth={1.5} />; })()}
                   </div>
 
                   <p className="font-body text-[11px] font-semibold uppercase tracking-[0.14em] text-primary mb-1.5">
-                    {steps[active].step}
+                    {activeStep.step}
                   </p>
                   <h3 className="font-heading font-bold text-[22px] sm:text-[26px] text-text-primary leading-[1.2] mb-3">
-                    {steps[active].title}
+                    {activeStep.title}
                   </h3>
                   <p className="font-body text-[15px] text-text-body leading-[1.6] mb-3 max-w-md">
-                    {steps[active].body}
+                    {activeStep.body}
                   </p>
 
                   {/* Detail chip */}
-                  <div className="inline-flex items-center bg-accent rounded-full px-4 py-2 whitespace-nowrap">
+                  <div className="inline-flex items-center bg-accent rounded-full px-4 py-2">
                     <p className="font-body text-[13px] text-primary font-medium">
-                      {steps[active].detail}
+                      {activeStep.detail}
                     </p>
                   </div>
                 </div>

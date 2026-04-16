@@ -56,7 +56,7 @@ const AnimatedStat = ({ value, inView }: { value: string; inView: boolean }) => 
 
   useEffect(() => {
     if (!inView) return;
-    const numMatch = value.match(/[\d,]+/);
+    const numMatch = value.match(/[0-9][0-9,]*/);
     if (!numMatch) { setDisplay(value); return; }
     const target = parseInt(numMatch[0].replace(',', ''));
     const duration = 1500; const start = Date.now();

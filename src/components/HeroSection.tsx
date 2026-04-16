@@ -87,7 +87,7 @@ export const HeroSection = () => {
           </span>
 
           {/* Headline */}
-          <h1 className={`font-heading font-bold text-text-primary mt-1 ${
+          <h1 className={`font-heading font-bold text-text-primary mt-2 ${
             lang === 'bn'
               ? 'text-[28px] sm:text-[40px] lg:text-[52px] leading-[1.25] lg:-ml-[4px]'
               : 'text-[34px] sm:text-[50px] lg:text-[64px] leading-[1]    lg:-ml-[6px]'

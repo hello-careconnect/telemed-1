@@ -1,76 +1,58 @@
+import React from 'react';
 import { useRef } from 'react';
 import { motion, useInView } from 'framer-motion';
 import { Heart, Baby, Brain, Stethoscope, Leaf, Sparkles } from 'lucide-react';
+import { useLang, tx } from '@/context/LanguageContext';
+import { translations } from '@/i18n/translations';
 
-const services = [
-  {
-    icon: Stethoscope,
-    title: 'General Health Consultations',
-    desc: 'Talk to certified GPs, get prescriptions, and manage your health, all from home.',
-    iconColor: 'text-[hsl(168,60%,40%)]',
-    bgColor: 'bg-[hsl(168,60%,40%,0.1)]',
-  },
-  {
-    icon: Heart,
-    title: "Women's Health & Wellness",
-    desc: 'Confidential consultations for reproductive health, pregnancy care, and more.',
-    iconColor: 'text-[hsl(340,65%,55%)]',
-    bgColor: 'bg-[hsl(340,65%,55%,0.1)]',
-  },
-  {
-    icon: Baby,
-    title: 'Pediatric & Child Care',
-    desc: "Expert advice for your child's health from trusted pediatricians across Bangladesh.",
-    iconColor: 'text-[hsl(210,60%,50%)]',
-    bgColor: 'bg-[hsl(210,60%,50%,0.1)]',
-  },
-  {
-    icon: Sparkles,
-    title: 'Skin & Dermatology Care',
-    desc: 'Get expert dermatology care for skin conditions, acne, allergies, and cosmetic concerns.',
-    iconColor: 'text-[hsl(28,70%,50%)]',
-    bgColor: 'bg-[hsl(28,70%,50%,0.1)]',
-  },
-  {
-    icon: Brain,
-    title: 'Mental Health & Counseling',
-    desc: 'Access licensed therapists and counselors for stress, anxiety, depression, and more.',
-    iconColor: 'text-[hsl(270,50%,55%)]',
-    bgColor: 'bg-[hsl(270,50%,55%,0.1)]',
-  },
-  {
-    icon: Leaf,
-    title: 'Nutrition & Lifestyle Coaching',
-    desc: 'Personalized dietary plans and lifestyle guidance from certified nutritionists.',
-    iconColor: 'text-[hsl(80,55%,40%)]',
-    bgColor: 'bg-[hsl(80,55%,40%,0.1)]',
-  },
+const { services: t } = translations;
+
+const ICONS = [Stethoscope, Heart, Baby, Sparkles, Brain, Leaf];
+const ICON_COLORS = [
+  { iconColor: 'text-[hsl(168,60%,40%)]', bgColor: 'bg-[hsl(168,60%,40%,0.1)]' },
+  { iconColor: 'text-[hsl(340,65%,55%)]', bgColor: 'bg-[hsl(340,65%,55%,0.1)]' },
+  { iconColor: 'text-[hsl(210,60%,50%)]', bgColor: 'bg-[hsl(210,60%,50%,0.1)]' },
+  { iconColor: 'text-[hsl(28,70%,50%)]',  bgColor: 'bg-[hsl(28,70%,50%,0.1)]' },
+  { iconColor: 'text-[hsl(270,50%,55%)]', bgColor: 'bg-[hsl(270,50%,55%,0.1)]' },
+  { iconColor: 'text-[hsl(80,55%,40%)]',  bgColor: 'bg-[hsl(80,55%,40%,0.1)]' },
 ];
 
 export const ServicesSection = () => {
+  const { lang } = useLang();
   const ref = useRef<HTMLDivElement>(null);
   const inView = useInView(ref, { once: true, margin: '-100px' });
 
+  const banglaFont = lang === 'bn'
+    ? { '--font-heading': 'var(--font-bangla)', '--font-body': 'var(--font-bangla)' } as React.CSSProperties
+    : undefined;
+
+  const services = t.items.map((item, i) => ({
+    icon: ICONS[i],
+    title: tx(item.title, lang),
+    desc: tx(item.desc, lang),
+    ...ICON_COLORS[i],
+  }));
+
   return (
-    <section className="py-8 sm:py-12 lg:py-16 bg-soft-img">
+    <section style={banglaFont} className="py-8 sm:py-12 lg:py-16 bg-soft-img">
       <div className="container max-w-[1140px] mx-auto px-6">
         <div className="text-center max-w-2xl mx-auto mb-8 sm:mb-10">
           <span className="inline-flex items-center bg-primary/10 text-primary rounded-full px-4 py-1.5 text-[13px] font-medium font-body border border-primary/20">
-            Our Services
+            {tx(t.badge, lang)}
           </span>
           <h2 className="mt-3 font-heading font-bold text-[32px] sm:text-[40px] text-text-primary leading-[1.12]">
-            Our consultation{' '}
-            <span className="font-display text-primary">services</span>
+            {tx(t.heading, lang)}{' '}
+            <span className="font-display text-primary">{tx(t.headingAccent, lang)}</span>
           </h2>
           <p className="mt-3 font-body text-[15px] sm:text-[17px] text-text-body max-w-2xl mx-auto">
-            Comprehensive healthcare at your fingertips, from general checkups to specialized treatments.
+            {tx(t.subtext, lang)}
           </p>
         </div>
 
         <div ref={ref} className="grid grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-5">
           {services.map((s, i) => (
             <motion.div
-              key={s.title}
+              key={i}
               initial={{ opacity: 0, y: 24 }}
               animate={inView ? { opacity: 1, y: 0 } : {}}
               transition={{ delay: i * 0.08, duration: 0.4 }}
