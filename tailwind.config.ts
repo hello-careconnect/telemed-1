@@ -17,6 +17,8 @@ export default {
         display: ["var(--font-display)", "sans-serif"],
         heading: ["var(--font-heading)", "sans-serif"],
         body: ["var(--font-body)", "sans-serif"],
+        bangla: ["var(--font-bangla)", "sans-serif"],
+        "bangla-alt": ["var(--font-bangla-alt)", "sans-serif"],
       },
       colors: {
         border: "hsl(var(--border))",

@@ -17,6 +17,8 @@ import { Footer } from '@/components/Footer';
 
 import { CookieBanner } from '@/components/CookieBanner';
 import { ExitIntent } from '@/components/ExitIntent';
+import { LangOverlay } from '@/components/LangOverlay';
+import { LangSwitch } from '@/components/LangSwitch';
 
 const Index = () => {
   return (
@@ -41,6 +43,8 @@ const Index = () => {
       <Footer />
       <CookieBanner />
       <ExitIntent />
+      <LangOverlay />
+      <LangSwitch />
     </div>
   );
 };

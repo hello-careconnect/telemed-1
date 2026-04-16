@@ -223,7 +223,7 @@ export const PatientJourney = () => {
   return (
     <>
       {/* Shared scroll target — scrollMarginTop offsets the fixed navbar */}
-      <div id="how-it-works" style={{ scrollMarginTop: '72px' }} />
+      <div id="patient-journey" />
 
       {/* ── Desktop: wheel-stepped view ───────────────────────────────────── */}
       <section
@@ -275,7 +275,7 @@ export const PatientJourney = () => {
               className="absolute flex flex-col gap-5"
               style={{ right: 200, top: '50%', transform: 'translateY(-50%)' }}
             >
-              {rightFeatures.map((feature, i) => {
+              {rightFeatures.map((_feature, i) => {
                 const globalIdx = i + 5;
                 return (
                   <div key={globalIdx} style={{ marginRight: i % 2 === 0 ? 0 : 36, zIndex: activeFeature === globalIdx ? 20 : 1 }}>

@@ -1,8 +1,11 @@
+import React from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { useEffect, useRef, useState, useCallback } from 'react';
+import { useEffect, useRef, useState, useCallback, useMemo } from 'react';
 import useEmblaCarousel from 'embla-carousel-react';
 import { StatsBar } from './StatsBar';
-import { Play, Lock, Star, Building2, Clock, Smartphone, Sparkles, MapPin, Video, HeartPulse, CalendarCheck, Stethoscope, ArrowRight, Users, BadgeCheck, Timer } from 'lucide-react';
+import { Play, Lock, Building2, Clock, Smartphone, Sparkles, MapPin, Video, HeartPulse, CalendarCheck, Stethoscope, Star, ArrowRight } from 'lucide-react';
+import { useLang, tx } from '@/context/LanguageContext';
+import { translations } from '@/i18n/translations';
 import doctorRafiq from '@/assets/doctor-rafiq.webp';
 import doctorAvatar1 from '@/assets/doctor-avatar-1.jpg';
 import doctorNasreen from '@/assets/doctor-nasreen.webp';
@@ -16,29 +19,30 @@ import healthRecordsImg from '@/assets/health-records.jpg';
 import aiMatchingImg from '@/assets/ai-matching.jpg';
 import transparentReviewsImg from '@/assets/transparent-reviews.jpg';
 
-const heroFeatures = [
-  { icon: Stethoscope,   title: 'BMDC Verified Doctors',    desc: 'Every doctor credential-checked & verified', image: bmdcVerifiedImg },
-  { icon: Star,          title: 'Transparent Reviews',       desc: 'Real ratings from real patients', image: transparentReviewsImg },
-  { icon: Video,         title: 'Video Consult 24/7',        desc: 'See a doctor anytime, from anywhere', image: videoConsultImg },
-  { icon: CalendarCheck, title: 'Instant Booking',           desc: 'Book appointments in under 2 minutes', image: instantBookingImg },
-  { icon: Sparkles,      title: 'AI-Powered Matching',       desc: 'Find the right specialist for your needs', image: aiMatchingImg },
-  { icon: MapPin,        title: 'Nearby Hospitals',          desc: 'Locate trusted clinics & hospitals near you', image: nearbyHospitalsImg },
-  { icon: HeartPulse,    title: 'Health Records',            desc: 'Your medical history, always accessible', image: healthRecordsImg },
-];
+const { hero, heroFeatures: hf, heroMobileGrid: hmg } = translations;
 
-const heroWords = ['doctor', 'hospital', 'specialist', 'clinic'];
+// Feature icons mapped in order matching translations
+const featureIcons = [Stethoscope, Star, Video, CalendarCheck, Sparkles, MapPin, HeartPulse];
+const featureImages = [bmdcVerifiedImg, transparentReviewsImg, videoConsultImg, instantBookingImg, aiMatchingImg, nearbyHospitalsImg, healthRecordsImg];
+const featureKeys = ['bmdc', 'reviews', 'video', 'booking', 'ai', 'nearby', 'health'] as const;
 
-const rotatingLines = [
-  'Book in under 2 minutes.',
-  'Real reviews from real patients.',
-  'Video consults, 24/7.',
-  'No more guessing.',
-];
-
+// Preload carousel images
+if (typeof window !== 'undefined') {
+  featureImages.forEach(src => { const img = new Image(); img.src = src; });
+}
 
 export const HeroSection = () => {
+  const { lang } = useLang();
   const wordIndexRef = useRef(0);
   const [wordIndex, setWordIndex] = useState(0);
+
+  const heroWords = hero.words[lang];
+  const rotatingLines = useMemo(() => [...hero.rotatingLines[lang]], [lang]);
+
+  useEffect(() => {
+    wordIndexRef.current = 0;
+    setWordIndex(0);
+  }, [lang]);
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -46,38 +50,56 @@ export const HeroSection = () => {
       setWordIndex(wordIndexRef.current);
     }, 2800);
     return () => clearInterval(interval);
-  }, []);
+  }, [heroWords]);
 
   const scrollToForm = () => {
     document.getElementById('waitlist-form')?.scrollIntoView({ behavior: 'smooth' });
   };
 
   const scrollToHow = () => {
-    document.getElementById('how-it-works')?.scrollIntoView({ behavior: 'smooth' });
+    const el = document.getElementById('how-it-works');
+    if (!el) return;
+    const navbarOffset = 80;
+    const top = el.getBoundingClientRect().top + window.scrollY - navbarOffset;
+    window.scrollTo({ top, behavior: 'smooth' });
   };
 
+  const mobileGrid = [
+    { icon: Building2,  label: tx(hmg.certified.label, lang),    desc: tx(hmg.certified.desc, lang) },
+    { icon: Clock,      label: tx(hmg.availability.label, lang),  desc: tx(hmg.availability.desc, lang) },
+    { icon: Lock,       label: tx(hmg.secure.label, lang),        desc: tx(hmg.secure.desc, lang) },
+    { icon: Smartphone, label: tx(hmg.easy.label, lang),          desc: tx(hmg.easy.desc, lang) },
+  ];
+
+  const banglaFont = lang === 'bn'
+    ? { '--font-heading': 'var(--font-bangla)', '--font-body': 'var(--font-bangla)' } as React.CSSProperties
+    : undefined;
+
   return (
-    <section className="pt-[88px] lg:h-screen flex flex-col relative overflow-hidden bg-soft-img">
+    <section style={banglaFont} className="pt-[88px] lg:h-screen flex flex-col relative overflow-hidden bg-soft-img">
       {/* Hero */}
       <div className="container max-w-[1140px] mx-auto px-6 flex flex-col lg:flex-row items-start gap-8 lg:gap-12 py-12 sm:py-16 lg:py-10">
         {/* Left 55% */}
         <div className="lg:w-[55%] w-full text-center lg:text-left">
           {/* Badge */}
-
           <span className="inline-flex items-center bg-primary/10 text-primary rounded-full px-4 py-1.5 text-[13px] font-medium font-body border border-primary/20">
-                Early Access · Launching in Dhaka &amp; Chattogram
-            </span>
+            {tx(hero.badge, lang)}
+          </span>
 
           {/* Headline */}
-          <h1 className="font-heading font-bold text-text-primary text-[34px] sm:text-[50px] lg:text-[64px] leading-[1] lg:-ml-[6px] mt-1">
-            <span className="block whitespace-nowrap">
-              Find the{' '}
-              <span className="relative inline-flex overflow-clip whitespace-nowrap">
-                {/* Invisible sizer — drives the container width & height */}
+          <h1 className={`font-heading font-bold text-text-primary mt-1 ${
+            lang === 'bn'
+              ? 'text-[28px] sm:text-[40px] lg:text-[52px] leading-[1.25] lg:-ml-[4px]'
+              : 'text-[34px] sm:text-[50px] lg:text-[64px] leading-[1]    lg:-ml-[6px]'
+          }`}>
+            <span className={`block ${lang === 'en' ? 'whitespace-nowrap' : ''}`}>
+              {tx(hero.findThe, lang)}{' '}
+              <span className="relative inline-flex whitespace-nowrap">
+                {/* Invisible sizer — drives the container width */}
                 <span className="invisible">{heroWords[wordIndex]}</span>
                 <AnimatePresence>
                   <motion.span
-                    key={wordIndex}
+                    key={`${lang}-${wordIndex}`}
                     className="absolute left-0 top-0 z-10 text-primary whitespace-nowrap"
                     initial={{ y: '100%', opacity: 0, filter: 'blur(4px)' }}
                     animate={{ y: '0%', opacity: 1, filter: 'blur(0px)' }}
@@ -94,30 +116,35 @@ export const HeroSection = () => {
               </span>
             </span>
             <span className="block">
-              you can{' '}
-              <span className="relative inline-block">
-                trust.
-              </span>
+              {tx(hero.youCanTrust, lang)}
             </span>
           </h1>
+
           {/* Description */}
-          <p className="mt-4 font-body text-[15px] sm:text-[17px] text-text-body leading-[1.7] max-w-[460px] mx-auto lg:mx-0">
-            Bangladesh's first platform that puts patients in control —
-            verified credentials, honest reviews, and booking in minutes.
+          <p className={`font-body text-text-body leading-[1.8] mx-auto lg:mx-0 ${
+            lang === 'bn'
+              ? 'mt-5 text-[14px] sm:text-[15px] max-w-[480px]'
+              : 'mt-4 text-[15px] sm:text-[17px] max-w-[460px]'
+          }`}>
+            {tx(hero.desc, lang)}
           </p>
+
           {/* Rotating subtitle — typewriter */}
-          <div className="h-8 sm:h-10 mt-2 flex items-center justify-center lg:justify-start">
+          <div className={`flex items-center justify-center lg:justify-start ${
+            lang === 'bn' ? 'h-9 sm:h-11 mt-3' : 'h-8 sm:h-10 mt-2'
+          }`}>
             <TypewriterLine lines={rotatingLines} />
           </div>
 
-
           {/* CTAs */}
-          <div className="mt-5 flex flex-row flex-wrap justify-center lg:justify-start items-center gap-2.5">
+          <div className={`flex flex-row flex-wrap justify-center lg:justify-start items-center gap-2.5 ${
+            lang === 'bn' ? 'mt-6' : 'mt-5'
+          }`}>
             <button
               onClick={scrollToForm}
               className="group bg-primary text-primary-foreground rounded-full px-7 py-3 text-[15px] font-semibold font-body shadow-teal-glow hover:bg-primary-dark hover:-translate-y-0.5 hover:shadow-teal-glow-lg transition-all duration-200 flex items-center justify-center gap-2"
             >
-              Join the Waitlist
+              {tx(hero.joinWaitlist, lang)}
               <ArrowRight className="w-4 h-4 transition-transform duration-200 group-hover:translate-x-1" />
             </button>
             <button
@@ -125,10 +152,9 @@ export const HeroSection = () => {
               className="rounded-full px-7 py-3 text-[15px] font-semibold font-body text-text-body bg-surface border border-border hover:border-primary/40 hover:text-primary hover:bg-primary/[0.04] transition-all duration-200 flex items-center justify-center gap-2"
             >
               <Play className="w-3.5 h-3.5" />
-              See how it works
+              {tx(hero.seeHowItWorks, lang)}
             </button>
           </div>
-
         </div>
 
         {/* Right 45% — Carousel + Social proof (desktop only) */}
@@ -139,10 +165,7 @@ export const HeroSection = () => {
           <div className="flex items-center gap-3">
             <div className="flex -space-x-2.5">
               {[doctorAvatar1, doctorRafiq, doctorNasreen, doctorClipboard, doctorYoungGlasses].map((img, i) => (
-                <div
-                  key={i}
-                  className="w-8 h-8 rounded-full border-[2px] border-background overflow-hidden shadow-sm"
-                >
+                <div key={i} className="w-8 h-8 rounded-full border-[2px] border-background overflow-hidden shadow-sm">
                   <img src={img} alt="" className="w-full h-full object-cover" loading="lazy" />
                 </div>
               ))}
@@ -150,7 +173,8 @@ export const HeroSection = () => {
             <div className="flex items-center gap-1.5">
               <span className="w-1.5 h-1.5 rounded-full bg-success animate-pulse" />
               <p className="font-body text-[13px] text-text-muted">
-                Doctors joining <span className="font-semibold text-text-body">every day</span>
+                {tx(hero.doctorsJoining, lang)}{' '}
+                <span className="font-semibold text-text-body">{tx(hero.everyDay, lang)}</span>
               </p>
             </div>
           </div>
@@ -167,12 +191,7 @@ export const HeroSection = () => {
               <FeatureCardCarousel />
             </div>
             <div className="md:w-1/2 grid grid-cols-2 gap-5">
-              {[
-                { icon: Building2, label: 'Certified Doctors', desc: 'BMDC verified credentials' },
-                { icon: Clock, label: '24/7 Availability', desc: 'Video consults anytime' },
-                { icon: Lock, label: 'Secure & Private', desc: 'Your data, your control' },
-                { icon: Smartphone, label: 'Easy & Accessible', desc: 'Book in under 2 mins' },
-              ].map((item) => (
+              {mobileGrid.map((item) => (
                 <div key={item.label} className="flex items-start gap-3 bg-surface rounded-2xl p-4 border border-border">
                   <item.icon className="w-6 h-6 text-primary shrink-0 mt-0.5" strokeWidth={1.5} />
                   <div>
@@ -190,16 +209,8 @@ export const HeroSection = () => {
 };
 
 
-// Preload all carousel images on mount
-const carouselImages = heroFeatures.filter(f => f.image).map(f => f.image!);
-if (typeof window !== 'undefined') {
-  carouselImages.forEach(src => {
-    const img = new Image();
-    img.src = src;
-  });
-}
-
 const FeatureCardCarousel = () => {
+  const { lang } = useLang();
   const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true, duration: 22 });
   const [activeIndex, setActiveIndex] = useState(0);
   const [isPaused, setIsPaused] = useState(false);
@@ -245,20 +256,20 @@ const FeatureCardCarousel = () => {
       onMouseEnter={handlePause}
       onMouseLeave={handleResume}
     >
-      {/* Embla viewport */}
       <div
         ref={emblaRef}
         className="overflow-hidden rounded-[24px] border border-border shadow-lg cursor-grab active:cursor-grabbing"
       >
         <div className="flex touch-pan-y">
-          {heroFeatures.map((feature, i) => {
-            const FIcon = feature.icon;
+          {featureKeys.map((key, i) => {
+            const FIcon = featureIcons[i];
             const isActive = i === activeIndex;
+            const featureTitle = tx(hf[key].title, lang);
+            const featureDesc  = tx(hf[key].desc, lang);
             return (
               <div key={i} className="flex-[0_0_100%] min-w-0">
                 <div className="aspect-[4/3] lg:aspect-[3/2.2] relative flex items-center justify-center overflow-hidden bg-[#1d2d44]">
-
-                  {/* Progress bar — only rendered on active slide so key resets correctly */}
+                  {/* Progress bar */}
                   <div className="absolute top-0 left-0 right-0 h-[3px] bg-white/20 z-20">
                     {isActive && (
                       <div
@@ -269,10 +280,10 @@ const FeatureCardCarousel = () => {
                     )}
                   </div>
 
-                  {feature.image ? (
+                  {featureImages[i] ? (
                     <img
-                      src={feature.image}
-                      alt={feature.title}
+                      src={featureImages[i]}
+                      alt={featureTitle}
                       className="absolute inset-0 w-full h-full object-cover"
                       loading="eager"
                       decoding="async"
@@ -300,8 +311,8 @@ const FeatureCardCarousel = () => {
 
                   {/* Text overlay */}
                   <div className="absolute bottom-0 left-0 right-0 p-5 z-10">
-                    <p className="font-heading font-semibold text-[18px] text-white">{feature.title}</p>
-                    <p className="font-body text-[13px] text-white/70 mt-1 leading-relaxed">{feature.desc}</p>
+                    <p className="font-heading font-semibold text-[18px] text-white">{featureTitle}</p>
+                    <p className="font-body text-[13px] text-white/70 mt-1 leading-relaxed">{featureDesc}</p>
                   </div>
                 </div>
               </div>
@@ -312,7 +323,7 @@ const FeatureCardCarousel = () => {
 
       {/* Icon nav chips */}
       <div className="flex items-center justify-center gap-3 mt-4">
-        {heroFeatures.map(({ icon: ChipIcon }, i) => (
+        {featureIcons.map((ChipIcon, i) => (
           <button
             key={i}
             onClick={() => handleDot(i)}
@@ -333,44 +344,71 @@ const FeatureCardCarousel = () => {
 const TypewriterLine = ({ lines }: { lines: string[] }) => {
   const [text, setText] = useState('');
   const [showCursor, setShowCursor] = useState(true);
-  const lineIdx = useRef(0);
-  const charIdx = useRef(0);
-  const isDeleting = useRef(false);
-  const pauseRef = useRef(false);
 
+  // All mutable state lives in one ref — no effect recreations
+  const s = useRef({
+    lines,
+    lineIdx: 0,
+    charIdx: 0,
+    isDeleting: false,
+    isPaused: false,
+  });
+
+  // Sync lines ref + hard-reset on language switch
   useEffect(() => {
-    const cursorInterval = setInterval(() => setShowCursor((v) => !v), 530);
-    return () => clearInterval(cursorInterval);
+    s.current.lines    = lines;
+    s.current.lineIdx  = 0;
+    s.current.charIdx  = 0;
+    s.current.isDeleting = false;
+    s.current.isPaused   = false;
+    setText('');
+  }, [lines]);
+
+  // Cursor blink — runs once
+  useEffect(() => {
+    const id = setInterval(() => setShowCursor((v) => !v), 530);
+    return () => clearInterval(id);
   }, []);
 
+  // Single self-scheduling timeout — runs once, reads from ref
   useEffect(() => {
-    const tick = () => {
-      if (pauseRef.current) return;
-      const currentLine = lines[lineIdx.current % lines.length];
+    let tid: ReturnType<typeof setTimeout>;
 
-      if (!isDeleting.current) {
-        charIdx.current += 1;
-        setText(currentLine.slice(0, charIdx.current));
-        if (charIdx.current === currentLine.length) {
-          pauseRef.current = true;
-          setTimeout(() => {
-            pauseRef.current = false;
-            isDeleting.current = true;
-          }, 1800);
-        }
-      } else {
-        charIdx.current -= 1;
-        setText(currentLine.slice(0, charIdx.current));
-        if (charIdx.current === 0) {
-          isDeleting.current = false;
-          lineIdx.current = (lineIdx.current + 1) % lines.length;
+    const tick = () => {
+      const { lines: ls, isPaused, isDeleting } = s.current;
+
+      if (!isPaused) {
+        const line = ls[s.current.lineIdx % ls.length];
+
+        if (!isDeleting) {
+          s.current.charIdx += 1;
+          setText(line.slice(0, s.current.charIdx));
+
+          if (s.current.charIdx >= line.length) {
+            s.current.isPaused = true;
+            setTimeout(() => {
+              s.current.isPaused    = false;
+              s.current.isDeleting  = true;
+            }, 1800);
+          }
+        } else {
+          s.current.charIdx -= 1;
+          setText(line.slice(0, s.current.charIdx));
+
+          if (s.current.charIdx <= 0) {
+            s.current.charIdx    = 0;
+            s.current.isDeleting = false;
+            s.current.lineIdx    = (s.current.lineIdx + 1) % ls.length;
+          }
         }
       }
+
+      tid = setTimeout(tick, s.current.isDeleting ? 35 : 68);
     };
 
-    const id = setInterval(tick, isDeleting.current ? 35 : 65);
-    return () => clearInterval(id);
-  }, [text, lines]);
+    tid = setTimeout(tick, 68);
+    return () => clearTimeout(tid);
+  }, []); // intentionally empty — all state is in the ref
 
   return (
     <p className="font-body font-medium text-[17px] sm:text-[20px] text-primary/70">

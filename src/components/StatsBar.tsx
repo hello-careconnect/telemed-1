@@ -1,34 +1,45 @@
-import { useRef, useEffect, useState } from 'react';
+import React, { useRef, useEffect, useState } from 'react';
 import { motion, useInView } from 'framer-motion';
+import { useLang, tx } from '@/context/LanguageContext';
+import { translations } from '@/i18n/translations';
 
-const stats = [
-  { value: '5,000+', label: 'DOCTORS BEING VERIFIED' },
-  { value: '< 2 min', label: 'AVERAGE BOOKING TIME' },
-  { value: '24/7', label: 'VIDEO CONSULTATIONS' },
-  { value: 'Free', label: 'FIRST CONSULTATION' },
-];
+const { stats } = translations;
 
 export const StatsBar = () => {
+  const { lang } = useLang();
   const ref = useRef<HTMLDivElement>(null);
   const inView = useInView(ref, { once: false, margin: '-50px' });
 
+  const statItems = [
+    { value: tx(stats.doctors.value, lang),  label: tx(stats.doctors.label, lang) },
+    { value: tx(stats.booking.value, lang),  label: tx(stats.booking.label, lang) },
+    { value: tx(stats.video.value, lang),    label: tx(stats.video.label, lang) },
+    { value: tx(stats.free.value, lang),     label: tx(stats.free.label, lang) },
+  ];
+
+  const banglaFont = lang === 'bn'
+    ? { '--font-heading': 'var(--font-bangla)', '--font-body': 'var(--font-bangla)' } as React.CSSProperties
+    : undefined;
+
   return (
-    <div ref={ref} className="py-8 sm:py-10">
+    <div ref={ref} style={banglaFont} className="py-8 sm:py-10">
       <div className="container max-w-[1140px] mx-auto px-6">
         <div className="rounded-2xl border border-border bg-surface/60 backdrop-blur-sm py-2 sm:py-3">
           <div className="grid w-full grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-5 lg:gap-0">
-            {stats.map((stat, i) => (
+            {statItems.map((stat, i) => (
               <motion.div
                 key={stat.label}
                 initial={{ opacity: 0, x: -40 }}
                 animate={inView ? { opacity: 1, x: 0 } : { opacity: 0, x: -40 }}
                 transition={{ delay: i * 0.2, duration: 0.5, ease: 'easeOut' }}
                 className={`px-4 sm:px-6 lg:px-10 py-4 text-center flex flex-col items-center justify-center ${
-                  i !== stats.length - 1 ? 'lg:border-r lg:border-border' : ''
+                  i !== statItems.length - 1 ? 'lg:border-r lg:border-border' : ''
                 }`}
               >
                 <AnimatedStat value={stat.value} inView={inView} />
-                <p className="mt-2 font-body font-bold text-[11px] text-gray-500 uppercase tracking-[0.2em] whitespace-nowrap text-center">
+                <p className={`mt-2 font-body font-bold text-[11px] text-gray-500 whitespace-nowrap text-center ${
+                  lang === 'en' ? 'uppercase tracking-[0.2em]' : 'tracking-normal'
+                }`}>
                   {stat.label}
                 </p>
               </motion.div>
