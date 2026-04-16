@@ -18,20 +18,20 @@ import {
 interface Feature {
   icon: LucideIcon;
   title: string;
-  description: string;
+  points: string[];
   screen: React.ReactNode;
 }
 
 const patientFeatures: Feature[] = [
-  { icon: Video,         title: '24/7 Video Consultation',     description: 'Connect with a licensed doctor any time of day or night from your phone or laptop. No travel, no waiting rooms. Encrypted video calls with digital prescriptions issued immediately after.', screen: <PatientScreen_VideoConsult /> },
-  { icon: Brain,         title: 'AI-Powered Doctor Matching',  description: 'Describe your symptoms in plain Bangla or English. Our system matches you with the right specialist based on your condition, location, and doctor success rates with similar cases.', screen: <PatientScreen_AIMatching /> },
-  { icon: CalendarCheck, title: 'Instant Booking',             description: 'Book an in-person visit or video consultation in under 2 minutes. Pick your slot, confirm payment via bKash or Nagad, and receive your booking instantly.', screen: <PatientScreen_InstantBooking /> },
-  { icon: MapPin,        title: 'Search Nearby Hospitals',     description: 'Find verified hospitals and clinics within your area. Filter by specialty, distance, availability, and patient ratings. See real-time opening hours and get turn-by-turn directions.', screen: <PatientScreen_NearbyHospitals /> },
-  { icon: Star,          title: 'Transparent and Real Reviews',description: 'Read verified patient reviews from real appointments. Star ratings, full review text, and doctor response rates, so you can choose with confidence.', screen: <PatientScreen_Reviews /> },
-  { icon: FolderHeart,   title: 'Access to Health Records',    description: 'All your prescriptions, lab reports, and consultation notes in one secure place. Share records with any doctor in seconds. Your medical history travels with you.', screen: <PatientScreen_HealthRecords /> },
-  { icon: Navigation,    title: 'Closest Doctor Sorting',      description: 'See doctors sorted by distance from your current location. No more calling 10 clinics. Find who is nearest and available right now.', screen: <PatientScreen_ClosestDoctor /> },
-  { icon: FileText,      title: 'Digital Prescriptions',       description: 'Receive a verified digital prescription after every consultation. Download as PDF, share with any pharmacy, or order medicines directly from the app.', screen: <PatientScreen_Prescription /> },
-  { icon: Activity,      title: 'AI Health Data Analysis',     description: 'Our system monitors patterns in your health data across appointments. Surface insights your doctors need to see. Available in Bangla and English.', screen: <PatientScreen_AIAnalysis /> },
+  { icon: Video,         title: '24/7 Video Consultation',     points: ['Connect with a licensed doctor any time, from anywhere', 'No travel or waiting rooms needed', 'Digital prescriptions issued immediately after'], screen: <PatientScreen_VideoConsult /> },
+  { icon: Brain,         title: 'AI-Powered Doctor Matching',  points: ['Describe symptoms in Bangla or English', 'Matched by condition, location & success rates'], screen: <PatientScreen_AIMatching /> },
+  { icon: CalendarCheck, title: 'Instant Booking',             points: ['Book in under 2 minutes', 'Pay via bKash, Nagad, or card', 'Instant confirmation sent to your phone'], screen: <PatientScreen_InstantBooking /> },
+  { icon: MapPin,        title: 'Search Nearby Hospitals',     points: ['Filter by specialty, distance & availability', 'Real-time opening hours & directions'], screen: <PatientScreen_NearbyHospitals /> },
+  { icon: Star,          title: 'Transparent and Real Reviews',points: ['Verified reviews from real appointments', 'Star ratings & full review text', 'See doctor response rates before booking'], screen: <PatientScreen_Reviews /> },
+  { icon: FolderHeart,   title: 'Access to Health Records',    points: ['All prescriptions & lab reports in one place', 'Share with any doctor in seconds'], screen: <PatientScreen_HealthRecords /> },
+  { icon: Navigation,    title: 'Closest Doctor Sorting',      points: ['Doctors sorted by your current location', 'See who is nearest and available right now'], screen: <PatientScreen_ClosestDoctor /> },
+  { icon: FileText,      title: 'Digital Prescriptions',       points: ['Verified prescription after every consult', 'Download as PDF or share with any pharmacy'], screen: <PatientScreen_Prescription /> },
+  { icon: Activity,      title: 'AI Health Data Analysis',     points: ['Monitors patterns across your appointments', 'Surfaces insights for your doctor', 'Available in Bangla and English'], screen: <PatientScreen_AIAnalysis /> },
 ];
 
 // Slight random-ish rotations per card for a natural floating feel
@@ -97,18 +97,23 @@ const FloatingCard = ({
           {feature.title}
         </p>
 
-        {/* Description — spring-reveals only when active */}
+        {/* Points — spring-reveals only when active */}
         <AnimatePresence initial={false}>
           {isActive && (
-            <motion.p
+            <motion.ul
               initial={{ opacity: 0, height: 0, marginTop: 0 }}
               animate={{ opacity: 1, height: 'auto', marginTop: 6 }}
               exit={{ opacity: 0, height: 0, marginTop: 0 }}
               transition={{ duration: 0.25, ease: [0.25, 0.46, 0.45, 0.94] }}
-              className="font-body text-[11.5px] leading-relaxed text-text-muted overflow-hidden"
+              className="overflow-hidden space-y-1"
             >
-              {feature.description}
-            </motion.p>
+              {feature.points.map((pt, idx) => (
+                <li key={idx} className="flex items-start gap-1.5">
+                  <span className="mt-[4px] flex-shrink-0 w-1 h-1 rounded-full bg-primary" />
+                  <span className="font-body text-[11px] leading-snug text-text-muted">{pt}</span>
+                </li>
+              ))}
+            </motion.ul>
           )}
         </AnimatePresence>
       </motion.div>
@@ -230,7 +235,7 @@ export const PatientJourney = () => {
           {/* Header */}
           <div ref={headerRef} className="text-center shrink-0 mb-16">
             <h2 className="font-heading font-bold text-[32px] sm:text-[38px] text-text-primary leading-tight">
-              Everything you need, in one place
+              Everything you need, in <span className="text-primary">one place</span>
             </h2>
             <p className="mt-3 font-body font-light text-[18px] text-text-body/60">
               From finding the right doctor to managing your health, CareConnect handles it all.
@@ -397,7 +402,7 @@ const MobilePatientJourney = () => {
               key={i}
               icon={f.icon}
               title={f.title}
-              description={f.description}
+              points={f.points}
               isActive={active === i}
               onClick={() => handleCardClick(i)}
             />

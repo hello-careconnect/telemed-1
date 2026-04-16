@@ -24,13 +24,20 @@ export const DoctorJourney = () => {
   const { activeFeature, featureRefs, setActiveFeature } = useActiveFeatureScroll(doctorFeatures.length);
 
   return (
-    <section id="doctor-section" className="relative py-10 sm:py-14 lg:py-16 bg-dark-bg">
+    <section id="doctor-section" className="relative py-10 sm:py-14 lg:py-16 bg-[#0a0a1a]">
+      {/* Background */}
+      <div className="absolute inset-0 overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-b from-[#0c1a1a] via-[#0f2524] to-[#0c1a1a]" />
+        <div className="absolute top-0 left-1/4 w-[600px] h-[600px] rounded-full bg-[#0d9488] opacity-[0.08] blur-[150px]" />
+        <div className="absolute bottom-0 right-1/3 w-[500px] h-[500px] rounded-full bg-[#0f766e] opacity-[0.06] blur-[130px]" />
+        <div className="absolute inset-0 opacity-[0.04]" style={{ backgroundImage: `linear-gradient(rgba(255,255,255,0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.1) 1px, transparent 1px)`, backgroundSize: '60px 60px' }} />
+      </div>
       <div className="relative z-10 container max-w-[1140px] mx-auto px-6">
         <div className="mx-auto text-center mb-10">
                    <span className="inline-flex items-center bg-[rgba(255,255,255,0.08)] text-dark-text rounded-full px-4 py-1.5 text-[13px] font-medium font-body border border-[rgba(255,255,255,0.1)]">
             For Doctors
           </span>
-          <h2 className="mt-1 font-heading font-bold text-[32px] sm:text-[40px] text-dark-text leading-[1.15]">
+          <h2 className="mt-3 font-heading font-bold text-[32px] sm:text-[40px] text-dark-text leading-[1.15]">
             Grow your practice with CareConnect
           </h2>
           <p className="mt-3 font-body text-[18px] text-[rgba(255,255,255,0.6)]">

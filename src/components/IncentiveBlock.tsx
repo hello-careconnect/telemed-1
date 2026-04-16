@@ -52,8 +52,8 @@ export const IncentiveBlock = () => {
 
       <div className="relative z-10 py-16 sm:py-20 lg:py-28">
         <div className="container max-w-5xl mx-auto px-6">
-          {/* Top badge */}
-          <div className="flex justify-center">
+          {/* Badge + Heading + Subtitle */}
+          <div className="flex flex-col items-center text-center gap-5">
             <span className="inline-flex items-center gap-2 bg-[rgba(13,148,136,0.15)] border border-[rgba(13,148,136,0.25)] text-white rounded-full px-5 py-2 text-[13px] font-medium font-body backdrop-blur-sm">
               <span className="relative flex h-2 w-2">
                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
@@ -61,22 +61,15 @@ export const IncentiveBlock = () => {
               </span>
               Limited Early Access — Closing Soon
             </span>
+
+            <h2 className="font-heading font-bold text-[32px] sm:text-[42px] lg:text-[56px] text-white leading-[1.08] tracking-tight whitespace-nowrap">
+              Health shouldn't be <span className="bg-gradient-to-r from-emerald-400 to-teal-300 bg-clip-text text-transparent font-display">complicated.</span>
+            </h2>
+
+            <p className="font-body text-[17px] sm:text-[19px] text-[rgba(255,255,255,0.6)] leading-relaxed whitespace-nowrap">
+              Join <span className="text-white font-semibold">CareConnect</span> and get your first GP consultation free. Worth <span className="text-emerald-400 font-semibold">BDT 300</span> — no card, no catch.
+            </p>
           </div>
-
-          {/* Heading */}
-          <h2 className="mt-8 font-heading font-bold text-center text-[32px] sm:text-[42px] lg:text-[56px] text-white leading-[1.08] tracking-tight">
-            Health shouldn't be
-            <br />
-            <span className="bg-gradient-to-r from-emerald-400 to-teal-300 bg-clip-text text-transparent font-display">
-              complicated.
-            </span>
-          </h2>
-
-          <p className="mt-5 font-body text-center text-[17px] sm:text-[19px] text-[rgba(255,255,255,0.6)] mx-auto max-w-lg leading-relaxed">
-            Join <span className="text-white font-semibold">CareConnect</span> and get your first GP consultation free.
-            <br className="hidden sm:block" />
-            Worth <span className="text-emerald-400 font-semibold">BDT 300</span> — no card, no catch.
-          </p>
 
           {/* Countdown */}
           <div className="mt-12 flex justify-center gap-3 sm:gap-4">

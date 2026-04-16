@@ -108,10 +108,10 @@ export const FeatureRow = React.forwardRef<HTMLDivElement, FeatureRowProps>(
 
 FeatureRow.displayName = 'FeatureRow';
 
-export const MobileJourneyCard = ({ icon: Icon, title, description, isActive, onClick }: {
+export const MobileJourneyCard = ({ icon: Icon, title, points, isActive, onClick }: {
   icon: LucideIcon;
   title: string;
-  description: string;
+  points: string[];
   isActive: boolean;
   onClick: () => void;
 }) => (
@@ -131,7 +131,14 @@ export const MobileJourneyCard = ({ icon: Icon, title, description, isActive, on
     <h3 className={`font-heading font-semibold text-[14px] leading-snug transition-colors duration-200 ${
       isActive ? 'text-text-primary' : 'text-text-body'
     }`}>{title}</h3>
-    <p className="font-body text-[12px] leading-relaxed text-text-body mt-1.5">{description}</p>
+    <ul className="mt-1.5 space-y-1">
+      {points.map((pt, i) => (
+        <li key={i} className="flex items-start gap-1.5">
+          <span className="mt-[5px] flex-shrink-0 w-1 h-1 rounded-full bg-primary" />
+          <span className="font-body text-[11px] leading-snug text-text-body">{pt}</span>
+        </li>
+      ))}
+    </ul>
   </motion.div>
 );
 

@@ -32,8 +32,8 @@ export const WaitlistForm = () => {
             </span>
             Early Access · Limited Spots
           </span>
-          <h2 className="mt-4 font-heading font-bold text-[32px] sm:text-[40px] text-text-primary leading-[1.15]">
-            Join the waitlist
+          <h2 className="mt-3 font-heading font-bold text-[32px] sm:text-[40px] text-text-primary leading-[1.15]">
+            Join the <span className="text-primary">waitlist</span>
           </h2>
           <p className="mt-3 font-body text-[18px] text-text-muted">
             First 500 signups receive a <span className="font-semibold text-text-body">free GP consultation</span>, worth BDT 300.

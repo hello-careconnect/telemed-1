@@ -1,36 +1,37 @@
 import { useRef, useState } from 'react';
 import { motion, useInView, AnimatePresence } from 'framer-motion';
+import { Target, Rocket, ClipboardList, Bot, CircleDollarSign, Stethoscope } from 'lucide-react';
 
 const faqs = [
   {
     q: 'How do I know which specialist is right for me?',
     a: 'Our matching system considers 3 key factors: your symptoms and health history, specialist success rates with similar cases, and your preferred communication style.',
-    icon: '🎯',
+    icon: Target,
   },
   {
     q: 'When does the platform launch?',
     a: "We're targeting launch within 4–6 weeks in Dhaka and Chattogram. Waitlist members are notified first and get first access.",
-    icon: '🚀',
+    icon: Rocket,
   },
   {
     q: 'What happens after I book my first appointment?',
     a: "You'll receive a confirmation with your doctor's details, appointment time, and preparation tips. You can also video-consult from home.",
-    icon: '📋',
+    icon: ClipboardList,
   },
   {
     q: 'How does your AI monitoring work?',
     a: 'Our diagnostic systems learn from 300k+ health data points to surface insights most doctors might miss, always under physician supervision.',
-    icon: '🤖',
+    icon: Bot,
   },
   {
     q: 'Will I know costs before treatment?',
     a: 'Yes, transparent pricing is core to our platform. You see the full cost before booking. No hidden fees. Pay via bKash, Nagad, or card.',
-    icon: '💰',
+    icon: CircleDollarSign,
   },
   {
     q: "I'm a doctor. How do I list my practice?",
     a: "Use the same waitlist form above and select 'I'm a Doctor.' Our team will reach out with a dedicated onboarding process and your free verified listing.",
-    icon: '🩺',
+    icon: Stethoscope,
   },
 ];
 
@@ -46,13 +47,13 @@ export const FAQSection = () => {
   return (
     <section id="about" className="py-12 sm:py-16 lg:py-24 bg-soft-img relative overflow-hidden">
       {/* Subtle decorative blobs */}
-      <div className="absolute top-20 right-0 w-[400px] h-[400px] rounded-full bg-primary/[0.04] blur-[100px]" />
-      <div className="absolute bottom-20 left-0 w-[300px] h-[300px] rounded-full bg-primary/[0.03] blur-[80px]" />
+      <div className="absolute top-20 right-0 w-[400px] h-[400px] rounded-full bg-primary/[0.04] blur-[100px] pointer-events-none" />
+      <div className="absolute bottom-20 left-0 w-[300px] h-[300px] rounded-full bg-primary/[0.03] blur-[80px] pointer-events-none" />
 
       <div className="container max-w-[1140px] mx-auto px-6" ref={ref}>
-        <div className="flex flex-col lg:flex-row gap-10 lg:gap-16">
+        <div className="flex flex-col lg:flex-row lg:items-start gap-10 lg:gap-16">
           {/* Left — sticky header */}
-          <div className="lg:w-[42%] lg:sticky lg:top-32 lg:self-start">
+          <div className="lg:w-[42%]">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={inView ? { opacity: 1, y: 0 } : {}}
@@ -65,7 +66,7 @@ export const FAQSection = () => {
                 FAQ
               </span>
 
-              <h2 className="mt-4 font-heading font-bold text-[32px] sm:text-[40px] text-text-primary leading-[1.12]">
+              <h2 className="mt-3 font-heading font-bold text-[32px] sm:text-[40px] text-text-primary leading-[1.12]">
                 Got questions?
                 <br />
                 <span className="font-display text-primary">We've got answers.</span>
@@ -77,17 +78,17 @@ export const FAQSection = () => {
 
               {/* Mini stats */}
               <div className="mt-8 flex gap-6">
-                <div>
+                <div className="flex flex-col items-center">
                   <p className="font-heading font-bold text-[28px] text-primary">500+</p>
                   <p className="font-body text-[13px] text-text-body">Early signups</p>
                 </div>
                 <div className="w-px bg-border" />
-                <div>
+                <div className="flex flex-col items-center">
                   <p className="font-heading font-bold text-[28px] text-primary">4.9</p>
                   <p className="font-body text-[13px] text-text-body">User rating</p>
                 </div>
                 <div className="w-px bg-border" />
-                <div>
+                <div className="flex flex-col items-center">
                   <p className="font-heading font-bold text-[28px] text-primary">24/7</p>
                   <p className="font-body text-[13px] text-text-body">Support</p>
                 </div>
@@ -96,7 +97,7 @@ export const FAQSection = () => {
           </div>
 
           {/* Right — Custom accordion */}
-          <div className="lg:w-[58%] space-y-3">
+          <div className="lg:w-[58%] space-y-2">
             {faqs.map((faq, i) => {
               const isOpen = openIndex === i;
               return (
@@ -115,28 +116,28 @@ export const FAQSection = () => {
                   >
                     <button
                       onClick={() => toggle(i)}
-                      className="w-full flex items-start gap-4 px-6 py-5 text-left"
+                      className="w-full flex items-center gap-3 px-5 py-4 text-left"
                     >
                       <span
-                        className={`flex-shrink-0 mt-0.5 w-10 h-10 rounded-xl flex items-center justify-center text-[18px] transition-colors duration-300 ${
-                          isOpen ? 'bg-primary/10' : 'bg-gray-100'
+                        className={`flex-shrink-0 w-9 h-9 rounded-lg flex items-center justify-center transition-colors duration-300 ${
+                          isOpen ? 'bg-primary/10 text-primary' : 'bg-gray-100 text-text-body'
                         }`}
                       >
-                        {faq.icon}
+                        <faq.icon className="w-4 h-4" />
                       </span>
 
                       <div className="flex-1 min-w-0">
-                        <span className="font-body font-semibold text-[15px] text-text-primary leading-snug">
+                        <span className={`font-body font-semibold text-[14.5px] leading-snug transition-colors duration-300 ${isOpen ? 'text-primary' : 'text-text-primary'}`}>
                           {faq.q}
                         </span>
                       </div>
 
                       <span
-                        className={`flex-shrink-0 mt-1 w-7 h-7 rounded-full flex items-center justify-center transition-all duration-300 ${
+                        className={`flex-shrink-0 w-6 h-6 rounded-full flex items-center justify-center transition-all duration-300 ${
                           isOpen ? 'bg-primary text-white rotate-180' : 'bg-gray-100 text-text-body'
                         }`}
                       >
-                        <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+                        <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
                           <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
                         </svg>
                       </span>
@@ -151,8 +152,8 @@ export const FAQSection = () => {
                           transition={{ duration: 0.3, ease: [0.4, 0, 0.2, 1] }}
                           className="overflow-hidden"
                         >
-                          <div className="px-6 pb-5 pl-20">
-                            <p className="font-body text-[15px] text-text-body leading-[1.7]">
+                          <div className="px-5 pb-4 pl-[3.25rem]">
+                            <p className="font-body text-[14px] text-text-body leading-[1.75]">
                               {faq.a}
                             </p>
                           </div>

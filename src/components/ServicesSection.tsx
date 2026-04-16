@@ -55,14 +55,14 @@ export const ServicesSection = () => {
     <section className="py-8 sm:py-12 lg:py-16 bg-soft-img">
       <div className="container max-w-[1140px] mx-auto px-6">
         <div className="text-center max-w-2xl mx-auto mb-8 sm:mb-10">
-          <span className="inline-flex items-center bg-[rgba(255,255,255,0.08)] text-dark-text rounded-full px-4 py-1.5 text-[13px] font-medium font-body border border-[rgba(255,255,255,0.1)]">
+          <span className="inline-flex items-center bg-primary/10 text-primary rounded-full px-4 py-1.5 text-[13px] font-medium font-body border border-primary/20">
             Our Services
           </span>
           <h2 className="mt-3 font-heading font-bold text-[32px] sm:text-[40px] text-text-primary leading-[1.12]">
             Our consultation{' '}
             <span className="font-display text-primary">services</span>
           </h2>
-          <p className="mt-4 font-body text-[15px] sm:text-[17px] text-text-body max-w-2xl mx-auto">
+          <p className="mt-3 font-body text-[15px] sm:text-[17px] text-text-body max-w-2xl mx-auto">
             Comprehensive healthcare at your fingertips, from general checkups to specialized treatments.
           </p>
         </div>

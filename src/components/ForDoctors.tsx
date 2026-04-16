@@ -19,18 +19,25 @@ export const ForDoctors = () => {
   };
 
   return (
-    <section id="for-doctors" className="bg-dark-bg py-8 sm:py-12 lg:py-0 lg:min-h-[600px] relative overflow-hidden">
+    <section id="for-doctors" className="bg-[#0a0a1a] py-8 sm:py-12 lg:py-0 lg:min-h-[600px] relative overflow-hidden">
+      {/* Background */}
+      <div className="absolute inset-0">
+        <div className="absolute inset-0 bg-gradient-to-b from-[#0c1a1a] via-[#0f2524] to-[#0c1a1a]" />
+        <div className="absolute top-0 left-1/4 w-[600px] h-[600px] rounded-full bg-[#0d9488] opacity-[0.08] blur-[150px]" />
+        <div className="absolute bottom-0 right-1/3 w-[500px] h-[500px] rounded-full bg-[#0f766e] opacity-[0.06] blur-[130px]" />
+        <div className="absolute inset-0 opacity-[0.04]" style={{ backgroundImage: `linear-gradient(rgba(255,255,255,0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.1) 1px, transparent 1px)`, backgroundSize: '60px 60px' }} />
+      </div>
       <div className="container max-w-[1140px] mx-auto px-6 flex flex-col lg:flex-row gap-8 lg:gap-16 items-center lg:py-0" ref={ref}>
         {/* Left — Content */}
         <div className="lg:w-[55%] lg:py-16">
           <span className="inline-flex items-center bg-[rgba(255,255,255,0.08)] text-accent-alt rounded-full px-4 py-1.5 text-[13px] font-medium font-body">
             For Healthcare Professionals
           </span>
-          <h2 className="mt-1 font-heading font-bold text-[36px] sm:text-[42px] text-dark-text leading-[1.1]">
+          <h2 className="mt-3 font-heading font-bold text-[36px] sm:text-[42px] text-dark-text leading-[1.1]">
             Are you a doctor?<br />
             <span className="font-display text-accent-alt">List free.</span>
           </h2>
-          <p className="mt-4 font-body text-[18px] text-[rgba(255,255,255,0.65)] max-w-lg">
+          <p className="mt-3 font-body text-[18px] text-[rgba(255,255,255,0.65)] max-w-lg">
             Be among the first verified doctors on Bangladesh's most trusted health platform. Boost your online presence and attract more patients.
           </p>
 

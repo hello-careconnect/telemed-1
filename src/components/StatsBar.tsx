@@ -28,8 +28,7 @@ export const StatsBar = () => {
                 }`}
               >
                 <AnimatedStat value={stat.value} inView={inView} />
-                <span className="block w-1 h-1 rounded-full bg-primary/40 my-2" />
-                <p className="font-body font-bold text-[11px] text-gray-500 uppercase tracking-[0.2em] whitespace-nowrap">
+                <p className="mt-2 font-body font-bold text-[11px] text-gray-500 uppercase tracking-[0.2em] whitespace-nowrap text-center">
                   {stat.label}
                 </p>
               </motion.div>
