@@ -1,9 +1,16 @@
 import React from 'react';
 import { Facebook, Instagram, Linkedin, Mail, MessageCircle } from 'lucide-react';
+import { Link } from 'react-router-dom';
 import { Logo } from './Logo';
 import paymentMethods from '@/assets/payment-methods.png';
 import { useLang, tx } from '@/context/LanguageContext';
 import { translations } from '@/i18n/translations';
+
+const legalLinks = [
+  { en: 'Terms of Use',   bn: 'ব্যবহারের শর্তাবলী', href: '/terms-of-use' },
+  { en: 'Privacy Policy', bn: 'গোপনীয়তা নীতি',      href: '/privacy-policy' },
+  { en: 'Cookie Policy',  bn: 'কুকি নীতি',            href: '/cookie-policy' },
+];
 
 const { footer: t } = translations;
 
@@ -125,6 +132,19 @@ export const Footer = () => {
           <p className="font-body font-light text-[12px] text-dark-text/30">
             {tx(t.disclaimer, lang)}
           </p>
+        </div>
+
+        {/* Legal links */}
+        <div className="mt-4 pt-4 border-t border-dark-text/[0.04] flex flex-wrap justify-center gap-x-6 gap-y-2">
+          {legalLinks.map((l) => (
+            <Link
+              key={l.href}
+              to={l.href}
+              className="font-body font-light text-[12px] text-dark-text/30 hover:text-dark-text/60 transition-colors duration-200"
+            >
+              {l.en}
+            </Link>
+          ))}
         </div>
       </div>
     </footer>
