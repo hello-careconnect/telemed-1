@@ -69,7 +69,7 @@ export const Navbar = () => {
                 e.preventDefault();
                 scrollTo(link.href.replace('#', ''));
               }}
-              className="whitespace-nowrap text-[14px] lg:text-[15px] font-semibold font-body text-text-body hover:text-text-primary transition-colors duration-150 px-2 lg:px-3 py-1.5 rounded-full hover:bg-primary/5"
+              className="whitespace-nowrap text-[14px] lg:text-[15px] font-medium font-body text-text-body hover:text-text-primary transition-colors duration-150 px-2 lg:px-3 py-1.5 rounded-full hover:bg-primary/5"
             >
               {link.label}
             </a>
@@ -78,12 +78,12 @@ export const Navbar = () => {
 
         {/* Desktop actions — right col */}
         <div className="flex-1 hidden md:flex items-center justify-end gap-2 lg:gap-3">
-          <button className="whitespace-nowrap text-[15px] lg:text-[16px] font-semibold font-body text-text-body hover:text-text-primary transition-colors duration-150">
+          <button className="whitespace-nowrap text-[15px] lg:text-[16px] font-medium font-body text-text-body hover:text-text-primary transition-colors duration-150">
             {tx(nav.login, lang)}
           </button>
           <button
             onClick={scrollToForm}
-            className="whitespace-nowrap bg-primary text-primary-foreground rounded-full px-4 lg:px-5 py-2 text-[15px] lg:text-[16px] font-semibold font-body hover:bg-primary-dark transition-all duration-200 shadow-teal-glow hover:-translate-y-px flex items-center gap-1 lg:gap-1.5"
+            className="whitespace-nowrap bg-primary text-primary-foreground rounded-full px-4 lg:px-5 py-2 text-[15px] lg:text-[16px] font-medium font-body hover:bg-primary-dark transition-all duration-200 shadow-teal-glow hover:-translate-y-px flex items-center gap-1 lg:gap-1.5"
           >
             {tx(nav.joinWaitlist, lang)} <ArrowUpRight className="w-3 h-3 lg:w-3.5 lg:h-3.5" />
           </button>
@@ -107,19 +107,19 @@ export const Navbar = () => {
                       e.preventDefault();
                       scrollTo(link.href.replace('#', ''));
                     }}
-                    className="text-[17px] font-semibold font-body text-text-primary py-4 border-b border-border hover:text-primary transition-colors"
+                    className="text-[17px] font-medium font-body text-text-primary py-4 border-b border-border hover:text-primary transition-colors"
                   >
                     {link.label}
                   </a>
                 ))}
-                <button className="text-[17px] font-semibold font-body text-text-primary py-4 border-b border-border text-left hover:text-primary transition-colors">
+                <button className="text-[17px] font-medium font-body text-text-primary py-4 border-b border-border text-left hover:text-primary transition-colors">
                   {tx(nav.login, lang)}
                 </button>
               </div>
               <div className="mt-auto">
                 <button
                   onClick={scrollToForm}
-                  className="w-full bg-primary text-primary-foreground rounded-full py-4 text-[16px] font-semibold font-body shadow-teal-glow flex items-center justify-center gap-2"
+                  className="w-full bg-primary text-primary-foreground rounded-full py-4 text-[16px] font-medium font-body shadow-teal-glow flex items-center justify-center gap-2"
                 >
                   {tx(nav.joinWaitlist, lang)} <ArrowUpRight className="w-4 h-4" />
                 </button>
